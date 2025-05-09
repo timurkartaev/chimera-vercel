@@ -1,0 +1,121 @@
+# Exceptions
+
+The Integration Connector framework provides a set of custom exceptions for handling various error cases in a standardized way.
+
+## Base Exception
+
+All connector exceptions inherit from `ConnectorError`:
+
+```python
+class ConnectorError(Exception):
+    """Base exception for all connector errors."""
+    pass
+```
+
+## Authentication Exceptions
+
+### AuthenticationError
+
+Raised when authentication fails:
+
+```python
+class AuthenticationError(ConnectorError):
+    """Raised when authentication fails."""
+    pass
+```
+
+### AuthorizationError
+
+Raised when authorization fails:
+
+```python
+class AuthorizationError(ConnectorError):
+    """Raised when authorization fails."""
+    pass
+```
+
+## Entity Exceptions
+
+### EntityNotFoundError
+
+Raised when an entity type is not found:
+
+```python
+class EntityNotFoundError(ConnectorError):
+    """Raised when an entity type is not found."""
+    pass
+```
+
+### ObjectNotFoundError
+
+Raised when an object is not found:
+
+```python
+class ObjectNotFoundError(ConnectorError):
+    """Raised when an object is not found."""
+    pass
+```
+
+## Action Exceptions
+
+### ActionNotFoundError
+
+Raised when an action is not found:
+
+```python
+class ActionNotFoundError(ConnectorError):
+    """Raised when an action is not found."""
+    pass
+```
+
+## Validation Exceptions
+
+### ValidationError
+
+Raised when data validation fails:
+
+```python
+class ValidationError(ConnectorError):
+    """Raised when data validation fails."""
+    pass
+```
+
+## Configuration Exceptions
+
+### ConfigurationError
+
+Raised when there's an issue with the connector configuration:
+
+```python
+class ConfigurationError(ConnectorError):
+    """Raised when there's an issue with the connector configuration."""
+    pass
+```
+
+## Usage Example
+
+Here's how to use these exceptions in your connector:
+
+```python
+from chimera.integration_connector.exceptions import (
+    AuthenticationError,
+    EntityNotFoundError,
+    ObjectNotFoundError
+)
+
+class MyConnector(BaseConnector):
+    async def get_object(self, entity_type: str, object_id: str) -> ConnectorObject:
+        # Check if entity type exists
+        if entity_type not in self.config.entities:
+            raise EntityNotFoundError(f"Entity type '{entity_type}' not found")
+
+        try:
+            # Try to get the object
+            response = await self._api.get_object(entity_type, object_id)
+            if not response:
+                raise ObjectNotFoundError(f"Object '{object_id}' not found")
+            return ConnectorObject(id=object_id, type=entity_type, data=response)
+        except Exception as e:
+            if isinstance(e, ConnectorError):
+                raise
+            raise ConnectorError(f"Failed to get object: {str(e)}") 

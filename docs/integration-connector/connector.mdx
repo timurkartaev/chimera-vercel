@@ -1,0 +1,169 @@
+# Connector Interface
+
+The `BaseConnector` class defines the interface that all connectors must implement. It provides a standardized way to interact with external systems and services.
+
+## Base Classes
+
+### ConnectorObject
+
+Base class for connector objects:
+
+```python
+class ConnectorObject(BaseModel):
+    id: str
+    type: str
+    data: Dict[str, Any]
+```
+
+### ConnectorResult
+
+Base class for connector operation results:
+
+```python
+class ConnectorResult(BaseModel):
+    success: bool
+    data: Optional[Any] = None
+    error: Optional[str] = None
+```
+
+## Required Methods
+
+### authorize
+
+Authorize with the external system:
+
+```python
+@abstractmethod
+async def authorize(self, credentials: Dict[str, Any]) -> ConnectorResult:
+    """Authorize with the external system."""
+    pass
+```
+
+### get_info
+
+Get information about the connector:
+
+```python
+@abstractmethod
+async def get_info(self) -> Dict[str, Any]:
+    """Get information about the connector."""
+    pass
+```
+
+### get_entities
+
+Get list of available entities:
+
+```python
+@abstractmethod
+async def get_entities(self) -> List[str]:
+    """Get list of available entities."""
+    pass
+```
+
+### get_entity_fields
+
+Get fields for a specific entity type:
+
+```python
+@abstractmethod
+async def get_entity_fields(self, entity_type: str) -> Dict[str, str]:
+    """Get fields for a specific entity type."""
+    pass
+```
+
+### get_objects
+
+Get objects of a specific entity type:
+
+```python
+@abstractmethod
+async def get_objects(self, entity_type: str, filters: Optional[Dict[str, Any]] = None) -> List[ConnectorObject]:
+    """Get objects of a specific entity type."""
+    pass
+```
+
+### get_object
+
+Get a specific object by ID:
+
+```python
+@abstractmethod
+async def get_object(self, entity_type: str, object_id: str) -> ConnectorObject:
+    """Get a specific object by ID."""
+    pass
+```
+
+### create_object
+
+Create a new object:
+
+```python
+@abstractmethod
+async def create_object(self, entity_type: str, data: Dict[str, Any]) -> ConnectorObject:
+    """Create a new object."""
+    pass
+```
+
+### update_object
+
+Update an existing object:
+
+```python
+@abstractmethod
+async def update_object(self, entity_type: str, object_id: str, data: Dict[str, Any]) -> ConnectorObject:
+    """Update an existing object."""
+    pass
+```
+
+### delete_object
+
+Delete an object:
+
+```python
+@abstractmethod
+async def delete_object(self, entity_type: str, object_id: str) -> ConnectorResult:
+    """Delete an object."""
+    pass
+```
+
+### execute_action
+
+Execute an action on an object:
+
+```python
+@abstractmethod
+async def execute_action(self, action_id: str, entity_type: str, object_id: str, data: Dict[str, Any]) -> ConnectorResult:
+    """Execute an action on an object."""
+    pass
+```
+
+## Example Implementation
+
+Here's an example of implementing a connector:
+
+```python
+from chimera.integration_connector import BaseConnector, Config, ConnectorObject, ConnectorResult
+
+class MyConnector(BaseConnector):
+    def __init__(self, config: Config):
+        super().__init__(config)
+        self._auth_token = None
+
+    async def authorize(self, credentials: Dict[str, Any]) -> ConnectorResult:
+        try:
+            # Implement authorization logic
+            self._auth_token = "your-auth-token"
+            return ConnectorResult(success=True)
+        except Exception as e:
+            return ConnectorResult(success=False, error=str(e))
+
+    async def get_info(self) -> Dict[str, Any]:
+        return {
+            "name": self.config.info.name,
+            "version": self.config.info.version,
+            "description": self.config.info.description
+        }
+
+    # Implement other required methods...
+``` 

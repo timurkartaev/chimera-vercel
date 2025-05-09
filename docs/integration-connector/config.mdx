@@ -1,0 +1,125 @@
+# Configuration
+
+The Integration Connector framework uses Pydantic models for type-safe configuration. This ensures that all configuration data is properly validated and structured.
+
+## Configuration Models
+
+### Info
+
+Basic metadata that identifies and visually represents the integration:
+
+```python
+class Info(BaseModel):
+    logo: HttpUrl
+    name: str
+    categories: List[str]
+    website: HttpUrl
+    support_email: str
+    version: str
+    developer: str
+    description: Optional[str] = None
+    video_uri: Optional[HttpUrl] = None
+    overview: Optional[str] = None
+```
+
+### Authentication
+
+Authentication configuration supporting both OAuth2 and credentials-based auth:
+
+```python
+class OAuth2Config(BaseModel):
+    client_id: str
+    client_secret: str
+    auth_uri: HttpUrl
+    token_uri: HttpUrl
+    scopes: List[str]
+
+class Authentication(BaseModel):
+    auth_method: str  # 'oauth2' or 'credentials'
+    oauth2: Optional[OAuth2Config] = None
+```
+
+### Entity
+
+Entity type configuration:
+
+```python
+class Entity(BaseModel):
+    entity_type: str
+    display_name: Optional[str] = None
+    description: Optional[str] = None
+    fields: Optional[Dict[str, str]] = None
+```
+
+### Action
+
+Action configuration:
+
+```python
+class Action(BaseModel):
+    action_id: str
+    entities: List[str]
+    display_name: Optional[str] = None
+    description: Optional[str] = None
+```
+
+### Main Config
+
+The main configuration model that combines all components:
+
+```python
+class Config(BaseModel):
+    info: Info
+    authentication: Authentication
+    entities: List[Entity]
+    actions: List[Action]
+    localization: Optional[Dict[str, Dict[str, str]]] = None
+```
+
+## Usage
+
+To use the configuration in your connector:
+
+```python
+from chimera.integration_connector import Config
+
+# Create configuration
+config = Config(
+    info=Info(
+        name="My Connector",
+        logo="https://example.com/logo.png",
+        categories=["CRM", "Sales"],
+        website="https://example.com",
+        support_email="support@example.com",
+        version="1.0.0",
+        developer="Your Company"
+    ),
+    authentication=Authentication(
+        auth_method="oauth2",
+        oauth2=OAuth2Config(
+            client_id="your-client-id",
+            client_secret="your-client-secret",
+            auth_uri="https://example.com/auth",
+            token_uri="https://example.com/token",
+            scopes=["read", "write"]
+        )
+    ),
+    entities=[
+        Entity(
+            entity_type="contact",
+            display_name="Contact",
+            fields={
+                "name": "string",
+                "email": "string",
+                "phone": "string"
+            }
+        )
+    ],
+    actions=[
+        Action(
+            action_id="create_contact",
+            entities=["contact"],
+            display_name="Create Contact"
+        )
+    ]
+) 

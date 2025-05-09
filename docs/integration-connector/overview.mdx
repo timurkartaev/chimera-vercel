@@ -1,0 +1,47 @@
+# Integration Connector Overview
+
+The Integration Connector framework provides a standardized way to integrate with external systems and services. It defines a common interface and structure for building connectors that can interact with various APIs and services.
+
+## Key Features
+
+- Standardized connector interface
+- Type-safe configuration using Pydantic
+- Built-in error handling
+- Async support
+- OAuth2 and credentials-based authentication
+- Entity and action management
+- Localization support
+
+## Architecture
+
+The framework consists of several core components:
+
+1. **Base Connector**: Abstract base class defining the interface for all connectors
+2. **Configuration**: Pydantic models for connector configuration
+3. **Exceptions**: Custom exception classes for error handling
+4. **Models**: Base classes for connector objects and results
+
+## Getting Started
+
+To create a new connector:
+
+1. Create a new package in the `connectors` directory
+2. Inherit from `BaseConnector`
+3. Implement the required abstract methods
+4. Define connector-specific models and utilities
+
+## Example
+
+```python
+from chimera.integration_connector import BaseConnector, Config
+
+class MyConnector(BaseConnector):
+    def __init__(self, config: Config):
+        super().__init__(config)
+        
+    async def authorize(self, credentials: Dict[str, Any]) -> ConnectorResult:
+        # Implement authorization
+        pass
+        
+    # Implement other required methods
+``` 
