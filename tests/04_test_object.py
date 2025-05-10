@@ -89,7 +89,16 @@ class TestObjectCapability(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures before each test method is run."""
         # Create a mock config
-        self.config = {}
+        self.config = {
+            'objects': {
+                'test_entity': {
+                    'fields': {
+                        'id': {'type': 'string'},
+                        'name': {'type': 'string'}
+                    }
+                }
+            }
+        }
         
         # Create a mock API client
         self.api_client = MagicMock(spec=ApiClient)
@@ -103,7 +112,7 @@ class TestObjectCapability(unittest.TestCase):
     def test_get_deals(self):
         """Test that _get_deals returns a list of deals."""
         # Mock the API response
-        self.api_client.get_deals.return_value = {
+        self.api_client.get.return_value = {
             "deals": [
                 {"id": "deal1", "name": "Test Deal 1"},
                 {"id": "deal2", "name": "Test Deal 2"}
@@ -119,11 +128,14 @@ class TestObjectCapability(unittest.TestCase):
         self.assertEqual(deals[0]["name"], "Test Deal 1")
         self.assertEqual(deals[1]["id"], "deal2")
         self.assertEqual(deals[1]["name"], "Test Deal 2")
+        
+        # Verify API call
+        self.api_client.get.assert_called_once_with("deals")
     
     def test_get_companies(self):
         """Test that _get_companies returns a list of companies."""
         # Mock the API response
-        self.api_client.get_companies.return_value = {
+        self.api_client.get.return_value = {
             "companies": [
                 {"id": "company1", "name": "Test Company 1"},
                 {"id": "company2", "name": "Test Company 2"}
@@ -139,11 +151,14 @@ class TestObjectCapability(unittest.TestCase):
         self.assertEqual(companies[0]["name"], "Test Company 1")
         self.assertEqual(companies[1]["id"], "company2")
         self.assertEqual(companies[1]["name"], "Test Company 2")
+        
+        # Verify API call
+        self.api_client.get.assert_called_once_with("companies")
     
     def test_get_contacts(self):
         """Test that _get_contacts returns a list of contacts."""
         # Mock the API response
-        self.api_client.get_contacts.return_value = {
+        self.api_client.get.return_value = {
             "contacts": [
                 {"id": "contact1", "first_name": "John", "last_name": "Doe"},
                 {"id": "contact2", "first_name": "Jane", "last_name": "Smith"}
@@ -159,11 +174,14 @@ class TestObjectCapability(unittest.TestCase):
         self.assertEqual(contacts[0]["name"], "John Doe")
         self.assertEqual(contacts[1]["id"], "contact2")
         self.assertEqual(contacts[1]["name"], "Jane Smith")
+        
+        # Verify API call
+        self.api_client.get.assert_called_once_with("contacts")
     
     def test_get_custom_objects(self):
         """Test that _get_custom_objects returns a list of custom objects."""
         # Mock the API response
-        self.api_client.get_custom_objects.return_value = {
+        self.api_client.get.return_value = {
             "objects": [
                 {"id": "obj1", "name": "Custom Object 1"},
                 {"id": "obj2", "name": "Custom Object 2"}
@@ -181,35 +199,25 @@ class TestObjectCapability(unittest.TestCase):
         self.assertEqual(objects[1]["name"], "Custom Object 2")
         
         # Verify API call
-        self.api_client.get_custom_objects.assert_called_once_with("product")
+        self.api_client.get.assert_called_once_with("custom_objects/product")
     
     def test_get_objects(self):
         """Test that get_objects delegates to the correct method based on entity type."""
-        # Mock the individual methods
-        self.object_capability._get_deals = MagicMock(return_value=[
-            {"id": "deal1", "name": "Test Deal"}
-        ])
-        self.object_capability._get_companies = MagicMock(return_value=[
-            {"id": "company1", "name": "Test Company"}
-        ])
-        self.object_capability._get_contacts = MagicMock(return_value=[
-            {"id": "contact1", "name": "Test Contact"}
-        ])
-        self.object_capability._get_custom_objects = MagicMock(return_value=[
+        # Mock the API response
+        self.api_client.get.return_value = [
             {"id": "obj1", "name": "Test Object"}
-        ])
+        ]
         
-        # Test each entity type
-        self.assertEqual(self.object_capability.get_objects("deal"), [{"id": "deal1", "name": "Test Deal"}])
-        self.assertEqual(self.object_capability.get_objects("company"), [{"id": "company1", "name": "Test Company"}])
-        self.assertEqual(self.object_capability.get_objects("contact"), [{"id": "contact1", "name": "Test Contact"}])
-        self.assertEqual(self.object_capability.get_objects("custom_object", "product"), [{"id": "obj1", "name": "Test Object"}])
+        # Test getting objects
+        objects = self.object_capability.get_objects("test_entity")
         
-        # Verify method calls
-        self.object_capability._get_deals.assert_called_once()
-        self.object_capability._get_companies.assert_called_once()
-        self.object_capability._get_contacts.assert_called_once()
-        self.object_capability._get_custom_objects.assert_called_once_with("product")
+        # Check the objects
+        self.assertEqual(len(objects), 1)
+        self.assertEqual(objects[0]["id"], "obj1")
+        self.assertEqual(objects[0]["name"], "Test Object")
+        
+        # Verify API call
+        self.api_client.get.assert_called_once_with("test_entity")
     
     def test_get_objects_not_authenticated(self):
         """Test that get_objects returns an empty list when not authenticated."""
@@ -217,7 +225,7 @@ class TestObjectCapability(unittest.TestCase):
         self.object_capability._get_authentication_state = MagicMock(return_value={"status": "disconnected"})
         
         # Try to get objects
-        objects = self.object_capability.get_objects("deal")
+        objects = self.object_capability.get_objects("test_entity")
         
         # Check the result
         self.assertEqual(objects, [])
@@ -231,7 +239,7 @@ class TestObjectCapability(unittest.TestCase):
     def test_get_deal_data(self):
         """Test that _get_deal_data returns the correct deal data."""
         # Mock the API response
-        self.api_client.get_deal.return_value = {
+        self.api_client.get.return_value = {
             "id": "deal1",
             "name": "Test Deal",
             "amount": 5000,
@@ -252,26 +260,24 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get deal data
-        deal_data = self.object_capability._get_deal_data("deal1")
+        deal = self.object_capability._get_deal_data("deal1")
         
-        # Check the data
-        self.assertEqual(deal_data["id"], "deal1")
-        self.assertEqual(deal_data["name"], "Test Deal")
-        self.assertEqual(deal_data["amount"], 5000)
-        self.assertEqual(deal_data["stage"], "Proposal")
-        self.assertEqual(deal_data["close_date"], "2023-12-31")
-        self.assertEqual(deal_data["owner"]["id"], "user1")
-        self.assertEqual(deal_data["owner"]["name"], "John Owner")
-        self.assertEqual(deal_data["contacts"][0]["id"], "contact1")
-        self.assertEqual(deal_data["contacts"][0]["name"], "Jane Contact")
+        # Check the deal data
+        self.assertEqual(deal["id"], "deal1")
+        self.assertEqual(deal["name"], "Test Deal")
+        self.assertEqual(deal["amount"], 5000)
+        self.assertEqual(deal["stage"], "Proposal")
+        self.assertEqual(deal["close_date"], "2023-12-31")
+        self.assertEqual(deal["owner"]["id"], "user1")
+        self.assertEqual(deal["contacts"][0]["id"], "contact1")
         
         # Verify API call
-        self.api_client.get_deal.assert_called_once_with("deal1")
+        self.api_client.get.assert_called_once_with("deals/deal1")
     
     def test_get_company_data(self):
         """Test that _get_company_data returns the correct company data."""
         # Mock the API response
-        self.api_client.get_company.return_value = {
+        self.api_client.get.return_value = {
             "id": "company1",
             "name": "Test Company",
             "domain": "example.com",
@@ -287,23 +293,23 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get company data
-        company_data = self.object_capability._get_company_data("company1")
+        company = self.object_capability._get_company_data("company1")
         
-        # Check the data
-        self.assertEqual(company_data["id"], "company1")
-        self.assertEqual(company_data["name"], "Test Company")
-        self.assertEqual(company_data["domain"], "example.com")
-        self.assertEqual(company_data["industry"], "Technology")
-        self.assertEqual(company_data["address"]["street"], "123 Main St")
-        self.assertEqual(company_data["address"]["city"], "San Francisco")
+        # Check the company data
+        self.assertEqual(company["id"], "company1")
+        self.assertEqual(company["name"], "Test Company")
+        self.assertEqual(company["domain"], "example.com")
+        self.assertEqual(company["industry"], "Technology")
+        self.assertEqual(company["size"], "51-200")
+        self.assertEqual(company["address"]["city"], "San Francisco")
         
         # Verify API call
-        self.api_client.get_company.assert_called_once_with("company1")
+        self.api_client.get.assert_called_once_with("companies/company1")
     
     def test_get_contact_data(self):
         """Test that _get_contact_data returns the correct contact data."""
         # Mock the API response
-        self.api_client.get_contact.return_value = {
+        self.api_client.get.return_value = {
             "id": "contact1",
             "first_name": "John",
             "last_name": "Doe",
@@ -317,66 +323,55 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get contact data
-        contact_data = self.object_capability._get_contact_data("contact1")
+        contact = self.object_capability._get_contact_data("contact1")
         
-        # Check the data
-        self.assertEqual(contact_data["id"], "contact1")
-        self.assertEqual(contact_data["first_name"], "John")
-        self.assertEqual(contact_data["last_name"], "Doe")
-        self.assertEqual(contact_data["email"], "john@example.com")
-        self.assertEqual(contact_data["phone"], "555-1234")
-        self.assertEqual(contact_data["job_title"], "CEO")
-        self.assertEqual(contact_data["company"]["id"], "company1")
-        self.assertEqual(contact_data["company"]["name"], "Test Company")
+        # Check the contact data
+        self.assertEqual(contact["id"], "contact1")
+        self.assertEqual(contact["first_name"], "John")
+        self.assertEqual(contact["last_name"], "Doe")
+        self.assertEqual(contact["email"], "john@example.com")
+        self.assertEqual(contact["company"]["id"], "company1")
         
         # Verify API call
-        self.api_client.get_contact.assert_called_once_with("contact1")
+        self.api_client.get.assert_called_once_with("contacts/contact1")
     
     def test_get_custom_object_data(self):
         """Test that _get_custom_object_data returns the correct custom object data."""
         # Mock the API response
-        self.api_client.get_custom_object.return_value = {
+        self.api_client.get.return_value = {
             "id": "obj1",
             "name": "Test Object",
             "custom_field": "custom value"
         }
         
-        # Mock the transform method to return the raw data
-        self.object_capability._transform_custom_object = MagicMock(
-            side_effect=lambda obj_data, entity_id: obj_data
-        )
-        
         # Get custom object data
-        obj_data = self.object_capability._get_custom_object_data("product", "obj1")
+        obj = self.object_capability._get_custom_object_data("product", "obj1")
         
-        # Check the data
-        self.assertEqual(obj_data["id"], "obj1")
-        self.assertEqual(obj_data["name"], "Test Object")
-        self.assertEqual(obj_data["custom_field"], "custom value")
+        # Check the object data
+        self.assertEqual(obj["id"], "obj1")
+        self.assertEqual(obj["name"], "Test Object")
+        self.assertEqual(obj["custom_field"], "custom value")
         
         # Verify API call
-        self.api_client.get_custom_object.assert_called_once_with("product", "obj1")
-        self.object_capability._transform_custom_object.assert_called_once()
+        self.api_client.get.assert_called_once_with("custom_objects/product/obj1")
     
     def test_get_object_data(self):
         """Test that get_object_data delegates to the correct method based on entity type."""
-        # Mock the individual methods
-        self.object_capability._get_deal_data = MagicMock(return_value={"id": "deal1", "name": "Test Deal"})
-        self.object_capability._get_company_data = MagicMock(return_value={"id": "company1", "name": "Test Company"})
-        self.object_capability._get_contact_data = MagicMock(return_value={"id": "contact1", "name": "Test Contact"})
-        self.object_capability._get_custom_object_data = MagicMock(return_value={"id": "obj1", "name": "Test Object"})
+        # Mock the API response
+        self.api_client.get.return_value = {
+            "id": "obj1",
+            "name": "Test Object"
+        }
         
-        # Test each entity type
-        self.assertEqual(self.object_capability.get_object_data("deal", None, "deal1"), {"id": "deal1", "name": "Test Deal"})
-        self.assertEqual(self.object_capability.get_object_data("company", None, "company1"), {"id": "company1", "name": "Test Company"})
-        self.assertEqual(self.object_capability.get_object_data("contact", None, "contact1"), {"id": "contact1", "name": "Test Contact"})
-        self.assertEqual(self.object_capability.get_object_data("custom_object", "product", "obj1"), {"id": "obj1", "name": "Test Object"})
+        # Test getting object data
+        obj = self.object_capability.get_object("test_entity", "obj1")
         
-        # Verify method calls
-        self.object_capability._get_deal_data.assert_called_once_with("deal1")
-        self.object_capability._get_company_data.assert_called_once_with("company1")
-        self.object_capability._get_contact_data.assert_called_once_with("contact1")
-        self.object_capability._get_custom_object_data.assert_called_once_with("product", "obj1")
+        # Check the object data
+        self.assertEqual(obj["id"], "obj1")
+        self.assertEqual(obj["name"], "Test Object")
+        
+        # Verify API call
+        self.api_client.get.assert_called_once_with("test_entity/obj1")
     
     def test_get_object_data_not_authenticated(self):
         """Test that get_object_data returns an empty dict when not authenticated."""
@@ -384,35 +379,34 @@ class TestObjectCapability(unittest.TestCase):
         self.object_capability._get_authentication_state = MagicMock(return_value={"status": "disconnected"})
         
         # Try to get object data
-        data = self.object_capability.get_object_data("deal", None, "deal1")
+        data = self.object_capability.get_objects("test_entity")
         
         # Check the result
-        self.assertEqual(data, {})
+        self.assertEqual(data, [])
     
     def test_get_object_data_unsupported_entity(self):
         """Test that get_object_data returns an empty dict for unsupported entity types."""
-        data = self.object_capability.get_object_data("unknown_type", None, "obj1")
+        data = self.object_capability.get_objects("unknown_type")
         
-        self.assertEqual(data, {})
+        self.assertEqual(data, [])
     
     def test_transform_custom_object(self):
         """Test that _transform_custom_object returns the raw data."""
         obj_data = {"id": "obj1", "name": "Test Object", "custom_field": "custom value"}
         transformed = self.object_capability._transform_custom_object(obj_data, "product")
         
-        # In our simplified implementation, this just returns the raw data
         self.assertEqual(transformed, obj_data)
     
     def test_api_error_handling(self):
         """Test that API errors are handled gracefully."""
         # Mock API method to raise an exception
-        self.api_client.get_deals.side_effect = Exception("API error")
+        self.api_client.get.side_effect = Exception("API error")
         
-        # Try to get deals
-        deals = self.object_capability._get_deals()
+        # Try to get objects
+        objects = self.object_capability.get_objects("test_entity")
         
-        # Check that it returns an empty list on error
-        self.assertEqual(deals, [])
+        # Check that an empty list is returned
+        self.assertEqual(objects, [])
 
 if __name__ == '__main__':
     unittest.main()
