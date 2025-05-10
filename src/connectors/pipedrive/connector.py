@@ -1,7 +1,7 @@
 import os
 import yaml
 from ..integration-connector.connector import IntegrationConnector as BaseConnector
-from ..integration-connector.api.client import ApiClient
+from .api.client import PipedriveApiClient
 from ..integration-connector.capabilities.info import InfoCapability
 from ..integration-connector.capabilities.localization import LocalizationCapability
 from ..integration-connector.capabilities.authorize import AuthorizeCapability
@@ -31,7 +31,7 @@ class PipedriveConnector:
             self.config = yaml.safe_load(file)
         
         # Create API client (will be used by capability implementations)
-        self._api_client = ApiClient()
+        self._api_client = PipedriveApiClient()
         
         # Initialize all capabilities
         self._setup_capabilities()
