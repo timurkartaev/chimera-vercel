@@ -12,58 +12,28 @@ from .capabilities.action import ActionCapability
 
 class IntegrationConnector:
     """
-    Factory class that creates and manages connector instances based on the slug.
-    This class acts as a facade that delegates to specialized connector implementations.
+    Base connector class that manages integration capabilities.
+    Capabilities are dynamically loaded based on the integration slug.
     """
     
     _instances: Dict[str, Any] = {}
     
     @classmethod
-    def create(cls, slug: str, config_path: Optional[str] = None) -> Any:
+    def create(cls, slug: str, config_path: Optional[str] = None) -> 'IntegrationConnector':
         """
-        Factory method to create a connector instance based on the slug.
+        Factory method to create a connector instance.
         
         Args:
             slug (str): The connector slug (e.g., 'pipedrive')
             config_path (str, optional): Path to the config.yaml file
         
         Returns:
-            IntegrationConnector: An instance of the appropriate connector class
-        
-        Raises:
-            ImportError: If the connector module cannot be imported
-            AttributeError: If the connector class cannot be found
+            IntegrationConnector: An instance of the connector
         """
-        # Convert slug to proper class name (e.g., 'pipedrive' -> 'PipedriveConnector')
-        class_name = f"{slug.title()}Connector"
-        
-        try:
-            # Import the connector module
-            module = importlib.import_module(f"connectors.{slug}")
-            
-            # Get the connector class
-            connector_class = getattr(module, class_name)
-            
-            # Create and return an instance
-            return connector_class(config_path)
-            
-        except ImportError as e:
-            raise ImportError(f"Could not import connector module for '{slug}': {str(e)}")
-        except AttributeError as e:
-            raise AttributeError(f"Could not find connector class '{class_name}' in module '{slug}': {str(e)}")
-    
-    @classmethod
-    def get_available_connectors(cls) -> list:
-        """
-        Get a list of available connector slugs.
-        
-        Returns:
-            list: List of available connector slugs
-        """
-        connectors_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)))
-        return [d for d in os.listdir(connectors_dir) 
-                if os.path.isdir(os.path.join(connectors_dir, d)) 
-                and not d.startswith('.')]
+        # Create a new instance
+        instance = cls(config_path)
+        instance.slug = slug
+        return instance
     
     def __init__(self, config_path=None):
         """
@@ -88,13 +58,33 @@ class IntegrationConnector:
         self._setup_capabilities()
     
     def _setup_capabilities(self):
-        """Set up all capability implementations."""
-        self.info = InfoCapability(self.config, self._api_client)
-        self.localization = LocalizationCapability(self.config, self._api_client)
-        self.authorize = AuthorizeCapability(self.config, self._api_client)
-        self.entity = EntityCapability(self.config, self._api_client)
-        self.object = ObjectCapability(self.config, self._api_client)
-        self.action = ActionCapability(self.config, self._api_client)
+        """Set up all capability implementations based on the integration slug."""
+        # Define capability mapping
+        capability_mapping = {
+            'info': InfoCapability,
+            'localization': LocalizationCapability,
+            'authorize': AuthorizeCapability,
+            'entity': EntityCapability,
+            'object': ObjectCapability,
+            'action': ActionCapability
+        }
+        
+        # Try to load specific implementations for each capability
+        for capability_name, base_capability in capability_mapping.items():
+            try:
+                # Try to import the specific capability implementation
+                module_path = f"connectors.{self.slug}.capabilities.{capability_name}"
+                specific_capability = importlib.import_module(module_path)
+                
+                # Get the specific capability class (e.g., PipedriveInfoCapability)
+                capability_class_name = f"{self.slug.title()}{capability_name.title()}Capability"
+                capability_class = getattr(specific_capability, capability_class_name)
+                
+                # Initialize the specific capability
+                setattr(self, capability_name, capability_class(self.config, self._api_client))
+            except (ImportError, AttributeError):
+                # Fall back to base capability if specific implementation not found
+                setattr(self, capability_name, base_capability(self.config, self._api_client))
     
     # INFO CAPABILITY
     def get_info(self):
@@ -197,18 +187,3 @@ class IntegrationConnector:
             list: Array of action definitions with compatible entities
         """
         return self.action.get_actions(params.get('entity_type'))
-    
-    def execute_action(self, action_id, entity_type, object_id, params):
-        """
-        Execute a specific action on an object.
-        
-        Args:
-            action_id (str): The ID of the action to execute
-            entity_type (str): The type of entity
-            object_id (str): The ID of the object
-            params (dict): Additional parameters for the action
-        
-        Returns:
-            dict: Result of the action execution
-        """
-        return self.action.execute_action(action_id, entity_type, object_id, params)
