@@ -91,19 +91,6 @@ class IntegrationConnector:
         """
         return self.entity.get_entities()
     
-    def get_entity_subtypes(self, params):
-        """
-        Return a list of subtypes for a given entity type.
-        
-        Args:
-            params (dict): Dictionary containing:
-                - entity_type: The parent entity type
-            
-        Returns:
-            list: Array of entity subtype definitions
-        """
-        return self.entity.get_entity_subtypes(params)
-    
     def get_entity_schema(self, params):
         """
         Return the schema for a specific entity type (and ID if needed).

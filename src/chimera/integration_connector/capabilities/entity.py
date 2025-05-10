@@ -82,7 +82,6 @@ class EntityCapability:
                 return [
                     {
                         "entity_type": entity,
-                        "has_entity_subtypes": False,
                         "schema": self.get_entity_schema({"entity_type": entity})
                     }
                     for entity in self.static_entities
@@ -92,7 +91,6 @@ class EntityCapability:
                 return [
                     {
                         "entity_type": entity,
-                        "has_entity_subtypes": False,
                         "schema": {
                             'type': 'object',
                             'properties': {}
@@ -105,17 +103,14 @@ class EntityCapability:
         entities = [
             {
                 "entity_type": "deal",
-                "has_entity_subtypes": False,
                 "schema": self._get_deal_schema()
             },
             {
                 "entity_type": "company",
-                "has_entity_subtypes": False,
                 "schema": self._get_company_schema()
             },
             {
                 "entity_type": "contact",
-                "has_entity_subtypes": False,
                 "schema": self._get_contact_schema()
             }
         ]
@@ -124,7 +119,6 @@ class EntityCapability:
         if self._has_custom_objects_enabled():
             entities.append({
                 "entity_type": "custom_object",
-                "has_entity_subtypes": True,
                 "schema": {
                     'type': 'object',
                     'properties': {}
@@ -173,40 +167,6 @@ class EntityCapability:
             }
         
         raise ValueError(f"Entity type '{entity_type}' not found")
-    
-    def get_entity_subtypes(self, params):
-        """
-        Return a list of subtypes for a given entity type.
-        Used for entities that have parent-child relationships.
-        
-        Args:
-            params (dict): Dictionary containing:
-                - entity_type: The parent entity type
-            
-        Returns:
-            list: Array of entity subtype definitions
-        """
-        entity_type = params.get('entity_type')
-        
-        if entity_type == "custom_object":
-            try:
-                # In a real implementation, this would fetch custom object
-                # definitions from the external system
-                custom_objects = self._api_client.get('custom_objects')
-                
-                return [
-                    {
-                        "entity_id": obj.get("id"),
-                        "name": obj.get("name")
-                    }
-                    for obj in custom_objects.get("results", [])
-                ]
-            except Exception as e:
-                logger.error(f"Error fetching custom object types: {str(e)}")
-                return []
-        
-        # No subtypes for other entity types
-        return []
     
     def _has_custom_objects_enabled(self):
         """
@@ -452,11 +412,11 @@ class EntityCapability:
         type_mapping = {
             'text': 'string',
             'number': 'number',
-            'date': 'string',
-            'datetime': 'string',
+            'date': 'date',
+            'datetime': 'date',
             'boolean': 'boolean',
-            'picklist': 'string',
-            'lookup': 'object',
+            'picklist': 'dropdown',
+            'lookup': 'dropdown',
             'currency': 'number'
         }
         

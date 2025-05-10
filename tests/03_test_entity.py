@@ -34,14 +34,6 @@ class TestEntityCapability(unittest.TestCase):
         self.assertEqual(entities[0]["entity_type"], "deal")
         self.assertEqual(entities[1]["entity_type"], "company")
         self.assertEqual(entities[2]["entity_type"], "contact")
-        self.assertFalse(entities[0]["has_entity_subtypes"])
-    
-    def test_get_entity_subtypes(self):
-        """Test that get_entity_subtypes returns an empty list for standard entities."""
-        params = {"entity_type": "deal"}
-        subtypes = self.entity_capability.get_entity_subtypes(params)
-        
-        self.assertEqual(subtypes, [])
     
     def test_get_entity_schema(self):
         """Test that get_entity_schema returns the correct schema for a deal."""
