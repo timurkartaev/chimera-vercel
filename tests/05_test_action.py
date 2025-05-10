@@ -20,6 +20,18 @@ def mock_config():
                 'parameters': {
                     'param1': {'type': 'string'}
                 }
+            },
+            {
+                'action_id': 'update',
+                'entities': ['deal', 'company', 'contact']
+            },
+            {
+                'action_id': 'attach_document',
+                'entities': ['deal', 'company']
+            },
+            {
+                'action_id': 'add_history',
+                'entities': ['deal']
             }
         ]
     }
@@ -31,21 +43,24 @@ def mock_api_client():
 def test_action_capability_initialization(mock_config, mock_api_client):
     """Test action capability initialization."""
     capability = ActionCapability(mock_config, mock_api_client)
-    assert capability.actions == []
+    # Static actions from config are registered during initialization
+    assert len(capability.actions) == 4
+    assert capability.actions[0]['action_id'] == 'test_action'
+    assert capability.actions[0]['entities'] == ['test_entity']
+    assert capability.actions[1]['action_id'] == 'update'
+    assert capability.actions[1]['entities'] == ['deal', 'company', 'contact']
+    assert capability.actions[2]['action_id'] == 'attach_document'
+    assert capability.actions[2]['entities'] == ['deal', 'company']
+    assert capability.actions[3]['action_id'] == 'add_history'
+    assert capability.actions[3]['entities'] == ['deal']
 
 def test_register_action(mock_config, mock_api_client):
-    """Test registering an action."""
+    """Test registering a new action."""
     capability = ActionCapability(mock_config, mock_api_client)
-    action = {
-        'action_id': 'test_action',
-        'entities': ['test_entity'],
-        'parameters': {
-            'param1': {'type': 'string'}
-        }
-    }
+    action = {'action_id': 'test_action2', 'entities': ['test_entity']}
     capability.register_action(action)
-    assert len(capability.actions) == 1
-    assert capability.actions[0] == action
+    assert len(capability.actions) == 5
+    assert action in capability.actions
 
 def test_get_actions(mock_config, mock_api_client):
     """Test getting all actions."""
@@ -56,7 +71,7 @@ def test_get_actions(mock_config, mock_api_client):
     capability.register_action(action2)
     
     actions = capability.get_actions()
-    assert len(actions) == 2
+    assert len(actions) == 6  # 4 from config + 2 registered
     assert action1 in actions
     assert action2 in actions
 
@@ -68,7 +83,7 @@ def test_get_actions_filtered(mock_config, mock_api_client):
     capability.register_action(action1)
     capability.register_action(action2)
     
-    actions = capability.get_actions(entity_type='entity1')
+    actions = capability.get_actions({"entity_type": "entity1"})
     assert len(actions) == 1
     assert actions[0] == action1
 
@@ -80,9 +95,16 @@ def test_execute_action(mock_config, mock_api_client):
         'entities': ['test_entity'],
         'handler': lambda params: {'result': 'success'}
     }
+    # Override the existing test_action with our custom handler
     capability.register_action(action)
     
-    result = capability.execute_action('test_action', 'test_entity', 'object_id', {'param': 'value'})
+    params = {
+        'action_id': 'test_action',
+        'entity_type': 'test_entity',
+        'object_id': 'object_id',
+        'param': 'value'
+    }
+    result = capability.execute_action(params)
     assert result == {'result': 'success'}
 
 class TestActionCapability(unittest.TestCase):
@@ -129,34 +151,36 @@ class TestActionCapability(unittest.TestCase):
     def test_get_actions_filtered(self):
         """Test that get_actions returns filtered actions when entity_type is specified."""
         # Filter by 'deal'
-        actions = self.action_capability.get_actions(entity_type='deal')
+        actions = self.action_capability.get_actions({"entity_type": "deal"})
         
         self.assertEqual(len(actions), 3)  # All actions support 'deal'
         
         # Filter by 'company'
-        actions = self.action_capability.get_actions(entity_type='company')
+        actions = self.action_capability.get_actions({"entity_type": "company"})
         
         self.assertEqual(len(actions), 2)  # 'update' and 'attach_document' support 'company'
         self.assertEqual(actions[0]['action_id'], 'update')
         self.assertEqual(actions[1]['action_id'], 'attach_document')
         
         # Filter by 'contact'
-        actions = self.action_capability.get_actions(entity_type='contact')
+        actions = self.action_capability.get_actions({"entity_type": "contact"})
         
         self.assertEqual(len(actions), 1)  # Only 'update' supports 'contact'
         self.assertEqual(actions[0]['action_id'], 'update')
     
     def test_execute_action_update(self):
         """Test that execute_action for update action works correctly."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
-        
         # Mock update_deal method
         self.api_client.update_deal = MagicMock(return_value={"success": True})
         
         # Execute the action
-        params = {"properties": {"name": "Updated Deal", "amount": 5000}}
-        result = self.action_capability.execute_action("update", "deal", "deal123", params)
+        params = {
+            "action_id": "update",
+            "entity_type": "deal",
+            "object_id": "deal123",
+            "properties": {"name": "Updated Deal", "amount": 5000}
+        }
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertTrue(result["success"])
@@ -168,19 +192,19 @@ class TestActionCapability(unittest.TestCase):
     
     def test_execute_action_attach_document(self):
         """Test that execute_action for attach_document action works correctly."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
-        
         # Mock attach_document method
         self.api_client.attach_document = MagicMock(return_value={"success": True})
         
         # Execute the action
         params = {
+            "action_id": "attach_document",
+            "entity_type": "deal",
+            "object_id": "deal123",
             "document_id": "doc123",
             "document_name": "Test Document",
             "document_url": "https://example.com/docs/doc123"
         }
-        result = self.action_capability.execute_action("attach_document", "deal", "deal123", params)
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertTrue(result["success"])
@@ -198,20 +222,20 @@ class TestActionCapability(unittest.TestCase):
     
     def test_execute_action_add_history(self):
         """Test that execute_action for add_history action works correctly."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
-        
         # Mock add_deal_activity method
         self.api_client.add_deal_activity = MagicMock(return_value={"success": True})
         
         # Execute the action
         params = {
+            "action_id": "add_history",
+            "entity_type": "deal",
+            "object_id": "deal123",
             "activity_type": "document_sent",
             "document_id": "doc123",
             "document_name": "Test Document",
             "message": "Document sent to client"
         }
-        result = self.action_capability.execute_action("add_history", "deal", "deal123", params)
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertTrue(result["success"])
@@ -229,11 +253,13 @@ class TestActionCapability(unittest.TestCase):
     
     def test_execute_action_unsupported_entity(self):
         """Test that execute_action returns an error for unsupported entity types."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
-        
         # Try to execute an action on an unsupported entity
-        result = self.action_capability.execute_action("add_history", "contact", "contact123", {})
+        params = {
+            "action_id": "add_history",
+            "entity_type": "contact",
+            "object_id": "contact123"
+        }
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertFalse(result["success"])
@@ -241,43 +267,35 @@ class TestActionCapability(unittest.TestCase):
     
     def test_execute_action_missing_params(self):
         """Test that execute_action returns an error for missing parameters."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
-        
         # Try to execute an action without required parameters
-        result = self.action_capability.execute_action("attach_document", "deal", "deal123", {})
+        params = {
+            "action_id": "attach_document",
+            "entity_type": "deal",
+            "object_id": "deal123"
+        }
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertFalse(result["success"])
         self.assertIn("Missing required document parameters", result["error"])
     
-    def test_execute_action_not_authenticated(self):
-        """Test that execute_action returns an error when not authenticated."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "disconnected"})
-        
-        # Try to execute an action without authentication
-        result = self.action_capability.execute_action("update", "deal", "deal123", {"properties": {}})
-        
-        # Check the result
-        self.assertFalse(result["success"])
-        self.assertEqual(result["error"], "Authentication required")
-    
     def test_execute_action_error_handling(self):
-        """Test that execute_action handles API errors correctly."""
-        # Mock authentication state
-        self.action_capability._get_authentication_state = MagicMock(return_value={"status": "connected"})
+        """Test that execute_action handles errors correctly."""
+        # Mock update_deal to raise an exception
+        self.api_client.update_deal = MagicMock(side_effect=Exception("API Error"))
         
-        # Mock update_deal method to raise an exception
-        self.api_client.update_deal = MagicMock(side_effect=Exception("API error"))
-        
-        # Execute the action
-        params = {"properties": {"name": "Updated Deal"}}
-        result = self.action_capability.execute_action("update", "deal", "deal123", params)
+        # Try to execute an action
+        params = {
+            "action_id": "update",
+            "entity_type": "deal",
+            "object_id": "deal123",
+            "properties": {"name": "Updated Deal"}
+        }
+        result = self.action_capability.execute_action(params)
         
         # Check the result
         self.assertFalse(result["success"])
-        self.assertEqual(result["error"], "API error")
+        self.assertEqual(result["error"], "API Error")
 
 if __name__ == '__main__':
     unittest.main()

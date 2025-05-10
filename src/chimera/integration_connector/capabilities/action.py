@@ -52,19 +52,19 @@ class ActionCapability:
         if 'entities' not in action or not isinstance(action['entities'], list):
             raise ValueError("Action must have a list of supported entities")
             
-        # Check if action already exists
-        for existing in self.actions:
-            if existing['action_id'] == action['action_id']:
-                return
-                
+        # Remove any existing action with the same ID
+        self.actions = [a for a in self.actions if a['action_id'] != action['action_id']]
+        
+        # Add the new action
         self.actions.append(action)
     
-    def get_actions(self, entity_type=None):
+    def get_actions(self, params=None):
         """
         Return all available actions for this integration.
         
         Args:
-            entity_type (str, optional): Filter actions for a specific entity type
+            params (dict, optional): Dictionary containing:
+                - entity_type: Optional entity type to filter actions
         
         Returns:
             list: Array of action definitions with compatible entities
@@ -74,51 +74,53 @@ class ActionCapability:
             actions = self.actions
         else:
             # Fallback to static actions from config
-            actions = self.static_actions or [
-                {
-                    "action_id": "update",
-                    "entities": ["deal", "company", "contact"]
-                },
-                {
-                    "action_id": "attach_document",
-                    "entities": ["deal", "company"]
-                },
-                {
-                    "action_id": "add_history",
-                    "entities": ["deal"]
-                }
-            ]
+            actions = self.static_actions
         
         # Filter actions by entity type if specified
+        entity_type = params.get('entity_type') if params else None
         if entity_type:
             return [action for action in actions if entity_type in action.get("entities", [])]
         
         return actions
     
-    def execute_action(self, action_id, entity_type, object_id, params):
+    def execute_action(self, params):
         """
         Execute a specific action on an object.
         
         Args:
-            action_id (str): The ID of the action to execute
-            entity_type (str): The type of entity
-            object_id (str): The ID of the object to perform the action on
-            params (dict): Parameters required for the action
+            params (dict): Dictionary containing:
+                - action_id: The ID of the action to execute
+                - entity_type: The type of entity
+                - object_id: The ID of the object to perform the action on
+                - properties: Optional parameters for the action
             
         Returns:
             dict: Result of the action execution
         """
-        # Ensure we're authenticated
-        auth_state = self._get_authentication_state()
-        if auth_state.get("status") != "connected":
-            return {"success": False, "error": "Authentication required"}
+        action_id = params.get('action_id')
+        entity_type = params.get('entity_type')
+        object_id = params.get('object_id')
+        
+        if not all([action_id, entity_type, object_id]):
+            return {"success": False, "error": "Missing required parameters"}
+        
+        # Find the action definition
+        action = None
+        for a in self.actions:
+            if a['action_id'] == action_id:
+                action = a
+                break
+        
+        if not action:
+            return {"success": False, "error": f"Action '{action_id}' not found"}
         
         # Validate that the action is supported for the entity type
-        actions = self.get_actions(entity_type)
-        action_ids = [action["action_id"] for action in actions]
-        
-        if action_id not in action_ids:
+        if entity_type not in action.get('entities', []):
             return {"success": False, "error": f"Action '{action_id}' not supported for entity type '{entity_type}'"}
+        
+        # If the action has a custom handler, use it
+        if 'handler' in action and callable(action['handler']):
+            return action['handler'](params)
         
         # Dispatch to the appropriate action handler
         try:
@@ -133,17 +135,6 @@ class ActionCapability:
         except Exception as e:
             logger.error(f"Error executing action {action_id} on {entity_type} {object_id}: {str(e)}")
             return {"success": False, "error": str(e)}
-    
-    def _get_authentication_state(self):
-        """
-        Get the current authentication state.
-        
-        Returns:
-            dict: Authentication state information
-        """
-        # This would be implemented to check the current auth state
-        # For simplicity, we'll simulate a connected state
-        return {"status": "connected"}
     
     def _execute_update_action(self, entity_type, object_id, params):
         """
