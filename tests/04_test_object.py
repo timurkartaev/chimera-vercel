@@ -40,7 +40,7 @@ def test_get_objects(mock_config, mock_api_client):
         {'id': '2', 'name': 'Object 2'}
     ]
     
-    objects = capability.get_objects('test_entity')
+    objects = capability.get_objects({'entity_type': 'test_entity'})
     assert len(objects) == 2
     mock_api_client.get.assert_called_once_with('test_entity')
 
@@ -49,7 +49,7 @@ def test_get_object(mock_config, mock_api_client):
     capability = ObjectCapability(mock_config, mock_api_client)
     mock_api_client.get.return_value = {'id': '1', 'name': 'Object 1'}
     
-    obj = capability.get_object('test_entity', '1')
+    obj = capability.get_object({'entity_type': 'test_entity', 'object_id': '1'})
     assert obj['id'] == '1'
     assert obj['name'] == 'Object 1'
     mock_api_client.get.assert_called_once_with('test_entity/1')
@@ -60,7 +60,7 @@ def test_create_object(mock_config, mock_api_client):
     mock_api_client.post.return_value = {'id': '1', 'name': 'New Object'}
     
     data = {'name': 'New Object'}
-    obj = capability.create_object('test_entity', data)
+    obj = capability.create_object({'entity_type': 'test_entity', 'data': data})
     assert obj['id'] == '1'
     assert obj['name'] == 'New Object'
     mock_api_client.post.assert_called_once_with('test_entity', data=data)
@@ -71,7 +71,7 @@ def test_update_object(mock_config, mock_api_client):
     mock_api_client.put.return_value = {'id': '1', 'name': 'Updated Object'}
     
     data = {'name': 'Updated Object'}
-    obj = capability.update_object('test_entity', '1', data)
+    obj = capability.update_object({'entity_type': 'test_entity', 'object_id': '1', 'data': data})
     assert obj['id'] == '1'
     assert obj['name'] == 'Updated Object'
     mock_api_client.put.assert_called_once_with('test_entity/1', data=data)
@@ -80,7 +80,7 @@ def test_delete_object(mock_config, mock_api_client):
     """Test deleting an object."""
     capability = ObjectCapability(mock_config, mock_api_client)
     
-    capability.delete_object('test_entity', '1')
+    capability.delete_object({'entity_type': 'test_entity', 'object_id': '1'})
     mock_api_client.delete.assert_called_once_with('test_entity/1')
 
 class TestObjectCapability(unittest.TestCase):
@@ -117,7 +117,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get deals
-        deals = self.object_capability._get_deals()
+        deals = self.object_capability._get_deals({})
         
         # Check the deals
         self.assertEqual(len(deals), 2)
@@ -140,7 +140,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get companies
-        companies = self.object_capability._get_companies()
+        companies = self.object_capability._get_companies({})
         
         # Check the companies
         self.assertEqual(len(companies), 2)
@@ -163,7 +163,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get contacts
-        contacts = self.object_capability._get_contacts()
+        contacts = self.object_capability._get_contacts({})
         
         # Check the contacts
         self.assertEqual(len(contacts), 2)
@@ -186,7 +186,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get custom objects
-        objects = self.object_capability._get_custom_objects("product")
+        objects = self.object_capability._get_custom_objects({'entity_id': 'product'})
         
         # Check the objects
         self.assertEqual(len(objects), 2)
@@ -206,7 +206,7 @@ class TestObjectCapability(unittest.TestCase):
         ]
         
         # Test getting objects
-        objects = self.object_capability.get_objects("test_entity")
+        objects = self.object_capability.get_objects({'entity_type': 'test_entity'})
         
         # Check the objects
         self.assertEqual(len(objects), 1)
@@ -218,7 +218,7 @@ class TestObjectCapability(unittest.TestCase):
     
     def test_get_objects_unsupported_entity(self):
         """Test that get_objects returns an empty list for unsupported entity types."""
-        objects = self.object_capability.get_objects("unknown_type")
+        objects = self.object_capability.get_objects({'entity_type': 'unknown_type'})
         
         self.assertEqual(objects, [])
     
@@ -238,7 +238,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get deal data
-        deal = self.object_capability._get_deal_data("deal1")
+        deal = self.object_capability._get_deal_data({'object_id': 'deal1'})
         
         # Check the deal data
         self.assertEqual(deal["id"], "deal1")
@@ -271,7 +271,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get company data
-        company = self.object_capability._get_company_data("company1")
+        company = self.object_capability._get_company_data({'object_id': 'company1'})
         
         # Check the company data
         self.assertEqual(company["id"], "company1")
@@ -305,7 +305,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get contact data
-        contact = self.object_capability._get_contact_data("contact1")
+        contact = self.object_capability._get_contact_data({'object_id': 'contact1'})
         
         # Check the contact data
         self.assertEqual(contact["id"], "contact1")
@@ -333,7 +333,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Get custom object data
-        obj = self.object_capability._get_custom_object_data("product", "obj1")
+        obj = self.object_capability._get_custom_object_data({'entity_id': 'product', 'object_id': 'obj1'})
         
         # Check the custom object data
         self.assertEqual(obj["id"], "obj1")
@@ -353,7 +353,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Test getting object data
-        obj = self.object_capability.get_object("test_entity", "obj1")
+        obj = self.object_capability.get_object({'entity_type': 'test_entity', 'object_id': 'obj1'})
         
         # Check the object data
         self.assertEqual(obj["id"], "obj1")
@@ -364,7 +364,7 @@ class TestObjectCapability(unittest.TestCase):
     
     def test_get_object_data_unsupported_entity(self):
         """Test that get_object_data returns an empty dict for unsupported entity types."""
-        obj = self.object_capability.get_object("unknown_type", "obj1")
+        obj = self.object_capability.get_object({'entity_type': 'unknown_type', 'object_id': 'obj1'})
         
         self.assertEqual(obj, {})
     
@@ -381,7 +381,7 @@ class TestObjectCapability(unittest.TestCase):
         }
         
         # Transform the data
-        transformed = self.object_capability._transform_custom_object(obj_data, "product")
+        transformed = self.object_capability._transform_custom_object({'obj_data': obj_data, 'entity_id': 'product'})
         
         # Check the transformed data
         self.assertEqual(transformed, obj_data)  # Currently returns raw data
@@ -392,13 +392,13 @@ class TestObjectCapability(unittest.TestCase):
         self.api_client.get.side_effect = Exception("API Error")
         
         # Test getting objects
-        objects = self.object_capability.get_objects("test_entity")
+        objects = self.object_capability.get_objects({'entity_type': 'test_entity'})
         
         # Check that an empty list is returned
         self.assertEqual(objects, [])
         
         # Test getting object data
-        obj = self.object_capability.get_object("test_entity", "obj1")
+        obj = self.object_capability.get_object({'entity_type': 'test_entity', 'object_id': 'obj1'})
         
         # Check that an empty dict is returned
         self.assertEqual(obj, {})
