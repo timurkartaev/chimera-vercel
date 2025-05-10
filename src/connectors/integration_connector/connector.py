@@ -19,31 +19,38 @@ class IntegrationConnector:
     _instances: Dict[str, Any] = {}
     
     @classmethod
-    def get_instance(cls, slug: str, config_path: Optional[str] = None) -> Any:
+    def create(cls, slug: str, config_path: Optional[str] = None) -> Any:
         """
-        Get or create a connector instance for the specified slug.
+        Factory method to create a connector instance based on the slug.
         
         Args:
             slug (str): The connector slug (e.g., 'pipedrive')
-            config_path (str, optional): Path to the config.yaml file.
-                                        Defaults to the config.yaml in the connector's directory.
+            config_path (str, optional): Path to the config.yaml file
         
         Returns:
-            Any: The connector instance
-        """
-        if slug not in cls._instances:
-            # Import the connector module
-            try:
-                module = importlib.import_module(f'src.connectors.{slug}.connector')
-                connector_class = getattr(module, f'{slug.capitalize()}Connector')
-                
-                # Create instance
-                instance = connector_class(config_path)
-                cls._instances[slug] = instance
-            except (ImportError, AttributeError) as e:
-                raise ValueError(f"Failed to load connector for slug '{slug}': {str(e)}")
+            IntegrationConnector: An instance of the appropriate connector class
         
-        return cls._instances[slug]
+        Raises:
+            ImportError: If the connector module cannot be imported
+            AttributeError: If the connector class cannot be found
+        """
+        # Convert slug to proper class name (e.g., 'pipedrive' -> 'PipedriveConnector')
+        class_name = f"{slug.title()}Connector"
+        
+        try:
+            # Import the connector module
+            module = importlib.import_module(f"connectors.{slug}.connector")
+            
+            # Get the connector class
+            connector_class = getattr(module, class_name)
+            
+            # Create and return an instance
+            return connector_class(config_path)
+            
+        except ImportError as e:
+            raise ImportError(f"Could not import connector module for '{slug}': {str(e)}")
+        except AttributeError as e:
+            raise AttributeError(f"Could not find connector class '{class_name}' in module '{slug}': {str(e)}")
     
     @classmethod
     def get_available_connectors(cls) -> list:
@@ -162,7 +169,7 @@ class IntegrationConnector:
         """
         return self.object.get_objects(params)
     
-    def get_object_data(self, params):
+    def get_object(self, params):
         """
         Retrieve the complete data for a specific object.
         
@@ -198,9 +205,9 @@ class IntegrationConnector:
         Args:
             action_id (str): The ID of the action to execute
             entity_type (str): The type of entity
-            object_id (str): The ID of the object to perform the action on
-            params (dict): Parameters required for the action
-            
+            object_id (str): The ID of the object
+            params (dict): Additional parameters for the action
+        
         Returns:
             dict: Result of the action execution
         """
