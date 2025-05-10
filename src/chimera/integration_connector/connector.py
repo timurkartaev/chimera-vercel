@@ -53,26 +53,33 @@ class IntegrationConnector:
         return self.info.get_info()
     
     # LOCALIZATION CAPABILITY
-    def get_localization(self, lang='en'):
-        """Return localization data for the specified language."""
-        return self.localization.get_localization(lang)
+    def get_localization(self, params):
+        """
+        Return localization data for the specified language.
+        
+        Args:
+            params (dict): Dictionary containing:
+                - lang: The language code (defaults to 'en')
+        """
+        return self.localization.get_localization(params.get('lang', 'en'))
     
     # AUTHORIZE CAPABILITY
     def get_authentication_state(self):
         """Get the current authentication state."""
         return self.authorize.get_authentication_state()
         
-    def authorize(self, credentials):
+    def authorize(self, params):
         """
         Authorize with the external system using provided credentials.
         
         Args:
-            credentials (dict): The credentials provided by the user
+            params (dict): Dictionary containing:
+                - credentials: The credentials provided by the user
         
         Returns:
             dict: Authorization result with status
         """
-        return self.authorize.authorize(credentials)
+        return self.authorize.authorize(params.get('credentials'))
     
     # ENTITY CAPABILITY
     def get_entities(self):
@@ -84,71 +91,76 @@ class IntegrationConnector:
         """
         return self.entity.get_entities()
     
-    def get_entity_subtypes(self, entity_type):
+    def get_entity_subtypes(self, params):
         """
         Return a list of subtypes for a given entity type.
         
         Args:
-            entity_type (str): The parent entity type
+            params (dict): Dictionary containing:
+                - entity_type: The parent entity type
             
         Returns:
             list: Array of entity subtype definitions
         """
-        return self.entity.get_entity_subtypes(entity_type)
+        return self.entity.get_entity_subtypes(params)
     
-    def get_entity_schema(self, entity_type, entity_id=None):
+    def get_entity_schema(self, params):
         """
         Return the schema for a specific entity type (and ID if needed).
         
         Args:
-            entity_type (str): The entity type
-            entity_id (str, optional): The entity ID for subtypes
+            params (dict): Dictionary containing:
+                - entity_type: The entity type
+                - entity_id: Optional entity ID for subtypes
             
         Returns:
             dict: JSON Schema definition of the entity
         """
-        return self.entity.get_entity_schema(entity_type, entity_id)
+        return self.entity.get_entity_schema(params)
     
     # OBJECT CAPABILITY
-    def get_objects(self, entity_type, entity_id=None):
+    def get_objects(self, params):
         """
         Retrieve a list of available objects for a specific entity type.
         
         Args:
-            entity_type (str): The type of entity to get objects for
-            entity_id (str, optional): The entity ID for subtypes
+            params (dict): Dictionary containing:
+                - entity_type: The type of entity to get objects for
+                - entity_id: Optional entity ID for subtypes
             
         Returns:
             list: Array of objects with id and name
         """
-        return self.object.get_objects(entity_type, entity_id)
+        return self.object.get_objects(params)
     
-    def get_object_data(self, entity_type, entity_id, object_id):
+    def get_object_data(self, params):
         """
         Retrieve the complete data for a specific object.
         
         Args:
-            entity_type (str): The type of entity
-            entity_id (str, optional): The entity ID for subtypes
-            object_id (str): The ID of the specific object to retrieve
+            params (dict): Dictionary containing:
+                - entity_type: The type of entity
+                - entity_id: Optional entity ID for subtypes
+                - object_id: The ID of the specific object to retrieve
             
         Returns:
             dict: Complete object data with all fields and values
         """
-        return self.object.get_object_data(entity_type, entity_id, object_id)
+        return self.object.get_object(params)
     
     # ACTION CAPABILITY
-    def get_actions(self, entity_type=None):
+    def get_actions(self, params):
         """
         Return all available actions for this integration.
         
         Args:
-            entity_type (str, optional): Filter actions for a specific entity type
+            params (dict): Dictionary containing:
+                - entity_type: Optional entity type to filter actions
         
         Returns:
             list: Array of action definitions with compatible entities
         """
-        return self.action.get_actions(entity_type)
+        return self.action.get_actions(params.get('entity_type'))
     
     def execute_action(self, action_id, entity_type, object_id, params):
         """

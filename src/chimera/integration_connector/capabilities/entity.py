@@ -83,7 +83,7 @@ class EntityCapability:
                     {
                         "entity_type": entity,
                         "has_entity_subtypes": False,
-                        "schema": self.get_entity_schema(entity)
+                        "schema": self.get_entity_schema({"entity_type": entity})
                     }
                     for entity in self.static_entities
                 ]
@@ -133,14 +133,15 @@ class EntityCapability:
         
         return entities
     
-    def get_entity_schema(self, entity_type, entity_id=None):
+    def get_entity_schema(self, params):
         """
         Return the schema for a specific entity type (and ID if needed).
         The schema defines all fields available for this entity.
         
         Args:
-            entity_type (str): The entity type
-            entity_id (str, optional): The entity ID for subtypes
+            params (dict): Dictionary containing:
+                - entity_type: The entity type
+                - entity_id: Optional entity ID for subtypes
             
         Returns:
             dict: JSON Schema definition of the entity
@@ -148,6 +149,9 @@ class EntityCapability:
         Raises:
             ValueError: If the entity type is not found
         """
+        entity_type = params.get('entity_type')
+        entity_id = params.get('entity_id')
+        
         # First check registered entities
         for entity in self.entities:
             if entity['entity_type'] == entity_type:
@@ -170,17 +174,20 @@ class EntityCapability:
         
         raise ValueError(f"Entity type '{entity_type}' not found")
     
-    def get_entity_subtypes(self, entity_type):
+    def get_entity_subtypes(self, params):
         """
         Return a list of subtypes for a given entity type.
         Used for entities that have parent-child relationships.
         
         Args:
-            entity_type (str): The parent entity type
+            params (dict): Dictionary containing:
+                - entity_type: The parent entity type
             
         Returns:
             list: Array of entity subtype definitions
         """
+        entity_type = params.get('entity_type')
+        
         if entity_type == "custom_object":
             try:
                 # In a real implementation, this would fetch custom object
