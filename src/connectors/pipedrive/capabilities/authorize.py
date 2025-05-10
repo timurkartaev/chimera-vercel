@@ -2,7 +2,7 @@ import logging
 import json
 import os
 from typing import Dict, Any, Optional
-from ..integration-connector.capabilities.authorize import AuthorizeCapability
+from ..integration_connector.capabilities.authorize import AuthorizeCapability
 
 logger = logging.getLogger(__name__)
 

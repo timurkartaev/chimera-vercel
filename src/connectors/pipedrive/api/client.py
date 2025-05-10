@@ -1,6 +1,8 @@
 import logging
-from typing import Dict, Any, Optional, Union
-from ..integration-connector.api.client import ApiClient
+
+from ..integration_connector.api.client import ApiClient
+# or, if the ApiClient is in a different package structure
+# from integration_connector.api.client import ApiClient
 
 logger = logging.getLogger(__name__)
 
@@ -10,3 +12,4 @@ class PipedriveApiClient(ApiClient):
     Currently uses all base functionality without modifications.
     """
     pass
+

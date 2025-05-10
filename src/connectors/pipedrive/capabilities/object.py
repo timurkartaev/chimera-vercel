@@ -1,6 +1,6 @@
 import logging
 from typing import Dict, Any, List, Optional
-from ..integration-connector.capabilities.object import ObjectCapability
+from ..integration_connector.capabilities.object import ObjectCapability
 
 logger = logging.getLogger(__name__)
 

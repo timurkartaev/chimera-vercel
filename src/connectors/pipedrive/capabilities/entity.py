@@ -1,5 +1,5 @@
 import logging
-from ..integration-connector.capabilities.entity import EntityCapability
+from ..integration_connector.capabilities.entity import EntityCapability
 
 logger = logging.getLogger(__name__)
 

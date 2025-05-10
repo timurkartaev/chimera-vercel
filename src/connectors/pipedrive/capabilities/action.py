@@ -1,5 +1,5 @@
 import logging
-from ..integration-connector.capabilities.action import ActionCapability
+from ..integration_connector.capabilities.action import ActionCapability
 
 logger = logging.getLogger(__name__)
 

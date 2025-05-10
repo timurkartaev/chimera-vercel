@@ -1,4 +1,7 @@
-from ..integration-connector.capabilities.info import InfoCapability
+import logging
+from ..integration_connector.capabilities.info import InfoCapability
+
+logger = logging.getLogger(__name__)
 
 class PipedriveInfoCapability(InfoCapability):
     """
