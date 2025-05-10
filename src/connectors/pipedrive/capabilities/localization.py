@@ -1,8 +1,16 @@
 import os
 import logging
 from ..utils.helpers import load_yaml_file, get_localization_file_path, deep_merge
+from ..integration-connector.capabilities.localization import LocalizationCapability
 
 logger = logging.getLogger(__name__)
+
+class PipedriveLocalizationCapability(LocalizationCapability):
+    """
+    Pipedrive localization capability that extends the base localization capability.
+    Currently uses all base functionality without modifications.
+    """
+    pass
 
 class LocalizationCapability:
     """

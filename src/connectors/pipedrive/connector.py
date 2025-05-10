@@ -1,13 +1,14 @@
 import os
 import yaml
+
 from ..integration-connector.connector import IntegrationConnector as BaseConnector
 from .api.client import PipedriveApiClient
-from ..integration-connector.capabilities.info import InfoCapability
-from ..integration-connector.capabilities.localization import LocalizationCapability
-from ..integration-connector.capabilities.authorize import AuthorizeCapability
-from ..integration-connector.capabilities.entity import EntityCapability
-from ..integration-connector.capabilities.object import ObjectCapability
-from ..integration-connector.capabilities.action import ActionCapability
+from .capabilities.info import PipedriveInfoCapability
+from .capabilities.localization import PipedriveLocalizationCapability
+from .capabilities.authorize import PipedriveAuthorizeCapability
+from .capabilities.entity import PipedriveEntityCapability
+from .capabilities.object import PipedriveObjectCapability
+from .capabilities.action import PipedriveActionCapability
 
 class PipedriveConnector:
     """
@@ -38,12 +39,12 @@ class PipedriveConnector:
     
     def _setup_capabilities(self):
         """Set up all capability implementations."""
-        self.info = InfoCapability(self.config, self._api_client)
-        self.localization = LocalizationCapability(self.config, self._api_client)
-        self.authorize = AuthorizeCapability(self.config, self._api_client)
-        self.entity = EntityCapability(self.config, self._api_client)
-        self.object = ObjectCapability(self.config, self._api_client)
-        self.action = ActionCapability(self.config, self._api_client)
+        self.info = PipedriveInfoCapability(self.config, self._api_client)
+        self.localization = PipedriveLocalizationCapability(self.config, self._api_client)
+        self.authorize = PipedriveAuthorizeCapability(self.config, self._api_client)
+        self.entity = PipedriveEntityCapability(self.config, self._api_client)
+        self.object = PipedriveObjectCapability(self.config, self._api_client)
+        self.action = PipedriveActionCapability(self.config, self._api_client)
     
     # INFO CAPABILITY
     def get_info(self):
