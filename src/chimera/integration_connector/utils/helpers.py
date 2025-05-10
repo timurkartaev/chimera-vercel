@@ -90,7 +90,7 @@ def get_localization_file_path(base_dir, lang=None):
     if lang and lang.lower() != 'en':
         file_name = f"localization_{lang.upper()}.yaml"
     else:
-        file_name = "localization.yaml"
+        file_name = "config/localization.yaml"
     
     return os.path.join(base_dir, file_name)
 

@@ -68,19 +68,21 @@ class TestLocalizationCapability(unittest.TestCase):
         
         # Set up the mock to return different values based on the language
         self.mock_load_yaml.side_effect = lambda path: (
-            self.default_localization if 'localization.yaml' in path
-            else self.italian_localization if 'localization_IT.yaml' in path
+            self.default_localization if 'config/localization.yaml' in path
+            else self.italian_localization if 'config/localization_IT.yaml' in path
             else {}
         )
         
         # Set up the mock to return the appropriate paths
         self.mock_get_path.side_effect = lambda base_dir, lang=None: (
-            os.path.join(base_dir, 'localization.yaml') if not lang or lang.lower() == 'en'
-            else os.path.join(base_dir, f'localization_{lang.upper()}.yaml')
+            os.path.join(base_dir, 'config', 'localization.yaml') if not lang or lang.lower() == 'en'
+            else os.path.join(base_dir, 'config', f'localization_{lang.upper()}.yaml')
         )
         
         # Set up the mock to return True for existing files
-        self.mock_os_path_exists.side_effect = lambda path: True
+        self.mock_os_path_exists.side_effect = lambda path: (
+            'config/localization.yaml' in path or 'config/localization_IT.yaml' in path
+        )
         
         # Create an instance of the capability
         self.localization_capability = LocalizationCapability(self.config, self.api_client)

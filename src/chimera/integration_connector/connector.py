@@ -26,7 +26,7 @@ class IntegrationConnector:
         """
         if config_path is None:
             # Default to config.yaml in the same directory as this file
-            config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
+            config_path = os.path.join(os.path.dirname(__file__), 'config', 'config.yaml')
         
         # Load configuration
         with open(config_path, 'r') as file:

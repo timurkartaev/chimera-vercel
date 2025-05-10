@@ -9,8 +9,9 @@ The Integration Connector follows this folder structure:
 ```
 integration_connector/
 ├── __init__.py
-├── config.yaml
-├── localization.yaml
+├── config/
+│   ├── config.yaml
+│   └── localization.yaml
 ├── connector.py
 ├── capabilities/
 │   ├── __init__.py
@@ -86,12 +87,12 @@ You can also run individual test files if you want to focus on specific capabili
 
 To customize the integration for your specific external system:
 
-1. **Edit config.yaml**:
+1. **Edit config/config.yaml**:
    - Update metadata in the `info` section
    - Configure authentication method in the `authentication` section
    - Define your entities and actions
 
-2. **Edit localization.yaml**:
+2. **Edit config/localization.yaml**:
    - Add translations for your entities and actions
    - Add descriptions for your integration
 
