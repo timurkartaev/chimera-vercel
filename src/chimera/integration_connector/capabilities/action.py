@@ -19,8 +19,45 @@ class ActionCapability:
         self.config = config
         self._api_client = api_client
         
+        # Initialize empty actions list for dynamic registration
+        self.actions = []
+        
         # Get the static action definitions from config
         self.static_actions = self.config.get('actions', [])
+        
+        # Register static actions if available
+        for action in self.static_actions:
+            self.register_action(action)
+    
+    def register_action(self, action):
+        """
+        Register a new action.
+        
+        Args:
+            action (dict): The action definition containing:
+                - action_id (str): Unique identifier for the action
+                - entities (list): List of entity types this action supports
+                - parameters (dict, optional): Parameters schema for the action
+                - handler (callable, optional): Custom handler function for the action
+                
+        Raises:
+            ValueError: If the action definition is invalid
+        """
+        if not isinstance(action, dict):
+            raise ValueError("Action must be a dictionary")
+            
+        if 'action_id' not in action:
+            raise ValueError("Action must have an action_id")
+            
+        if 'entities' not in action or not isinstance(action['entities'], list):
+            raise ValueError("Action must have a list of supported entities")
+            
+        # Check if action already exists
+        for existing in self.actions:
+            if existing['action_id'] == action['action_id']:
+                return
+                
+        self.actions.append(action)
     
     def get_actions(self, entity_type=None):
         """
@@ -32,13 +69,12 @@ class ActionCapability:
         Returns:
             list: Array of action definitions with compatible entities
         """
-        # Check if we have static action definitions in the config
-        if self.static_actions:
-            actions = self.static_actions
+        # Use registered actions if available
+        if self.actions:
+            actions = self.actions
         else:
-            # Dynamic action implementation
-            # This would be customized based on your specific requirements
-            actions = [
+            # Fallback to static actions from config
+            actions = self.static_actions or [
                 {
                     "action_id": "update",
                     "entities": ["deal", "company", "contact"]
