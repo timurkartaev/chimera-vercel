@@ -6,8 +6,8 @@ from unittest.mock import MagicMock, patch
 # Add the parent directory to the Python path to import the module
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from chimera.integration_connector.connector import IntegrationConnector
-from chimera.integration_connector.api.client import ApiClient
+from src.connectors.integration_connector.connector import IntegrationConnector
+from src.connectors.integration_connector.api.client import ApiClient
 
 class TestIntegrationConnector(unittest.TestCase):
     """Integration test suite for the IntegrationConnector class."""
@@ -15,7 +15,7 @@ class TestIntegrationConnector(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures before each test method is run."""
         # Create patches for external dependencies
-        self.api_client_patcher = patch('chimera.integration_connector.api.client.ApiClient')
+        self.api_client_patcher = patch('src.connectors.integration_connector.api.client.ApiClient')
         self.load_yaml_patcher = patch('yaml.safe_load')
         
         # Start the patches
