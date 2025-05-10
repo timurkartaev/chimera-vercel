@@ -39,7 +39,7 @@ class IntegrationConnector:
         
         try:
             # Import the connector module
-            module = importlib.import_module(f"connectors.{slug}.connector")
+            module = importlib.import_module(f"connectors.{slug}")
             
             # Get the connector class
             connector_class = getattr(module, class_name)
