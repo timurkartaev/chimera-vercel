@@ -1,7 +1,6 @@
 import os
 import yaml
-
-from ..integration-connector.connector import IntegrationConnector as BaseConnector
+from ..integration_connector.connector import IntegrationConnector
 from .api.client import PipedriveApiClient
 from .capabilities.info import PipedriveInfoCapability
 from .capabilities.localization import PipedriveLocalizationCapability
@@ -10,7 +9,7 @@ from .capabilities.entity import PipedriveEntityCapability
 from .capabilities.object import PipedriveObjectCapability
 from .capabilities.action import PipedriveActionCapability
 
-class PipedriveConnector:
+class PipedriveConnector(IntegrationConnector):
     """
     Pipedrive connector implementation that extends the base connector functionality.
     """
