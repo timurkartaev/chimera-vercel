@@ -20,10 +20,6 @@ class ObjectCapability:
         self.config = config
         self.api_client = api_client
     
-    def _get_authentication_state(self) -> Dict[str, str]:
-        """Get the current authentication state."""
-        return {"status": "connected"}  # Default to connected for testing
-    
     def get_objects(self, entity_type: str, entity_id: Optional[str] = None) -> List[Dict[str, Any]]:
         """
         Retrieve a list of available objects for a specific entity type.
@@ -35,9 +31,6 @@ class ObjectCapability:
         Returns:
             List of objects with id and name
         """
-        if self._get_authentication_state()["status"] != "connected":
-            return []
-            
         if entity_type not in self.config.get("objects", {}):
             return []
             
@@ -60,9 +53,6 @@ class ObjectCapability:
         Returns:
             Object data
         """
-        if self._get_authentication_state()["status"] != "connected":
-            return {}
-            
         if entity_type not in self.config.get("objects", {}):
             return {}
             
