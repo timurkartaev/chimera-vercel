@@ -1,6 +1,7 @@
 import logging
 import json
 import os
+from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -25,10 +26,33 @@ class AuthorizeCapability:
         self.auth_config = self.config.get('authentication', {})
         self.auth_method = self.auth_config.get('auth_method')
         
-        # Storage path for auth state (would be replaced with your platform's storage mechanism)
+        # Storage path for auth state
         self.auth_state_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.auth_state.json')
     
-    def get_authentication_state(self):
+    def configure(self, config: Dict[str, Any]):
+        """
+        Configure the authentication settings.
+        
+        Args:
+            config (dict): Authentication configuration
+            
+        Raises:
+            ValueError: If the auth method is invalid or required configuration is missing
+        """
+        auth_method = config.get('auth_method')
+        if not auth_method:
+            raise ValueError("Missing auth_method in configuration")
+            
+        if auth_method not in ['oauth2', 'credentials']:
+            raise ValueError(f"Invalid auth method: {auth_method}")
+            
+        if auth_method == 'oauth2' and not config.get('oauth2'):
+            raise ValueError("Missing oauth2 configuration")
+            
+        self.auth_method = auth_method
+        self.auth_config = config
+    
+    def get_authentication_state(self) -> Dict[str, Any]:
         """
         Get the current authentication state.
         
@@ -45,7 +69,7 @@ class AuthorizeCapability:
             logger.error(f"Error retrieving authentication state: {str(e)}")
             return {"status": "error", "error": str(e)}
     
-    def _save_authentication_state(self, state):
+    def _save_authentication_state(self, state: Dict[str, Any]):
         """
         Save the authentication state.
         
@@ -58,7 +82,7 @@ class AuthorizeCapability:
         except Exception as e:
             logger.error(f"Error saving authentication state: {str(e)}")
     
-    def authorize(self, credentials):
+    def authorize(self, credentials: Dict[str, Any]) -> Dict[str, Any]:
         """
         Authorize with the external system using provided credentials.
         
@@ -75,7 +99,7 @@ class AuthorizeCapability:
         else:
             return {"status": "error", "error": f"Unsupported auth method: {self.auth_method}"}
     
-    def _authorize_credentials(self, credentials):
+    def _authorize_credentials(self, credentials: Dict[str, Any]) -> Dict[str, Any]:
         """
         Authorize using credentials-based authentication.
         
@@ -94,14 +118,16 @@ class AuthorizeCapability:
                 return {"status": "error", "error": f"Missing required credential: {param}"}
         
         try:
-            # Call the API client to authenticate with the external system
-            # This implementation depends on the specific API
-            auth_response = self._api_client.authenticate(credentials)
+            # Call the API client to authenticate
+            auth_response = self._api_client.post(
+                'auth/login',
+                json=credentials
+            )
             
             if not auth_response.get('success'):
                 return {"status": "error", "error": auth_response.get('error', 'Authentication failed')}
             
-            # Extract tokens or session information
+            # Extract token
             token = auth_response.get('token')
             
             # Update API client with the new token
@@ -123,11 +149,9 @@ class AuthorizeCapability:
             logger.error(f"Authentication error: {str(e)}")
             return {"status": "error", "error": str(e)}
     
-    def _authorize_oauth2(self, credentials):
+    def _authorize_oauth2(self, credentials: Dict[str, Any]) -> Dict[str, Any]:
         """
         Process OAuth2 authorization callback.
-        
-        This method handles the OAuth2 authorization code exchange.
         
         Args:
             credentials (dict): Contains 'code' and other OAuth parameters
@@ -147,10 +171,7 @@ class AuthorizeCapability:
             token_uri = oauth2_config.get('token_uri')
             redirect_uri = oauth2_config.get('redirect_uri')
             
-            # In a real implementation, you would make a request to the token_uri
-            # to exchange the code for tokens. This is simplified.
-            
-            # Call the API client to exchange the code for tokens
+            # Exchange the code for tokens
             token_response = self._api_client.post(
                 token_uri,
                 data={
@@ -170,7 +191,9 @@ class AuthorizeCapability:
                 return {"status": "error", "error": "Failed to obtain access token"}
             
             # Update API client with the new tokens
-            self._api_client.set_auth_token(access_token, refresh_token)
+            self._api_client.set_auth_token(access_token)
+            if refresh_token:
+                self._api_client.set_refresh_token(refresh_token)
             
             # Save the authentication state
             auth_state = {
@@ -187,3 +210,67 @@ class AuthorizeCapability:
         except Exception as e:
             logger.error(f"OAuth2 authorization error: {str(e)}")
             return {"status": "error", "error": str(e)}
+    
+    def refresh_token(self) -> Dict[str, Any]:
+        """
+        Refresh the authentication token using the refresh token.
+        
+        Returns:
+            dict: New token data
+            
+        Raises:
+            ValueError: If no refresh token is available
+            Exception: If token refresh fails
+        """
+        if not self._api_client.refresh_token:
+            raise ValueError("No refresh token available")
+        
+        try:
+            # OAuth2 configuration
+            oauth2_config = self.auth_config.get('oauth2', {})
+            token_uri = oauth2_config.get('token_uri')
+            
+            response = self._api_client.post(
+                token_uri,
+                data={
+                    'grant_type': 'refresh_token',
+                    'refresh_token': self._api_client.refresh_token
+                },
+                headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                timeout=30
+            )
+            
+            access_token = response.get('access_token')
+            refresh_token = response.get('refresh_token')
+            
+            if not access_token:
+                raise ValueError("Failed to obtain access token")
+            
+            # Update API client with the new tokens
+            self._api_client.set_auth_token(access_token)
+            if refresh_token:
+                self._api_client.set_refresh_token(refresh_token)
+            
+            # Update authentication state
+            auth_state = self.get_authentication_state()
+            auth_state['status'] = 'connected'
+            self._save_authentication_state(auth_state)
+            
+            return {
+                'status': 'success',
+                'access_token': access_token,
+                'refresh_token': refresh_token
+            }
+            
+        except Exception as e:
+            logger.error(f"Failed to refresh token: {str(e)}")
+            # Clear tokens to force re-authorization
+            self._api_client.set_auth_token(None)
+            self._api_client.set_refresh_token(None)
+            
+            # Update authentication state
+            auth_state = self.get_authentication_state()
+            auth_state['status'] = 'disconnected'
+            self._save_authentication_state(auth_state)
+            
+            raise
