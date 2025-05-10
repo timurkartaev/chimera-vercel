@@ -57,7 +57,7 @@ class IntegrationConnector:
         return [d for d in os.listdir(connectors_dir) 
                 if os.path.isdir(os.path.join(connectors_dir, d)) 
                 and not d.startswith('.')]
-
+    
     def __init__(self, config_path=None):
         """
         Initialize the connector with configuration and capabilities.

@@ -7,7 +7,7 @@ from ..integration_connector.capabilities.authorize import AuthorizeCapability
 logger = logging.getLogger(__name__)
 
 class PipedriveAuthorizeCapability(AuthorizeCapability):
-    """
+        """
     Pipedrive authorize capability that extends the base authorize capability.
     Currently uses all base functionality without modifications.
     """

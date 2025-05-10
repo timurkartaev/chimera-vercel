@@ -7,7 +7,6 @@ from unittest.mock import MagicMock, patch
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.connectors.integration_connector.connector import IntegrationConnector
-from src.connectors.integration_connector.api.client import ApiClient
 
 class TestIntegrationConnector(unittest.TestCase):
     """Integration test suite for the IntegrationConnector class."""
@@ -101,8 +100,8 @@ class TestIntegrationConnector(unittest.TestCase):
         self.mock_api_client.return_value.attach_document = MagicMock(return_value={'success': True})
         self.mock_api_client.return_value.add_deal_activity = MagicMock(return_value={'success': True})
         
-        # Create an instance of the connector
-        self.connector = IntegrationConnector.get_instance('pipedrive')
+        # Create an instance of the connector using the factory method
+        self.connector = IntegrationConnector.create('pipedrive')
     
     def tearDown(self):
         """Tear down test fixtures after each test method is run."""
@@ -112,8 +111,7 @@ class TestIntegrationConnector(unittest.TestCase):
     def test_integration_flow(self):
         """Test the complete integration flow."""
         # Step 1: Test authentication
-        auth_params = {'credentials': {'api_key': 'test_key'}}
-        auth_result = self.connector.authorize.authorize(auth_params)
+        auth_result = self.connector.authorize.authorize({'api_key': 'test_key'})
         self.assertEqual(auth_result.get('status'), 'connected')
         
         # Step 2: Get and validate entities
@@ -126,29 +124,26 @@ class TestIntegrationConnector(unittest.TestCase):
             entity_type = entity['type']
             
             # Get and validate entity schema
-            schema_params = {'entity_type': entity_type}
-            schema = self.connector.entity.get_entity_schema(schema_params)
+            schema = self.connector.entity.get_entity_schema({'entity_type': entity_type})
             self.assertIsInstance(schema, dict)
             self.assertIn('properties', schema)
             
             # Get and validate objects
-            objects_params = {'entity_type': entity_type}
-            objects = self.connector.object.get_objects(objects_params)
+            objects = self.connector.object.get_objects({'entity_type': entity_type})
             self.assertIsInstance(objects, list)
             
             if objects:  # If we have any objects
                 # Get and validate specific object
                 object_id = objects[0]['id']
-                object_params = {
+                object_data = self.connector.object.get_object({
                     'entity_type': entity_type,
                     'object_id': object_id
-                }
-                object_data = self.connector.object.get_object(object_params)
+                })
                 self.assertIsInstance(object_data, dict)
                 self.assertIn('id', object_data)
         
         # Step 4: Get all actions
-        actions = self.connector.action.get_actions({})
+        actions = self.connector.action.get_actions()
         self.assertIsInstance(actions, list)
         self.assertTrue(len(actions) > 0)
         
@@ -159,8 +154,7 @@ class TestIntegrationConnector(unittest.TestCase):
             
             for entity_type in compatible_entities:
                 # Get objects for this entity type
-                objects_params = {'entity_type': entity_type}
-                objects = self.connector.object.get_objects(objects_params)
+                objects = self.connector.object.get_objects({'entity_type': entity_type})
                 
                 if objects:  # If we have any objects
                     object_id = objects[0]['id']
