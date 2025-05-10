@@ -1,63 +1,19 @@
 import os
 import yaml
-import importlib
-from typing import Dict, Any, Optional
-from .api.client import ApiClient
-from .capabilities.info import InfoCapability
-from .capabilities.localization import LocalizationCapability
-from .capabilities.authorize import AuthorizeCapability
-from .capabilities.entity import EntityCapability
-from .capabilities.object import ObjectCapability
-from .capabilities.action import ActionCapability
+from ..integration-connector.connector import IntegrationConnector as BaseConnector
+from ..integration-connector.api.client import ApiClient
+from ..integration-connector.capabilities.info import InfoCapability
+from ..integration-connector.capabilities.localization import LocalizationCapability
+from ..integration-connector.capabilities.authorize import AuthorizeCapability
+from ..integration-connector.capabilities.entity import EntityCapability
+from ..integration-connector.capabilities.object import ObjectCapability
+from ..integration-connector.capabilities.action import ActionCapability
 
-class IntegrationConnector:
+class PipedriveConnector:
     """
-    Factory class that creates and manages connector instances based on the slug.
-    This class acts as a facade that delegates to specialized connector implementations.
+    Pipedrive connector implementation that extends the base connector functionality.
     """
     
-    _instances: Dict[str, Any] = {}
-    
-    @classmethod
-    def get_instance(cls, slug: str, config_path: Optional[str] = None) -> Any:
-        """
-        Get or create a connector instance for the specified slug.
-        
-        Args:
-            slug (str): The connector slug (e.g., 'pipedrive')
-            config_path (str, optional): Path to the config.yaml file.
-                                        Defaults to the config.yaml in the connector's directory.
-        
-        Returns:
-            Any: The connector instance
-        """
-        if slug not in cls._instances:
-            # Import the connector module
-            try:
-                module = importlib.import_module(f'src.connectors.{slug}.connector')
-                connector_class = getattr(module, f'{slug.capitalize()}Connector')
-                
-                # Create instance
-                instance = connector_class(config_path)
-                cls._instances[slug] = instance
-            except (ImportError, AttributeError) as e:
-                raise ValueError(f"Failed to load connector for slug '{slug}': {str(e)}")
-        
-        return cls._instances[slug]
-    
-    @classmethod
-    def get_available_connectors(cls) -> list:
-        """
-        Get a list of available connector slugs.
-        
-        Returns:
-            list: List of available connector slugs
-        """
-        connectors_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)))
-        return [d for d in os.listdir(connectors_dir) 
-                if os.path.isdir(os.path.join(connectors_dir, d)) 
-                and not d.startswith('.')]
-
     def __init__(self, config_path=None):
         """
         Initialize the connector with configuration and capabilities.
@@ -67,7 +23,7 @@ class IntegrationConnector:
                                         Defaults to the config.yaml in the same directory.
         """
         if config_path is None:
-            # Default to config.yaml in the same directory as this file
+            # Default to config.yaml in the same directory
             config_path = os.path.join(os.path.dirname(__file__), 'config', 'config.yaml')
         
         # Load configuration
@@ -190,18 +146,3 @@ class IntegrationConnector:
             list: Array of action definitions with compatible entities
         """
         return self.action.get_actions(params.get('entity_type'))
-    
-    def execute_action(self, action_id, entity_type, object_id, params):
-        """
-        Execute a specific action on an object.
-        
-        Args:
-            action_id (str): The ID of the action to execute
-            entity_type (str): The type of entity
-            object_id (str): The ID of the object to perform the action on
-            params (dict): Parameters required for the action
-            
-        Returns:
-            dict: Result of the action execution
-        """
-        return self.action.execute_action(action_id, entity_type, object_id, params)

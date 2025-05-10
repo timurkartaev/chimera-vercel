@@ -102,7 +102,7 @@ class TestIntegrationConnector(unittest.TestCase):
         self.mock_api_client.return_value.add_deal_activity = MagicMock(return_value={'success': True})
         
         # Create an instance of the connector
-        self.connector = IntegrationConnector()
+        self.connector = IntegrationConnector.get_instance('pipedrive')
     
     def tearDown(self):
         """Tear down test fixtures after each test method is run."""
