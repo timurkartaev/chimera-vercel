@@ -12,9 +12,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Add the apps directory to the Python path
+APPS_DIR = BASE_DIR / 'apps'
+sys.path.insert(0, str(APPS_DIR))
 
 
 # Quick-start development settings - unsuitable for production
