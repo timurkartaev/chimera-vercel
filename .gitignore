@@ -39,4 +39,6 @@ venv/
 ENV/
 
 # Project specific
-.auth_state.json 
+.auth_state.json
+
+db.sqlite3

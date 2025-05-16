@@ -1,0 +1,34 @@
+# Integration Connector Configuration
+
+# Info section
+info:
+  logo: "https://example.com/logo.png"
+  name: "Gong"
+  categories:
+    - "CRM"
+    - "Sales"
+  website: "https://www.gong.io/"
+  support_email: "support@example.com"
+  version: "1.0.0"
+  developer: "Your Company Name"
+
+# Authentication section
+authentication:
+  auth_method: "oauth2"
+  oauth2:
+    client_id: "${CLIENT_ID}"
+    client_secret: "${CLIENT_SECRET}"
+    auth_uri: "https://example.com/oauth/authorize"
+    token_uri: "https://example.com/oauth/token"
+    scopes:
+      - "read"
+      - "write"
+
+# Entities section
+entities:
+  - "activity"
+
+# Actions section
+actions:
+  - action_id: "add_history"
+    entities: ["activity"]
