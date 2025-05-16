@@ -51,7 +51,6 @@ def get_authorization_url(request, integration_name):
 
 
 def authorization_callback(request, integration_name):
-
     # get all request query params from request
     query_params = request.GET.dict()
     query_param_string = "&".join(
