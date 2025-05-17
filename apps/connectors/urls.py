@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.index, name="index-view"),
     path("add-history", views.add_action_page, name="add-history"),
     path("api-action", views.add_action, name="add-action"),
+    path("empty-response", views.empty_reponse, name="simple-json-request"),
     # Authorize
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/begin/?$",

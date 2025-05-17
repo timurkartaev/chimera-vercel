@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 import jwt
 import requests
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect
 
@@ -13,6 +13,9 @@ from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 
 def index(request):
     return HttpResponse("<h1>Hello, world. You're at the chimera index.</h1>")
+
+def empty_reponse(request):
+    return JsonResponse({"status": "success"})
 
 
 def add_action_page(request):
