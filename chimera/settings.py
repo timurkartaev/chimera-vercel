@@ -51,7 +51,37 @@ INSTALLED_APPS = [
     "connectors",
 ]
 
+# CORS settings
+# Option 1: Allow all origins (simplest approach)
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Option 2: Allow specific origins (more secure, but must be configured correctly)
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+# ]
+
+# Additional CORS settings for more control
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
