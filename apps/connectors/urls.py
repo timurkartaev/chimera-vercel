@@ -12,6 +12,7 @@ urlpatterns = [
     path("list-data-sources", views.list_data_sources, name="list-data-sources"),
     path("get-data-source", views.get_data_source, name="get-data-source"),
     path("get-data-collection-schema", views.get_data_collection_schema, name="get-data-collection-schema"),
+    path("run-action", views.run_action, name="run-action"),
     # Authorize
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/begin/?$",

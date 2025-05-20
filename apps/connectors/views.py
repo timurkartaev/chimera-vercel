@@ -14,6 +14,28 @@ def index(request):
     return HttpResponse("<h1>Hello, world. You're at the chimera index.</h1>")
 
 
+def run_action(request):
+    # connection_id 6829c429aab97852fdf3db34
+    # https://api.integration.app/connections/{connectionSelector}/actions/{actionSelector}/run
+    connection_id = '6829c429aab97852fdf3db34'
+
+    query = request.GET.get('q')
+    url = f'https://api.integration.app/connections/pipedrive/actions/search-data-record/run'
+    headers = {
+        "accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.post(
+        url,
+        headers=headers,
+        json={
+            'query': query,
+            'entity_type': 'deals'
+        }
+    )
+    return JsonResponse({'response': response.json().get('output')})
+
 def list_data_collections(request):
     connection_id = request.GET.get('connection_id', '')
     url = f'https://api.integration.app/connections/{connection_id}/data'
