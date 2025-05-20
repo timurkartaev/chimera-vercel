@@ -1,4 +1,3 @@
-import json
 import uuid
 from datetime import datetime, timedelta
 
@@ -14,8 +13,66 @@ from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 def index(request):
     return HttpResponse("<h1>Hello, world. You're at the chimera index.</h1>")
 
-def empty_reponse(request):
-    return JsonResponse({"status": "success"})
+
+def list_data_collections(request):
+    connection_id = request.GET.get('connection_id', '')
+    url = f'https://api.integration.app/connections/{connection_id}/data'
+
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse({'entities': response.json()})
+
+
+def get_data_collection_schema(request):
+    connection_id = request.GET.get('connection_id', '682c61396ad656a84b8cbedd')
+    data_collection_key = request.GET.get('entity_key', 'deals')
+    # import pdb; pdb.set_trace()
+    url = f'https://api.integration.app/connections/{connection_id}/data/{data_collection_key}'
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse({'entity_schema': response.json()})
+
+
+def list_data_sources(request):
+    url = 'https://api.integration.app/data-sources'
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse({'response': response.json()})
+
+
+def get_data_source(request):
+    data_source_id = request.GET.get('data_source_id')
+    url = f'https://api.integration.app/data-sources/{data_source_id}'
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    return JsonResponse({'response': response.json()})
+
+
+def list_connections(request):
+    url = 'https://api.integration.app/connections'
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    # print(response.json())
+    # connections = [
+    #     {'id': connection['id'], 'name': connection['name']}
+    #     for connection in response.json().get('items', [])
+    # ]
+    return JsonResponse({'items': response.json().get('items', [])})
 
 
 def add_action_page(request):
@@ -145,9 +202,9 @@ def get_customer_token(user):
         {
             # ID of your customer in your system.
             # It will be used to identify customer in Integration.app
-            "id": "6822d9a1a0df293732dde38e",
+            "id": "682200e11226bbc540e52a0a",
             # Human-readable name (it will simplify troubleshooting)
-            "name": "Doniyor Rufatov",
+            "name": "Timur Kartaev",
             "iss": IPAAS_WORKSPACE_KEY,
             # Any customer fields you want to attach to your user.
             "fields": {},
@@ -157,6 +214,16 @@ def get_customer_token(user):
         algorithm="HS256",
     )
     return encoded_jwt
+
+
+def list_intergrations(request):
+    url = "https://api.integration.app/integrations"
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 
 def get_authorization_url(request, integration_name):

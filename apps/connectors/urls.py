@@ -8,6 +8,11 @@ urlpatterns = [
     path("add-history", views.add_action_page, name="add-history"),
     path("api-action", views.add_action, name="add-action"),
     path("empty-response", views.empty_reponse, name="simple-json-request"),
+    path("list-data-collections", views.list_data_collections, name="list-data-collections"),
+    path("list-connections", views.list_connections, name="list-connections"),
+    path("list-data-sources", views.list_data_sources, name="list-data-sources"),
+    path("get-data-source", views.get_data_source, name="get-data-source"),
+    path("get-data-collection-schema", views.get_data_collection_schema, name="get-data-collection-schema"),
     # Authorize
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/begin/?$",
