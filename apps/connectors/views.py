@@ -14,13 +14,13 @@ def index(request):
     return HttpResponse("<h1>Hello, world. You're at the chimera index.</h1>")
 
 
-def run_action(request):
+def run_action(request, integration_name):
     # connection_id 6829c429aab97852fdf3db34
     # https://api.integration.app/connections/{connectionSelector}/actions/{actionSelector}/run
     connection_id = '6829c429aab97852fdf3db34'
 
     query = request.GET.get('q')
-    url = f'https://api.integration.app/connections/pipedrive/actions/search-data-record/run'
+    url = f'https://api.integration.app/connections/{integration_name}/actions/search-data-record/run'
     headers = {
         "accept": "application/json",
         'Content-Type': 'application/json',
@@ -238,14 +238,25 @@ def get_customer_token(user):
     return encoded_jwt
 
 
-def list_intergrations(request):
+def list_integrations(request):
     url = "https://api.integration.app/integrations"
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return response.json()
+    return JsonResponse({'response': response.json()})
+
+
+def archive_connection(request, connection_id):
+    url = f"https://api.integration.app/connections/{connection_id}"
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {get_customer_token(request.user)}",
+    }
+    response = requests.delete(url, headers=headers)
+    response.raise_for_status()
+    return JsonResponse({'status': 'success'})
 
 
 def get_authorization_url(request, integration_name):
