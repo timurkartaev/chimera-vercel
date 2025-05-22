@@ -222,7 +222,7 @@ def add_action(request):
             <b>Status Change:</b> {status_from} -&gt; <b>{status_to}</b> <br>
             <b>Changed By: </b>{changed_by} <br>
             <b>Date: </b> {timestamp_str} <br>
-            <b>Comment:</b>&nbsp;{comment} <br>
+            <b>Comment:</b>&nbsp;<i>{comment}</i><br>
         """
 
     def get_activity_md():
@@ -232,7 +232,7 @@ def add_action(request):
             f"**Status Change:** {status_from} -&gt; **{status_to}**\n"
             f"**Changed By:** {changed_by}\n"
             f"**Date:** {timestamp_str}\n"
-            f"**Comment:** {comment}"
+            f"**Comment:** *{comment}*"
         )
 
     response = requests.post(
