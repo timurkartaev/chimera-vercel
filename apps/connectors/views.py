@@ -8,10 +8,19 @@ from django.middleware.csrf import get_token
 from django.shortcuts import redirect
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
+from apps.connectors.ipaas.connector_factory import IPaaSConnectorFactory
 
 
 def index(request):
-    return HttpResponse("<h1>Hello, world. You're at the chimera index.</h1>")
+    factory = IPaaSConnectorFactory()
+    connectors = ', '.join(factory.get_discovered_connectors())
+    integration_connector = factory.create_integration_connector("pipedrive")
+    auth_url = integration_connector.authenticate()
+
+    return JsonResponse({
+        'auth_url': auth_url,
+        'connectors': connectors,
+    })
 
 
 def run_action(request, integration_name):

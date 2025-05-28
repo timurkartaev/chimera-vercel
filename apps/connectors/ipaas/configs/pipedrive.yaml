@@ -1,0 +1,11 @@
+info:
+  name: Pipedrive
+  slug: pipedrive
+
+authentication:
+  auth_method: "oauth2"
+  oauth2:
+    redirect_url: "https://api.integration.app/oauth-callback"
+
+capabilities:
+  - authenticate
