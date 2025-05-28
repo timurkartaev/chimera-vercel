@@ -26,73 +26,69 @@ def index(request):
 def run_action(request, integration_name):
     # connection_id 6829c429aab97852fdf3db34
     # https://api.integration.app/connections/{connectionSelector}/actions/{actionSelector}/run
-    connection_id = '6829c429aab97852fdf3db34'
+    connection_id = "6829c429aab97852fdf3db34"
 
-    query = request.GET.get('q')
-    url = f'https://api.integration.app/connections/{integration_name}/actions/search-data-record/run'
+    query = request.GET.get("q")
+    url = f"https://api.integration.app/connections/{integration_name}/actions/search-data-record/run"
     headers = {
         "accept": "application/json",
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.post(
-        url,
-        headers=headers,
-        json={
-            'query': query,
-            'entity_type': 'deals'
-        }
+        url, headers=headers, json={"query": query, "entity_type": "deals"}
     )
-    return JsonResponse({'response': response.json().get('output')})
+    return JsonResponse({"response": response.json().get("output")})
+
 
 def list_data_collections(request):
-    connection_id = request.GET.get('connection_id', '')
-    url = f'https://api.integration.app/connections/{connection_id}/data'
+    connection_id = request.GET.get("connection_id", "")
+    url = f"https://api.integration.app/connections/{connection_id}/data"
 
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return JsonResponse({'entities': response.json()})
+    return JsonResponse({"entities": response.json()})
 
 
 def get_data_collection_schema(request):
-    connection_id = request.GET.get('connection_id', '682c61396ad656a84b8cbedd')
-    data_collection_key = request.GET.get('entity_key', 'deals')
+    connection_id = request.GET.get("connection_id", "682c61396ad656a84b8cbedd")
+    data_collection_key = request.GET.get("entity_key", "deals")
     # import pdb; pdb.set_trace()
-    url = f'https://api.integration.app/connections/{connection_id}/data/{data_collection_key}'
+    url = f"https://api.integration.app/connections/{connection_id}/data/{data_collection_key}"
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return JsonResponse({'entity_schema': response.json()})
+    return JsonResponse({"entity_schema": response.json()})
 
 
 def list_data_sources(request):
-    url = 'https://api.integration.app/data-sources'
+    url = "https://api.integration.app/data-sources"
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return JsonResponse({'response': response.json()})
+    return JsonResponse({"response": response.json()})
 
 
 def get_data_source(request):
-    data_source_id = request.GET.get('data_source_id')
-    url = f'https://api.integration.app/data-sources/{data_source_id}'
+    data_source_id = request.GET.get("data_source_id")
+    url = f"https://api.integration.app/data-sources/{data_source_id}"
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return JsonResponse({'response': response.json()})
+    return JsonResponse({"response": response.json()})
 
 
 def list_connections(request):
-    url = 'https://api.integration.app/connections'
+    url = "https://api.integration.app/connections"
     headers = {
         "accept": "application/json",
         "Authorization": f"Bearer {get_customer_token(request.user)}",
@@ -103,7 +99,7 @@ def list_connections(request):
     #     {'id': connection['id'], 'name': connection['name']}
     #     for connection in response.json().get('items', [])
     # ]
-    return JsonResponse({'items': response.json().get('items', [])})
+    return JsonResponse({"items": response.json().get("items", [])})
 
 
 def add_action_page(request):
@@ -169,20 +165,36 @@ def add_action_page(request):
                 <input type="text" id="integration_name" name="integration_name" required>
             </div>
             <div>
-                <label for="entity_type">Entity Type:</label>
-                <input type="text" id="entity_type" name="entity_type" required>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
             </div>
             <div>
-                <label for="entity_id">Entity Id:</label>
-                <input type="text" id="entity_id" name="entity_id" required>
+                <label for="document_name">Document Name:</label>
+                <input type="text" id="document_name" name="document_name">
             </div>
             <div>
-                <label for="object_id">Object Id:</label>
-                <input type="text" id="object_id" name="object_id" required>
+                <label for="document_link">Document Link:</label>
+                <input type="url" id="document_link" name="document_link">
             </div>
             <div>
-                <label for="note">Note:</label>
-                <textarea id="note" name="note" rows="3" required></textarea>
+                <label for="document_id">Document ID:</label>
+                <input type="text" id="document_id" name="document_id">
+            </div>
+            <div>
+                <label for="status_from">Status From:</label>
+                <input type="text" id="status_from" name="status_from">
+            </div>
+            <div>
+                <label for="status_to">Status To:</label>
+                <input type="text" id="status_to" name="status_to">
+            </div>
+            <div>
+                <label for="changed_by">Changed By:</label>
+                <input type="text" id="changed_by" name="changed_by">
+            </div>
+            <div>
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="3"></textarea>
             </div>
             <button type="submit">Submit Action</button>
         </form>
@@ -199,11 +211,38 @@ def add_action(request):
     """
     # Get the form data from the request
     integration_name = request.POST.get("integration_name")
-    entity_type = request.POST.get("entity_type")
-    entity_id = request.POST.get("entity_id")
-    object_id = request.POST.get("object_id")
-    note = request.POST.get("note")
-    timestamp = datetime.now().isoformat(timespec="seconds") + "Z"
+    title = request.POST.get("title")
+    document_name = request.POST.get("document_name")
+    document_link = request.POST.get("document_link")
+    document_id = request.POST.get("document_id")
+    status_from = request.POST.get("status_from")
+    status_to = request.POST.get("status_to")
+    changed_by = request.POST.get("changed_by")
+    comment = request.POST.get("comment")
+
+    time_now = datetime.now()
+    timestamp = time_now.timestamp()
+    timestamp_str = time_now.isoformat(timespec="seconds") + "Z"
+
+    def get_activity_html():
+        return f"""
+            <b>{title}</b><br>
+            <b>Document:</b> <a href="{document_link}">{document_name}</a> <br>
+            <b>Status Change:</b> {status_from} -&gt; <b>{status_to}</b> <br>
+            <b>Changed By: </b>{changed_by} <br>
+            <b>Date: </b> {timestamp_str} <br>
+            <b>Comment:</b>&nbsp;<i>{comment}</i><br>
+        """
+
+    def get_activity_md():
+        return (
+            f"**{title}**\n"
+            f"**Document:** [{document_name}]({document_link})\n"
+            f"**Status Change:** {status_from} -&gt; **{status_to}**\n"
+            f"**Changed By:** {changed_by}\n"
+            f"**Date:** {timestamp_str}\n"
+            f"**Comment:** *{comment}*"
+        )
 
     response = requests.post(
         url=f"https://api.integration.app/connections/{integration_name}/actions/add-activity/run",
@@ -213,11 +252,18 @@ def add_action(request):
             "Authorization": f"Bearer {get_customer_token(request.user)}",
         },
         json={
-            "entity_type": entity_type,
-            "entity_id": entity_id,
-            "object_id": object_id,
-            "note": note,
             "timestamp": timestamp,
+            "title": title,
+            "document_name": document_name,
+            "document_link": document_link,
+            "document_id": document_id,
+            "status_from": status_from,
+            "status_to": status_to,
+            "changed_by": changed_by,
+            "comment": comment,
+            "timestamp_date_str": timestamp_str,
+            "activity_html_str": get_activity_html(),
+            "activity_md_str": get_activity_md(),
         },
     )
 
@@ -254,7 +300,7 @@ def list_integrations(request):
         "Authorization": f"Bearer {get_customer_token(request.user)}",
     }
     response = requests.get(url, headers=headers)
-    return JsonResponse({'response': response.json()})
+    return JsonResponse({"response": response.json()})
 
 
 def archive_connection(request, connection_id):
@@ -265,7 +311,7 @@ def archive_connection(request, connection_id):
     }
     response = requests.delete(url, headers=headers)
     response.raise_for_status()
-    return JsonResponse({'status': 'success'})
+    return JsonResponse({"status": "success"})
 
 
 def get_authorization_url(request, integration_name):
