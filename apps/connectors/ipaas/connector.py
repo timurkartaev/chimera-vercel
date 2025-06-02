@@ -1,4 +1,6 @@
+from typing import Any
 import yaml
+from apps.connectors.ipaas.capabilities.authenticate import AuthConfig
 from pydantic import ValidationError
 
 from apps.connectors.ipaas import capabilities
@@ -19,8 +21,8 @@ class IntegrationConnector:
             'authenticate': capabilities.AuthenticateCapability(self.connector_config, self.api_client),
         }
 
-    def authenticate(self):
-        return self._capabilities.get('authenticate').get_authenticate_url()
+    def authenticate(self, customer: dict[str, Any]) -> AuthConfig:
+        return self._capabilities.get('authenticate').get_authentication_config(customer)
 
     def get_connection_state(self):
         pass

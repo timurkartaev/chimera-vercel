@@ -13,14 +13,16 @@ from apps.connectors.ipaas.connector_factory import IPaaSConnectorFactory
 
 def index(request):
     factory = IPaaSConnectorFactory()
-    connectors = ', '.join(factory.get_discovered_connectors())
+    connectors = ", ".join(factory.get_discovered_connectors())
     integration_connector = factory.create_integration_connector("pipedrive")
     auth_url = integration_connector.authenticate()
 
-    return JsonResponse({
-        'auth_url': auth_url,
-        'connectors': connectors,
-    })
+    return JsonResponse(
+        {
+            "auth_url": auth_url,
+            "connectors": connectors,
+        }
+    )
 
 
 def run_action(request, integration_name):
@@ -314,23 +316,18 @@ def archive_connection(request, connection_id):
     return JsonResponse({"status": "success"})
 
 
-def get_authorization_url(request, integration_name):
+def authorization_begin(request, integration_name):
     """
-    This view is used to get the authorization URL for a specific integration.
+    This view is used to authorize the user for a specific integration.
     It will redirect the user to the authorization URL for the specified integration.
     """
-
-    # For demonstration purposes, we'll just return a simple response
-
-    token = get_customer_token(request.user)
-    request_id = str(uuid.uuid4())
-
-    redirect_url = (
-        f"https://api.integration.app/connection-popup?"
-        f"token={token}&requestId={request_id}&integrationKey={integration_name}"
+    factory = IPaaSConnectorFactory()
+    integration_connector = factory.create_integration_connector(integration_name)
+    auth_config = integration_connector.authenticate(
+        {"id": "682200e11226bbc540e52a0a", "name": "Timur Kartaev"}
     )
 
-    return redirect(redirect_url)
+    return JsonResponse(auth_config.model_dump())
 
 
 def authorization_callback(request, integration_name):

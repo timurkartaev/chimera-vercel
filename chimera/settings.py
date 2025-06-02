@@ -45,9 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   
     "corsheaders",
-   
     "connectors",
 ]
 
@@ -169,3 +167,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 IPAAS_WORKSPACE_KEY = os.environ.get("WORKSPACE_KEY")
 IPAAS_WORKSPACE_SECRET = os.environ.get("WORKSPACE_SECRET")
+IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES = int(
+    os.environ.get("WORKSPACE_TOKEN_EXPIRATION_MINUTES", 5)
+)
+IPAAS_BASE_URL = os.environ.get("IPAAS_BASE_URL", "https://api.integration.app")
