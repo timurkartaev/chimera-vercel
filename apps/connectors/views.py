@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect
 
+from apps.connectors.ipaas.capabilities.authenticate import CallbackState
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 from apps.connectors.ipaas.connector_factory import IPaaSConnectorFactory
 
@@ -332,9 +333,9 @@ def authorization_begin(request, integration_name):
 
 def authorization_callback(request, integration_name):
     # get all request query params from request
-    query_params = request.GET.dict()
-    query_param_string = "&".join(
-        [f"{key}={value}" for key, value in query_params.items()]
-    )
-
-    return redirect(f"https://api.integration.app/oauth-callback?{query_param_string}")
+    factory = IPaaSConnectorFactory()
+    integration_connector = factory.create_integration_connector(integration_name)
+    state, page_or_redirect_uri = integration_connector.handle_callback(request)
+    if state == CallbackState.IN_PROGRESS:
+        return redirect(page_or_redirect_uri)
+    return HttpResponse(page_or_redirect_uri)

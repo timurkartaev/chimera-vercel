@@ -22,7 +22,11 @@ class IntegrationConnector:
         }
 
     def authenticate(self, customer: dict[str, Any]) -> AuthConfig:
+        print(f"Authenticating customer: {customer}")
         return self._capabilities.get('authenticate').get_authentication_config(customer)
+    
+    def handle_callback(self, request):
+        return self._capabilities.get('authenticate').handle_callback(request)
 
     def get_connection_state(self):
         pass
