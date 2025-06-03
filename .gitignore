@@ -42,3 +42,6 @@ ENV/
 .auth_state.json
 
 db.sqlite3
+
+.direnv/
+.envrc

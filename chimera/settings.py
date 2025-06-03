@@ -40,14 +40,13 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   
-    "corsheaders",
-   
+    "django_eventstream",
     "connectors",
 ]
 
@@ -81,13 +80,16 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
+    "last-event-id",
 ]
-
+EVENTSTREAM_ALLOW_ORIGIN  = "*"
+EVENTSTREAM_ALLOW_HEADERS = CORS_ALLOW_HEADERS
+EVENTSTREAM_ALLOW_CREDENTIALS = CORS_ALLOW_CREDENTIALS
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -169,3 +171,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 IPAAS_WORKSPACE_KEY = os.environ.get("WORKSPACE_KEY")
 IPAAS_WORKSPACE_SECRET = os.environ.get("WORKSPACE_SECRET")
+IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES = int(
+    os.environ.get("WORKSPACE_TOKEN_EXPIRATION_MINUTES", 5)
+)
+IPAAS_BASE_URL = os.environ.get("IPAAS_BASE_URL", "https://api.integration.app")

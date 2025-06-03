@@ -18,7 +18,7 @@ urlpatterns = [
     # Authorize
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/begin/?$",
-        views.get_authorization_url,
+        views.authorization_begin,
         name="authorize_begin",
     ),
     re_path(

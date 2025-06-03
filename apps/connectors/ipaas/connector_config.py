@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, HttpUrl
-from typing import List, Optional
+from typing import Any, List, Optional
 
 
 class Info(BaseModel):
@@ -12,6 +12,7 @@ class OAuth2(BaseModel):
 class Authentication(BaseModel):
     auth_method: str
     oauth2: Optional[OAuth2] = None
+    auth_params: Optional[list[dict[str, Any]]] = None
 
 class ConnectorConfig(BaseModel):
     info: Info
