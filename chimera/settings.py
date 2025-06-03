@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_eventstream",
     "connectors",
 ]
 
@@ -82,9 +81,6 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
     "last-event-id",
 ]
-EVENTSTREAM_ALLOW_ORIGIN  = "*"
-EVENTSTREAM_ALLOW_HEADERS = CORS_ALLOW_HEADERS
-EVENTSTREAM_ALLOW_CREDENTIALS = CORS_ALLOW_CREDENTIALS
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -101,7 +97,7 @@ ROOT_URLCONF = "chimera.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

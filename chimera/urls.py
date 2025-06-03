@@ -17,11 +17,9 @@ Including another URLconf
 
 # from django.contrib import admin
 from django.urls import path, include
-from django_eventstream.views import events as  events_view
 
 
 urlpatterns = [
     #    path('admin/', admin.site.urls),
     path("", include("connectors.urls")),
-    path("events", events_view, name="events"),  # Event stream endpoint
 ]

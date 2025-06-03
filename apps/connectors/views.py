@@ -337,5 +337,5 @@ def authorization_callback(request, integration_name):
     integration_connector = factory.create_integration_connector(integration_name)
     state, redirect_uri = integration_connector.handle_callback(request)
     if not redirect_uri:
-        return render(request, "close_window.html")
+        return render(request, "ipaas/close_window.html", {"state": state.value})
     return redirect(redirect_uri)

@@ -1,5 +1,5 @@
 import datetime
-from typing import Any, Optional
+from typing import Any, Optional, Tuple
 import uuid
 
 import jwt
@@ -69,7 +69,9 @@ class AuthenticateCapability:
             algorithm="HS256",
         )
 
-    def handle_callback(self, request):
+    def handle_callback(
+        self, request
+    ) -> Tuple[CallbackState, Optional[str]]:
         """Handle the callback from the authentication process."""
         query_params = request.GET.dict()
         state = CallbackState.SUCCESS
@@ -84,13 +86,4 @@ class AuthenticateCapability:
             redirect_uri = (
                 f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
             )
-        send_event(
-            "status",
-            "message",
-            {
-                "status": state.value,
-                "requestId": query_params.get("requestId"),
-            },
-            async_publish=False,
-        )
         return state, redirect_uri
