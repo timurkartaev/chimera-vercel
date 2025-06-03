@@ -86,11 +86,11 @@ class AuthenticateCapability:
             )
         send_event(
             "status",
-            "message",  
+            "message",
             {
                 "status": state.value,
                 "requestId": query_params.get("requestId"),
             },
-            async_publish=False
+            async_publish=False,
         )
         return state, redirect_uri

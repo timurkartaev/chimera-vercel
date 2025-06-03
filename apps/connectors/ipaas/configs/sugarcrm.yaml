@@ -1,0 +1,23 @@
+info:
+  name: Sugar CRM
+  slug: sugarcrm
+
+authentication:
+  auth_method: "credentials"
+  auth_params:
+    - id: "username"
+      label: "Username"
+      type: "string"
+      required: true
+    - id: "password"
+      label: "Password"
+      type: "string"
+      required: true
+    - id: "org_url"
+      label: "Organization URL"
+      type: "string"
+      required: true
+      description: "The base URL of your Sugar CRM instance, e.g., https://yourdomain.sugarondemand.com"
+
+capabilities:
+  - authenticate
