@@ -3,12 +3,9 @@ info:
   slug: monday
 
 authentication:
-  auth_method: "credentials"
-  auth_params:
-    - id: "api_key"
-      label: "API Key"
-      type: "string"
-      required: true
+  auth_method: "oauth2"
+  oauth2:
+    redirect_url: "https://api.integration.app/oauth-callback"
 
 capabilities:
   - authenticate

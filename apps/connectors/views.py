@@ -16,11 +16,11 @@ def index(request):
     factory = IPaaSConnectorFactory()
     connectors = ", ".join(factory.get_discovered_connectors())
     integration_connector = factory.create_integration_connector("pipedrive")
-    auth_url = integration_connector.authenticate()
+    # auth_url = integration_connector.authenticate()
 
     return JsonResponse(
         {
-            "auth_url": auth_url,
+            "auth_url": "auth_url",
             "connectors": connectors,
         }
     )
