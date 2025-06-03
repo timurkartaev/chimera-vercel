@@ -9,7 +9,6 @@ from urllib.parse import urlencode
 from pydantic import BaseModel
 from enum import StrEnum
 import logging
-from django_eventstream import send_event
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
