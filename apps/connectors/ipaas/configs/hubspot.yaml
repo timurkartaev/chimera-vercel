@@ -1,5 +1,6 @@
 info:
   name: Hubspot
+  slug: hubspot
 
 authentication:
   auth_method: "oauth2"
