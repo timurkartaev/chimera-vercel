@@ -5,7 +5,7 @@ import jwt
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from apps.connectors.ipaas.capabilities.authenticate import CallbackState
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
@@ -335,7 +335,7 @@ def authorization_callback(request, integration_name):
     # get all request query params from request
     factory = IPaaSConnectorFactory()
     integration_connector = factory.create_integration_connector(integration_name)
-    state, page_or_redirect_uri = integration_connector.handle_callback(request)
-    if state == CallbackState.IN_PROGRESS:
-        return redirect(page_or_redirect_uri)
-    return HttpResponse(page_or_redirect_uri)
+    state, redirect_uri = integration_connector.handle_callback(request)
+    if not redirect_uri:
+        return render(request, "close_window.html")
+    return redirect(redirect_uri)

@@ -12,7 +12,7 @@ class OAuth2(BaseModel):
 class Authentication(BaseModel):
     auth_method: str
     oauth2: Optional[OAuth2] = None
-    auth_params: Optional[dict[str, Any]] = None
+    auth_params: Optional[list[dict[str, Any]]] = None
 
 class ConnectorConfig(BaseModel):
     info: Info
