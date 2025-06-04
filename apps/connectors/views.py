@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect, render
 
-from apps.connectors.ipaas.capabilities.authenticate import CallbackState
+from apps.connectors.ipaas.capabilities.authorize import CallbackState
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 from apps.connectors.ipaas.connector_factory import IPaaSConnectorFactory
 

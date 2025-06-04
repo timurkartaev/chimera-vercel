@@ -1,4 +1,4 @@
-from apps.connectors.ipaas.capabilities.authenticate import AuthenticateCapability
+from apps.connectors.ipaas.capabilities.authorize import AuthenticateCapability
 
 
 __all__ = [
