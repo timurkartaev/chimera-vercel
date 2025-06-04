@@ -8,10 +8,8 @@ from urllib.parse import urlencode
 
 from pydantic import BaseModel
 from enum import StrEnum
-import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+from apps.connectors.base.capability import BaseAuthorizeCapability
 
 
 class AuthConfig(BaseModel):
@@ -27,10 +25,11 @@ class CallbackState(StrEnum):
     IN_PROGRESS = "in_progress"
 
 
-class AuthenticateCapability:
+class AuthorizeCapability(BaseAuthorizeCapability):
 
-    def __init__(self, config, api_client):
+    def __init__(self, config, client):
         self.config = config
+        self.client = client
 
     def get_authentication_config(self, customer: dict[str, Any]) -> AuthConfig:
 
