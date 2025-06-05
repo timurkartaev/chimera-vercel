@@ -33,7 +33,6 @@ def fallback_config_factory(name: str) -> ConnectorConfig:
         info={"name": name, "description": f"Default config for {name}"},
         type="ipaas",
         capabilities=["authorize"],
-        localization={},
     )
 
 
