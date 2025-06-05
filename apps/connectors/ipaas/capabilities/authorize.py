@@ -36,6 +36,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
             "integrationKey": integration_key,
             "token": token,
             "requestId": uuid.uuid4(),
+            "redirectUri": "http://localhost:8000/auth/salesforce/callback",
         }
         with context.client.with_token_context(token) as session:
             response = session.get(f"integrations/{integration_key}")
@@ -112,19 +113,11 @@ class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
             status = AuthorizationStatus.CANCELLED
             error_message = "User cancelled the authorization process."
 
-        query_params = {
-            k: v
-            for k, v in {
-                "state": input_model.state,
-                "code": input_model.code,
-                "error": input_model.error,
-                **(input_model.extras or {}),
-            }.items()
-            if v is not None
-        }
+        query_params = input_model.model_dump(exclude_none=True)
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
+        raise ValueError(f"Authorization failed with querry params: {query_params}")
         return AuthorizeFinalizeCapabilityAction.Output(
             status=status.value,
             redirect_uri=redirect_uri,

@@ -1,7 +1,13 @@
 from abc import ABC, abstractmethod
 from typing import Any, Callable, Dict, Generic, Optional, Type, TypeVar, Union, cast
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    field_validator,
+    model_validator,
+    root_validator,
+)
 
 TInput = TypeVar("TInput", bound=BaseModel)
 TOutput = TypeVar("TOutput", bound=BaseModel)
@@ -85,18 +91,8 @@ class AuthorizeFinalizeCapabilityAction(BaseCapabilityAction):
         code: Optional[str] = None
         state: Optional[str] = None
         error: Optional[str] = None
-        extras: Dict[str, Any] = {}
 
         model_config = ConfigDict(extra="allow")
-
-        @field_validator("extras", mode="before")
-        @classmethod
-        def extract_extras(cls, v, info):
-            # info.data is available in Pydantic v2 for validators in `mode="before"`
-            # Get all fields from the input data
-            data = info.data or {}
-            known_keys = {"code", "state", "error", "extras"}
-            return {k: v for k, v in data.items() if k not in known_keys}
 
     class Output(BaseModel):
         status: str
