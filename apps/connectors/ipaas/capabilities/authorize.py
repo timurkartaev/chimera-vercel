@@ -57,7 +57,8 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
         auth_params = []
         auth_options = integration_details.get("authOptions", None)
         auth_option = next(
-            (option for option in auth_options if option.get("type") == auth_type), None
+            (option for option in auth_options if option.get("type") == auth_type),
+            auth_options[0],
         )
 
         if not auth_option:
@@ -82,9 +83,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
         return cls.rename_auth_type(auth_type, auth_params), auth_params
 
     @staticmethod
-    def rename_auth_type(
-        auth_type: str, auth_params: List[Dict[str, Any]]
-    ) -> str:
+    def rename_auth_type(auth_type: str, auth_params: List[Dict[str, Any]]) -> str:
         """
         Rename the auth type to match the expected format.
         """
