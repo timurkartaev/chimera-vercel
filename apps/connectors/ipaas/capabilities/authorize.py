@@ -117,7 +117,6 @@ class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
-        raise ValueError(f"Authorization failed with querry params: {query_params}")
         return AuthorizeFinalizeCapabilityAction.Output(
             status=status.value,
             redirect_uri=redirect_uri,
