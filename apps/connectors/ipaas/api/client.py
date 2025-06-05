@@ -28,7 +28,7 @@ class IntegrationAppClient:
         user_name: Optional[str] = None,
         fields: Optional[Dict[str, Any]] = None,
         is_admin: bool = False,
-        expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES,
+        expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS,
     ) -> str:
         now = int(time.time())
         payload = {"iat": now, "exp": now + expires_in, "iss": self.workspace_key}
@@ -47,7 +47,7 @@ class IntegrationAppClient:
         user_id: str,
         user_name: str,
         fields: Optional[Dict[str, Any]] = None,
-        expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES,
+        expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS,
         use_cache: bool = True,
     ):
         cache_key = f"user:{user_id}"
@@ -67,7 +67,7 @@ class IntegrationAppClient:
         return self.with_token_context(token)
 
     def with_admin_context(
-        self, expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES
+        self, expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS
     ):
         token = self.generate_token(is_admin=True, expires_in=expires_in)
         return self.with_token_context(token)

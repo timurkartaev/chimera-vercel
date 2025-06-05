@@ -12,12 +12,13 @@
             status: "{{ status|escapejs }}",
             error_message: "{{ error_message|escapejs }}",
         };
-
+        console.log("Redirect URI:", redirectUri, window.opener);
         if (window.opener) {
             window.opener.postMessage(payload, "*");
+            console.log("Message sent to opener:", payload);
         }
 
-        window.location = redirectUri;
+        // window.location = redirectUri;
     </script>
     <p>Finishing authentication, you can close this window...</p>
 </body>
