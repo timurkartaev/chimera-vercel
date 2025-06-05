@@ -1,6 +1,4 @@
-# apps/connectors/factories/connector_factory.py
-
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional
 import yaml
 from pathlib import Path
 
@@ -26,7 +24,25 @@ def load_yaml_file(path: Path) -> Optional[Dict[str, Any]]:
         raise ValueError(f"Error parsing YAML file: {e}")
 
 
-def get_connector(name: str) -> Connector:
+def fallback_config_factory(name: str) -> ConnectorConfig:
+    """
+    Fallback factory to create a default ConnectorConfig if no config file is found.
+    This can be used when a connector does not have a specific configuration file.
+    """
+    return ConnectorConfig(
+        info={"name": name, "description": f"Default config for {name}"},
+        type="ipaas",
+        capabilities=["authorize"],
+        localization={},
+    )
+
+
+def get_connector(
+    name: str,
+    fallback_config_factory: Optional[
+        Callable[[str], ConnectorConfig]
+    ] = fallback_config_factory,
+) -> Connector:
     """
     Load connector YAML config + localization, parse into ConnectorConfig,
     then create and return Connector instance.
@@ -37,8 +53,12 @@ def get_connector(name: str) -> Connector:
     config_data = load_yaml_file(config_path)
     localization_data = load_yaml_file(localization_path)
 
+    if not config_data and fallback_config_factory:
+        config_data = fallback_config_factory(name).model_dump()
+
     if not config_data:
         raise ValueError(f"Connector config file not found: {config_path}")
+
     if localization_data:
         config_data["localization"] = localization_data
 
@@ -50,5 +70,4 @@ def get_connector(name: str) -> Connector:
         raise ValueError(
             f"Unknown connector backend '{connector_backend}' in {config_path}"
         )
-    # Construct and return Connector domain object
-    return connector_backend_cls(ConnectorConfig.parse_obj(config_data))
+    return connector_backend_cls(ConnectorConfig.model_validate(config_data))

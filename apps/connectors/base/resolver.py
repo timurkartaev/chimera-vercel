@@ -1,5 +1,7 @@
 from apps.connectors.factories.connector_factory import get_connector
 
+resolve_connector = get_connector
+
 
 def resolve_capability_action(connector_name: str, capability: str, action: str):
     capability_instance = resolve_capability(connector_name, capability)
@@ -18,8 +20,5 @@ def resolve_capability(connector_name: str, capability: str):
     :param capability: Name of the capability to resolve.
     :return: An instance of the requested capability.
     """
-    connector = get_connector(connector_name)
+    connector = resolve_connector(connector_name)
     return connector.get_capability(capability)
-
-
-resolve_connector = get_connector
