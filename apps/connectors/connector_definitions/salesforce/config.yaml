@@ -1,0 +1,17 @@
+type: ipaas
+info:
+  name: Salesforce
+  slug: salesforce
+
+authentication:
+  auth_method: "oauth2+fields"
+  oauth2:
+    redirect_url: "https://api.integration.app/oauth-callback"
+  auth_params:
+    - id: "is_sandbox"
+      label: "Sandbox Environment"
+      type: "boolean"
+      required: false
+
+capabilities:
+  - authorize

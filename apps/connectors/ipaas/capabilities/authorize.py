@@ -1,87 +1,143 @@
-import datetime
-from typing import Any, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 import uuid
 
-import jwt
 from django.conf import settings
 from urllib.parse import urlencode
 
 from pydantic import BaseModel
 from enum import StrEnum
 
-from apps.connectors.base.capability import BaseAuthorizeCapability
+from apps.connectors.base.capability import (
+    BaseAuthorizeCapability,
+    AuthorizeBeginCapabilityAction,
+    AuthorizeFinalizeCapabilityAction,
+)
+from apps.connectors.base.connector import ConnectorConfig
+from apps.connectors.ipaas.api.client import IntegrationAppClient
 
 
-class AuthConfig(BaseModel):
-    auth_method: str
-    auth_params: Optional[list[dict[str, Any]]] = None
-    base_connection_url: str
-
-
-class CallbackState(StrEnum):
+class AuthorizationStatus(StrEnum):
     SUCCESS = "success"
     ERROR = "error"
     CANCELLED = "cancelled"
-    IN_PROGRESS = "in_progress"
+
+
+class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
+    def execute(
+        self,
+        input_model: AuthorizeBeginCapabilityAction.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeBeginCapabilityAction.Output:
+        token = context.client.generate_token(
+            user_id=input_model.customer_id, user_name=input_model.customer_name
+        )
+        integration_key = context.config.info.slug
+        params = {
+            "integrationKey": integration_key,
+            "token": token,
+            "requestId": uuid.uuid4(),
+        }
+        with context.client.with_token_context(token) as session:
+            response = session.get(f"integrations/{integration_key}")
+            auth_method, auth_params = self.get_auth_type_and_params(response)
+
+        auth_url = context.client.base_url + "/connection-popup?" + urlencode(params)
+        return AuthorizeBeginCapabilityAction.Output(
+            auth_url=auth_url,
+            auth_method=auth_method,
+            auth_params=auth_params,
+        )
+
+    @classmethod
+    def get_auth_type_and_params(
+        cls,
+        integration_details: dict[str, Any],
+    ) -> tuple[str, Optional[list[dict[str, Any]]]]:
+        auth_type = integration_details.get("authType", "oauth2")
+        auth_params = []
+        auth_options = integration_details.get("authOptions", None)
+        auth_option = next(
+            (option for option in auth_options if option.get("type") == auth_type), None
+        )
+
+        if not auth_option:
+            raise ValueError(f"No auth option found for type: {auth_type}")
+
+        properties = auth_option.get("ui", {}).get("schema", {}).get("properties", {})
+        required_fields = (
+            auth_option.get("ui", {}).get("schema", {}).get("required", [])
+        )
+        if properties:
+            auth_params = [
+                {
+                    "id": key,
+                    "label": value.get("title", " ".join(key.split("_")).title()),
+                    "type": value.get("type", "string"),
+                    "default": value.get("default", None),
+                    "required": key in required_fields,
+                }
+                for key, value in properties.items()
+            ]
+
+        return cls.rename_auth_type(auth_type, auth_params), auth_params
+
+    @staticmethod
+    def rename_auth_type(
+        auth_type: str, auth_params: List[Dict[str, Any]]
+    ) -> str:
+        """
+        Rename the auth type to match the expected format.
+        """
+        if auth_type == "oauth2" and auth_params:
+            return "oauth2+fields"
+        if auth_type == "client-credentials":
+            return "credentials"
+        return auth_type
+
+
+class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
+    def execute(
+        self,
+        input_model: AuthorizeFinalizeCapabilityAction.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeFinalizeCapabilityAction.Output:
+        status = AuthorizationStatus.SUCCESS
+        error_message = None
+        if not input_model.code or not input_model.state:
+            status = AuthorizationStatus.ERROR
+            error_message = "Missing required parameters: 'code' or 'state'."
+        elif input_model.error and input_model.error != "access_denied":
+            status = AuthorizationStatus.ERROR
+            error_message = input_model.errore
+        elif input_model.error == "access_denied":
+            status = AuthorizationStatus.CANCELLED
+            error_message = "User cancelled the authorization process."
+
+        query_params = {
+            k: v
+            for k, v in {
+                "state": input_model.state,
+                "code": input_model.code,
+                "error": input_model.error,
+                **(input_model.extras or {}),
+            }.items()
+            if v is not None
+        }
+        redirect_uri = (
+            f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
+        )
+        return AuthorizeFinalizeCapabilityAction.Output(
+            status=status.value,
+            redirect_uri=redirect_uri,
+            error_message=error_message,
+        )
 
 
 class AuthorizeCapability(BaseAuthorizeCapability):
 
-    def __init__(self, config, client):
+    begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
+    finalize = AuthorizeFinalizeCapabilityAction("Finalize Authorization")
+
+    def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config
         self.client = client
-
-    def get_authentication_config(self, customer: dict[str, Any]) -> AuthConfig:
-
-        return AuthConfig(
-            auth_method=self.config.authentication.auth_method,
-            auth_params=self.config.authentication.auth_params,
-            base_connection_url=self.get_authentication_url(customer),
-        )
-
-    def get_authentication_url(self, customer) -> str:
-        params = self.make_params(customer)
-        return f"{settings.IPAAS_BASE_URL}/connection-popup?{urlencode(params)}"
-
-    def make_params(self, customer):
-        params = {
-            "integrationKey": self.config.info.slug,
-            "token": self.build_token(customer),
-            "requestId": uuid.uuid4(),
-        }
-        return params
-
-    def build_token(self, customer):
-        return jwt.encode(
-            {
-                "id": customer["id"],
-                "name": customer["name"],
-                "iss": settings.IPAAS_WORKSPACE_KEY,
-                "fields": {},
-                "exp": datetime.datetime.now()
-                + datetime.timedelta(
-                    minutes=settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_MINUTES
-                ),
-            },
-            settings.IPAAS_WORKSPACE_SECRET,
-            algorithm="HS256",
-        )
-
-    def handle_callback(
-        self, request
-    ) -> Tuple[CallbackState, Optional[str]]:
-        """Handle the callback from the authentication process."""
-        query_params = request.GET.dict()
-        state = CallbackState.SUCCESS
-        redirect_uri = None
-        if "error" in query_params and query_params["error"] == "access_denied":
-            state = CallbackState.CANCELLED
-        elif "error" in query_params:
-            state = CallbackState.ERROR
-        elif "code" in query_params and "state" in query_params:
-            state = CallbackState.IN_PROGRESS
-        if state == CallbackState.IN_PROGRESS:
-            redirect_uri = (
-                f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
-            )
-        return state, redirect_uri

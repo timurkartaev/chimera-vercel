@@ -5,23 +5,19 @@ import jwt
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
-from apps.connectors.ipaas.capabilities.authorize import CallbackState
+from apps.connectors.base.resolver import resolve_connector
+
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
-from apps.connectors.ipaas.connector_factory import IPaaSConnectorFactory
 
 
 def index(request):
-    factory = IPaaSConnectorFactory()
-    connectors = ", ".join(factory.get_discovered_connectors())
-    integration_connector = factory.create_integration_connector("pipedrive")
-    # auth_url = integration_connector.authenticate()
 
     return JsonResponse(
         {
             "auth_url": "auth_url",
-            "connectors": connectors,
+            "connectors": "connectors",
         }
     )
 
@@ -318,24 +314,20 @@ def archive_connection(request, connection_id):
 
 
 def authorization_begin(request, integration_name):
-    """
-    This view is used to authorize the user for a specific integration.
-    It will redirect the user to the authorization URL for the specified integration.
-    """
-    factory = IPaaSConnectorFactory()
-    integration_connector = factory.create_integration_connector(integration_name)
-    auth_config = integration_connector.authenticate(
-        {"id": "682200e11226bbc540e52a0a", "name": "Timur Kartaev"}
+    connector = resolve_connector(integration_name)
+    return JsonResponse(
+        connector.authorize__begin(
+            customer={
+                "customer_id": "682200e11226bbc540e52a0a",
+                "customer_name": "Timur Kartaev",
+            }
+        )
     )
 
-    return JsonResponse(auth_config.model_dump())
 
-
-def authorization_callback(request, integration_name):
+def authorization_finalize(request, integration_name):
     # get all request query params from request
-    factory = IPaaSConnectorFactory()
-    integration_connector = factory.create_integration_connector(integration_name)
-    state, redirect_uri = integration_connector.handle_callback(request)
-    if not redirect_uri:
-        return render(request, "ipaas/close_window.html", {"state": state.value})
-    return redirect(redirect_uri)
+    connector = resolve_connector(integration_name)
+    query_params = request.GET.dict()
+    result = connector.authorize__finalize(query_params=query_params)
+    return render(request, "ipaas/oauth_callback.html", result)

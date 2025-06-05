@@ -2,7 +2,8 @@ from apps.connectors.base.capability import BaseCapability
 from apps.connectors.base.loader import load_capability_class
 from types import MappingProxyType
 from typing import Any, List, Optional, Dict, Type
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from apps.connectors.base.capability import BaseAuthorizeCapability
 
 MissingDependency = object()
 
@@ -27,7 +28,7 @@ def get_capability_class_dependencies(
             injectios[name] = param.default
         else:
             raise ValueError(
-                f"Missing dependency: {name} for capability {capability_class.__name__}"
+                f"Missing dependency: {name} for capability {capability_class.__name__} in connector_context {connector_context}"
             )
 
     return injectios
@@ -46,7 +47,9 @@ class Connector:
         for name in self.capabilities:
             cap_cls = load_capability_class(name, self.type)
             result[name] = cap_cls(
-                **get_capability_class_dependencies(cap_cls, self.get_connector_context)
+                **get_capability_class_dependencies(
+                    cap_cls, self.get_connector_context()
+                )
             )
         return result
 
@@ -68,15 +71,39 @@ class Connector:
             raise ValueError(f"Capability '{name}' not supported by this connector")
         return self._capability_instances[name]
 
+    @property
+    def authorize(self) -> "BaseAuthorizeCapability":
+        return self.get_capability("authorize")
+
+    def authorize__begin(self, customer: Dict[str, Any]):
+        """
+        Begin the authorization process for a customer.
+        This method should be implemented by the specific connector.
+        """
+        return self.authorize.begin(customer)
+
+    def authorize__finalize(self, query_params: Dict[str, Any]):
+        """
+        Finalize the authorization process using query parameters.
+        This method should be implemented by the specific connector.
+        """
+        return self.authorize.finalize(query_params)
+
 
 # --- Info Capability ---
 class InfoCapabilityConfig(BaseModel):
     name: str
+    slug_: Optional[str] = Field(default=None, alias="slug")
     description: Optional[str] = None
     version: Optional[str] = None
     author: Optional[str] = None
     homepage_url: Optional[str] = None
-    # Add more fields as per your actual Info section
+
+    @property
+    def slug(self) -> str:
+        if self.slug_:
+            return self.slug_
+        return self.name.lower().replace(" ", "-").replace("_", "-").replace(".", "-")
 
 
 # --- Localization Capability ---
@@ -89,18 +116,12 @@ class LocalizationCapabilityConfig(BaseModel):
     entries: List[LocalizationEntry]
 
 
-# --- Authorize Capability ---
-class AuthMethodConfig(BaseModel):
-    method: str  # e.g., "oauth2", "api_key"
-    client_id: Optional[str] = None
-    client_secret: Optional[str] = None
-    token_url: Optional[str] = None
-    scopes: Optional[List[str]] = None
-    # Additional fields depending on method
-
-
 class AuthorizeCapabilityConfig(BaseModel):
-    auth_methods: List[AuthMethodConfig]
+    auth_method: str
+    auth_params: Optional[List[Dict[str, Any]]] = None
+    oauth2: Optional[Dict[str, Any]] = (
+        None  # e.g., {"client_id": "xxx", "redirect_uri": "https://example.com/callback"}
+    )
 
 
 # --- Entity Capability ---
@@ -134,11 +155,14 @@ class ActionCapabilityConfig(BaseModel):
 
 # --- Root config schema ---
 class ConnectorConfig(BaseModel):
+    # authorize section could also be loaded from alias  "authentication"
     type: str
     capabilities: List[str]
     info: Optional[InfoCapabilityConfig] = None
     localization: Optional[LocalizationCapabilityConfig] = None
-    authorize: Optional[AuthorizeCapabilityConfig] = None
+    authorize: Optional[AuthorizeCapabilityConfig] = Field(
+        default=None, alias="authentication"
+    )
     entity: Optional[EntityCapabilityConfig] = None
     # object capability does not require config
     actions: Optional[ActionCapabilityConfig] = None

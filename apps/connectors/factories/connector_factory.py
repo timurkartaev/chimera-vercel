@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 from apps.connectors.base.connector import Connector
-from apps.connectors.ipaas.connector import IntegrationConnector as IpaasConnector
+from apps.connectors.ipaas.connector import IpaasConnector
 from apps.connectors.base.connector import ConnectorConfig
 
 
