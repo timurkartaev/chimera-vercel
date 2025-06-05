@@ -330,4 +330,5 @@ def authorization_finalize(request, integration_name):
     connector = resolve_connector(integration_name)
     query_params = request.GET.dict()
     result = connector.authorize__finalize(query_params=query_params)
+    print(result)
     return render(request, "ipaas/oauth_callback.html", result)

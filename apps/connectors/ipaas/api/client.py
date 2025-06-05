@@ -1,8 +1,10 @@
 import time
+from typing import Optional, Dict, Any
+
 import jwt
 import requests
-from typing import Optional, Dict, Any, Union
-from django.conf import settings
+
+from chimera import settings
 
 
 class IntegrationAppClient:
