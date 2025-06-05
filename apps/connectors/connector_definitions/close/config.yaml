@@ -1,0 +1,12 @@
+type: ipaas
+info:
+  name: Close
+  slug: close
+
+authentication:
+  auth_method: "oauth2"
+  oauth2:
+    redirect_url: "https://api.integration.app/oauth-callback"
+
+capabilities:
+  - authorize

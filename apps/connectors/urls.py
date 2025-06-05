@@ -23,7 +23,7 @@ urlpatterns = [
     ),
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/callback/?$",
-        csrf_exempt(views.authorization_callback),
+        csrf_exempt(views.authorization_finalize),
         name="callback",
     ),
 ]

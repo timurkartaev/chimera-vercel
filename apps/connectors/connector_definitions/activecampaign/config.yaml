@@ -1,0 +1,19 @@
+type: ipaas
+info:
+  name: ActiveCampaign
+  slug: activecampaign
+
+authentication:
+  auth_method: "credentials"
+  auth_params:
+    - id: "api_url"
+      label: "API URL"
+      type: "string"
+      required: true
+    - id: "api_token"
+      label: "API Token"
+      type: "string"
+      required: true
+
+capabilities:
+  - authorize

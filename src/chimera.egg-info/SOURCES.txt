@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-setup.py
-src/chimera.egg-info/PKG-INFO
-src/chimera.egg-info/SOURCES.txt
-src/chimera.egg-info/dependency_links.txt
-src/chimera.egg-info/requires.txt
-src/chimera.egg-info/top_level.txt

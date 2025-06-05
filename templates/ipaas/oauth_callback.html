@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OAuth Finalizing...</title>
+</head>
+
+<body>
+    <script>
+        const redirectUri = "{{ redirect_uri }}";
+        const payload = {
+            status: "{{ status|escapejs }}",
+            error_message: "{{ error_message|escapejs }}",
+        };
+
+        if (window.opener) {
+            window.opener.postMessage(payload, "*");
+        }
+
+        window.location = redirectUri;
+    </script>
+    <p>Finishing authentication, you can close this window...</p>
+</body>
+
+</html>
