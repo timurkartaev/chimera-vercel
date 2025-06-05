@@ -36,7 +36,6 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
             "integrationKey": integration_key,
             "token": token,
             "requestId": uuid.uuid4(),
-            "redirectUri": "http://localhost:8000/auth/salesforce/callback",
         }
         with context.client.with_token_context(token) as session:
             response = session.get(f"integrations/{integration_key}")
