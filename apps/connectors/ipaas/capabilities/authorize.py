@@ -94,7 +94,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
         return auth_type
 
 
-class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
+class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
     def execute(
         self,
         input_model: AuthorizeFinalizeCapabilityAction.Input,
@@ -116,7 +116,7 @@ class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
-        return AuthorizeFinalizeCapabilityAction.Output(
+        return IpaasAuthorizeFinalizeCapabilityAction.Output(
             status=status.value,
             redirect_uri=redirect_uri,
             error_message=error_message,
@@ -126,7 +126,7 @@ class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
 class AuthorizeCapability(BaseAuthorizeCapability):
 
     begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
-    finalize = AuthorizeFinalizeCapabilityAction("Finalize Authorization")
+    finalize = IpaasAuthorizeFinalizeCapabilityAction("Finalize Authorization")
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config
