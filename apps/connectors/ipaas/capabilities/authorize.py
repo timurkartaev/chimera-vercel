@@ -9,8 +9,9 @@ from enum import StrEnum
 
 from apps.connectors.base.capability import (
     BaseAuthorizeCapability,
-    AuthorizeBeginCapabilityAction,
-    AuthorizeFinalizeCapabilityAction,
+    BaseAuthorizeBegin,
+    BaseAuthorizeFinalize,
+    BaseGetIntegrationStatus,
 )
 from apps.connectors.base.connector import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
@@ -22,12 +23,12 @@ class AuthorizationStatus(StrEnum):
     CANCELLED = "cancelled"
 
 
-class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
+class IpaasAuthorizeBegin(BaseAuthorizeBegin):
     def execute(
         self,
-        input_model: AuthorizeBeginCapabilityAction.Input,
+        input_model: BaseAuthorizeBegin.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeBeginCapabilityAction.Output:
+    ) -> BaseAuthorizeBegin.Output:
         token = context.client.generate_token(
             user_id=input_model.customer_id, user_name=input_model.customer_name
         )
@@ -42,7 +43,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
             auth_method, auth_params = self.get_auth_type_and_params(response)
 
         auth_url = context.client.base_url + "/connection-popup?" + urlencode(params)
-        return AuthorizeBeginCapabilityAction.Output(
+        return BaseAuthorizeBegin.Output(
             auth_url=auth_url,
             auth_method=auth_method,
             auth_params=auth_params,
@@ -94,12 +95,12 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
         return auth_type
 
 
-class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
+class IpaasAuthorizeFinalize(BaseAuthorizeFinalize):
     def execute(
         self,
-        input_model: AuthorizeFinalizeCapabilityAction.Input,
+        input_model: BaseAuthorizeFinalize.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeFinalizeCapabilityAction.Output:
+    ) -> BaseAuthorizeFinalize.Output:
         status = AuthorizationStatus.SUCCESS
         error_message = None
         if not input_model.code or not input_model.state:
@@ -116,17 +117,19 @@ class AuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
-        return AuthorizeFinalizeCapabilityAction.Output(
+        return BaseAuthorizeFinalize.Output(
             status=status.value,
             redirect_uri=redirect_uri,
             error_message=error_message,
         )
 
 
+
 class AuthorizeCapability(BaseAuthorizeCapability):
 
-    begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
-    finalize = AuthorizeFinalizeCapabilityAction("Finalize Authorization")
+    begin = IpaasAuthorizeBegin("Begin Authorization")
+    finalize = IpaasAuthorizeFinalize("Finalize Authorization")
+    get_integration_status = IpaasGetIntegrationStatus("Get Integration Status")
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config

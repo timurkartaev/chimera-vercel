@@ -1,0 +1,3 @@
+/logo
+/name
+/connector-version

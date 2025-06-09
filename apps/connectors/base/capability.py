@@ -72,7 +72,7 @@ class BaseCapability(ABC):
 # Authorize Capability
 
 
-class AuthorizeBeginCapabilityAction(BaseCapabilityAction):
+class BaseAuthorizeBegin(BaseCapabilityAction):
     class Input(BaseModel):
         customer_id: str
         customer_name: str
@@ -83,7 +83,7 @@ class AuthorizeBeginCapabilityAction(BaseCapabilityAction):
         auth_params: list[dict[str, Any]]
 
 
-class AuthorizeFinalizeCapabilityAction(BaseCapabilityAction):
+class BaseAuthorizeFinalize(BaseCapabilityAction):
     class Input(BaseModel):
         code: Optional[str] = None
         state: Optional[str] = None
@@ -98,5 +98,19 @@ class AuthorizeFinalizeCapabilityAction(BaseCapabilityAction):
 
 
 class BaseAuthorizeCapability(BaseCapability):
-    begin: AuthorizeBeginCapabilityAction
-    finalize: AuthorizeFinalizeCapabilityAction
+    begin: BaseAuthorizeBegin
+    finalize: BaseAuthorizeFinalize
+
+
+# Info Capability
+class BaseGetIntegrationDetails(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+
+    class Output(BaseModel):
+        pass
+        
+
+
+class BaseInfoCapability(BaseCapability):
+    get_integration_details: BaseGetIntegrationDetails

@@ -6,12 +6,10 @@ from pathlib import Path
 from apps.connectors.base.connector import Connector
 from apps.connectors.ipaas.connector import IpaasConnector
 from apps.connectors.base.connector import ConnectorConfig
+from django.conf import settings
 
-
-CONNECTOR_YAML_PATH = Path(__file__).resolve().parent.parent / "connector_definitions"
-CONNECTOR_TYPE_MAP = {
-    "ipaas": IpaasConnector,
-}
+CONNECTOR_YAML_PATH = settings.CONNECTOR_CONFIGS_DIR
+CONNECTOR_TYPE_MAP = {"ipaas": IpaasConnector}
 
 
 def load_yaml_file(path: Path) -> Optional[Dict[str, Any]]:

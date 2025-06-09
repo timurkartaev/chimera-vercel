@@ -171,3 +171,5 @@ IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS = int(
     os.environ.get("IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS", 1440)
 )
 IPAAS_BASE_URL = os.environ.get("IPAAS_BASE_URL", "https://api.integration.app")
+
+CONNECTOR_CONFIGS_DIR = APPS_DIR / "connectors" / "connector_definitions"

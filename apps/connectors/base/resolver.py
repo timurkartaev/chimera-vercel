@@ -1,9 +1,13 @@
+from typing import Optional
 from apps.connectors.factories.connector_factory import get_connector
+from apps.connectors.base.loader import load_global_capability
 
 resolve_connector = get_connector
 
 
-def resolve_capability_action(connector_name: str, capability: str, action: str):
+def resolve_capability_action(
+    connector_name: Optional[str], capability: str, action: str
+):
     capability_instance = resolve_capability(connector_name, capability)
 
     if not hasattr(capability_instance, action):
@@ -12,7 +16,7 @@ def resolve_capability_action(connector_name: str, capability: str, action: str)
     return getattr(capability_instance, action)
 
 
-def resolve_capability(connector_name: str, capability: str):
+def resolve_capability(connector_name: Optional[str], capability: str):
     """
     Resolve a capability instance for the given connector and capability name.
 
@@ -20,5 +24,7 @@ def resolve_capability(connector_name: str, capability: str):
     :param capability: Name of the capability to resolve.
     :return: An instance of the requested capability.
     """
+    if connector_name is None:
+        return load_global_capability(capability)
     connector = resolve_connector(connector_name)
     return connector.get_capability(capability)

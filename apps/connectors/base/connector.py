@@ -1,5 +1,5 @@
 from apps.connectors.base.capability import BaseCapability
-from apps.connectors.base.loader import load_capability_class
+from apps.connectors.base.loader import load_bound_capability
 from types import MappingProxyType
 from typing import Any, List, Optional, Dict, Type
 from pydantic import BaseModel, Field
@@ -45,7 +45,7 @@ class Connector:
     def _load_capabilities(self) -> dict[str, BaseCapability]:
         result = {}
         for name in self.capabilities:
-            cap_cls = load_capability_class(name, self.type)
+            cap_cls = load_bound_capability(name, self.type)
             result[name] = cap_cls(
                 **get_capability_class_dependencies(
                     cap_cls, self.get_connector_context()
