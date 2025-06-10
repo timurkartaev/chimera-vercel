@@ -117,6 +117,7 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         input_model: AuthorizeFinalize.Input,
         context: "AuthorizeCapability",
     ) -> AuthorizeFinalize.Output:
+        status = AuthorizationStatus.PENDING.value
         connection_id = getattr(input_model, "connectionId", None)
         error = getattr(input_model, "error", None)
         error_data = getattr(input_model, "errorData", None)
@@ -151,13 +152,14 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
+
         authorization_cache[input_model.requestId] = {
             "status": status,
             "error_message": error_message,
             "request_id": input_model.requestId,
         }
         return IpaasAuthorizeFinalizeCapabilityAction.Output(
-            status=AuthorizationStatus.PENDING.value,
+            status=status,
             redirect_uri=redirect_uri,
             error_message=None,
         )
