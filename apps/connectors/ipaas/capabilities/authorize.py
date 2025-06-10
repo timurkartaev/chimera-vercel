@@ -47,16 +47,12 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
             "integrationKey": integration_key,
             "token": token,
             "requestId": request_id,
+            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}"
         }
 
         with context.client.with_token_context(token) as session:
             response = session.get(f"integrations/{integration_key}")
             auth_method, auth_params = self.get_auth_type_and_params(response)
-
-        if auth_method == "credentials":
-            params["redirectUri"] = (
-                f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}"
-            )
 
         auth_url = context.client.base_url + "/connection-popup?" + urlencode(params)
         return AuthorizeBegin.Output(
