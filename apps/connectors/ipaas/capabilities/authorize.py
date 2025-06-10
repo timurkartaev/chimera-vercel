@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Optional, Tuple
+import json
+from typing import Any, Dict, List, Optional
 import uuid
 
 from django.conf import settings
@@ -101,27 +102,54 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         input_model: AuthorizeFinalize.Input,
         context: "AuthorizeCapability",
     ) -> AuthorizeFinalize.Output:
-        status = AuthorizationStatus.SUCCESS
-        error_message = None
-        if not input_model.code or not input_model.state:
-            status = AuthorizationStatus.ERROR
-            error_message = "Missing required parameters: 'code' or 'state'."
-        elif input_model.error and input_model.error != "access_denied":
-            status = AuthorizationStatus.ERROR
-            error_message = input_model.errore
-        elif input_model.error == "access_denied":
-            status = AuthorizationStatus.CANCELLED
-            error_message = "User cancelled the authorization process."
+        connection_id = getattr(input_model, "connectionId", None)
+        error = getattr(input_model, "error", None)
+        error_data = getattr(input_model, "errorData", None)
+        request_id = getattr(input_model, "requestId", None)
+        if error_data:
+            error_data = json.loads(error_data)
+        is_from_ipaas = connection_id is not None or error_data is not None
+        if is_from_ipaas:
+            # This is the final callback from iPaaS (success or failure)
+            status = AuthorizationStatus.SUCCESS.value
+            error_message = None
 
+            if error:
+                status = AuthorizationStatus.ERROR.value
+                error_message = self.get_error_message(error, error_data)
+            if request_id:
+                authorization_cache[request_id] = {
+                    "status": status,
+                    "request_id": request_id,
+                    "error_message": error_message,
+                }
+            return IpaasAuthorizeFinalizeCapabilityAction.Output(
+                status=status,
+                redirect_uri=None,
+                error_message=error_message,
+            )
+
+        # Otherwise, this is a callback from the OAuth provider — redirect to iPaaS
         query_params = input_model.model_dump(exclude_none=True)
+        # query_params.pop("redirectUri", None)  # Prevent redirect loop
+
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
         return IpaasAuthorizeFinalizeCapabilityAction.Output(
-            status=status.value,
+            status=AuthorizationStatus.PENDING.value,
             redirect_uri=redirect_uri,
-            error_message=error_message,
+            error_message=None,
         )
+
+    def get_error_message(self, error: str, error_data: dict[str, Any]) -> str:
+        try:
+            if "data" in error_data:
+                if "response" in error_data["data"]:
+                    return error_data["data"]["response"]["data"]["error"]["message"]
+        except Exception as e:
+            return error
+        return error
 
 
 class AuthorizeCapability(BaseAuthorizeCapability):

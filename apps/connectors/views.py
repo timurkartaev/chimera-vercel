@@ -6,6 +6,7 @@ import requests
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import render
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from apps.connectors.base.resolver import resolve_connector
 
@@ -324,13 +325,13 @@ def authorization_begin(request, integration_name):
     )
 
 
+@xframe_options_exempt
 def authorization_finalize(request, integration_name):
     # get all request query params from request
     connector = resolve_connector(integration_name)
     query_params = request.GET.dict()
     result = connector.authorize__finalize(query_params=query_params)
-    print(result)
-    return render(request, "ipaas/oauth_callback.html", result)
+    return render(request, "ipaas/auth_finalize.html", result)
 
 
 def gong_iframe(request):

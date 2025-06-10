@@ -97,6 +97,16 @@ class AuthorizeFinalize(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
+class AuthorizeGetStatus(BaseCapabilityAction):
+    class Input(BaseModel):
+        request_id: str
+
+    class Output(BaseModel):
+        status: str
+        error_message: Optional[str] = None
+
+
 class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
     finalize: AuthorizeFinalize
+    get_status: AuthorizeGetStatus
