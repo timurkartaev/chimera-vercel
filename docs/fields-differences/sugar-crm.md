@@ -2,545 +2,545 @@
 
 ## Opportunities
 
-| Entity Schema Fields            | Find By ID Object Fields                 |
-|---------------------------------|------------------------------------------|
-| account_id                      | account_id                               |
-| ai_opp_conv_bin_accuracy        | ai_opp_conv_bin_accuracy                 |
-| ai_opp_conv_multiplier          | ai_opp_conv_multiplier                   |
-| ai_opp_conv_score_absolute      | ai_opp_conv_score_absolute               |
-| ai_opp_conv_score_enum          | ai_opp_conv_score_enum                   |
-| amount                          | amount                                   |
-| amount_usdollar                 | amount_usdollar                          |
-| assigned_user_id                | assigned_user_id                         |
-| base_rate                       | base_rate                                |
-| best_case                       | best_case                                |
-| campaign_id                     | campaign_id                              |
-| campaign_opportunities.id       | campaign_opportunities.id                |
-| campaign_opportunities.name     | campaign_opportunities.name              |
-| closed_revenue_line_items       | closed_revenue_line_items                |
-| closed_won_revenue_line_items   | closed_won_revenue_line_items            |
-| commit_stage                    | commit_stage                             |
-| commit_stage_cascade            | commit_stage_cascade                     |
-| contact_role                    | contact_role                             |
-| created_by                      | created_by                               |
-| currency_id                     | currency_id                              |
-| currency_name                   | currency_name                            |
-| date_closed                     | date_closed                              |
-| date_closed_cascade             | date_closed_cascade                      |
-| date_closed_timestamp           | date_closed_timestamp                    |
-| date_entered                    | date_entered                             |
-| date_modified                   | date_modified                            |
-| deleted                         | deleted                                  |
-| description                     | description                              |
-| following                       | following                                |
-| forecasted_likely               | forecasted_likely                        |
-| geocode_status                  | geocode_status                           |
-| id                              | id                                       |
-| included_revenue_line_items     | included_revenue_line_items              |
-| is_escalated                    | is_escalated                             |
-| lead_source                     | lead_source                              |
-| lost                            | lost                                     |
-| mkto_id                         | mkto_id                                  |
-| mkto_sync                       | mkto_sync                                |
-| modified_user_id                | modified_user_id                         |
-| my_favorite                     | my_favorite                              |
-| name                            | name                                     |
-| next_step                       | next_step                                |
-| opportunity_type                | opportunity_type                         |
-| probability                     | probability                              |
-| renewal                         | renewal                                  |
-| renewal_parent_id               | renewal_parent_id                        |
-| renewal_parent_name             | renewal_parent_name                      |
-| sales_stage                     | sales_stage                              |
-| sales_stage_cascade             | sales_stage_cascade                      |
-| sales_status                    | sales_status                             |
-| service_duration_unit           | service_duration_unit                    |
-| service_duration_unit_cascade   | service_duration_unit_cascade            |
-| service_duration_value          | service_duration_value                   |
-| service_duration_value_cascade  | service_duration_value_cascade           |
-| service_open_flex_duration_rlis | service_open_flex_duration_rlis          |
-| service_open_revenue_line_items | service_open_revenue_line_items          |
-| service_start_date              | service_start_date                       |
-| service_start_date_cascade      | service_start_date_cascade               |
-| sl_ai_conv_score_c              | sl_ai_conv_score_c                       |
-| sync_key                        | sync_key                                 |
-| team_count                      | team_count                               |
-| team_name[]                     | team_name[]                              |
-| team_name[].id                  | team_name[].id                           |
-| team_name[].name                | team_name[].name                         |
-| team_name[].name_2              | team_name[].name_2                       |
-| team_name[].primary             | team_name[].primary                      |
-| team_name[].selected            | team_name[].selected                     |
-| total_revenue_line_items        | total_revenue_line_items                 |
-| widget_amount                   | widget_amount                            |
-| widget_date_closed              | widget_date_closed                       |
-| widget_sales_stage              | widget_sales_stage                       |
-| worst_case                      | worst_case                               |
-| tag                             |                                          |
-|                                 | _module                                  |
-|                                 | account_name                             |
-|                                 | accounts._acl._hash                      |
-|                                 | accounts._acl.fields[]                   |
-|                                 | accounts.id                              |
-|                                 | accounts.name                            |
-|                                 | ai_opp_close_week_scores                 |
-|                                 | ai_opp_won_score                         |
-|                                 | assigned_user_link._acl._hash            |
-|                                 | assigned_user_link._acl.fields[]         |
-|                                 | assigned_user_link.full_name             |
-|                                 | assigned_user_link.id                    |
-|                                 | assigned_user_name                       |
-|                                 | campaign_name                            |
-|                                 | created_by_link._acl._hash               |
-|                                 | created_by_link._acl.fields[]            |
-|                                 | created_by_link.full_name                |
-|                                 | created_by_link.id                       |
-|                                 | created_by_name                          |
-|                                 | currencies._acl._hash                    |
-|                                 | currencies._acl.fields[]                 |
-|                                 | currencies.id                            |
-|                                 | currencies.name                          |
-|                                 | currencies.symbol                        |
-|                                 | currency_symbol                          |
-|                                 | denorm_account_name                      |
-|                                 | discover_data_c                          |
-|                                 | dri_workflow_template_id                 |
-|                                 | dri_workflow_template_link._acl._hash    |
-|                                 | dri_workflow_template_link._acl.fields[] |
-|                                 | dri_workflow_template_link.id            |
-|                                 | dri_workflow_template_link.name          |
-|                                 | dri_workflow_template_name               |
-|                                 | locked_fields[]                          |
-|                                 | modified_by_name                         |
-|                                 | modified_user_link._acl._hash            |
-|                                 | modified_user_link._acl.fields[]         |
-|                                 | modified_user_link.full_name             |
-|                                 | modified_user_link.id                    |
-|                                 | perform_sugar_action                     |
-|                                 | renewal_parent._acl._hash                |
-|                                 | renewal_parent._acl.fields[]             |
-|                                 | renewal_parent.id                        |
-|                                 | renewal_parent.name                      |
-|                                 | tag[]                                    |
-|                                 | team_count_link._acl._hash               |
-|                                 | team_count_link._acl.fields[]            |
-|                                 | team_count_link.id                       |
-|                                 | team_count_link.team_count               |
+| Entity Schema Fields            | Entity Schema Types | Find By ID Object Fields                 | Find By ID Types |
+|---------------------------------|---------------------|------------------------------------------|------------------|
+| account_id                      | string              | account_id                               | str              |
+| ai_opp_conv_bin_accuracy        | string              | ai_opp_conv_bin_accuracy                 | null             |
+| ai_opp_conv_multiplier          | string              | ai_opp_conv_multiplier                   | null             |
+| ai_opp_conv_score_absolute      | string              | ai_opp_conv_score_absolute               | null             |
+| ai_opp_conv_score_enum          | string              | ai_opp_conv_score_enum                   | str              |
+| amount                          | string              | amount                                   | str              |
+| amount_usdollar                 | string              | amount_usdollar                          | str              |
+| assigned_user_id                | string              | assigned_user_id                         | str              |
+| base_rate                       | string              | base_rate                                | str              |
+| best_case                       | string              | best_case                                | str              |
+| campaign_id                     | string              | campaign_id                              | str              |
+| campaign_opportunities.id       | string              | campaign_opportunities.id                | str              |
+| campaign_opportunities.name     | string              | campaign_opportunities.name              | str              |
+| closed_revenue_line_items       | integer             | closed_revenue_line_items                | int              |
+| closed_won_revenue_line_items   | integer             | closed_won_revenue_line_items            | int              |
+| commit_stage                    | string              | commit_stage                             | str              |
+| commit_stage_cascade            | string              | commit_stage_cascade                     | str              |
+| contact_role                    | string              | contact_role                             | str              |
+| created_by                      | string              | created_by                               | str              |
+| currency_id                     | string              | currency_id                              | str              |
+| currency_name                   | string              | currency_name                            | str              |
+| date_closed                     | string              | date_closed                              | str              |
+| date_closed_cascade             | string              | date_closed_cascade                      | str              |
+| date_closed_timestamp           | integer             | date_closed_timestamp                    | int              |
+| date_entered                    | string              | date_entered                             | str              |
+| date_modified                   | string              | date_modified                            | str              |
+| deleted                         | boolean             | deleted                                  | bool             |
+| description                     | string              | description                              | str              |
+| following                       | boolean             | following                                | bool             |
+| forecasted_likely               | string              | forecasted_likely                        | str              |
+| geocode_status                  | string              | geocode_status                           | str              |
+| id                              | string              | id                                       | str              |
+| included_revenue_line_items     | integer             | included_revenue_line_items              | int              |
+| is_escalated                    | boolean             | is_escalated                             | bool             |
+| lead_source                     | string              | lead_source                              | str              |
+| lost                            | string              | lost                                     | str              |
+| mkto_id                         | string              | mkto_id                                  | null             |
+| mkto_sync                       | boolean             | mkto_sync                                | bool             |
+| modified_user_id                | string              | modified_user_id                         | str              |
+| my_favorite                     | boolean             | my_favorite                              | bool             |
+| name                            | string              | name                                     | str              |
+| next_step                       | string              | next_step                                | str              |
+| opportunity_type                | string              | opportunity_type                         | str              |
+| probability                     | integer             | probability                              | int              |
+| renewal                         | boolean             | renewal                                  | bool             |
+| renewal_parent_id               | string              | renewal_parent_id                        | str              |
+| renewal_parent_name             | string              | renewal_parent_name                      | str              |
+| sales_stage                     | string              | sales_stage                              | str              |
+| sales_stage_cascade             | string              | sales_stage_cascade                      | str              |
+| sales_status                    | string              | sales_status                             | str              |
+| service_duration_unit           | string              | service_duration_unit                    | str              |
+| service_duration_unit_cascade   | string              | service_duration_unit_cascade            | str              |
+| service_duration_value          | integer             | service_duration_value                   | null             |
+| service_duration_value_cascade  | integer             | service_duration_value_cascade           | null             |
+| service_open_flex_duration_rlis | integer             | service_open_flex_duration_rlis          | int              |
+| service_open_revenue_line_items | integer             | service_open_revenue_line_items          | int              |
+| service_start_date              | string              | service_start_date                       | str              |
+| service_start_date_cascade      | string              | service_start_date_cascade               | str              |
+| sl_ai_conv_score_c              | string              | sl_ai_conv_score_c                       | str              |
+| sync_key                        | string              | sync_key                                 | str              |
+| team_count                      | string              | team_count                               | str              |
+| team_name[]                     | object              | team_name[]                              | array            |
+| team_name[].id                  | string              | team_name[].id                           | object           |
+| team_name[].name                | string              | team_name[].name                         | object           |
+| team_name[].name_2              | string              | team_name[].name_2                       | object           |
+| team_name[].primary             | boolean             | team_name[].primary                      | object           |
+| team_name[].selected            | boolean             | team_name[].selected                     | object           |
+| total_revenue_line_items        | integer             | total_revenue_line_items                 | int              |
+| widget_amount                   | string              | widget_amount                            | str              |
+| widget_date_closed              | string              | widget_date_closed                       | str              |
+| widget_sales_stage              | string              | widget_sales_stage                       | str              |
+| worst_case                      | string              | worst_case                               | str              |
+| tag                             | array               |                                          |                  |
+|                                 |                     | _module                                  | str              |
+|                                 |                     | account_name                             | str              |
+|                                 |                     | accounts._acl._hash                      | str              |
+|                                 |                     | accounts._acl.fields[]                   | array            |
+|                                 |                     | accounts.id                              | str              |
+|                                 |                     | accounts.name                            | str              |
+|                                 |                     | ai_opp_close_week_scores                 | null             |
+|                                 |                     | ai_opp_won_score                         | null             |
+|                                 |                     | assigned_user_link._acl._hash            | str              |
+|                                 |                     | assigned_user_link._acl.fields[]         | array            |
+|                                 |                     | assigned_user_link.full_name             | str              |
+|                                 |                     | assigned_user_link.id                    | str              |
+|                                 |                     | assigned_user_name                       | str              |
+|                                 |                     | campaign_name                            | str              |
+|                                 |                     | created_by_link._acl._hash               | str              |
+|                                 |                     | created_by_link._acl.fields[]            | array            |
+|                                 |                     | created_by_link.full_name                | str              |
+|                                 |                     | created_by_link.id                       | str              |
+|                                 |                     | created_by_name                          | str              |
+|                                 |                     | currencies._acl._hash                    | str              |
+|                                 |                     | currencies._acl.fields[]                 | array            |
+|                                 |                     | currencies.id                            | str              |
+|                                 |                     | currencies.name                          | str              |
+|                                 |                     | currencies.symbol                        | str              |
+|                                 |                     | currency_symbol                          | str              |
+|                                 |                     | denorm_account_name                      | str              |
+|                                 |                     | discover_data_c                          | bool             |
+|                                 |                     | dri_workflow_template_id                 | str              |
+|                                 |                     | dri_workflow_template_link._acl._hash    | str              |
+|                                 |                     | dri_workflow_template_link._acl.fields[] | array            |
+|                                 |                     | dri_workflow_template_link.id            | str              |
+|                                 |                     | dri_workflow_template_link.name          | str              |
+|                                 |                     | dri_workflow_template_name               | str              |
+|                                 |                     | locked_fields[]                          | array            |
+|                                 |                     | modified_by_name                         | str              |
+|                                 |                     | modified_user_link._acl._hash            | str              |
+|                                 |                     | modified_user_link._acl.fields[]         | array            |
+|                                 |                     | modified_user_link.full_name             | str              |
+|                                 |                     | modified_user_link.id                    | str              |
+|                                 |                     | perform_sugar_action                     | bool             |
+|                                 |                     | renewal_parent._acl._hash                | str              |
+|                                 |                     | renewal_parent._acl.fields[]             | array            |
+|                                 |                     | renewal_parent.id                        | str              |
+|                                 |                     | renewal_parent.name                      | str              |
+|                                 |                     | tag[]                                    | array            |
+|                                 |                     | team_count_link._acl._hash               | str              |
+|                                 |                     | team_count_link._acl.fields[]            | array            |
+|                                 |                     | team_count_link.id                       | str              |
+|                                 |                     | team_count_link.team_count               | str              |
 
 ## Accounts
 
-| Entity Schema Fields        | Find By ID Object Fields                               |
-|-----------------------------|--------------------------------------------------------|
-| account_type                | account_type                                           |
-| annual_revenue              | annual_revenue                                         |
-| assigned_user_id            | assigned_user_id                                       |
-| billing_address_city        | billing_address_city                                   |
-| billing_address_country     | billing_address_country                                |
-| billing_address_postalcode  | billing_address_postalcode                             |
-| billing_address_state       | billing_address_state                                  |
-| billing_address_street      | billing_address_street                                 |
-| billing_address_street_2    | billing_address_street_2                               |
-| billing_address_street_3    | billing_address_street_3                               |
-| billing_address_street_4    | billing_address_street_4                               |
-| business_center_id          | business_center_id                                     |
-| campaign_id                 | campaign_id                                            |
-| created_by                  | created_by                                             |
-| date_entered                | date_entered                                           |
-| date_modified               | date_modified                                          |
-| deleted                     | deleted                                                |
-| description                 | description                                            |
-| duns_num                    | duns_num                                               |
-| email1                      | email1                                                 |
-| email2                      | email2                                                 |
-| email[]                     | email[]                                                |
-| email[].email_address       | email[].email_address                                  |
-| email[].email_address_id    | email[].email_address_id                               |
-| email[].invalid_email       | email[].invalid_email                                  |
-| email[].opt_out             | email[].opt_out                                        |
-| email[].primary_address     | email[].primary_address                                |
-| email[].reply_to_address    | email[].reply_to_address                               |
-| email_opt_out               | email_opt_out                                          |
-| employees                   | employees                                              |
-| facebook                    | facebook                                               |
-| following                   | following                                              |
-| geocode_status              | geocode_status                                         |
-| googleplus                  | googleplus                                             |
-| id                          | id                                                     |
-| industry                    | industry                                               |
-| invalid_email               | invalid_email                                          |
-| is_escalated                | is_escalated                                           |
-| latitude_c                  | latitude_c                                             |
-| longitude_c                 | longitude_c                                            |
-| modified_user_id            | modified_user_id                                       |
-| my_favorite                 | my_favorite                                            |
-| name                        | name                                                   |
-| next_renewal_date           | next_renewal_date                                      |
-| ownership                   | ownership                                              |
-| parent_id                   | parent_id                                              |
-| parent_name                 | parent_name                                            |
-| phone_alternate             | phone_alternate                                        |
-| phone_fax                   | phone_fax                                              |
-| phone_office                | phone_office                                           |
-| rating                      | rating                                                 |
-| service_level               | service_level                                          |
-| shipping_address_city       | shipping_address_city                                  |
-| shipping_address_country    | shipping_address_country                               |
-| shipping_address_postalcode | shipping_address_postalcode                            |
-| shipping_address_state      | shipping_address_state                                 |
-| shipping_address_street     | shipping_address_street                                |
-| shipping_address_street_2   | shipping_address_street_2                              |
-| shipping_address_street_3   | shipping_address_street_3                              |
-| shipping_address_street_4   | shipping_address_street_4                              |
-| sic_code                    | sic_code                                               |
-| team_count                  | team_count                                             |
-| ticker_symbol               | ticker_symbol                                          |
-| twitter                     | twitter                                                |
-| website                     | website                                                |
-| tag                         |                                                        |
-| teams[]                     |                                                        |
-| teams[].id                  |                                                        |
-| teams[].name                |                                                        |
-| teams[].name_2              |                                                        |
-| teams[].primary             |                                                        |
-| teams[].selected            |                                                        |
-|                             | _module                                                |
-|                             | assigned_user_link._acl._hash                          |
-|                             | assigned_user_link._acl.fields[]                       |
-|                             | assigned_user_link.full_name                           |
-|                             | assigned_user_link.id                                  |
-|                             | assigned_user_name                                     |
-|                             | business_center_name                                   |
-|                             | business_centers._acl._hash                            |
-|                             | business_centers._acl.fields[]                         |
-|                             | business_centers.id                                    |
-|                             | business_centers.name                                  |
-|                             | campaign_accounts._acl._hash                           |
-|                             | campaign_accounts._acl.fields.bounced.create           |
-|                             | campaign_accounts._acl.fields.bounced.license          |
-|                             | campaign_accounts._acl.fields.bounced.write            |
-|                             | campaign_accounts._acl.fields.delivered.create         |
-|                             | campaign_accounts._acl.fields.delivered.license        |
-|                             | campaign_accounts._acl.fields.delivered.write          |
-|                             | campaign_accounts._acl.fields.forwards.create          |
-|                             | campaign_accounts._acl.fields.forwards.license         |
-|                             | campaign_accounts._acl.fields.forwards.write           |
-|                             | campaign_accounts._acl.fields.notreported.create       |
-|                             | campaign_accounts._acl.fields.notreported.license      |
-|                             | campaign_accounts._acl.fields.notreported.write        |
-|                             | campaign_accounts._acl.fields.peoplewhoclicked.create  |
-|                             | campaign_accounts._acl.fields.peoplewhoclicked.license |
-|                             | campaign_accounts._acl.fields.peoplewhoclicked.write   |
-|                             | campaign_accounts._acl.fields.peoplewhoopened.create   |
-|                             | campaign_accounts._acl.fields.peoplewhoopened.license  |
-|                             | campaign_accounts._acl.fields.peoplewhoopened.write    |
-|                             | campaign_accounts._acl.fields.postdate.create          |
-|                             | campaign_accounts._acl.fields.postdate.license         |
-|                             | campaign_accounts._acl.fields.postdate.write           |
-|                             | campaign_accounts._acl.fields.sent.create              |
-|                             | campaign_accounts._acl.fields.sent.license             |
-|                             | campaign_accounts._acl.fields.sent.write               |
-|                             | campaign_accounts._acl.fields.social.create            |
-|                             | campaign_accounts._acl.fields.social.license           |
-|                             | campaign_accounts._acl.fields.social.write             |
-|                             | campaign_accounts._acl.fields.totalclicks.create       |
-|                             | campaign_accounts._acl.fields.totalclicks.license      |
-|                             | campaign_accounts._acl.fields.totalclicks.write        |
-|                             | campaign_accounts._acl.fields.totalopens.create        |
-|                             | campaign_accounts._acl.fields.totalopens.license       |
-|                             | campaign_accounts._acl.fields.totalopens.write         |
-|                             | campaign_accounts._acl.fields.unopened.create          |
-|                             | campaign_accounts._acl.fields.unopened.license         |
-|                             | campaign_accounts._acl.fields.unopened.write           |
-|                             | campaign_accounts._acl.fields.unsubscribed.create      |
-|                             | campaign_accounts._acl.fields.unsubscribed.license     |
-|                             | campaign_accounts._acl.fields.unsubscribed.write       |
-|                             | campaign_accounts.id                                   |
-|                             | campaign_accounts.name                                 |
-|                             | campaign_name                                          |
-|                             | created_by_link._acl._hash                             |
-|                             | created_by_link._acl.fields[]                          |
-|                             | created_by_link.full_name                              |
-|                             | created_by_link.id                                     |
-|                             | created_by_name                                        |
-|                             | dri_workflow_template_id                               |
-|                             | dri_workflow_template_link._acl._hash                  |
-|                             | dri_workflow_template_link._acl.fields[]               |
-|                             | dri_workflow_template_link.id                          |
-|                             | dri_workflow_template_link.name                        |
-|                             | dri_workflow_template_name                             |
-|                             | email_addresses_non_primary                            |
-|                             | hint_account_facebook_handle                           |
-|                             | hint_account_fiscal_year_end                           |
-|                             | hint_account_founded_year                              |
-|                             | hint_account_industry                                  |
-|                             | hint_account_industry_tags                             |
-|                             | hint_account_location                                  |
-|                             | hint_account_logo                                      |
-|                             | hint_account_naics_code_lbl                            |
-|                             | hint_account_pic                                       |
-|                             | hint_account_size                                      |
-|                             | last_interaction_date                                  |
-|                             | last_interaction_parent_id                             |
-|                             | last_interaction_parent_name                           |
-|                             | last_interaction_parent_type                           |
-|                             | locked_fields[]                                        |
-|                             | member_of._acl._hash                                   |
-|                             | member_of._acl.fields[]                                |
-|                             | member_of.id                                           |
-|                             | member_of.name                                         |
-|                             | modified_by_name                                       |
-|                             | modified_user_link._acl._hash                          |
-|                             | modified_user_link._acl.fields[]                       |
-|                             | modified_user_link.full_name                           |
-|                             | modified_user_link.id                                  |
-|                             | perform_sugar_action                                   |
-|                             | sync_key                                               |
-|                             | tag[]                                                  |
-|                             | team_count_link._acl._hash                             |
-|                             | team_count_link._acl.fields[]                          |
-|                             | team_count_link.id                                     |
-|                             | team_count_link.team_count                             |
-|                             | team_name[]                                            |
-|                             | team_name[].id                                         |
-|                             | team_name[].name                                       |
-|                             | team_name[].name_2                                     |
-|                             | team_name[].primary                                    |
-|                             | team_name[].selected                                   |
-|                             | widget_next_renewal_date                               |
+| Entity Schema Fields        | Entity Schema Types | Find By ID Object Fields                               | Find By ID Types |
+|-----------------------------|---------------------|--------------------------------------------------------|------------------|
+| account_type                | string              | account_type                                           | str              |
+| annual_revenue              | integer             | annual_revenue                                         | str              |
+| assigned_user_id            | string              | assigned_user_id                                       | str              |
+| billing_address_city        | string              | billing_address_city                                   | str              |
+| billing_address_country     | string              | billing_address_country                                | str              |
+| billing_address_postalcode  | string              | billing_address_postalcode                             | str              |
+| billing_address_state       | string              | billing_address_state                                  | str              |
+| billing_address_street      | string              | billing_address_street                                 | str              |
+| billing_address_street_2    | string              | billing_address_street_2                               | str              |
+| billing_address_street_3    | string              | billing_address_street_3                               | str              |
+| billing_address_street_4    | string              | billing_address_street_4                               | str              |
+| business_center_id          | string              | business_center_id                                     | str              |
+| campaign_id                 | string              | campaign_id                                            | str              |
+| created_by                  | string              | created_by                                             | str              |
+| date_entered                | string              | date_entered                                           | str              |
+| date_modified               | string              | date_modified                                          | str              |
+| deleted                     | boolean             | deleted                                                | bool             |
+| description                 | string              | description                                            | str              |
+| duns_num                    | string              | duns_num                                               | str              |
+| email1                      | string              | email1                                                 | str              |
+| email2                      | string              | email2                                                 | str              |
+| email[]                     | object              | email[]                                                | array            |
+| email[].email_address       | string              | email[].email_address                                  | object           |
+| email[].email_address_id    | string              | email[].email_address_id                               | object           |
+| email[].invalid_email       | boolean             | email[].invalid_email                                  | object           |
+| email[].opt_out             | boolean             | email[].opt_out                                        | object           |
+| email[].primary_address     | boolean             | email[].primary_address                                | object           |
+| email[].reply_to_address    | boolean             | email[].reply_to_address                               | object           |
+| email_opt_out               | boolean             | email_opt_out                                          | bool             |
+| employees                   | integer             | employees                                              | str              |
+| facebook                    | string              | facebook                                               | str              |
+| following                   | boolean             | following                                              | bool             |
+| geocode_status              | string              | geocode_status                                         | str              |
+| googleplus                  | string              | googleplus                                             | str              |
+| id                          | string              | id                                                     | str              |
+| industry                    | string              | industry                                               | str              |
+| invalid_email               | boolean             | invalid_email                                          | bool             |
+| is_escalated                | boolean             | is_escalated                                           | bool             |
+| latitude_c                  | string              | latitude_c                                             | str              |
+| longitude_c                 | string              | longitude_c                                            | str              |
+| modified_user_id            | string              | modified_user_id                                       | str              |
+| my_favorite                 | boolean             | my_favorite                                            | bool             |
+| name                        | string              | name                                                   | str              |
+| next_renewal_date           | string              | next_renewal_date                                      | str              |
+| ownership                   | string              | ownership                                              | str              |
+| parent_id                   | string              | parent_id                                              | str              |
+| parent_name                 | string              | parent_name                                            | str              |
+| phone_alternate             | string              | phone_alternate                                        | str              |
+| phone_fax                   | string              | phone_fax                                              | str              |
+| phone_office                | string              | phone_office                                           | str              |
+| rating                      | string              | rating                                                 | str              |
+| service_level               | string              | service_level                                          | str              |
+| shipping_address_city       | string              | shipping_address_city                                  | str              |
+| shipping_address_country    | string              | shipping_address_country                               | str              |
+| shipping_address_postalcode | string              | shipping_address_postalcode                            | str              |
+| shipping_address_state      | string              | shipping_address_state                                 | str              |
+| shipping_address_street     | string              | shipping_address_street                                | str              |
+| shipping_address_street_2   | string              | shipping_address_street_2                              | str              |
+| shipping_address_street_3   | string              | shipping_address_street_3                              | str              |
+| shipping_address_street_4   | string              | shipping_address_street_4                              | str              |
+| sic_code                    | string              | sic_code                                               | str              |
+| team_count                  | string              | team_count                                             | str              |
+| ticker_symbol               | string              | ticker_symbol                                          | str              |
+| twitter                     | string              | twitter                                                | str              |
+| website                     | string              | website                                                | str              |
+| tag                         | array               |                                                        |                  |
+| teams[]                     | object              |                                                        |                  |
+| teams[].id                  | string              |                                                        |                  |
+| teams[].name                | string              |                                                        |                  |
+| teams[].name_2              | string              |                                                        |                  |
+| teams[].primary             | boolean             |                                                        |                  |
+| teams[].selected            | boolean             |                                                        |                  |
+|                             |                     | _module                                                | str              |
+|                             |                     | assigned_user_link._acl._hash                          | str              |
+|                             |                     | assigned_user_link._acl.fields[]                       | array            |
+|                             |                     | assigned_user_link.full_name                           | str              |
+|                             |                     | assigned_user_link.id                                  | str              |
+|                             |                     | assigned_user_name                                     | str              |
+|                             |                     | business_center_name                                   | str              |
+|                             |                     | business_centers._acl._hash                            | str              |
+|                             |                     | business_centers._acl.fields[]                         | array            |
+|                             |                     | business_centers.id                                    | str              |
+|                             |                     | business_centers.name                                  | str              |
+|                             |                     | campaign_accounts._acl._hash                           | str              |
+|                             |                     | campaign_accounts._acl.fields.bounced.create           | str              |
+|                             |                     | campaign_accounts._acl.fields.bounced.license          | str              |
+|                             |                     | campaign_accounts._acl.fields.bounced.write            | str              |
+|                             |                     | campaign_accounts._acl.fields.delivered.create         | str              |
+|                             |                     | campaign_accounts._acl.fields.delivered.license        | str              |
+|                             |                     | campaign_accounts._acl.fields.delivered.write          | str              |
+|                             |                     | campaign_accounts._acl.fields.forwards.create          | str              |
+|                             |                     | campaign_accounts._acl.fields.forwards.license         | str              |
+|                             |                     | campaign_accounts._acl.fields.forwards.write           | str              |
+|                             |                     | campaign_accounts._acl.fields.notreported.create       | str              |
+|                             |                     | campaign_accounts._acl.fields.notreported.license      | str              |
+|                             |                     | campaign_accounts._acl.fields.notreported.write        | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoclicked.create  | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoclicked.license | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoclicked.write   | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoopened.create   | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoopened.license  | str              |
+|                             |                     | campaign_accounts._acl.fields.peoplewhoopened.write    | str              |
+|                             |                     | campaign_accounts._acl.fields.postdate.create          | str              |
+|                             |                     | campaign_accounts._acl.fields.postdate.license         | str              |
+|                             |                     | campaign_accounts._acl.fields.postdate.write           | str              |
+|                             |                     | campaign_accounts._acl.fields.sent.create              | str              |
+|                             |                     | campaign_accounts._acl.fields.sent.license             | str              |
+|                             |                     | campaign_accounts._acl.fields.sent.write               | str              |
+|                             |                     | campaign_accounts._acl.fields.social.create            | str              |
+|                             |                     | campaign_accounts._acl.fields.social.license           | str              |
+|                             |                     | campaign_accounts._acl.fields.social.write             | str              |
+|                             |                     | campaign_accounts._acl.fields.totalclicks.create       | str              |
+|                             |                     | campaign_accounts._acl.fields.totalclicks.license      | str              |
+|                             |                     | campaign_accounts._acl.fields.totalclicks.write        | str              |
+|                             |                     | campaign_accounts._acl.fields.totalopens.create        | str              |
+|                             |                     | campaign_accounts._acl.fields.totalopens.license       | str              |
+|                             |                     | campaign_accounts._acl.fields.totalopens.write         | str              |
+|                             |                     | campaign_accounts._acl.fields.unopened.create          | str              |
+|                             |                     | campaign_accounts._acl.fields.unopened.license         | str              |
+|                             |                     | campaign_accounts._acl.fields.unopened.write           | str              |
+|                             |                     | campaign_accounts._acl.fields.unsubscribed.create      | str              |
+|                             |                     | campaign_accounts._acl.fields.unsubscribed.license     | str              |
+|                             |                     | campaign_accounts._acl.fields.unsubscribed.write       | str              |
+|                             |                     | campaign_accounts.id                                   | str              |
+|                             |                     | campaign_accounts.name                                 | str              |
+|                             |                     | campaign_name                                          | str              |
+|                             |                     | created_by_link._acl._hash                             | str              |
+|                             |                     | created_by_link._acl.fields[]                          | array            |
+|                             |                     | created_by_link.full_name                              | str              |
+|                             |                     | created_by_link.id                                     | str              |
+|                             |                     | created_by_name                                        | str              |
+|                             |                     | dri_workflow_template_id                               | str              |
+|                             |                     | dri_workflow_template_link._acl._hash                  | str              |
+|                             |                     | dri_workflow_template_link._acl.fields[]               | array            |
+|                             |                     | dri_workflow_template_link.id                          | str              |
+|                             |                     | dri_workflow_template_link.name                        | str              |
+|                             |                     | dri_workflow_template_name                             | str              |
+|                             |                     | email_addresses_non_primary                            | str              |
+|                             |                     | hint_account_facebook_handle                           | str              |
+|                             |                     | hint_account_fiscal_year_end                           | str              |
+|                             |                     | hint_account_founded_year                              | str              |
+|                             |                     | hint_account_industry                                  | str              |
+|                             |                     | hint_account_industry_tags                             | str              |
+|                             |                     | hint_account_location                                  | str              |
+|                             |                     | hint_account_logo                                      | str              |
+|                             |                     | hint_account_naics_code_lbl                            | str              |
+|                             |                     | hint_account_pic                                       | str              |
+|                             |                     | hint_account_size                                      | str              |
+|                             |                     | last_interaction_date                                  | str              |
+|                             |                     | last_interaction_parent_id                             | str              |
+|                             |                     | last_interaction_parent_name                           | str              |
+|                             |                     | last_interaction_parent_type                           | str              |
+|                             |                     | locked_fields[]                                        | array            |
+|                             |                     | member_of._acl._hash                                   | str              |
+|                             |                     | member_of._acl.fields[]                                | array            |
+|                             |                     | member_of.id                                           | str              |
+|                             |                     | member_of.name                                         | str              |
+|                             |                     | modified_by_name                                       | str              |
+|                             |                     | modified_user_link._acl._hash                          | str              |
+|                             |                     | modified_user_link._acl.fields[]                       | array            |
+|                             |                     | modified_user_link.full_name                           | str              |
+|                             |                     | modified_user_link.id                                  | str              |
+|                             |                     | perform_sugar_action                                   | bool             |
+|                             |                     | sync_key                                               | str              |
+|                             |                     | tag[]                                                  | array            |
+|                             |                     | team_count_link._acl._hash                             | str              |
+|                             |                     | team_count_link._acl.fields[]                          | array            |
+|                             |                     | team_count_link.id                                     | str              |
+|                             |                     | team_count_link.team_count                             | str              |
+|                             |                     | team_name[]                                            | array            |
+|                             |                     | team_name[].id                                         | object           |
+|                             |                     | team_name[].name                                       | object           |
+|                             |                     | team_name[].name_2                                     | object           |
+|                             |                     | team_name[].primary                                    | object           |
+|                             |                     | team_name[].selected                                   | object           |
+|                             |                     | widget_next_renewal_date                               | str              |
 
 ## Contacts
 
-| Entity Schema Fields             | Find By ID Object Fields                                    |
-|----------------------------------|-------------------------------------------------------------|
-| accept_status_id                 | accept_status_id                                            |
-| accept_status_name               | accept_status_name                                          |
-| account_id                       | account_id                                                  |
-| alt_address_city                 | alt_address_city                                            |
-| alt_address_country              | alt_address_country                                         |
-| alt_address_postalcode           | alt_address_postalcode                                      |
-| alt_address_state                | alt_address_state                                           |
-| alt_address_street               | alt_address_street                                          |
-| alt_address_street_2             | alt_address_street_2                                        |
-| alt_address_street_3             | alt_address_street_3                                        |
-| assigned_user_id                 | assigned_user_id                                            |
-| assistant                        | assistant                                                   |
-| assistant_phone                  | assistant_phone                                             |
-| birthdate                        | birthdate                                                   |
-| calls.id                         | calls.id                                                    |
-| campaign_id                      | campaign_id                                                 |
-| created_by                       | created_by                                                  |
-| date_entered                     | date_entered                                                |
-| date_modified                    | date_modified                                               |
-| deleted                          | deleted                                                     |
-| department                       | department                                                  |
-| description                      | description                                                 |
-| do_not_call                      | do_not_call                                                 |
-| email1                           | email1                                                      |
-| email2                           | email2                                                      |
-| email[]                          | email[]                                                     |
-| email[].email_address            | email[].email_address                                       |
-| email[].email_address_id         | email[].email_address_id                                    |
-| email[].invalid_email            | email[].invalid_email                                       |
-| email[].opt_out                  | email[].opt_out                                             |
-| email[].primary_address          | email[].primary_address                                     |
-| email[].reply_to_address         | email[].reply_to_address                                    |
-| email_opt_out                    | email_opt_out                                               |
-| entry_source                     | entry_source                                                |
-| facebook                         | facebook                                                    |
-| first_name                       | first_name                                                  |
-| following                        | following                                                   |
-| full_name                        | full_name                                                   |
-| googleplus                       | googleplus                                                  |
-| id                               | id                                                          |
-| invalid_email                    | invalid_email                                               |
-| last_name                        | last_name                                                   |
-| latitude_c                       | latitude_c                                                  |
-| lead_source                      | lead_source                                                 |
-| longitude_c                      | longitude_c                                                 |
-| market_interest_prediction_score | market_interest_prediction_score                            |
-| market_score                     | market_score                                                |
-| meetings.id                      | meetings.id                                                 |
-| mkto_sync                        | mkto_sync                                                   |
-| modified_user_id                 | modified_user_id                                            |
-| my_favorite                      | my_favorite                                                 |
-| name                             | name                                                        |
-| opportunities.id                 | opportunities.id                                            |
-| opportunity_role_id              | opportunity_role_id                                         |
-| phone_fax                        | phone_fax                                                   |
-| phone_home                       | phone_home                                                  |
-| phone_mobile                     | phone_mobile                                                |
-| phone_other                      | phone_other                                                 |
-| phone_work                       | phone_work                                                  |
-| primary_address_city             | primary_address_city                                        |
-| primary_address_country          | primary_address_country                                     |
-| primary_address_postalcode       | primary_address_postalcode                                  |
-| primary_address_state            | primary_address_state                                       |
-| primary_address_street           | primary_address_street                                      |
-| primary_address_street_2         | primary_address_street_2                                    |
-| primary_address_street_3         | primary_address_street_3                                    |
-| reports_to_id                    | reports_to_id                                               |
-| salutation                       | salutation                                                  |
-| site_user_id                     | site_user_id                                                |
-| source_id                        | source_id                                                   |
-| source_meta                      | source_meta                                                 |
-| source_type                      | source_type                                                 |
-| sync_key                         | sync_key                                                    |
-| tag[]                            | tag[]                                                       |
-| tag[].id                         | tag[].id                                                    |
-| tag[].name                       | tag[].name                                                  |
-| tag[].tags__name_lower           | tag[].tags__name_lower                                      |
-| team_count                       | team_count                                                  |
-| title                            | title                                                       |
-| twitter                          | twitter                                                     |
-| team[]                           |                                                             |
-| team[].id                        |                                                             |
-| team[].name                      |                                                             |
-| team[].name_2                    |                                                             |
-| team[].primary                   |                                                             |
-| team[].selected                  |                                                             |
-|                                  | _module                                                     |
-|                                  | accept_status_calls                                         |
-|                                  | accept_status_meetings                                      |
-|                                  | accept_status_messages                                      |
-|                                  | account_name                                                |
-|                                  | accounts._acl._hash                                         |
-|                                  | accounts._acl.fields[]                                      |
-|                                  | accounts.id                                                 |
-|                                  | accounts.name                                               |
-|                                  | assigned_user_link._acl._hash                               |
-|                                  | assigned_user_link._acl.fields[]                            |
-|                                  | assigned_user_link.full_name                                |
-|                                  | assigned_user_link.id                                       |
-|                                  | assigned_user_name                                          |
-|                                  | business_center_id                                          |
-|                                  | business_center_name                                        |
-|                                  | business_centers._acl._hash                                 |
-|                                  | business_centers._acl.fields[]                              |
-|                                  | business_centers.id                                         |
-|                                  | business_centers.name                                       |
-|                                  | c_accept_status_fields                                      |
-|                                  | campaign_contacts._acl._hash                                |
-|                                  | campaign_contacts._acl.fields.bounced.create                |
-|                                  | campaign_contacts._acl.fields.bounced.license               |
-|                                  | campaign_contacts._acl.fields.bounced.write                 |
-|                                  | campaign_contacts._acl.fields.delivered.create              |
-|                                  | campaign_contacts._acl.fields.delivered.license             |
-|                                  | campaign_contacts._acl.fields.delivered.write               |
-|                                  | campaign_contacts._acl.fields.forwards.create               |
-|                                  | campaign_contacts._acl.fields.forwards.license              |
-|                                  | campaign_contacts._acl.fields.forwards.write                |
-|                                  | campaign_contacts._acl.fields.notreported.create            |
-|                                  | campaign_contacts._acl.fields.notreported.license           |
-|                                  | campaign_contacts._acl.fields.notreported.write             |
-|                                  | campaign_contacts._acl.fields.peoplewhoclicked.create       |
-|                                  | campaign_contacts._acl.fields.peoplewhoclicked.license      |
-|                                  | campaign_contacts._acl.fields.peoplewhoclicked.write        |
-|                                  | campaign_contacts._acl.fields.peoplewhoopened.create        |
-|                                  | campaign_contacts._acl.fields.peoplewhoopened.license       |
-|                                  | campaign_contacts._acl.fields.peoplewhoopened.write         |
-|                                  | campaign_contacts._acl.fields.postdate.create               |
-|                                  | campaign_contacts._acl.fields.postdate.license              |
-|                                  | campaign_contacts._acl.fields.postdate.write                |
-|                                  | campaign_contacts._acl.fields.sent.create                   |
-|                                  | campaign_contacts._acl.fields.sent.license                  |
-|                                  | campaign_contacts._acl.fields.sent.write                    |
-|                                  | campaign_contacts._acl.fields.social.create                 |
-|                                  | campaign_contacts._acl.fields.social.license                |
-|                                  | campaign_contacts._acl.fields.social.write                  |
-|                                  | campaign_contacts._acl.fields.totalclicks.create            |
-|                                  | campaign_contacts._acl.fields.totalclicks.license           |
-|                                  | campaign_contacts._acl.fields.totalclicks.write             |
-|                                  | campaign_contacts._acl.fields.totalopens.create             |
-|                                  | campaign_contacts._acl.fields.totalopens.license            |
-|                                  | campaign_contacts._acl.fields.totalopens.write              |
-|                                  | campaign_contacts._acl.fields.unopened.create               |
-|                                  | campaign_contacts._acl.fields.unopened.license              |
-|                                  | campaign_contacts._acl.fields.unopened.write                |
-|                                  | campaign_contacts._acl.fields.unsubscribed.create           |
-|                                  | campaign_contacts._acl.fields.unsubscribed.license          |
-|                                  | campaign_contacts._acl.fields.unsubscribed.write            |
-|                                  | campaign_contacts.id                                        |
-|                                  | campaign_contacts.name                                      |
-|                                  | campaign_name                                               |
-|                                  | cookie_consent                                              |
-|                                  | cookie_consent_received_on                                  |
-|                                  | created_by_link._acl._hash                                  |
-|                                  | created_by_link._acl.fields[]                               |
-|                                  | created_by_link.full_name                                   |
-|                                  | created_by_link.id                                          |
-|                                  | created_by_name                                             |
-|                                  | denorm_account_name                                         |
-|                                  | dnb_principal_id                                            |
-|                                  | dp_business_purpose[]                                       |
-|                                  | dp_consent_last_updated                                     |
-|                                  | dri_workflow_template_id                                    |
-|                                  | dri_workflow_template_link._acl._hash                       |
-|                                  | dri_workflow_template_link._acl.fields[]                    |
-|                                  | dri_workflow_template_link.id                               |
-|                                  | dri_workflow_template_link.name                             |
-|                                  | dri_workflow_template_name                                  |
-|                                  | email_addresses_non_primary                                 |
-|                                  | email_and_name1                                             |
-|                                  | external_user_id                                            |
-|                                  | geocode_status                                              |
-|                                  | hint_account_annual_revenue                                 |
-|                                  | hint_account_description                                    |
-|                                  | hint_account_facebook_handle                                |
-|                                  | hint_account_fiscal_year_end                                |
-|                                  | hint_account_founded_year                                   |
-|                                  | hint_account_industry                                       |
-|                                  | hint_account_location                                       |
-|                                  | hint_account_logo                                           |
-|                                  | hint_account_naics_code_lbl                                 |
-|                                  | hint_account_sic_code_label                                 |
-|                                  | hint_account_size                                           |
-|                                  | hint_account_twitter_handle                                 |
-|                                  | hint_account_website                                        |
-|                                  | hint_contact_pic                                            |
-|                                  | hint_education                                              |
-|                                  | hint_education_2                                            |
-|                                  | hint_facebook                                               |
-|                                  | hint_industry_tags                                          |
-|                                  | hint_job_2                                                  |
-|                                  | hint_phone_1                                                |
-|                                  | hint_phone_2                                                |
-|                                  | hint_photo                                                  |
-|                                  | hint_twitter                                                |
-|                                  | locked_fields[]                                             |
-|                                  | m_accept_status_fields                                      |
-|                                  | mkto_id                                                     |
-|                                  | mkto_lead_score                                             |
-|                                  | modified_by_name                                            |
-|                                  | modified_user_link._acl._hash                               |
-|                                  | modified_user_link._acl.fields[]                            |
-|                                  | modified_user_link.full_name                                |
-|                                  | modified_user_link.id                                       |
-|                                  | opportunity_role                                            |
-|                                  | opportunity_role_fields                                     |
-|                                  | perform_sugar_action                                        |
-|                                  | picture                                                     |
-|                                  | portal_active                                               |
-|                                  | portal_app                                                  |
-|                                  | portal_name                                                 |
-|                                  | portal_password                                             |
-|                                  | portal_password1                                            |
-|                                  | portal_user_company_name                                    |
-|                                  | preferred_language                                          |
-|                                  | report_to_name                                              |
-|                                  | reports_to_link._acl._hash                                  |
-|                                  | reports_to_link._acl.fields.sf_lastactivity_default.create  |
-|                                  | reports_to_link._acl.fields.sf_lastactivity_default.license |
-|                                  | reports_to_link._acl.fields.sf_lastactivity_default.write   |
-|                                  | reports_to_link.id                                          |
-|                                  | reports_to_link.name                                        |
-|                                  | sync_contact                                                |
-|                                  | team_count_link._acl._hash                                  |
-|                                  | team_count_link._acl.fields[]                               |
-|                                  | team_count_link.id                                          |
-|                                  | team_count_link.team_count                                  |
-|                                  | team_name[]                                                 |
-|                                  | team_name[].id                                              |
-|                                  | team_name[].name                                            |
-|                                  | team_name[].name_2                                          |
-|                                  | team_name[].primary                                         |
-|                                  | team_name[].selected                                        |
+| Entity Schema Fields             | Entity Schema Types | Find By ID Object Fields                                    | Find By ID Types |
+|----------------------------------|---------------------|-------------------------------------------------------------|------------------|
+| accept_status_id                 | string              | accept_status_id                                            | str              |
+| accept_status_name               | string              | accept_status_name                                          | str              |
+| account_id                       | string              | account_id                                                  | str              |
+| alt_address_city                 | string              | alt_address_city                                            | str              |
+| alt_address_country              | string              | alt_address_country                                         | str              |
+| alt_address_postalcode           | string              | alt_address_postalcode                                      | str              |
+| alt_address_state                | string              | alt_address_state                                           | str              |
+| alt_address_street               | string              | alt_address_street                                          | str              |
+| alt_address_street_2             | string              | alt_address_street_2                                        | str              |
+| alt_address_street_3             | string              | alt_address_street_3                                        | str              |
+| assigned_user_id                 | string              | assigned_user_id                                            | str              |
+| assistant                        | string              | assistant                                                   | str              |
+| assistant_phone                  | string              | assistant_phone                                             | str              |
+| birthdate                        | string              | birthdate                                                   | str              |
+| calls.id                         | string              | calls.id                                                    | str              |
+| campaign_id                      | string              | campaign_id                                                 | str              |
+| created_by                       | string              | created_by                                                  | str              |
+| date_entered                     | string              | date_entered                                                | str              |
+| date_modified                    | string              | date_modified                                               | str              |
+| deleted                          | boolean             | deleted                                                     | bool             |
+| department                       | string              | department                                                  | str              |
+| description                      | string              | description                                                 | str              |
+| do_not_call                      | boolean             | do_not_call                                                 | bool             |
+| email1                           | string              | email1                                                      | str              |
+| email2                           | string              | email2                                                      | str              |
+| email[]                          | object              | email[]                                                     | array            |
+| email[].email_address            | string              | email[].email_address                                       | object           |
+| email[].email_address_id         | string              | email[].email_address_id                                    | object           |
+| email[].invalid_email            | boolean             | email[].invalid_email                                       | object           |
+| email[].opt_out                  | boolean             | email[].opt_out                                             | object           |
+| email[].primary_address          | boolean             | email[].primary_address                                     | object           |
+| email[].reply_to_address         | boolean             | email[].reply_to_address                                    | object           |
+| email_opt_out                    | boolean             | email_opt_out                                               | bool             |
+| entry_source                     | string              | entry_source                                                | str              |
+| facebook                         | string              | facebook                                                    | str              |
+| first_name                       | string              | first_name                                                  | str              |
+| following                        | boolean             | following                                                   | bool             |
+| full_name                        | string              | full_name                                                   | str              |
+| googleplus                       | string              | googleplus                                                  | str              |
+| id                               | string              | id                                                          | str              |
+| invalid_email                    | boolean             | invalid_email                                               | bool             |
+| last_name                        | string              | last_name                                                   | str              |
+| latitude_c                       | string              | latitude_c                                                  | str              |
+| lead_source                      | string              | lead_source                                                 | str              |
+| longitude_c                      | string              | longitude_c                                                 | str              |
+| market_interest_prediction_score | string              | market_interest_prediction_score                            | str              |
+| market_score                     | string              | market_score                                                | null             |
+| meetings.id                      | string              | meetings.id                                                 | str              |
+| mkto_sync                        | boolean             | mkto_sync                                                   | bool             |
+| modified_user_id                 | string              | modified_user_id                                            | str              |
+| my_favorite                      | boolean             | my_favorite                                                 | bool             |
+| name                             | string              | name                                                        | str              |
+| opportunities.id                 | string              | opportunities.id                                            | str              |
+| opportunity_role_id              | string              | opportunity_role_id                                         | str              |
+| phone_fax                        | string              | phone_fax                                                   | str              |
+| phone_home                       | string              | phone_home                                                  | str              |
+| phone_mobile                     | string              | phone_mobile                                                | str              |
+| phone_other                      | string              | phone_other                                                 | str              |
+| phone_work                       | string              | phone_work                                                  | str              |
+| primary_address_city             | string              | primary_address_city                                        | str              |
+| primary_address_country          | string              | primary_address_country                                     | str              |
+| primary_address_postalcode       | string              | primary_address_postalcode                                  | str              |
+| primary_address_state            | string              | primary_address_state                                       | str              |
+| primary_address_street           | string              | primary_address_street                                      | str              |
+| primary_address_street_2         | string              | primary_address_street_2                                    | str              |
+| primary_address_street_3         | string              | primary_address_street_3                                    | str              |
+| reports_to_id                    | string              | reports_to_id                                               | str              |
+| salutation                       | string              | salutation                                                  | str              |
+| site_user_id                     | string              | site_user_id                                                | str              |
+| source_id                        | string              | source_id                                                   | str              |
+| source_meta                      | string              | source_meta                                                 | str              |
+| source_type                      | string              | source_type                                                 | str              |
+| sync_key                         | string              | sync_key                                                    | str              |
+| tag[]                            | object              | tag[]                                                       | array            |
+| tag[].id                         | string              | tag[].id                                                    | object           |
+| tag[].name                       | string              | tag[].name                                                  | object           |
+| tag[].tags__name_lower           | string              | tag[].tags__name_lower                                      | object           |
+| team_count                       | string              | team_count                                                  | str              |
+| title                            | string              | title                                                       | str              |
+| twitter                          | string              | twitter                                                     | str              |
+| team[]                           | object              |                                                             |                  |
+| team[].id                        | string              |                                                             |                  |
+| team[].name                      | string              |                                                             |                  |
+| team[].name_2                    | string              |                                                             |                  |
+| team[].primary                   | boolean             |                                                             |                  |
+| team[].selected                  | boolean             |                                                             |                  |
+|                                  |                     | _module                                                     | str              |
+|                                  |                     | accept_status_calls                                         | str              |
+|                                  |                     | accept_status_meetings                                      | str              |
+|                                  |                     | accept_status_messages                                      | str              |
+|                                  |                     | account_name                                                | str              |
+|                                  |                     | accounts._acl._hash                                         | str              |
+|                                  |                     | accounts._acl.fields[]                                      | array            |
+|                                  |                     | accounts.id                                                 | str              |
+|                                  |                     | accounts.name                                               | str              |
+|                                  |                     | assigned_user_link._acl._hash                               | str              |
+|                                  |                     | assigned_user_link._acl.fields[]                            | array            |
+|                                  |                     | assigned_user_link.full_name                                | str              |
+|                                  |                     | assigned_user_link.id                                       | str              |
+|                                  |                     | assigned_user_name                                          | str              |
+|                                  |                     | business_center_id                                          | str              |
+|                                  |                     | business_center_name                                        | str              |
+|                                  |                     | business_centers._acl._hash                                 | str              |
+|                                  |                     | business_centers._acl.fields[]                              | array            |
+|                                  |                     | business_centers.id                                         | str              |
+|                                  |                     | business_centers.name                                       | str              |
+|                                  |                     | c_accept_status_fields                                      | str              |
+|                                  |                     | campaign_contacts._acl._hash                                | str              |
+|                                  |                     | campaign_contacts._acl.fields.bounced.create                | str              |
+|                                  |                     | campaign_contacts._acl.fields.bounced.license               | str              |
+|                                  |                     | campaign_contacts._acl.fields.bounced.write                 | str              |
+|                                  |                     | campaign_contacts._acl.fields.delivered.create              | str              |
+|                                  |                     | campaign_contacts._acl.fields.delivered.license             | str              |
+|                                  |                     | campaign_contacts._acl.fields.delivered.write               | str              |
+|                                  |                     | campaign_contacts._acl.fields.forwards.create               | str              |
+|                                  |                     | campaign_contacts._acl.fields.forwards.license              | str              |
+|                                  |                     | campaign_contacts._acl.fields.forwards.write                | str              |
+|                                  |                     | campaign_contacts._acl.fields.notreported.create            | str              |
+|                                  |                     | campaign_contacts._acl.fields.notreported.license           | str              |
+|                                  |                     | campaign_contacts._acl.fields.notreported.write             | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoclicked.create       | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoclicked.license      | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoclicked.write        | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoopened.create        | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoopened.license       | str              |
+|                                  |                     | campaign_contacts._acl.fields.peoplewhoopened.write         | str              |
+|                                  |                     | campaign_contacts._acl.fields.postdate.create               | str              |
+|                                  |                     | campaign_contacts._acl.fields.postdate.license              | str              |
+|                                  |                     | campaign_contacts._acl.fields.postdate.write                | str              |
+|                                  |                     | campaign_contacts._acl.fields.sent.create                   | str              |
+|                                  |                     | campaign_contacts._acl.fields.sent.license                  | str              |
+|                                  |                     | campaign_contacts._acl.fields.sent.write                    | str              |
+|                                  |                     | campaign_contacts._acl.fields.social.create                 | str              |
+|                                  |                     | campaign_contacts._acl.fields.social.license                | str              |
+|                                  |                     | campaign_contacts._acl.fields.social.write                  | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalclicks.create            | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalclicks.license           | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalclicks.write             | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalopens.create             | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalopens.license            | str              |
+|                                  |                     | campaign_contacts._acl.fields.totalopens.write              | str              |
+|                                  |                     | campaign_contacts._acl.fields.unopened.create               | str              |
+|                                  |                     | campaign_contacts._acl.fields.unopened.license              | str              |
+|                                  |                     | campaign_contacts._acl.fields.unopened.write                | str              |
+|                                  |                     | campaign_contacts._acl.fields.unsubscribed.create           | str              |
+|                                  |                     | campaign_contacts._acl.fields.unsubscribed.license          | str              |
+|                                  |                     | campaign_contacts._acl.fields.unsubscribed.write            | str              |
+|                                  |                     | campaign_contacts.id                                        | str              |
+|                                  |                     | campaign_contacts.name                                      | str              |
+|                                  |                     | campaign_name                                               | str              |
+|                                  |                     | cookie_consent                                              | bool             |
+|                                  |                     | cookie_consent_received_on                                  | str              |
+|                                  |                     | created_by_link._acl._hash                                  | str              |
+|                                  |                     | created_by_link._acl.fields[]                               | array            |
+|                                  |                     | created_by_link.full_name                                   | str              |
+|                                  |                     | created_by_link.id                                          | str              |
+|                                  |                     | created_by_name                                             | str              |
+|                                  |                     | denorm_account_name                                         | str              |
+|                                  |                     | dnb_principal_id                                            | str              |
+|                                  |                     | dp_business_purpose[]                                       | array            |
+|                                  |                     | dp_consent_last_updated                                     | str              |
+|                                  |                     | dri_workflow_template_id                                    | str              |
+|                                  |                     | dri_workflow_template_link._acl._hash                       | str              |
+|                                  |                     | dri_workflow_template_link._acl.fields[]                    | array            |
+|                                  |                     | dri_workflow_template_link.id                               | str              |
+|                                  |                     | dri_workflow_template_link.name                             | str              |
+|                                  |                     | dri_workflow_template_name                                  | str              |
+|                                  |                     | email_addresses_non_primary                                 | str              |
+|                                  |                     | email_and_name1                                             | str              |
+|                                  |                     | external_user_id                                            | str              |
+|                                  |                     | geocode_status                                              | str              |
+|                                  |                     | hint_account_annual_revenue                                 | str              |
+|                                  |                     | hint_account_description                                    | str              |
+|                                  |                     | hint_account_facebook_handle                                | str              |
+|                                  |                     | hint_account_fiscal_year_end                                | str              |
+|                                  |                     | hint_account_founded_year                                   | str              |
+|                                  |                     | hint_account_industry                                       | str              |
+|                                  |                     | hint_account_location                                       | str              |
+|                                  |                     | hint_account_logo                                           | str              |
+|                                  |                     | hint_account_naics_code_lbl                                 | str              |
+|                                  |                     | hint_account_sic_code_label                                 | str              |
+|                                  |                     | hint_account_size                                           | str              |
+|                                  |                     | hint_account_twitter_handle                                 | str              |
+|                                  |                     | hint_account_website                                        | str              |
+|                                  |                     | hint_contact_pic                                            | str              |
+|                                  |                     | hint_education                                              | str              |
+|                                  |                     | hint_education_2                                            | str              |
+|                                  |                     | hint_facebook                                               | str              |
+|                                  |                     | hint_industry_tags                                          | str              |
+|                                  |                     | hint_job_2                                                  | str              |
+|                                  |                     | hint_phone_1                                                | str              |
+|                                  |                     | hint_phone_2                                                | str              |
+|                                  |                     | hint_photo                                                  | str              |
+|                                  |                     | hint_twitter                                                | str              |
+|                                  |                     | locked_fields[]                                             | array            |
+|                                  |                     | m_accept_status_fields                                      | str              |
+|                                  |                     | mkto_id                                                     | null             |
+|                                  |                     | mkto_lead_score                                             | str              |
+|                                  |                     | modified_by_name                                            | str              |
+|                                  |                     | modified_user_link._acl._hash                               | str              |
+|                                  |                     | modified_user_link._acl.fields[]                            | array            |
+|                                  |                     | modified_user_link.full_name                                | str              |
+|                                  |                     | modified_user_link.id                                       | str              |
+|                                  |                     | opportunity_role                                            | str              |
+|                                  |                     | opportunity_role_fields                                     | str              |
+|                                  |                     | perform_sugar_action                                        | bool             |
+|                                  |                     | picture                                                     | str              |
+|                                  |                     | portal_active                                               | bool             |
+|                                  |                     | portal_app                                                  | str              |
+|                                  |                     | portal_name                                                 | str              |
+|                                  |                     | portal_password                                             | bool             |
+|                                  |                     | portal_password1                                            | null             |
+|                                  |                     | portal_user_company_name                                    | str              |
+|                                  |                     | preferred_language                                          | str              |
+|                                  |                     | report_to_name                                              | str              |
+|                                  |                     | reports_to_link._acl._hash                                  | str              |
+|                                  |                     | reports_to_link._acl.fields.sf_lastactivity_default.create  | str              |
+|                                  |                     | reports_to_link._acl.fields.sf_lastactivity_default.license | str              |
+|                                  |                     | reports_to_link._acl.fields.sf_lastactivity_default.write   | str              |
+|                                  |                     | reports_to_link.id                                          | str              |
+|                                  |                     | reports_to_link.name                                        | str              |
+|                                  |                     | sync_contact                                                | bool             |
+|                                  |                     | team_count_link._acl._hash                                  | str              |
+|                                  |                     | team_count_link._acl.fields[]                               | array            |
+|                                  |                     | team_count_link.id                                          | str              |
+|                                  |                     | team_count_link.team_count                                  | str              |
+|                                  |                     | team_name[]                                                 | array            |
+|                                  |                     | team_name[].id                                              | object           |
+|                                  |                     | team_name[].name                                            | object           |
+|                                  |                     | team_name[].name_2                                          | object           |
+|                                  |                     | team_name[].primary                                         | object           |
+|                                  |                     | team_name[].selected                                        | object           |
