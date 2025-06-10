@@ -153,12 +153,6 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
-
-        authorization_cache[input_model.requestId] = {
-            "status": status,
-            "error_message": error_message,
-            "request_id": input_model.requestId,
-        }
         return IpaasAuthorizeFinalizeCapabilityAction.Output(
             status=status,
             redirect_uri=redirect_uri,
