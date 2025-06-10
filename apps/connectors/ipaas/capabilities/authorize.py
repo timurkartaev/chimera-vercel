@@ -9,8 +9,8 @@ from enum import StrEnum
 
 from apps.connectors.base.capability import (
     BaseAuthorizeCapability,
-    AuthorizeBeginCapabilityAction,
-    AuthorizeFinalizeCapabilityAction,
+    AuthorizeBegin,
+    AuthorizeFinalize,
 )
 from apps.connectors.base.connector import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
@@ -22,12 +22,12 @@ class AuthorizationStatus(StrEnum):
     CANCELLED = "cancelled"
 
 
-class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
+class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
     def execute(
         self,
-        input_model: AuthorizeBeginCapabilityAction.Input,
+        input_model: AuthorizeBegin.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeBeginCapabilityAction.Output:
+    ) -> AuthorizeBegin.Output:
         token = context.client.generate_token(
             user_id=input_model.customer_id, user_name=input_model.customer_name
         )
@@ -36,13 +36,14 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
             "integrationKey": integration_key,
             "token": token,
             "requestId": uuid.uuid4(),
+            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback",
         }
         with context.client.with_token_context(token) as session:
             response = session.get(f"integrations/{integration_key}")
             auth_method, auth_params = self.get_auth_type_and_params(response)
 
         auth_url = context.client.base_url + "/connection-popup?" + urlencode(params)
-        return AuthorizeBeginCapabilityAction.Output(
+        return AuthorizeBegin.Output(
             auth_url=auth_url,
             auth_method=auth_method,
             auth_params=auth_params,
@@ -94,12 +95,12 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBeginCapabilityAction):
         return auth_type
 
 
-class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalizeCapabilityAction):
+class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
     def execute(
         self,
-        input_model: AuthorizeFinalizeCapabilityAction.Input,
+        input_model: AuthorizeFinalize.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeFinalizeCapabilityAction.Output:
+    ) -> AuthorizeFinalize.Output:
         status = AuthorizationStatus.SUCCESS
         error_message = None
         if not input_model.code or not input_model.state:
