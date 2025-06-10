@@ -8,7 +8,7 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from apps.connectors.base.resolver import resolve_connector, resolve_global_capability
+from apps.connectors.base.resolver import resolve_capability_action, resolve_connector, resolve_global_capability
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 
@@ -336,3 +336,11 @@ def authorization_finalize(request, integration_name):
 
 def gong_iframe(request):
     return render(request, "gong_iframe.html")
+
+
+def authorization_get_status(request, integration_name, request_id):
+    result = resolve_capability_action(integration_name, "authorize", "get_status")(
+        {"request_id": request_id}
+    )
+
+    return JsonResponse(result)

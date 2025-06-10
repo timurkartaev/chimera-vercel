@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, Generic, Optional, Type, TypeVar, Union,
 from pydantic import (
     BaseModel,
     ConfigDict,
+    Field,
 )
 
 from apps.connectors.base.models import Integration

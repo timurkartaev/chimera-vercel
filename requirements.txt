@@ -8,4 +8,4 @@ django-cors-headers==4.7.0
 psycopg2-binary==2.9.10
 pydantic==2.11.5
 PyYAML==6.0.2
-cachetools==5.3.2
+cachetools==6.0.0
