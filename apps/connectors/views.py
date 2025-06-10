@@ -13,7 +13,6 @@ from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 
 
 def index(request):
-
     return JsonResponse(
         {
             "auth_url": "auth_url",
@@ -332,3 +331,7 @@ def authorization_finalize(request, integration_name):
     result = connector.authorize__finalize(query_params=query_params)
     print(result)
     return render(request, "ipaas/oauth_callback.html", result)
+
+
+def gong_iframe(request):
+    return render(request, "gong_iframe.html")
