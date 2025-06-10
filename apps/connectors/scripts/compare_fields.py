@@ -57,11 +57,11 @@ CONNECTIONS = {
         "contacts": "121593429805",
         "companies": "31115737391",
     },
-    # "Pipedrive": {
-    #     "deals": "1",
-    #     "persons": "1",
-    #     "organizations": "1",
-    # },
+    "Pipedrive": {
+        "deals": "1",
+        "persons": "1",
+        "organizations": "1",
+    },
     "SugarCRM": {
         "opportunities": "db3f6530-30dc-11f0-9285-fb295c038a96",
         "accounts": "d76d391a-30cc-11f0-a99c-1d1bbea39a2d",
