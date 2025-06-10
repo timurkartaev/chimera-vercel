@@ -8,7 +8,7 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from apps.connectors.base.resolver import resolve_connector
+from apps.connectors.base.resolver import resolve_connector, resolve_global_capability
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 
@@ -293,13 +293,13 @@ def get_customer_token(user):
 
 
 def list_integrations(request):
-    url = "https://api.integration.app/integrations"
-    headers = {
-        "accept": "application/json",
-        "Authorization": f"Bearer {get_customer_token(request.user)}",
-    }
-    response = requests.get(url, headers=headers)
-    return JsonResponse({"response": response.json()})
+    response = resolve_global_capability("global").list_integrations(
+        {
+            "customer_id": "682200e11226bbc540e52a0a",
+            "customer_name": "Timur Kartaev",
+        }
+    )
+    return JsonResponse({"response": response})
 
 
 def archive_connection(request, connection_id):

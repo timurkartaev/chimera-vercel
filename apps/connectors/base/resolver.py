@@ -1,4 +1,7 @@
 from apps.connectors.factories.connector_factory import get_connector
+from apps.connectors.base.loader import (
+    load_global_capability_class,
+)
 
 resolve_connector = get_connector
 
@@ -22,3 +25,8 @@ def resolve_capability(connector_name: str, capability: str):
     """
     connector = resolve_connector(connector_name)
     return connector.get_capability(capability)
+
+
+def resolve_global_capability(capability: str):
+    capability_class = load_global_capability_class(capability)
+    return capability_class()

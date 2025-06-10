@@ -6,6 +6,8 @@ from pydantic import (
     ConfigDict,
 )
 
+from apps.connectors.base.models import Integration
+
 TInput = TypeVar("TInput", bound=BaseModel)
 TOutput = TypeVar("TOutput", bound=BaseModel)
 
@@ -110,3 +112,20 @@ class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
     finalize: AuthorizeFinalize
     get_status: AuthorizeGetStatus
+
+
+# Info Capability
+
+
+class GetIntegrationDetails(BaseCapabilityAction):
+    class Input(BaseModel):
+        customer_id: str
+        customer_name: str
+        integration_id: str
+
+    class Output(BaseModel):
+        integration: Integration
+
+
+class BaseInfoCapability(BaseCapability):
+    get_integration_details: GetIntegrationDetails

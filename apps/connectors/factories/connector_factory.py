@@ -1,7 +1,6 @@
-from typing import Any, Callable, Dict, Optional
-import yaml
+from typing import Callable, Optional
 from pathlib import Path
-
+from apps.connectors.base.utils import load_yaml_file
 
 from apps.connectors.base.connector import Connector
 from apps.connectors.ipaas.connector import IpaasConnector
@@ -12,17 +11,6 @@ CONNECTOR_YAML_PATH = Path(__file__).resolve().parent.parent / "connector_defini
 CONNECTOR_TYPE_MAP = {
     "ipaas": IpaasConnector,
 }
-
-
-def load_yaml_file(path: Path) -> Optional[Dict[str, Any]]:
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f)
-    except FileNotFoundError:
-        return None
-    except yaml.YAMLError as e:
-        raise ValueError(f"Error parsing YAML file: {e}")
-
 
 def fallback_config_factory(name: str) -> ConnectorConfig:
     """

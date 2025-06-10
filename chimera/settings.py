@@ -172,6 +172,9 @@ IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS = int(
     os.environ.get("IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS", 1440)
 )
 IPAAS_BASE_URL = os.environ.get("IPAAS_BASE_URL", "https://api.integration.app")
+
+INTEGRATION_CONFIGS_DIR = os.environ.get("INTEGRATION_CONFIGS_DIR", APPS_DIR / "connectors" / "connector_definitions")
+
 # TODO: Allow all is not for production
 X_FRAME_OPTIONS = "ALLOWALL"
 BASE_URL = os.environ.get("BASE_URL", "https://chimera-vercel.vercel.app")

@@ -1,9 +1,10 @@
 import time
-from typing import Optional, Dict, Any
+from typing import List, Optional, Dict, Any
 
 import jwt
 import requests
 
+from apps.connectors.base.models import Integration
 from chimera import settings
 
 
@@ -121,3 +122,9 @@ class _ScopedIntegrationAppSession:
         response = requests.delete(url, headers=self._get_headers())
         response.raise_for_status()
         return response.json() if response.content else {}
+
+    def list_integrations(self, integration_names: List[str]) -> List[Integration]:
+        response = self.get(
+            "integrations", params={"search": "|".join(integration_names)}
+        )
+        return [Integration(**integration) for integration in response.get("items")]
