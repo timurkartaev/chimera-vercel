@@ -90,6 +90,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "chimera.gong_middleware.AllowFromGongMiddleware",
 ]
 
 ROOT_URLCONF = "chimera.urls"
