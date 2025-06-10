@@ -118,6 +118,7 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         context: "AuthorizeCapability",
     ) -> AuthorizeFinalize.Output:
         status = AuthorizationStatus.PENDING.value
+        error_message = None
         connection_id = getattr(input_model, "connectionId", None)
         error = getattr(input_model, "error", None)
         error_data = getattr(input_model, "errorData", None)
@@ -161,7 +162,7 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         return IpaasAuthorizeFinalizeCapabilityAction.Output(
             status=status,
             redirect_uri=redirect_uri,
-            error_message=None,
+            error_message=error_message,
         )
 
     def get_error_message(self, error: str, error_data: dict[str, Any]) -> str:
