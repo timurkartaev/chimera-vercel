@@ -7,13 +7,12 @@ from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 
-from apps.connectors.base.resolver import resolve_connector
+from apps.connectors.base.resolver import resolve_capability_action, resolve_connector
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 
 
 def index(request):
-
     return JsonResponse(
         {
             "auth_url": "auth_url",
@@ -330,5 +329,12 @@ def authorization_finalize(request, integration_name):
     connector = resolve_connector(integration_name)
     query_params = request.GET.dict()
     result = connector.authorize__finalize(query_params=query_params)
-    print(result)
     return render(request, "ipaas/oauth_callback.html", result)
+
+
+def authorization_get_status(request, integration_name, request_id):
+    result = resolve_capability_action(integration_name, "authorize", "get_status")(
+        {"request_id": request_id}
+    )
+
+    return JsonResponse(result)

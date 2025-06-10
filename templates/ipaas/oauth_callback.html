@@ -15,8 +15,9 @@
         if (window.opener) {
             window.opener.postMessage(payload, "*");
         }
-
-        window.location = redirectUri;
+        if (redirectUri) {
+            window.location = redirectUri;
+        }
     </script>
     <p>Finishing authentication, you can close this window...</p>
 </body>

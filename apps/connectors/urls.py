@@ -26,4 +26,9 @@ urlpatterns = [
         csrf_exempt(views.authorization_finalize),
         name="callback",
     ),
+    re_path(
+        r"^auth/(?P<integration_name>[-\w]+)/status/(?P<request_id>[-\w]+)?$",
+        views.authorization_get_status,
+        name="authorize_get_status",
+    ),
 ]

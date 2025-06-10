@@ -1,25 +1,29 @@
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 import uuid
 
 from django.conf import settings
 from urllib.parse import urlencode
 
-from pydantic import BaseModel
 from enum import StrEnum
 
 from apps.connectors.base.capability import (
+    AuthorizeGetStatus,
     BaseAuthorizeCapability,
     AuthorizeBegin,
     AuthorizeFinalize,
 )
 from apps.connectors.base.connector import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
+from cachetools import TTLCache
+
+authorization_cache = TTLCache(maxsize=100, ttl=5 * 60)
 
 
 class AuthorizationStatus(StrEnum):
     SUCCESS = "success"
     ERROR = "error"
     CANCELLED = "cancelled"
+    PENDING = "pending"
 
 
 class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
@@ -32,15 +36,26 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
             user_id=input_model.customer_id, user_name=input_model.customer_name
         )
         integration_key = context.config.info.slug
+        request_id = uuid.uuid4()
+        authorization_cache[request_id] = {
+            "status": AuthorizationStatus.PENDING,
+            "request_id": request_id,
+            "error_message": None,
+        }
         params = {
             "integrationKey": integration_key,
             "token": token,
-            "requestId": uuid.uuid4(),
-            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback",
+            "requestId": request_id,
         }
+
         with context.client.with_token_context(token) as session:
             response = session.get(f"integrations/{integration_key}")
             auth_method, auth_params = self.get_auth_type_and_params(response)
+
+        if auth_method == "credentials":
+            params["redirectUri"] = (
+                f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}"
+            )
 
         auth_url = context.client.base_url + "/connection-popup?" + urlencode(params)
         return AuthorizeBegin.Output(
@@ -103,20 +118,32 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
     ) -> AuthorizeFinalize.Output:
         status = AuthorizationStatus.SUCCESS
         error_message = None
-        if not input_model.code or not input_model.state:
+        if hasattr(input_model, "connectionId"):
+            return IpaasAuthorizeFinalizeCapabilityAction.Output(
+                status=AuthorizationStatus.SUCCESS.value,
+                redirect_uri=None,
+                error_message=None,
+            )
+        if input_model.error and input_model.error != "access_denied":
             status = AuthorizationStatus.ERROR
-            error_message = "Missing required parameters: 'code' or 'state'."
-        elif input_model.error and input_model.error != "access_denied":
-            status = AuthorizationStatus.ERROR
-            error_message = input_model.errore
+            error_message = input_model.error
         elif input_model.error == "access_denied":
             status = AuthorizationStatus.CANCELLED
             error_message = "User cancelled the authorization process."
+        elif not input_model.code or not input_model.state:
+            status = AuthorizationStatus.ERROR
+            error_message = "Missing required parameters: 'code' or 'state'."
 
         query_params = input_model.model_dump(exclude_none=True)
+        query_params.pop("redirectUri")
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
         )
+        authorization_cache[input_model.requestId] = {
+            "status": status,
+            "error_message": error_message,
+            "request_id": input_model.requestId,
+        }
         return IpaasAuthorizeFinalizeCapabilityAction.Output(
             status=status.value,
             redirect_uri=redirect_uri,
@@ -124,10 +151,27 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         )
 
 
-class AuthorizeCapability(BaseAuthorizeCapability):
+class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetStatus):
+    def execute(
+        self,
+        input_model: AuthorizeGetStatus.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeGetStatus.Output:
+        if input_model.request_id not in authorization_cache:
+            return IpaasAuthorizeGetStatusCapabilityAction.Output(
+                status=AuthorizationStatus.PENDING.value,
+                error_message=None,
+            )
+        return IpaasAuthorizeGetStatusCapabilityAction.Output(
+            status=authorization_cache[input_model.request_id]["status"],
+            error_message=authorization_cache[input_model.request_id]["error_message"],
+        )
 
+
+class AuthorizeCapability(BaseAuthorizeCapability):
     begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
     finalize = IpaasAuthorizeFinalizeCapabilityAction("Finalize Authorization")
+    get_status = IpaasAuthorizeGetStatusCapabilityAction("Get Authorization Status")
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config
