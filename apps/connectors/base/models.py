@@ -9,9 +9,8 @@ class IntegrationConnection(BaseModel):
     userId: Optional[str]
     createdAt: datetime
     updatedAt: datetime
-    lastActiveAt: datetime
+    lastActiveAt: Optional[datetime] = None
     disconnected: bool
-
 
 class Integration(BaseModel):
     id: str
