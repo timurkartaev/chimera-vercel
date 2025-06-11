@@ -15,4 +15,4 @@ def list_integrations(customer_id: str, customer_name: str):
             )
             .get("integrations", [])
         )
-    return integrations
+    return {"items": integrations}

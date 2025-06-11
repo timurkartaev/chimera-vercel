@@ -1,8 +1,7 @@
 from apps.connectors.base.capability import BaseCapability
 from apps.connectors.base.loader import load_capability_class
 from types import MappingProxyType
-from typing import Any, List, Optional, Dict, Type
-from pydantic import BaseModel, Field
+from typing import Any, List, Dict, Type
 from apps.connectors.base.capabilities import BaseAuthorizeCapability
 
 MissingDependency = object()
