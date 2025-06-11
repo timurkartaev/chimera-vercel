@@ -38,7 +38,7 @@ urlpatterns = [
         csrf_exempt(views.authorization_finalize),
         name="callback",
     ),
-    path("gong-iframe/", views.gong_iframe, name="gong_iframe"),
+    path("gong-iframe", views.gong_iframe, name="gong_iframe"),
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/status/(?P<request_id>[-\w]+)?$",
         views.authorization_get_status,
