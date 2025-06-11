@@ -5,8 +5,12 @@ from datetime import datetime
 
 class IntegrationConnection(BaseModel):
     id: str
-    state: Optional[str] = None
-    lastActiveAt: Optional[datetime] = None
+    state: str  # e.g., 'READY', 'ERROR', etc.
+    userId: Optional[str]
+    createdAt: datetime
+    updatedAt: datetime
+    lastActiveAt: datetime
+    disconnected: bool
 
 
 class Integration(BaseModel):
