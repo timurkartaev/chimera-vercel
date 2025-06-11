@@ -7,13 +7,13 @@ from urllib.parse import urlencode
 
 from enum import StrEnum
 
-from apps.connectors.base.capability import (
+from apps.connectors.base.capabilities import (
     AuthorizeGetStatus,
     BaseAuthorizeCapability,
     AuthorizeBegin,
     AuthorizeFinalize,
 )
-from apps.connectors.base.connector import ConnectorConfig
+from apps.connectors.base.models import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
 from cachetools import TTLCache
 

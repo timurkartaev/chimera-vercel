@@ -1,5 +1,14 @@
 import importlib
 
+_BACKEND_TO_CAPABILITIES = {
+    "ipaas": "ipaas.capabilities",
+}
+APPS_MODULE_PATH = "apps.connectors"
+BACKEND_TO_CAPABILITIES = {
+    key: f"{APPS_MODULE_PATH}.{value}"
+    for key, value in _BACKEND_TO_CAPABILITIES.items()
+}
+
 
 def load_capability_class_from_module(module_path: str, capability_name: str):
     try:
@@ -31,14 +40,22 @@ def load_capability_class(capability_name: str, connector_type: str):
         Capitalized capability name + 'Capability'
         e.g. 'AuthCapability', 'SearchCapability'
     """
-    import importlib
 
     # Compose module path
-    module_path = f"apps.connectors.{connector_type}.capabilities.{capability_name}"
+    module_path = f"{APPS_MODULE_PATH}.{connector_type}.capabilities.{capability_name}"
 
     return load_capability_class_from_module(module_path, capability_name)
 
 
 def load_global_capability_class(capability_name: str = "global"):
-    module_path = f"apps.connectors.base.global_capability"
+    module_path = f"{APPS_MODULE_PATH}.base.global_capability"
     return load_capability_class_from_module(module_path, capability_name)
+
+
+def load_capability_classes(capability_name: str):
+    capability_classes = {}
+    for backend, capabilities_folder in BACKEND_TO_CAPABILITIES.items():
+        capability_classes[backend] = load_capability_class_from_module(
+            f"{capabilities_folder}.{capability_name}", capability_name
+        )
+    return capability_classes

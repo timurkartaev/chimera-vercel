@@ -8,10 +8,10 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from apps.connectors.base.resolver import resolve_capability_action, resolve_connector, resolve_global_capability
+from apps.connectors.base.resolver import resolve_capability_action, resolve_connector
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
-
+from apps.connectors.base.global_actions import list_integrations as _list_integrations
 
 def index(request):
     return JsonResponse(
@@ -293,11 +293,9 @@ def get_customer_token(user):
 
 
 def list_integrations(request):
-    response = resolve_global_capability("global").list_integrations(
-        {
-            "customer_id": "682200e11226bbc540e52a0a",
-            "customer_name": "Timur Kartaev",
-        }
+    response = _list_integrations(
+        customer_id="682200e11226bbc540e52a0a",
+        customer_name="Timur Kartaev",
     )
     return JsonResponse({"response": response})
 

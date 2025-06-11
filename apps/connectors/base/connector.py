@@ -3,7 +3,7 @@ from apps.connectors.base.loader import load_capability_class
 from types import MappingProxyType
 from typing import Any, List, Optional, Dict, Type
 from pydantic import BaseModel, Field
-from apps.connectors.base.capability import BaseAuthorizeCapability
+from apps.connectors.base.capabilities import BaseAuthorizeCapability
 
 MissingDependency = object()
 
@@ -88,81 +88,3 @@ class Connector:
         This method should be implemented by the specific connector.
         """
         return self.authorize.finalize(query_params)
-
-
-# --- Info Capability ---
-class InfoCapabilityConfig(BaseModel):
-    name: str
-    slug_: Optional[str] = Field(default=None, alias="slug")
-    description: Optional[str] = None
-    version: Optional[str] = None
-    author: Optional[str] = None
-    homepage_url: Optional[str] = None
-
-    @property
-    def slug(self) -> str:
-        if self.slug_:
-            return self.slug_
-        return self.name.lower().replace(" ", "-").replace("_", "-").replace(".", "-")
-
-
-# --- Localization Capability ---
-class LocalizationEntry(BaseModel):
-    key: str
-    translations: Dict[str, str]  # e.g., {"en": "Name", "fr": "Nom"}
-
-
-class LocalizationCapabilityConfig(BaseModel):
-    entries: List[LocalizationEntry]
-
-
-class AuthorizeCapabilityConfig(BaseModel):
-    auth_method: str
-    auth_params: Optional[List[Dict[str, Any]]] = None
-    oauth2: Optional[Dict[str, Any]] = (
-        None  # e.g., {"client_id": "xxx", "redirect_uri": "https://example.com/callback"}
-    )
-
-
-# --- Entity Capability ---
-class EntityField(BaseModel):
-    name: str
-    type: str  # e.g., "string", "number", "date"
-    required: Optional[bool] = False
-    description: Optional[str] = None
-    # Add validations, formats, etc. as needed
-
-
-class EntitySchema(BaseModel):
-    entity_type: str  # e.g., "deal", "contact"
-    display_name: Optional[str] = None
-    fields: List[EntityField]
-
-
-class EntityCapabilityConfig(BaseModel):
-    entities: List[EntitySchema]
-
-
-# --- Action Capability ---
-class ActionConfig(BaseModel):
-    action_id: str
-    entities: List[str]
-
-
-class ActionCapabilityConfig(BaseModel):
-    actions: List[ActionConfig]
-
-
-# --- Root config schema ---
-class ConnectorConfig(BaseModel):
-    # authorize section could also be loaded from alias  "authentication"
-    type: str
-    capabilities: List[str]
-    info: Optional[InfoCapabilityConfig] = None
-    localization: Optional[LocalizationCapabilityConfig] = None
-    authorize: Optional[AuthorizeCapabilityConfig] = Field(
-        default=None, alias="authentication"
-    )
-    entity: Optional[EntityCapabilityConfig] = None
-    # object capability does not require config
-    actions: Optional[ActionCapabilityConfig] = None

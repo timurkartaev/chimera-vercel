@@ -128,3 +128,10 @@ class _ScopedIntegrationAppSession:
             "integrations", params={"search": "|".join(integration_names)}
         )
         return [Integration(**integration) for integration in response.get("items")]
+
+
+integration_appi_client = IntegrationAppClient()
+
+
+def get_integration_app_client() -> IntegrationAppClient:
+    return integration_appi_client

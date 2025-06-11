@@ -1,6 +1,10 @@
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Optional
+from django.conf import settings
 import yaml
+
+from apps.connectors.base.models import ConnectorConfig
 
 
 def load_yaml_file(path: Path) -> Optional[Dict[str, Any]]:
@@ -11,3 +15,18 @@ def load_yaml_file(path: Path) -> Optional[Dict[str, Any]]:
         return None
     except yaml.YAMLError as e:
         raise ValueError(f"Error parsing YAML file: {e}")
+
+
+@lru_cache(maxsize=10)
+def get_integration_configs(backend: Optional[str] = None):
+    configs = {}
+    config_dir: Path = settings.INTEGRATION_CONFIGS_DIR
+
+    for config_base_path in config_dir.iterdir():
+        file_path = config_base_path / "config.yaml"
+        if file_path.suffix in [".yaml", ".yml"] and file_path.is_file():
+            config_data = load_yaml_file(file_path)
+            if backend is None or config_data.get("type") == backend:
+                configs[config_base_path.stem] = config_data
+
+    return [ConnectorConfig(**config) for config in configs.values()]

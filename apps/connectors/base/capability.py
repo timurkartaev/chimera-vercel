@@ -1,13 +1,18 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Dict, Generic, Optional, Type, TypeVar, Union, cast
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generic,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from pydantic import (
     BaseModel,
-    ConfigDict,
-    Field,
 )
 
-from apps.connectors.base.models import Integration
 
 TInput = TypeVar("TInput", bound=BaseModel)
 TOutput = TypeVar("TOutput", bound=BaseModel)
@@ -70,63 +75,3 @@ class BaseCapability(ABC):
 
     def get_action(self, name: str) -> BaseCapabilityAction:
         return self._actions[name]
-
-
-# Authorize Capability
-
-
-class AuthorizeBegin(BaseCapabilityAction):
-    class Input(BaseModel):
-        customer_id: str
-        customer_name: str
-
-    class Output(BaseModel):
-        auth_url: str
-        auth_method: str
-        auth_params: list[dict[str, Any]]
-
-
-class AuthorizeFinalize(BaseCapabilityAction):
-    class Input(BaseModel):
-        code: Optional[str] = None
-        state: Optional[str] = None
-        error: Optional[str] = None
-
-        model_config = ConfigDict(extra="allow")
-
-    class Output(BaseModel):
-        status: str
-        redirect_uri: Optional[str] = None
-        error_message: Optional[str] = None
-
-
-class AuthorizeGetStatus(BaseCapabilityAction):
-    class Input(BaseModel):
-        request_id: str
-
-    class Output(BaseModel):
-        status: str
-        error_message: Optional[str] = None
-
-
-class BaseAuthorizeCapability(BaseCapability):
-    begin: AuthorizeBegin
-    finalize: AuthorizeFinalize
-    get_status: AuthorizeGetStatus
-
-
-# Info Capability
-
-
-class GetIntegrationDetails(BaseCapabilityAction):
-    class Input(BaseModel):
-        customer_id: str
-        customer_name: str
-        integration_id: str
-
-    class Output(BaseModel):
-        integration: Integration
-
-
-class BaseInfoCapability(BaseCapability):
-    get_integration_details: GetIntegrationDetails

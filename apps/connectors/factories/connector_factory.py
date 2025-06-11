@@ -4,7 +4,7 @@ from apps.connectors.base.utils import load_yaml_file
 
 from apps.connectors.base.connector import Connector
 from apps.connectors.ipaas.connector import IpaasConnector
-from apps.connectors.base.connector import ConnectorConfig
+from apps.connectors.base.models import ConnectorConfig
 
 
 CONNECTOR_YAML_PATH = Path(__file__).resolve().parent.parent / "connector_definitions"
