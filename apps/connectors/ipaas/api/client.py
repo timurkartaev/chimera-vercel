@@ -49,7 +49,7 @@ class IntegrationAppClient:
         user_name: str,
         fields: Optional[Dict[str, Any]] = None,
         expires_in: int = settings.IPAAS_WORKSPACE_TOKEN_EXPIRATION_SECONDS,
-        use_cache: bool = True,
+        use_cache: bool = False,
     ):
         cache_key = f"user:{user_id}"
         if use_cache and cache_key in self._token_cache:
