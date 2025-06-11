@@ -194,6 +194,19 @@ class SchemaHelper:
             return ref_coll.get("key", "")
         return ""
 
+    @staticmethod
+    def get_readonly_from_schema(schema, path):
+        parts = path.replace("[]", ".items").split(".")
+        node = schema
+        for part in parts:
+            if part == "items":
+                node = node.get("items", {})
+            elif "properties" in node:
+                node = node["properties"].get(part, {})
+            else:
+                node = {}
+        return node.get("readonly", None)
+
 
 class MarkdownReport:
     @staticmethod
@@ -208,6 +221,16 @@ class MarkdownReport:
         used_schema = set()
         used_object = set()
         for field in schema_fields:
+            readonly = SchemaHelper.get_readonly_from_schema(
+                data_collection_schema.get("fieldsSchema", {}), field
+            )
+            # If the readonly property is not present, leave it empty
+            if readonly is True:
+                readonly_str = "true"
+            elif readonly is False:
+                readonly_str = "false"
+            else:
+                readonly_str = ""
             if field in object_fields_set:
                 title = SchemaHelper.get_title_from_schema(
                     data_collection_schema.get("fieldsSchema", {}), field
@@ -231,6 +254,7 @@ class MarkdownReport:
                         title,
                         field,
                         dtype_schema,
+                        readonly_str,
                         field,
                         dtype_object,
                         possible_values,
@@ -241,6 +265,15 @@ class MarkdownReport:
                 used_object.add(field)
         for field in schema_fields:
             if field not in used_schema:
+                readonly = SchemaHelper.get_readonly_from_schema(
+                    data_collection_schema.get("fieldsSchema", {}), field
+                )
+                if readonly is True:
+                    readonly_str = "true"
+                elif readonly is False:
+                    readonly_str = "false"
+                else:
+                    readonly_str = ""
                 title = SchemaHelper.get_title_from_schema(
                     data_collection_schema.get("fieldsSchema", {}), field
                 )
@@ -261,6 +294,7 @@ class MarkdownReport:
                         title,
                         marked_field,
                         dtype_schema,
+                        readonly_str,
                         "",
                         "",
                         possible_values,
@@ -275,6 +309,7 @@ class MarkdownReport:
                         "",
                         "",
                         "",
+                        "",
                         field,
                         SchemaHelper.get_type_from_object(
                             crm_object["output"]["fields"], field
@@ -285,20 +320,21 @@ class MarkdownReport:
                 )
                 used_object.add(field)
         md_lines = [
-            "| Entity Schema Title | Entity Schema Fields | Entity Schema Types | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types |",
-            "|---------------------|----------------------|---------------------|-----------------|----------------------|--------------------------|------------------|",
+            "| Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types |",
+            "|---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|",
         ]
         for (
             title,
             left,
             left_type,
+            readonly_str,
             right,
             right_type,
             possible_values,
             reference_collection,
         ) in aligned:
             md_lines.append(
-                f"| {title or ''} | {left or ''} | {left_type or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} |"
+                f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} |"
             )
         return md_lines
 
@@ -388,4 +424,5 @@ class FieldComparer:
 
 
 if __name__ == "__main__":
+    # print(get_customer_token(""))
     FieldComparer.run()
