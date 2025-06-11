@@ -37,7 +37,7 @@
 |  | following | boolean |  |  |  | following | bool |
 |  | forecasted_likely | string |  |  |  | forecasted_likely | str |
 |  | geocode_status | string |  |  |  | geocode_status | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | included_revenue_line_items | integer |  |  |  | included_revenue_line_items | int |
 |  | is_escalated | boolean |  |  |  | is_escalated | bool |
 |  | lead_source | string |  |  |  | lead_source | str |
@@ -196,7 +196,7 @@
 |  | following | boolean |  |  |  | following | bool |
 |  | geocode_status | string |  |  |  | geocode_status | str |
 |  | googleplus | string |  |  |  | googleplus | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | industry | string |  |  |  | industry | str |
 |  | invalid_email | boolean |  |  |  | invalid_email | bool |
 |  | is_escalated | boolean |  |  |  | is_escalated | bool |
@@ -426,7 +426,7 @@
 |  | following | boolean |  |  |  | following | bool |
 |  | full_name | string |  |  |  | full_name | str |
 |  | googleplus | string |  |  |  | googleplus | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | invalid_email | boolean |  |  |  | invalid_email | bool |
 |  | last_name | string |  |  |  | last_name | str |
 |  | latitude_c | string |  |  |  | latitude_c | str |

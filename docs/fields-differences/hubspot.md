@@ -796,7 +796,7 @@
 | City | city | string |  |  |  | city | str |
 | Close Date | closedate | string |  |  |  | closedate | null |
 | Country/Region | country | string |  |  |  | country | null |
-| Create Date | createdate | string |  |  |  | createdate | str |
+| Create Date | createdate | string | true |  |  | createdate | str |
 | Days to Close | days_to_close | number |  |  |  | days_to_close | null |
 | Description | description | string |  |  |  | description | null |
 | Company Domain Name | domain | string |  |  |  | domain | str |
@@ -881,7 +881,7 @@
 | last sales activity date old | hs_last_sales_activity_date | string |  |  |  | hs_last_sales_activity_date | null |
 | Last Engagement Date | hs_last_sales_activity_timestamp | string |  |  |  | hs_last_sales_activity_timestamp | null |
 | Last Engagement Type | hs_last_sales_activity_type | string |  | `Company Website Visit`, `Document View`, `Email Click`, `Email Open`, `Email Reply`, `Form Submitted`, `Meeting Booked`, `Website Visit` |  | hs_last_sales_activity_type | null |
-| Last Modified Date | hs_lastmodifieddate | string |  |  |  | hs_lastmodifieddate | str |
+| Last Modified Date | hs_lastmodifieddate | string | true |  |  | hs_lastmodifieddate | str |
 | Latest create date of active subscriptions | hs_latest_createdate_of_active_subscriptions | string |  |  |  | hs_latest_createdate_of_active_subscriptions | null |
 | Latest meeting activity | hs_latest_meeting_activity | string |  |  |  | hs_latest_meeting_activity | null |
 | Lead Status | hs_lead_status | string |  | `New`, `Open`, `In Progress`, `Open Deal`, `Unqualified`, `Attempted to Contact`, `Connected`, `Bad Timing` |  | hs_lead_status | null |
@@ -952,7 +952,7 @@
 | Company name | name | string |  |  |  | name | str |
 | natphone | natphone | string |  |  |  | natphone | null |
 | Last Contacted | notes_last_contacted | string |  |  |  | notes_last_contacted | null |
-| Last Activity Date | notes_last_updated | string |  |  |  | notes_last_updated | str |
+| Last Activity Date | notes_last_updated | string | true |  |  | notes_last_updated | str |
 | Next Activity Date | notes_next_activity_date | string |  |  |  | notes_next_activity_date | null |
 | Number of Associated Contacts | num_associated_contacts | number |  |  |  | num_associated_contacts | str |
 | Number of Associated Deals | num_associated_deals | number |  |  |  | num_associated_deals | str |

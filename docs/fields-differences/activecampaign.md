@@ -14,7 +14,7 @@
 |  | description | string |  |  |  | description | str |
 |  | edate | string |  |  |  | edate | str |
 |  | group | string |  |  |  | group | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | isDisabled | boolean |  |  |  | isDisabled | bool |
 |  | links | object |  |  |  | links | object |
 |  | links.account | string |  |  |  | links.account | str |
@@ -78,7 +78,7 @@
 |  | geoIps | array |  |  |  | geoIps | array |
 |  | gravatar | string |  |  |  | gravatar | str |
 |  | hash | string |  |  |  | hash | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | ip | string |  |  |  | ip | str |
 |  | lastName | string |  |  |  | lastName | str |
 |  | mpp_tracking | string |  |  |  | mpp_tracking | str |
@@ -130,7 +130,7 @@
 |---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|
 |  | accountUrl | string |  |  |  | accountUrl | null |
 |  | createdTimestamp | string |  |  |  | createdTimestamp | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | name | string |  |  |  | name | str |
 |  | owner | string |  |  | users | owner | str |
 |  | updatedTimestamp | string |  |  |  | updatedTimestamp | str |

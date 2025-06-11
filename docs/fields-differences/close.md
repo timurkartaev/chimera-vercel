@@ -14,7 +14,7 @@
 |  | date_updated | string |  |  |  | date_updated | str |
 |  | date_won | string |  |  |  | date_won | str |
 |  | expected_value | integer |  |  |  | expected_value | int |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 | Lead | lead_id | string |  |  | lead | lead_id | str |
 |  | lead_name | string |  |  |  | lead_name | str |
 |  | note | string |  |  |  | note | str |
@@ -54,7 +54,7 @@
 |  | date_updated | string |  |  |  | date_updated | str |
 |  | description | string |  |  |  | description | str |
 |  | html_url | string |  |  |  | html_url | str |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 |  | name | string |  |  |  | name | str |
 |  | status_id | string |  |  | lead-status | status_id | str |
 |  | updated_by | string |  |  | user | updated_by | str |
@@ -148,7 +148,7 @@
 |  | date_updated | string |  |  |  | date_updated | str |
 |  | emails | array |  |  |  | emails | array |
 |  | emails[] | object |  |  |  | emails[] | array |
-|  | id | string |  |  |  | id | str |
+|  | id | string | true |  |  | id | str |
 | Lead | lead_id | string |  |  | lead | lead_id | str |
 |  | name | string |  |  |  | name | str |
 |  | organization_id | string |  |  |  | organization_id | str |

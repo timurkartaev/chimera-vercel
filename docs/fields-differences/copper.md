@@ -81,7 +81,7 @@
 |  | date_created | integer |  |  |  | date_created | int |
 |  | date_modified | integer |  |  |  | date_modified | int |
 |  | details | string |  |  |  | details | null |
-|  | id | integer |  |  |  | id | int |
+|  | id | integer | true |  |  | id | int |
 |  | interaction_count | number |  |  |  | interaction_count | int |
 | Loss Reason | loss_reason_id | number |  |  | opportunity-loss-reasons | loss_reason_id | null |
 |  | monetary_unit | string |  |  |  | monetary_unit | str |
@@ -146,7 +146,7 @@
 | FavoriteFood | <span style='color:red'>***custom_391554***</span> | string |  |  |  |  |  |
 | Irina's Custom Field | <span style='color:red'>***custom_671286***</span> | string |  |  |  |  |  |
 |  | <span style='color:red'>***followed***</span> | integer |  | `Not followed`, `Followed` |  |  |  |
-|  | <span style='color:red'>***id***</span> | integer |  |  |  |  |  |
+|  | <span style='color:red'>***id***</span> | integer | true |  |  |  |  |
 |  | <span style='color:red'>***maximum_created_date***</span> | integer |  |  |  |  |  |
 |  | <span style='color:red'>***maximum_interaction_count***</span> | number |  |  |  |  |  |
 |  | <span style='color:red'>***maximum_interaction_date***</span> | integer |  |  |  |  |  |
@@ -185,7 +185,7 @@
 |  | details | string |  |  |  | details | null |
 | Email Details | email | object |  |  |  | email | null |
 |  | first_name | string |  |  |  | first_name | str |
-|  | id | integer |  |  |  | id | int |
+|  | id | integer | true |  |  | id | int |
 |  | last_name | string |  |  |  | last_name | str |
 |  | monetary_unit | string |  |  |  | monetary_unit | null |
 |  | monetary_value | number |  |  |  | monetary_value | null |

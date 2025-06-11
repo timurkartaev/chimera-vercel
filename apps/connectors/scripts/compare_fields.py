@@ -205,7 +205,7 @@ class SchemaHelper:
                 node = node["properties"].get(part, {})
             else:
                 node = {}
-        return node.get("readonly", None)
+        return node.get("readOnly", None)
 
 
 class MarkdownReport:
