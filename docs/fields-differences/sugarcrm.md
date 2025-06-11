@@ -46,7 +46,7 @@
 |  | mkto_sync | boolean |  |  |  | mkto_sync | bool |
 |  | modified_user_id | string |  |  | users | modified_user_id | str |
 |  | my_favorite | boolean |  |  |  | my_favorite | bool |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 |  | next_step | string |  |  |  | next_step | str |
 |  | opportunity_type | string |  |  |  | opportunity_type | str |
 |  | probability | integer |  |  |  | probability | int |
@@ -204,7 +204,7 @@
 |  | longitude_c | string |  |  |  | longitude_c | str |
 |  | modified_user_id | string |  |  |  | modified_user_id | str |
 |  | my_favorite | boolean |  |  |  | my_favorite | bool |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 |  | next_renewal_date | string |  |  |  | next_renewal_date | str |
 |  | ownership | string |  |  |  | ownership | str |
 |  | parent_id | string |  |  |  | parent_id | str |

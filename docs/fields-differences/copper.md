@@ -86,10 +86,10 @@
 | Loss Reason | loss_reason_id | number |  |  | opportunity-loss-reasons | loss_reason_id | null |
 |  | monetary_unit | string |  |  |  | monetary_unit | str |
 |  | monetary_value | number |  |  |  | monetary_value | int |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 | Pipeline | pipeline_id | number |  |  | opportunity-pipelines | pipeline_id | int |
 | Pipeline Stage | pipeline_stage_id | number |  |  | opportunity-pipeline-stages | pipeline_stage_id | int |
-| Primary Contact | primary_contact_id | number |  |  | people | primary_contact_id | int |
+| Primary Contact | *primary_contact_id | number |  |  | people | primary_contact_id | int |
 | Priority | priority | string |  |  |  | priority | str |
 | Status | status | string |  |  |  | status | str |
 |  | tags | array |  |  |  | tags | array |
@@ -126,7 +126,7 @@
 |  | details | string |  |  |  | details | null |
 |  | email_domain | string |  |  |  | email_domain | null |
 |  | email_domains | string |  |  |  | email_domains | null |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 |  | phone_numbers | array |  |  |  | phone_numbers | array |
 |  | phone_numbers[] | object |  |  |  | phone_numbers[] | array |
 |  | phone_numbers[].category | string |  |  |  | phone_numbers[].category | object |
@@ -189,7 +189,7 @@
 |  | last_name | string |  |  |  | last_name | str |
 |  | monetary_unit | string |  |  |  | monetary_unit | null |
 |  | monetary_value | number |  |  |  | monetary_value | null |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 |  | phone_numbers | array |  |  |  | phone_numbers | array |
 |  | phone_numbers[] | object |  |  |  | phone_numbers[] | array |
 |  | socials | array |  |  |  | socials | array |

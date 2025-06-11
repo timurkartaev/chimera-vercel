@@ -348,7 +348,7 @@
 |  | stage_id | integer |  |  | stages | stage_id | int |
 |  | stage_order_nr | integer |  |  |  | stage_order_nr | int |
 | Status | status | string |  |  |  | status | str |
-| Title | title | string |  |  |  | title | str |
+| Title | *title | string |  |  |  | title | str |
 | Activities to do | undone_activities_count | number |  |  |  | undone_activities_count | int |
 | Update time | update_time | string |  |  |  | update_time | str |
 | Owner | user_id | integer |  |  | users | user_id | int |
@@ -724,7 +724,7 @@
 | Last activity date | last_activity_date | string |  |  |  | last_activity_date | str |
 |  | last_activity_id | integer |  |  | activities | last_activity_id | int |
 | Lost deals | lost_deals_count | number |  |  |  | lost_deals_count | int |
-| Name | name | string |  |  |  | name | str |
+| Name | *name | string |  |  |  | name | str |
 | Next activity date | next_activity_date | string |  |  |  | next_activity_date | null |
 |  | next_activity_id | integer |  |  | activities | next_activity_id | null |
 |  | next_activity_time | string |  |  |  | next_activity_time | null |

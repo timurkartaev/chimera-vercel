@@ -207,6 +207,12 @@ class SchemaHelper:
                 node = {}
         return node.get("readOnly", None)
 
+    @staticmethod
+    def get_required_fields(data_collection_schema):
+        # Returns a set of required field paths from data_collection_schema['create']['requiredFields']
+        required = data_collection_schema.get("create", {}).get("requiredFields", [])
+        return set(required)
+
 
 class MarkdownReport:
     @staticmethod
@@ -220,17 +226,19 @@ class MarkdownReport:
         aligned = []
         used_schema = set()
         used_object = set()
+        required_fields = SchemaHelper.get_required_fields(data_collection_schema)
         for field in schema_fields:
             readonly = SchemaHelper.get_readonly_from_schema(
                 data_collection_schema.get("fieldsSchema", {}), field
             )
-            # If the readonly property is not present, leave it empty
             if readonly is True:
                 readonly_str = "true"
             elif readonly is False:
                 readonly_str = "false"
             else:
                 readonly_str = ""
+            # Mark required fields with *
+            display_field = f"*{field}" if field in required_fields else field
             if field in object_fields_set:
                 title = SchemaHelper.get_title_from_schema(
                     data_collection_schema.get("fieldsSchema", {}), field
@@ -252,7 +260,7 @@ class MarkdownReport:
                 aligned.append(
                     (
                         title,
-                        field,
+                        display_field,
                         dtype_schema,
                         readonly_str,
                         field,
@@ -274,6 +282,7 @@ class MarkdownReport:
                     readonly_str = "false"
                 else:
                     readonly_str = ""
+                display_field = f"*{field}" if field in required_fields else field
                 title = SchemaHelper.get_title_from_schema(
                     data_collection_schema.get("fieldsSchema", {}), field
                 )
@@ -288,7 +297,7 @@ class MarkdownReport:
                         data_collection_schema.get("fieldsSchema", {}), field
                     )
                 )
-                marked_field = f"<span style='color:red'>***{field}***</span>"
+                marked_field = f"<span style='color:red'>***{display_field}***</span>"
                 aligned.append(
                     (
                         title,

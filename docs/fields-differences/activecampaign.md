@@ -9,7 +9,7 @@
 |  | activitycount | string |  |  |  | activitycount | str |
 |  | cdate | string |  |  |  | cdate | str |
 |  | contact | string |  |  | contacts | contact | str |
-|  | currency | string |  |  |  | currency | str |
+|  | *currency | string |  |  |  | currency | str |
 |  | customerAccount | string |  |  | accounts | customerAccount | null |
 |  | description | string |  |  |  | description | str |
 |  | edate | string |  |  |  | edate | str |
@@ -36,12 +36,12 @@
 |  | nextdealid | string |  |  | deals | nextdealid | str |
 |  | nexttaskid | string |  |  | deal-tasks | nexttaskid | str |
 |  | organization | string |  |  | accounts | organization | null |
-|  | owner | string |  |  | users | owner | str |
+|  | *owner | string |  |  | users | owner | str |
 |  | percent | string |  |  |  | percent | str |
 |  | stage | string |  |  | deal-stages | stage | str |
 |  | status | string |  | `Open`, `Won`, `Lost` |  | status | str |
 |  | title | string |  |  |  | title | str |
-|  | value | string |  |  |  | value | str |
+|  | *value | string |  |  |  | value | str |
 |  | winProbability | integer |  |  |  | winProbability | null |
 |  | winProbabilityMdate | string |  |  |  | winProbabilityMdate | str |
 |  |  |  |  |  |  | hash | str |
@@ -70,7 +70,7 @@
 |  | deleted | string |  |  |  | deleted | str |
 |  | deleted_at | string |  |  |  | deleted_at | null |
 |  | edate | string |  |  |  | edate | str |
-|  | email | string |  |  |  | email | str |
+|  | *email | string |  |  |  | email | str |
 |  | email_domain | string |  |  |  | email_domain | str |
 |  | email_local | string |  |  |  | email_local | str |
 |  | fieldValues | array |  |  |  | fieldValues | array |
@@ -131,7 +131,7 @@
 |  | accountUrl | string |  |  |  | accountUrl | null |
 |  | createdTimestamp | string |  |  |  | createdTimestamp | str |
 |  | id | string | true |  |  | id | str |
-|  | name | string |  |  |  | name | str |
+|  | *name | string |  |  |  | name | str |
 |  | owner | string |  |  | users | owner | str |
 |  | updatedTimestamp | string |  |  |  | updatedTimestamp | str |
 |  | <span style='color:red'>***contactCount***</span> | string |  |  |  |  |  |

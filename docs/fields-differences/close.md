@@ -15,7 +15,7 @@
 |  | date_won | string |  |  |  | date_won | str |
 |  | expected_value | integer |  |  |  | expected_value | int |
 |  | id | string | true |  |  | id | str |
-| Lead | lead_id | string |  |  | lead | lead_id | str |
+| Lead | *lead_id | string |  |  | lead | lead_id | str |
 |  | lead_name | string |  |  |  | lead_name | str |
 |  | note | string |  |  |  | note | str |
 |  | organization_id | string |  |  |  | organization_id | str |
