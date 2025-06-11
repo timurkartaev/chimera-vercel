@@ -55,7 +55,7 @@
             const context = location.search;
             const urlParams = new URLSearchParams(context);
             const entityType = urlParams.get('resource') || 'deal'; // Default to 'opportunity' for Gong
-            const entityId = urlParams.get('selectedIds');
+            const entityId = urlParams.get('selectedIds') || '1'; // Default to '1' if no ID is provided
 
             if (!entityType || !entityId) {
                 console.error('Missing entity type or ID');
