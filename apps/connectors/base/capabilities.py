@@ -1,8 +1,8 @@
-from typing import Any, List, Optional, TYPE_CHECKING
+from typing import Any, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 from apps.connectors.base.capability import BaseCapability, BaseCapabilityAction
-from apps.connectors.base.models import Integration
+from apps.connectors.base.models import Identity, Integration, IntegrationConnection
 from apps.connectors.base.utils import get_integration_configs
 from apps.connectors.base.models import ConnectorConfig
 
@@ -32,7 +32,7 @@ class AuthorizeFinalize(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
-class AuthorizeGetStatus(BaseCapabilityAction):
+class AuthorizeGetAuthFlowStatus(BaseCapabilityAction):
     class Input(BaseModel):
         request_id: str
 
@@ -41,10 +41,30 @@ class AuthorizeGetStatus(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
+class AuthorizeGetConnection(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+        identity: Identity
+
+    class Output(BaseModel):
+        connection: Optional[IntegrationConnection] = None
+
+
+class AuthorizeDisconnectConnection(BaseCapabilityAction):
+    class Input(BaseModel):
+        connection_id: str
+        identity: Identity
+    
+    class Output(BaseModel):
+        # Common statuses for a delete method response are "success" and "error".
+        success: bool
+        connection: Optional[IntegrationConnection] = None
+
 class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
     finalize: AuthorizeFinalize
-    get_status: AuthorizeGetStatus
+    get_auth_flow_status: AuthorizeGetAuthFlowStatus
+    get_connection: AuthorizeGetConnection
 
 
 # Info Capability
@@ -54,7 +74,6 @@ class GetIntegrationDetails(BaseCapabilityAction):
     class Input(BaseModel):
         customer_id: str
         customer_name: str
-        integration_id: str
 
     class Output(BaseModel):
         integration: Integration
@@ -78,8 +97,8 @@ class ListIntegrations(BaseCapabilityAction):
 
 
 class BaseInfoCapability(BaseCapability):
-    get_integration_details: GetIntegrationDetails
+    get_integration: GetIntegrationDetails
     list_integrations: ListIntegrations
 
     def __init__(self, config: Optional["ConnectorConfig"] = None):
-        self._config = config
+        self.config = config

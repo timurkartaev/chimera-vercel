@@ -5,30 +5,23 @@ from datetime import datetime
 
 class IntegrationConnection(BaseModel):
     id: str
-    state: str  # e.g., 'READY', 'ERROR', etc.
-    userId: Optional[str]
-    createdAt: datetime
-    updatedAt: datetime
-    lastActiveAt: Optional[datetime] = None
+    state: str
+    last_active_at: Optional[datetime] = None
     disconnected: bool
+
 
 class Integration(BaseModel):
     id: str
-    logoUri: Optional[str] = None
-    name: str
-    state: str
-    authType: Optional[str] = None
-    connectorVersion: Optional[str] = None
-    dataCollectionsCount: Optional[int] = 0
-    operationsCount: Optional[int] = 0
-    eventsCount: Optional[int] = 0
     key: str
-    hasDocumentation: bool = False
-    hasUdm: bool = False
-    hasEvents: bool = False
-    hasGlobalWebhooks: bool = False
-    connection: Optional[IntegrationConnection] = None
+    name: str
+    logo: Optional[str] = None
+    auth_type: Optional[str] = None
+    version: Optional[str] = None
 
+
+class Identity(BaseModel):
+    id: str
+    name: str
 
 
 # Connector Config Schema

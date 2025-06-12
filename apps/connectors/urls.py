@@ -3,7 +3,49 @@ from django.views.decorators.csrf import csrf_exempt
 
 from connectors import views
 
+authorize_patterns = [
+    re_path(
+        r"^auth/(?P<integration_name>[-\w]+)/begin/?$",
+        views.authorization_begin,
+        name="authorize_begin",
+    ),
+    re_path(
+        r"^auth/(?P<integration_name>[-\w]+)/callback/?$",
+        csrf_exempt(views.authorization_finalize),
+        name="callback",
+    ),
+    re_path(
+        r"^auth/(?P<integration_name>[-\w]+)/status/(?P<request_id>[-\w]+)?$",
+        views.authorization_get_status,
+        name="authorize_get_status",
+    ),
+    re_path(
+        r"^auth/(?P<integration_key>[-\w]+)/connection/?$",
+        views.authorization_get_connection,
+        name="authorize_get_connection",
+    ),
+    re_path(
+        r"^auth/(?P<integration_key>[-\w]+)/connection/(?P<connection_id>[-\w]+)?$",
+        views.authorize_disconnect_connection,
+        name="authorize_disconnect_connection",
+    ),
+]
+
+info_patterns = [
+    re_path(
+        r"^info/?$",
+        views.info_list_integrations,
+        name="info_list_integrations",
+    ),
+    re_path(
+        r"^info/(?P<integration_name>[-\w]+)/?$",
+        views.info_get_integration,
+        name="info_get_integration",
+    ),
+]
 urlpatterns = [
+    *authorize_patterns,
+    *info_patterns,
     path("", views.index, name="index-view"),
     path("add-history", views.add_action_page, name="add-history"),
     path("api-action", views.add_action, name="add-action"),
@@ -12,7 +54,7 @@ urlpatterns = [
         views.list_data_collections,
         name="list-data-collections",
     ),
-    path("list-integrations", views.list_integrations, name="list-integrations"),
+    path("list-integrations", views.info_list_integrations, name="list-integrations"),
     path("list-connections", views.list_connections, name="list-connections"),
     path("list-data-sources", views.list_data_sources, name="list-data-sources"),
     path("get-data-source", views.get_data_source, name="get-data-source"),
@@ -27,21 +69,5 @@ urlpatterns = [
         views.archive_connection,
         name="archive-connection",
     ),
-    # Authorize
-    re_path(
-        r"^auth/(?P<integration_name>[-\w]+)/begin/?$",
-        views.authorization_begin,
-        name="authorize_begin",
-    ),
-    re_path(
-        r"^auth/(?P<integration_name>[-\w]+)/callback/?$",
-        csrf_exempt(views.authorization_finalize),
-        name="callback",
-    ),
-    path("gong-iframe/", views.gong_iframe, name="gong_iframe"),
-    re_path(
-        r"^auth/(?P<integration_name>[-\w]+)/status/(?P<request_id>[-\w]+)?$",
-        views.authorization_get_status,
-        name="authorize_get_status",
-    ),
+    path("gong-iframe/", views.gong_iframe, name="gong_iframe"),  # keep this for now
 ]

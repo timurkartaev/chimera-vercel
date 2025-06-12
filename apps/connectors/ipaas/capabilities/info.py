@@ -10,35 +10,49 @@ from apps.connectors.ipaas.api.client import (
     IntegrationAppClient,
     get_integration_app_client,
 )
+from apps.connectors.mappers.registry import map_to
 
 
 class IpaasGetIntegrationDetails(GetIntegrationDetails):
     def execute(
         self, input_model: GetIntegrationDetails.Input, context: "InfoCapability"
     ):
-        with context.integration_app_client.with_user_context(
+        assert context.config
+        with context.client.with_user_context(
             input_model.customer_id, input_model.customer_name
         ) as session:
-            integration = session.get(f"integrations/{input_model.integration_id}")
-            return GetIntegrationDetails.Output(integration=Integration(**integration))
+            integration = session.get(f"integrations/{context.config.info.slug}")
+            return GetIntegrationDetails.Output(
+                integration=map_to("ipaas", "integration", integration)
+            )
 
 
 class IpaasListIntegrations(ListIntegrations):
     def execute(self, input_model: ListIntegrations.Input, context: "InfoCapability"):
-        with context.integration_app_client.with_user_context(
+        with context.client.with_user_context(
             input_model.customer_id, input_model.customer_name
         ) as session:
             integrations = session.list_integrations(
                 self.get_integration_names(input_model.integration_configs)
             )
-            return ListIntegrations.Output(integrations=integrations)
+            return ListIntegrations.Output(
+                integrations=[
+                    map_to("ipaas", "integration", integration)
+                    for integration in integrations
+                ]
+            )
 
 
 class InfoCapability(BaseInfoCapability):
-    get_integration_details = IpaasGetIntegrationDetails(description="Get integration details")
+    get_integration = IpaasGetIntegrationDetails(
+        description="Get integration details"
+    )
     list_integrations = IpaasListIntegrations(description="List integrations")
 
-    def __init__(self, integration_app_client: Optional[IntegrationAppClient] = None):
-        self.integration_app_client = (
-            integration_app_client or get_integration_app_client()
-        )
+    def __init__(
+        self,
+        client: Optional[IntegrationAppClient] = None,
+        config: Optional[ConnectorConfig] = None,
+    ):
+        super().__init__(config)
+        self.client = client or get_integration_app_client()

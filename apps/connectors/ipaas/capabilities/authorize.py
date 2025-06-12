@@ -4,11 +4,13 @@ import uuid
 
 from django.conf import settings
 from urllib.parse import urlencode
-
+from requests.exceptions import RequestException
 from enum import StrEnum
 
 from apps.connectors.base.capabilities import (
-    AuthorizeGetStatus,
+    AuthorizeDisconnectConnection,
+    AuthorizeGetAuthFlowStatus,
+    AuthorizeGetConnection,
     BaseAuthorizeCapability,
     AuthorizeBegin,
     AuthorizeFinalize,
@@ -16,6 +18,8 @@ from apps.connectors.base.capabilities import (
 from apps.connectors.base.models import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
 from cachetools import TTLCache
+
+from apps.connectors.mappers.registry import map_to
 
 authorization_cache = TTLCache(maxsize=100, ttl=5 * 60)
 
@@ -47,7 +51,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
             "integrationKey": integration_key,
             "token": token,
             "requestId": request_id,
-            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}"
+            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}",
         }
 
         with context.client.with_token_context(token) as session:
@@ -142,9 +146,7 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
                 error_message=error_message,
             )
 
-        # Otherwise, this is a callback from the OAuth provider — redirect to iPaaS
         query_params = input_model.model_dump(exclude_none=True)
-        # query_params.pop("redirectUri", None)  # Prevent redirect loop
 
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
@@ -165,12 +167,12 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         return error
 
 
-class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetStatus):
+class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetAuthFlowStatus):
     def execute(
         self,
-        input_model: AuthorizeGetStatus.Input,
+        input_model: AuthorizeGetAuthFlowStatus.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeGetStatus.Output:
+    ) -> AuthorizeGetAuthFlowStatus.Output:
         if input_model.request_id not in authorization_cache:
             return IpaasAuthorizeGetStatusCapabilityAction.Output(
                 status=AuthorizationStatus.PENDING.value,
@@ -182,10 +184,65 @@ class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetStatus):
         )
 
 
+class IpaasAuthorizeGetConnectionCapabilityAction(AuthorizeGetConnection):
+    def execute(
+        self,
+        input_model: AuthorizeGetConnection.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeGetConnection.Output:
+        disconnected = True
+        connection = None
+        with context.client.with_user_context(
+            user_id=input_model.identity.id, user_name=input_model.identity.name
+        ) as session:
+            response = session.get(
+                f"connections",
+                params={
+                    "integrationKey": input_model.integration_key,
+                    "limit": 1,
+                    "includeArchived": True,
+                },
+            )
+            connections = response["items"]
+            if connections:
+                connection = connections[0]
+        return IpaasAuthorizeGetConnectionCapabilityAction.Output(
+            connection=map_to("ipaas", "integration_connection", connection),
+        )
+
+
+class IpaasAuthorizeDisconnectConnectionCapabilityAction(AuthorizeDisconnectConnection):
+    def execute(
+        self,
+        input_model: AuthorizeDisconnectConnection.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeDisconnectConnection.Output:
+        success = False
+        try:
+            with context.client.with_user_context(
+                user_id=input_model.identity.id, user_name=input_model.identity.name
+            ) as session:
+                session.delete(f"connections/{input_model.connection_id}")
+        except RequestException:
+            pass
+        return IpaasAuthorizeDisconnectConnectionCapabilityAction.Output(
+            success=success,
+            connection=None,
+        )
+
+
 class AuthorizeCapability(BaseAuthorizeCapability):
     begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
     finalize = IpaasAuthorizeFinalizeCapabilityAction("Finalize Authorization")
-    get_status = IpaasAuthorizeGetStatusCapabilityAction("Get Authorization Status")
+    get_auth_flow_status = IpaasAuthorizeGetStatusCapabilityAction(
+        "Get Authorization Flow Status"
+    )
+    get_connection = IpaasAuthorizeGetConnectionCapabilityAction(
+        "Get Connection Details"
+    )
+    disconnect_connection = IpaasAuthorizeDisconnectConnectionCapabilityAction(
+        "Disconnect Connection"
+    )
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config

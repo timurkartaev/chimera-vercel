@@ -3,13 +3,6 @@ info:
   name: Stripe
   slug: stripe
 
-authentication:
-  auth_method: "credentials"
-  auth_params:
-    - id: "api_key"
-      label: "API Key"
-      type: "string"
-      required: true
-
 capabilities:
   - authorize
+  - info

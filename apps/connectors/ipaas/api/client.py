@@ -123,11 +123,15 @@ class _ScopedIntegrationAppSession:
         response.raise_for_status()
         return response.json() if response.content else {}
 
-    def list_integrations(self, integration_names: List[str]) -> List[Integration]:
+    def list_integrations(self, integration_names: List[str]) -> List[Dict[str, Any]]:
         response = self.get(
             "integrations", params={"search": "|".join(integration_names)}
         )
-        return [Integration(**integration) for integration in response.get("items")]
+        return [
+            integration
+            for integration in response.get("items")
+            if integration["key"] in integration_names
+        ]
 
 
 integration_appi_client = IntegrationAppClient()

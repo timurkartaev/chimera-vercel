@@ -1,6 +1,5 @@
 from apps.connectors.base.loader import load_capability_classes
 
-
 def list_integrations(customer_id: str, customer_name: str):
     capability_classes = load_capability_classes("info")
     integrations = []
