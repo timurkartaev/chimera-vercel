@@ -8,7 +8,8 @@ from urllib.parse import urlencode
 from enum import StrEnum
 
 from apps.connectors.base.capabilities import (
-    AuthorizeGetStatus,
+    AuthorizeGetAuthFlowStatus,
+    AuthorizeGetConnectionStatus,
     BaseAuthorizeCapability,
     AuthorizeBegin,
     AuthorizeFinalize,
@@ -47,7 +48,7 @@ class IpaasAuthorizeBeginCapabilityAction(AuthorizeBegin):
             "integrationKey": integration_key,
             "token": token,
             "requestId": request_id,
-            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}"
+            "redirectUri": f"{settings.BASE_URL}/auth/{integration_key}/callback?requestId={request_id}",
         }
 
         with context.client.with_token_context(token) as session:
@@ -142,9 +143,7 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
                 error_message=error_message,
             )
 
-        # Otherwise, this is a callback from the OAuth provider — redirect to iPaaS
         query_params = input_model.model_dump(exclude_none=True)
-        # query_params.pop("redirectUri", None)  # Prevent redirect loop
 
         redirect_uri = (
             f"{settings.IPAAS_BASE_URL}/oauth-callback?{urlencode(query_params)}"
@@ -165,12 +164,12 @@ class IpaasAuthorizeFinalizeCapabilityAction(AuthorizeFinalize):
         return error
 
 
-class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetStatus):
+class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetAuthFlowStatus):
     def execute(
         self,
-        input_model: AuthorizeGetStatus.Input,
+        input_model: AuthorizeGetAuthFlowStatus.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeGetStatus.Output:
+    ) -> AuthorizeGetAuthFlowStatus.Output:
         if input_model.request_id not in authorization_cache:
             return IpaasAuthorizeGetStatusCapabilityAction.Output(
                 status=AuthorizationStatus.PENDING.value,
@@ -182,10 +181,41 @@ class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetStatus):
         )
 
 
+class IpaasAuthorizeGetConnectionStatusCapabilityAction(AuthorizeGetConnectionStatus):
+    def execute(
+        self,
+        input_model: AuthorizeGetConnectionStatus.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeGetConnectionStatus.Output:
+        disconnected = True
+        with context.client.with_user_context(
+            user_id=input_model.user_id, user_name=input_model.user_name
+        ) as session:
+            response = session.get(
+                f"connections/{input_model.integration_id}",
+                params={
+                    "integrationKey": input_model.integration_key,
+                    "limit": 1,
+                    "includeArchived": True,
+                },
+            )
+            connections = response["items"]
+            if connections:
+                disconnected = connections[0].get("disconnected", disconnected)
+        return IpaasAuthorizeGetConnectionStatusCapabilityAction.Output(
+            connected=not disconnected,
+        )
+
+
 class AuthorizeCapability(BaseAuthorizeCapability):
     begin = IpaasAuthorizeBeginCapabilityAction("Begin Authorization")
     finalize = IpaasAuthorizeFinalizeCapabilityAction("Finalize Authorization")
-    get_status = IpaasAuthorizeGetStatusCapabilityAction("Get Authorization Status")
+    get_auth_flow_status = IpaasAuthorizeGetStatusCapabilityAction(
+        "Get Authorization Flow Status"
+    )
+    get_connection_status = IpaasAuthorizeGetConnectionStatusCapabilityAction(
+        "Get Connection Status"
+    )
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
         self.config = config

@@ -3,15 +3,6 @@ info:
   name: Procore
   slug: procore
 
-authentication:
-  auth_method: "oauth2+fields"
-  oauth2:
-    redirect_url: "https://api.integration.app/oauth-callback"
-  auth_params:
-    - id: "companyId"
-      label: "Your Company ID (if you've got many)"
-      type: "string"
-      required: false
-
 capabilities:
   - authorize
+  - info

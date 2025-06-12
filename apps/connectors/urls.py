@@ -27,6 +27,11 @@ urlpatterns = [
         views.archive_connection,
         name="archive-connection",
     ),
+    re_path(
+        r"^info/integrations/(?P<integration_name>[-\w]+)/?$",
+        views.get_integration_details,
+        name="get-integration-details",
+    ),
     # Authorize
     re_path(
         r"^auth/(?P<integration_name>[-\w]+)/begin/?$",

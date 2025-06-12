@@ -8,10 +8,15 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from apps.connectors.base.resolver import resolve_capability_action, resolve_connector
+from apps.connectors.base.resolver import (
+    resolve_capability,
+    resolve_capability_action,
+    resolve_connector,
+)
 
 from chimera.settings import IPAAS_WORKSPACE_KEY, IPAAS_WORKSPACE_SECRET
 from apps.connectors.base.global_actions import list_integrations as _list_integrations
+
 
 def index(request):
     return JsonResponse(
@@ -300,6 +305,17 @@ def list_integrations(request):
     return JsonResponse({"response": response})
 
 
+def get_integration_details(request, integration_name):
+    info = resolve_capability(integration_name, "info")
+    response = info.get_integration_details(
+        dict(
+            customer_id="682200e11226bbc540e52a0a",
+            customer_name="Timur Kartaev",
+        )
+    )
+    return JsonResponse(response)
+
+
 def archive_connection(request, connection_id):
     url = f"https://api.integration.app/connections/{connection_id}"
     headers = {
@@ -337,7 +353,7 @@ def gong_iframe(request):
 
 
 def authorization_get_status(request, integration_name, request_id):
-    result = resolve_capability_action(integration_name, "authorize", "get_status")(
+    result = resolve_capability_action(integration_name, "authorize", "get_auth_flow_status")(
         {"request_id": request_id}
     )
 

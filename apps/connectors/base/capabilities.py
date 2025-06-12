@@ -32,7 +32,7 @@ class AuthorizeFinalize(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
-class AuthorizeGetStatus(BaseCapabilityAction):
+class AuthorizeGetAuthFlowStatus(BaseCapabilityAction):
     class Input(BaseModel):
         request_id: str
 
@@ -41,10 +41,19 @@ class AuthorizeGetStatus(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
+class AuthorizeGetConnectionStatus(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_id: str
+
+    class Output(BaseModel):
+        connected: bool
+
+
 class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
     finalize: AuthorizeFinalize
-    get_status: AuthorizeGetStatus
+    get_auth_flow_status: AuthorizeGetAuthFlowStatus
+    get_connection_status: AuthorizeGetConnectionStatus
 
 
 # Info Capability
@@ -54,7 +63,6 @@ class GetIntegrationDetails(BaseCapabilityAction):
     class Input(BaseModel):
         customer_id: str
         customer_name: str
-        integration_id: str
 
     class Output(BaseModel):
         integration: Integration
@@ -82,4 +90,4 @@ class BaseInfoCapability(BaseCapability):
     list_integrations: ListIntegrations
 
     def __init__(self, config: Optional["ConnectorConfig"] = None):
-        self._config = config
+        self.config = config

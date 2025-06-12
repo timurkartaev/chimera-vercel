@@ -3,17 +3,6 @@ info:
   name: Copper
   slug: copper
 
-authentication:
-  auth_method: "credentials"
-  auth_params:
-    - id: "email"
-      label: "Email"
-      type: "string"
-      required: true
-    - id: "token"
-      label: "API Token"
-      type: "string"
-      required: true
-
 capabilities:
   - authorize
+  - info

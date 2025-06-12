@@ -1,7 +1,7 @@
 type: ipaas
 info:
-  name: Sugar CRM
-  slug: sugarcrm
+  name: Creatio
+  slug: creatio
 
 capabilities:
   - authorize

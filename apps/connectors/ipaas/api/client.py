@@ -127,7 +127,11 @@ class _ScopedIntegrationAppSession:
         response = self.get(
             "integrations", params={"search": "|".join(integration_names)}
         )
-        return [Integration(**integration) for integration in response.get("items")]
+        return [
+            Integration(**integration)
+            for integration in response.get("items")
+            if integration["key"] in integration_names
+        ]
 
 
 integration_appi_client = IntegrationAppClient()
