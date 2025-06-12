@@ -1,12 +1,12 @@
-import uuid
 from datetime import datetime, timedelta
-
+from django.views.decorators.http import require_GET, require_http_methods
 import jwt
 import requests
 from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 from apps.connectors.base.resolver import (
     resolve_capability,
@@ -297,7 +297,8 @@ def get_customer_token(user):
     return encoded_jwt
 
 
-def list_integrations(request):
+@require_GET
+def info_list_integrations(request):
     response = _list_integrations(
         customer_id="682200e11226bbc540e52a0a",
         customer_name="Timur Kartaev",
@@ -305,9 +306,10 @@ def list_integrations(request):
     return JsonResponse({"response": response})
 
 
-def get_integration_details(request, integration_name):
+@require_GET
+def info_get_integration(request, integration_name):
     info = resolve_capability(integration_name, "info")
-    response = info.get_integration_details(
+    response = info.get_integration(
         dict(
             customer_id="682200e11226bbc540e52a0a",
             customer_name="Timur Kartaev",
@@ -327,6 +329,11 @@ def archive_connection(request, connection_id):
     return JsonResponse({"status": "success"})
 
 
+def gong_iframe(request):
+    return render(request, "gong_iframe.html")
+
+
+@require_GET
 def authorization_begin(request, integration_name):
     connector = resolve_connector(integration_name)
     return JsonResponse(
@@ -339,6 +346,7 @@ def authorization_begin(request, integration_name):
     )
 
 
+@require_GET
 @xframe_options_exempt
 def authorization_finalize(request, integration_name):
     # get all request query params from request
@@ -348,13 +356,40 @@ def authorization_finalize(request, integration_name):
     return render(request, "ipaas/auth_finalize.html", result)
 
 
-def gong_iframe(request):
-    return render(request, "gong_iframe.html")
-
-
+@require_GET
 def authorization_get_status(request, integration_name, request_id):
-    result = resolve_capability_action(integration_name, "authorize", "get_auth_flow_status")(
-        {"request_id": request_id}
-    )
+    result = resolve_capability_action(
+        integration_name, "authorize", "get_auth_flow_status"
+    )({"request_id": request_id})
 
+    return JsonResponse(result)
+
+
+@require_GET
+def authorization_get_connection(request, integration_key):
+    result = resolve_capability_action(integration_key, "authorize", "get_connection")(
+        {
+            "integration_key": integration_key,
+            "identity": {
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        }
+    )
+    return JsonResponse(result)
+
+@csrf_exempt
+@require_http_methods(["DELETE"])
+def authorize_disconnect_connection(request, integration_key, connection_id):
+    result = resolve_capability_action(
+        integration_key, "authorize", "disconnect_connection"
+    )(
+        {
+            "connection_id": connection_id,
+            "identity": {
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        }
+    )
     return JsonResponse(result)

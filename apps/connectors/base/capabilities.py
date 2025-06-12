@@ -1,8 +1,8 @@
-from typing import Any, List, Optional, TYPE_CHECKING
+from typing import Any, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 from apps.connectors.base.capability import BaseCapability, BaseCapabilityAction
-from apps.connectors.base.models import Integration
+from apps.connectors.base.models import Identity, Integration, IntegrationConnection
 from apps.connectors.base.utils import get_integration_configs
 from apps.connectors.base.models import ConnectorConfig
 
@@ -41,19 +41,30 @@ class AuthorizeGetAuthFlowStatus(BaseCapabilityAction):
         error_message: Optional[str] = None
 
 
-class AuthorizeGetConnectionStatus(BaseCapabilityAction):
+class AuthorizeGetConnection(BaseCapabilityAction):
     class Input(BaseModel):
-        integration_id: str
+        integration_key: str
+        identity: Identity
 
     class Output(BaseModel):
-        connected: bool
+        connection: Optional[IntegrationConnection] = None
 
+
+class AuthorizeDisconnectConnection(BaseCapabilityAction):
+    class Input(BaseModel):
+        connection_id: str
+        identity: Identity
+    
+    class Output(BaseModel):
+        # Common statuses for a delete method response are "success" and "error".
+        success: bool
+        connection: Optional[IntegrationConnection] = None
 
 class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
     finalize: AuthorizeFinalize
     get_auth_flow_status: AuthorizeGetAuthFlowStatus
-    get_connection_status: AuthorizeGetConnectionStatus
+    get_connection: AuthorizeGetConnection
 
 
 # Info Capability
@@ -86,7 +97,7 @@ class ListIntegrations(BaseCapabilityAction):
 
 
 class BaseInfoCapability(BaseCapability):
-    get_integration_details: GetIntegrationDetails
+    get_integration: GetIntegrationDetails
     list_integrations: ListIntegrations
 
     def __init__(self, config: Optional["ConnectorConfig"] = None):

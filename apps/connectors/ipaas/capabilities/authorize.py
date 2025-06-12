@@ -4,12 +4,13 @@ import uuid
 
 from django.conf import settings
 from urllib.parse import urlencode
-
+from requests.exceptions import RequestException
 from enum import StrEnum
 
 from apps.connectors.base.capabilities import (
+    AuthorizeDisconnectConnection,
     AuthorizeGetAuthFlowStatus,
-    AuthorizeGetConnectionStatus,
+    AuthorizeGetConnection,
     BaseAuthorizeCapability,
     AuthorizeBegin,
     AuthorizeFinalize,
@@ -17,6 +18,8 @@ from apps.connectors.base.capabilities import (
 from apps.connectors.base.models import ConnectorConfig
 from apps.connectors.ipaas.api.client import IntegrationAppClient
 from cachetools import TTLCache
+
+from apps.connectors.mappers.registry import map_to
 
 authorization_cache = TTLCache(maxsize=100, ttl=5 * 60)
 
@@ -181,18 +184,19 @@ class IpaasAuthorizeGetStatusCapabilityAction(AuthorizeGetAuthFlowStatus):
         )
 
 
-class IpaasAuthorizeGetConnectionStatusCapabilityAction(AuthorizeGetConnectionStatus):
+class IpaasAuthorizeGetConnectionCapabilityAction(AuthorizeGetConnection):
     def execute(
         self,
-        input_model: AuthorizeGetConnectionStatus.Input,
+        input_model: AuthorizeGetConnection.Input,
         context: "AuthorizeCapability",
-    ) -> AuthorizeGetConnectionStatus.Output:
+    ) -> AuthorizeGetConnection.Output:
         disconnected = True
+        connection = None
         with context.client.with_user_context(
-            user_id=input_model.user_id, user_name=input_model.user_name
+            user_id=input_model.identity.id, user_name=input_model.identity.name
         ) as session:
             response = session.get(
-                f"connections/{input_model.integration_id}",
+                f"connections",
                 params={
                     "integrationKey": input_model.integration_key,
                     "limit": 1,
@@ -201,9 +205,29 @@ class IpaasAuthorizeGetConnectionStatusCapabilityAction(AuthorizeGetConnectionSt
             )
             connections = response["items"]
             if connections:
-                disconnected = connections[0].get("disconnected", disconnected)
-        return IpaasAuthorizeGetConnectionStatusCapabilityAction.Output(
-            connected=not disconnected,
+                connection = connections[0]
+        return IpaasAuthorizeGetConnectionCapabilityAction.Output(
+            connection=map_to("ipaas", "integration_connection", connection),
+        )
+
+
+class IpaasAuthorizeDisconnectConnectionCapabilityAction(AuthorizeDisconnectConnection):
+    def execute(
+        self,
+        input_model: AuthorizeDisconnectConnection.Input,
+        context: "AuthorizeCapability",
+    ) -> AuthorizeDisconnectConnection.Output:
+        success = False
+        try:
+            with context.client.with_user_context(
+                user_id=input_model.identity.id, user_name=input_model.identity.name
+            ) as session:
+                session.delete(f"connections/{input_model.connection_id}")
+        except RequestException:
+            pass
+        return IpaasAuthorizeDisconnectConnectionCapabilityAction.Output(
+            success=success,
+            connection=None,
         )
 
 
@@ -213,8 +237,11 @@ class AuthorizeCapability(BaseAuthorizeCapability):
     get_auth_flow_status = IpaasAuthorizeGetStatusCapabilityAction(
         "Get Authorization Flow Status"
     )
-    get_connection_status = IpaasAuthorizeGetConnectionStatusCapabilityAction(
-        "Get Connection Status"
+    get_connection = IpaasAuthorizeGetConnectionCapabilityAction(
+        "Get Connection Details"
+    )
+    disconnect_connection = IpaasAuthorizeDisconnectConnectionCapabilityAction(
+        "Disconnect Connection"
     )
 
     def __init__(self, config: ConnectorConfig, client: IntegrationAppClient):
