@@ -205,7 +205,7 @@ class SchemaHelper:
                 node = node["properties"].get(part, {})
             else:
                 node = {}
-        return node.get("readOnly", None)
+        return node.get("readOnly", False)
 
     @staticmethod
     def get_required_fields(data_collection_schema):
@@ -329,9 +329,23 @@ class MarkdownReport:
                 )
                 used_object.add(field)
         md_lines = [
-            "| Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types |",
-            "|---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|",
+            "| Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types | Value |",
+            "|---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|-------|",
         ]
+
+        def get_field_value(obj, path):
+            # Only return value for top-level fields (no dot in path)
+            if not path or "." in path or path.endswith("[]"):
+                return ""
+            node = obj
+            if isinstance(node, dict) and path in node:
+                node = node[path]
+            else:
+                return ""
+            if isinstance(node, (dict, list)):
+                return json.dumps(node)
+            return str(node)
+
         for (
             title,
             left,
@@ -342,49 +356,56 @@ class MarkdownReport:
             possible_values,
             reference_collection,
         ) in aligned:
+            value = (
+                get_field_value(crm_object["output"]["fields"], right) if right else ""
+            )
             md_lines.append(
-                f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} |"
+                f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
             )
         return md_lines
 
 
 class FieldComparer:
+    # Opportunity/Deal
+    # Company/Account/Organization
+    # Person/Contact/Lead
+
     CONNECTIONS = {
-        "ActiveCampaign": {
-            "deals": "1",
-            "contacts": "2",
-            "accounts": "1",
-        },
+        # "ActiveCampaign": {
+        #     "deals": "1",
+        #     "contacts": "2",
+        #     "accounts": "1",
+        # },
         "Close": {
             "opportunity": "oppo_nbV15NALNPtNFPTLOp8gXG5BFT7f8xUE4NeuQ4xoz2l",
             "lead": "lead_HcmG4cyICfAIu1J0sRziNKe63cbNaifOxZZ0PppgksW",
             "contact": "cont_Ga5TgqZ8RIEuhxrhIn0lnULpfpjzWoqoi5R8YG6JVR4",
         },
-        "Copper": {
-            "opportunities": "15786303",
-            "companies": "42499725",
-            "leads": "56196888",
-        },
-        "HubSpot": {
-            "deals": "6021835189",
-            "contacts": "121593429805",
-            "companies": "31115737391",
-        },
-        "Pipedrive": {
-            "deals": "1",
-            "persons": "1",
-            "organizations": "1",
-        },
-        "Salesforce": {
-            "opportunities": "006gK000001UgviQAC",
-            "leads": "00QgK000001WvFWUA0",
-            "accounts": "001gK000004nk17QAA",
-        },
-        "SugarCRM": {
-            "opportunities": "db3f6530-30dc-11f0-9285-fb295c038a96",
-            "accounts": "d76d391a-30cc-11f0-a99c-1d1bbea39a2d",
-            "contacts": "593db44a-30cf-11f0-8746-4f8477825d38",
-        },
+        # "Copper": {
+        #     "opportunities": "15786303",
+        #     "companies": "42499725",
+        #     "leads": "56196888",
+        # },
+        # "HubSpot": {
+        #     "deals": "6021835189",
+        #     "companies": "31115737391",
+        #     "contacts": "121593429805",
+        # },
+        # "Pipedrive": {
+        #     "deals": "1",
+        #     "organizations": "1",
+        #     "persons": "1",
+        # },
+        # "Salesforce": {
+        #     "opportunities": "006gK000001UgviQAC",
+        #     "accounts": "001gK000004nk17QAA",
+        #     "leads": "00QgK000001WvFWUA0",
+        # },
+        # "SugarCRM": {
+        #     "opportunities": "db3f6530-30dc-11f0-9285-fb295c038a96",
+        #     "accounts": "d76d391a-30cc-11f0-a99c-1d1bbea39a2d",
+        #     "contacts": "593db44a-30cf-11f0-8746-4f8477825d38",
+        # },
     }
 
     @staticmethod
