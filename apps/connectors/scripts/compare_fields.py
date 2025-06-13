@@ -128,13 +128,23 @@ class SchemaHelper:
 
     @staticmethod
     def get_type_from_object(obj, path):
-        parts = path.replace("[]", "").split(".")
+        # Split path into parts, handling [] as array indicators
+        parts = []
+        for part in path.split("."):
+            if part.endswith("[]"):
+                parts.append(part[:-2])
+                parts.append("[]")
+            else:
+                parts.append(part)
         node = obj
         for part in parts:
-            if isinstance(node, dict) and part in node:
+            if part == "[]":
+                if isinstance(node, list) and node:
+                    node = node[0]
+                else:
+                    return "array" if isinstance(node, list) else ""
+            elif isinstance(node, dict) and part in node:
                 node = node[part]
-            elif isinstance(node, list) and node:
-                node = node[0]
             else:
                 return ""
         if isinstance(node, dict):
@@ -143,6 +153,14 @@ class SchemaHelper:
             return "array"
         elif node is None:
             return "null"
+        elif isinstance(node, str):
+            return "string"
+        elif isinstance(node, bool):
+            return "boolean"
+        elif isinstance(node, int):
+            return "integer"
+        elif isinstance(node, float):
+            return "number"
         else:
             return type(node).__name__
 
@@ -371,41 +389,41 @@ class FieldComparer:
     # Person/Contact/Lead
 
     CONNECTIONS = {
-        # "ActiveCampaign": {
-        #     "deals": "1",
-        #     "contacts": "2",
-        #     "accounts": "1",
-        # },
+        "ActiveCampaign": {
+            "deals": "1",
+            "contacts": "2",
+            "accounts": "1",
+        },
         "Close": {
             "opportunity": "oppo_nbV15NALNPtNFPTLOp8gXG5BFT7f8xUE4NeuQ4xoz2l",
             "lead": "lead_HcmG4cyICfAIu1J0sRziNKe63cbNaifOxZZ0PppgksW",
             "contact": "cont_Ga5TgqZ8RIEuhxrhIn0lnULpfpjzWoqoi5R8YG6JVR4",
         },
-        # "Copper": {
-        #     "opportunities": "15786303",
-        #     "companies": "42499725",
-        #     "leads": "56196888",
-        # },
-        # "HubSpot": {
-        #     "deals": "6021835189",
-        #     "companies": "31115737391",
-        #     "contacts": "121593429805",
-        # },
-        # "Pipedrive": {
-        #     "deals": "1",
-        #     "organizations": "1",
-        #     "persons": "1",
-        # },
-        # "Salesforce": {
-        #     "opportunities": "006gK000001UgviQAC",
-        #     "accounts": "001gK000004nk17QAA",
-        #     "leads": "00QgK000001WvFWUA0",
-        # },
-        # "SugarCRM": {
-        #     "opportunities": "db3f6530-30dc-11f0-9285-fb295c038a96",
-        #     "accounts": "d76d391a-30cc-11f0-a99c-1d1bbea39a2d",
-        #     "contacts": "593db44a-30cf-11f0-8746-4f8477825d38",
-        # },
+        "Copper": {
+            "opportunities": "15786303",
+            "companies": "42499725",
+            "leads": "56196888",
+        },
+        "HubSpot": {
+            "deals": "6021835189",
+            "companies": "31115737391",
+            "contacts": "121593429805",
+        },
+        "Pipedrive": {
+            "deals": "1",
+            "organizations": "1",
+            "persons": "1",
+        },
+        "Salesforce": {
+            "opportunities": "006gK000001UgviQAC",
+            "accounts": "001gK000004nk17QAA",
+            "leads": "00QgK000001WvFWUA0",
+        },
+        "SugarCRM": {
+            "opportunities": "db3f6530-30dc-11f0-9285-fb295c038a96",
+            "accounts": "d76d391a-30cc-11f0-a99c-1d1bbea39a2d",
+            "contacts": "593db44a-30cf-11f0-8746-4f8477825d38",
+        },
     }
 
     @staticmethod

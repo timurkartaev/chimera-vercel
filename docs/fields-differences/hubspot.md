@@ -5,29 +5,31 @@
 
 | Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types | Value |
 |---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|-------|
-| Amount | amount | number | false |  |  | amount | str | 22279198 |
-| Amount in company currency | amount_in_home_currency | number | false |  |  | amount_in_home_currency | str | 22279198 |
+| Amount | amount | number | false |  |  | amount | string | 22279198 |
+| Amount in company currency | amount_in_home_currency | number | false |  |  | amount_in_home_currency | string | 22279198 |
 | Billing email | billing_email | string | false |  |  | billing_email | null | None |
 | calculated_property | calculated_property | string | false |  |  | calculated_property | null | None |
-| Closed Lost Reason | closed_lost_reason | string | false |  |  | closed_lost_reason | str | 123 |
-| Closed Won Reason | closed_won_reason | string | false |  |  | closed_won_reason | str | 234 |
-| Close Date | closedate | string | false |  |  | closedate | str | 2021-08-31T15:21:49.199Z |
+| Closed Lost Reason | closed_lost_reason | string | false |  |  | closed_lost_reason | string | 123 |
+| Closed Won Reason | closed_won_reason | string | false |  |  | closed_won_reason | string | 234 |
+| Close Date | closedate | string | false |  |  | closedate | string | 2021-08-31T15:21:49.199Z |
 | Company Ids | company_ids | array | false |  |  | company_ids | array | ["6794088725", "6794088725"] |
+|  | company_ids[] | string | false |  | companies | company_ids[] | string |  |
 | Contact Ids | contact_ids | array | false |  |  | contact_ids | array | ["151", "201", "251", "301", "601"] |
+|  | contact_ids[] | string | false |  | contacts | contact_ids[] | string |  |
 | Country of residence | country_of_residence | string | false | `Poland`, `Belarus`, `Ukraine`, `USA`, `Portugal` |  | country_of_residence | null | None |
-| Create Date | createdate | string | false |  |  | createdate | str | 2021-08-24T15:21:49.199Z |
+| Create Date | createdate | string | false |  |  | createdate | string | 2021-08-24T15:21:49.199Z |
 | custom & | custom__ | number | false |  |  | custom__ | null | None |
 | custom boolean | custom_boolean | string | false | `true`, `false` |  | custom_boolean | null | None |
 | CustomMonetaryField | custommonetaryfield | number | false |  |  | custommonetaryfield | null | None |
 | Date test 2 | data_test_2 | string | false |  |  | data_test_2 | null | None |
-| Days to close | days_to_close | number | false |  |  | days_to_close | str | 7 |
-| Currency | deal_currency_code | string | false |  |  | deal_currency_code | str | USD |
-| Deal Name | dealname | string | false |  |  | dealname | str | test_panda_deal |
-| Deal Stage | dealstage | string | false |  | pipeline-stages | dealstage | str | presentationscheduled |
+| Days to close | days_to_close | number | false |  |  | days_to_close | string | 7 |
+| Currency | deal_currency_code | string | false |  |  | deal_currency_code | string | USD |
+| Deal Name | dealname | string | false |  |  | dealname | string | test_panda_deal |
+| Deal Stage | dealstage | string | false |  | pipeline-stages | dealstage | string | presentationscheduled |
 | Deal Type | dealtype | string | false | `New Business`, `Existing Business` |  | dealtype | null | None |
 | Delivery date | delivery_date | string | false |  |  | delivery_date | null | None |
 | Delivery method | delivery_method | string | false | `Courier`, `Postbox`, `Pickup`, `` |  | delivery_method | null | None |
-| Deal Description | description | string | false |  |  | description | str | 345345 |
+| Deal Description | description | string | false |  |  | description | string | 345345 |
 | dropdowntest$ | dropdowntest_ | string | false | `This is option 1`, `This is option 2`, `This is option 3`, `This is option 4` |  | dropdowntest_ | null | None |
 | dropdowntestnew | dropdowntestnew | string | false | `This is option 1`, `This is option 2`, `This is option 3`, `This is option 4` |  | dropdowntestnew | null | None |
 | Date of last meeting booked in meetings tool | engagements_last_meeting_booked | string | false |  |  | engagements_last_meeting_booked | null | None |
@@ -35,41 +37,41 @@
 | Medium of last booking in meetings tool | engagements_last_meeting_booked_medium | string | false |  |  | engagements_last_meeting_booked_medium | null | None |
 | Source of last booking in meetings tool | engagements_last_meeting_booked_source | string | false |  |  | engagements_last_meeting_booked_source | null | None |
 | Export | export | string | false |  |  | export | null | None |
-| Annual contract value | hs_acv | number | false |  |  | hs_acv | str | 22513656.00 |
+| Annual contract value | hs_acv | number | false |  |  | hs_acv | string | 22513656.00 |
 | All teams | hs_all_accessible_team_ids | string | false |  |  | hs_all_accessible_team_ids | null | None |
 | Brands | hs_all_assigned_business_unit_ids | array | false |  |  | hs_all_assigned_business_unit_ids | null | None |
 | Deal Split Users | hs_all_deal_split_owner_ids | string | false |  |  | hs_all_deal_split_owner_ids | null | None |
-| All owner IDs | hs_all_owner_ids | string | false |  |  | hs_all_owner_ids | str | 98751577 |
+| All owner IDs | hs_all_owner_ids | string | false |  |  | hs_all_owner_ids | string | 98751577 |
 | All team IDs | hs_all_team_ids | string | false |  |  | hs_all_team_ids | null | None |
-| Latest Traffic Source | hs_analytics_latest_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source | str | OFFLINE |
-| Latest Traffic Source Company | hs_analytics_latest_source_company | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source_company | str | OFFLINE |
-| Latest Traffic Source Contact | hs_analytics_latest_source_contact | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source_contact | str | OFFLINE |
-| Latest Traffic Source Data 1 | hs_analytics_latest_source_data_1 | string | false |  |  | hs_analytics_latest_source_data_1 | str | CONTACTS |
-| Latest Traffic Source Data 1 Company | hs_analytics_latest_source_data_1_company | string | false |  |  | hs_analytics_latest_source_data_1_company | str | CONTACTS |
-| Latest Traffic Source Data 1 Contact | hs_analytics_latest_source_data_1_contact | string | false |  |  | hs_analytics_latest_source_data_1_contact | str | CONTACTS |
-| Latest Traffic Source Data 2 | hs_analytics_latest_source_data_2 | string | false |  |  | hs_analytics_latest_source_data_2 | str | userId:25954718 |
-| Latest Traffic Source Data 2 Company | hs_analytics_latest_source_data_2_company | string | false |  |  | hs_analytics_latest_source_data_2_company | str | userId:25954718 |
-| Latest Traffic Source Data 2 Contact | hs_analytics_latest_source_data_2_contact | string | false |  |  | hs_analytics_latest_source_data_2_contact | str | userId:25954718 |
-| Latest Traffic Source Timestamp | hs_analytics_latest_source_timestamp | string | false |  |  | hs_analytics_latest_source_timestamp | str | 2021-10-22T13:37:27.269Z |
+| Latest Traffic Source | hs_analytics_latest_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source | string | OFFLINE |
+| Latest Traffic Source Company | hs_analytics_latest_source_company | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source_company | string | OFFLINE |
+| Latest Traffic Source Contact | hs_analytics_latest_source_contact | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_latest_source_contact | string | OFFLINE |
+| Latest Traffic Source Data 1 | hs_analytics_latest_source_data_1 | string | false |  |  | hs_analytics_latest_source_data_1 | string | CONTACTS |
+| Latest Traffic Source Data 1 Company | hs_analytics_latest_source_data_1_company | string | false |  |  | hs_analytics_latest_source_data_1_company | string | CONTACTS |
+| Latest Traffic Source Data 1 Contact | hs_analytics_latest_source_data_1_contact | string | false |  |  | hs_analytics_latest_source_data_1_contact | string | CONTACTS |
+| Latest Traffic Source Data 2 | hs_analytics_latest_source_data_2 | string | false |  |  | hs_analytics_latest_source_data_2 | string | userId:25954718 |
+| Latest Traffic Source Data 2 Company | hs_analytics_latest_source_data_2_company | string | false |  |  | hs_analytics_latest_source_data_2_company | string | userId:25954718 |
+| Latest Traffic Source Data 2 Contact | hs_analytics_latest_source_data_2_contact | string | false |  |  | hs_analytics_latest_source_data_2_contact | string | userId:25954718 |
+| Latest Traffic Source Timestamp | hs_analytics_latest_source_timestamp | string | false |  |  | hs_analytics_latest_source_timestamp | string | 2021-10-22T13:37:27.269Z |
 | Latest Traffic Source Timestamp Company | hs_analytics_latest_source_timestamp_company | string | false |  |  | hs_analytics_latest_source_timestamp_company | null | None |
-| Latest Traffic Source Timestamp Contact | hs_analytics_latest_source_timestamp_contact | string | false |  |  | hs_analytics_latest_source_timestamp_contact | str | 2021-10-22T13:37:27.269Z |
-| Original Traffic Source | hs_analytics_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_source | str | OFFLINE |
-| Original Traffic Source Drill-Down 1 | hs_analytics_source_data_1 | string | false |  |  | hs_analytics_source_data_1 | str | CONTACTS |
-| Original Traffic Source Drill-Down 2 | hs_analytics_source_data_2 | string | false |  |  | hs_analytics_source_data_2 | str | userId:25954718 |
-| Annual recurring revenue | hs_arr | number | false |  |  | hs_arr | str | 0.00 |
+| Latest Traffic Source Timestamp Contact | hs_analytics_latest_source_timestamp_contact | string | false |  |  | hs_analytics_latest_source_timestamp_contact | string | 2021-10-22T13:37:27.269Z |
+| Original Traffic Source | hs_analytics_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_source | string | OFFLINE |
+| Original Traffic Source Drill-Down 1 | hs_analytics_source_data_1 | string | false |  |  | hs_analytics_source_data_1 | string | CONTACTS |
+| Original Traffic Source Drill-Down 2 | hs_analytics_source_data_2 | string | false |  |  | hs_analytics_source_data_2 | string | userId:25954718 |
+| Annual recurring revenue | hs_arr | number | false |  |  | hs_arr | string | 0.00 |
 | Associated Shared Deal Type | hs_associated_deal_registration_deal_type | string | false | `Channel`, `Best Partner Wins`, `Partner Assisted`, `Partner Sourced`, `Partner Sourced or Assisted` |  | hs_associated_deal_registration_deal_type | null | None |
 | Associated Shared Deal Product Interests | hs_associated_deal_registration_product_interests | array | false |  |  | hs_associated_deal_registration_product_interests | null | None |
 | Attributed reporting team | hs_attributed_team_ids | array | false |  |  | hs_attributed_team_ids | null | None |
 | Average call duration | hs_average_call_duration | number | false |  |  | hs_average_call_duration | null | None |
 | HubSpot Campaign | hs_campaign | string | false |  |  | hs_campaign | null | None |
-| Closed Deal Amount | hs_closed_amount | number | false |  |  | hs_closed_amount | str | 0 |
-| Closed deal amount in home currency | hs_closed_amount_in_home_currency | number | false |  |  | hs_closed_amount_in_home_currency | str | 0 |
-| Closed Deal Close Date | hs_closed_deal_close_date | number | false |  |  | hs_closed_deal_close_date | str | 0 |
-| Closed Deal Create Date | hs_closed_deal_create_date | number | false |  |  | hs_closed_deal_create_date | str | 0 |
-| Closed won count | hs_closed_won_count | number | false |  |  | hs_closed_won_count | str | 0 |
+| Closed Deal Amount | hs_closed_amount | number | false |  |  | hs_closed_amount | string | 0 |
+| Closed deal amount in home currency | hs_closed_amount_in_home_currency | number | false |  |  | hs_closed_amount_in_home_currency | string | 0 |
+| Closed Deal Close Date | hs_closed_deal_close_date | number | false |  |  | hs_closed_deal_close_date | string | 0 |
+| Closed Deal Create Date | hs_closed_deal_create_date | number | false |  |  | hs_closed_deal_create_date | string | 0 |
+| Closed won count | hs_closed_won_count | number | false |  |  | hs_closed_won_count | string | 0 |
 | Closed Won Date (Internal) | hs_closed_won_date | string | false |  |  | hs_closed_won_date | null | None |
-|  | hs_created_by_user_id |  | false |  |  | hs_created_by_user_id | str | 25954718 |
-| HubSpot Create Date | hs_createdate | string | false |  |  | hs_createdate | str | 2021-08-24T15:21:58.703Z |
+|  | hs_created_by_user_id |  | false |  |  | hs_created_by_user_id | string | 25954718 |
+| HubSpot Create Date | hs_createdate | string | false |  |  | hs_createdate | string | 2021-08-24T15:21:58.703Z |
 | Date entered 'Appointment scheduled (Bilyk_test_pipeline)' | hs_date_entered_159448327 | string | false |  |  | hs_date_entered_159448327 | null | None |
 | Date entered 'Qualified to buy (Bilyk_test_pipeline)' | hs_date_entered_159448328 | string | false |  |  | hs_date_entered_159448328 | null | None |
 | Date entered 'Presentation scheduled (Bilyk_test_pipeline)' | hs_date_entered_159448329 | string | false |  |  | hs_date_entered_159448329 | null | None |
@@ -122,27 +124,27 @@
 | Date exited 'Decision Maker Bought-In (Sales Pipeline)' | hs_date_exited_decisionmakerboughtin | string | false |  |  | hs_date_exited_decisionmakerboughtin | null | None |
 | Date exited 'Presentation Scheduled (Sales Pipeline)' | hs_date_exited_presentationscheduled | string | false |  |  | hs_date_exited_presentationscheduled | null | None |
 | Date exited 'Qualified To Buy (Sales Pipeline)' | hs_date_exited_qualifiedtobuy | string | false |  |  | hs_date_exited_qualifiedtobuy | null | None |
-| Days to close (without rounding) | hs_days_to_close_raw | number | false |  |  | hs_days_to_close_raw | str | 7 |
+| Days to close (without rounding) | hs_days_to_close_raw | number | false |  |  | hs_days_to_close_raw | string | 7 |
 | Deal amount calculation preference | hs_deal_amount_calculation_preference | string | false | `Total Contract Value`, `Annual Recurring Revenue`, `Monthly Recurring Revenue`, `Custom` |  | hs_deal_amount_calculation_preference | null | None |
 | HubSpot Shared Deal MRR | hs_deal_registration_mrr | number | false |  |  | hs_deal_registration_mrr | null | None |
 | HubSpot Shared Deal MRR Currency Code | hs_deal_registration_mrr_currency_code | string | false |  |  | hs_deal_registration_mrr_currency_code | null | None |
-| Deal Score | hs_deal_score | number | false |  |  | hs_deal_score | str | 53.0 |
-| Deal probability | hs_deal_stage_probability | number | false |  |  | hs_deal_stage_probability | str | 0.59999999999999997779553950749686919152736663818359375 |
-| Deal stage probability shadow | hs_deal_stage_probability_shadow | number | false |  |  | hs_deal_stage_probability_shadow | str | 0.59999999999999997779553950749686919152736663818359375 |
+| Deal Score | hs_deal_score | number | false |  |  | hs_deal_score | string | 53.0 |
+| Deal probability | hs_deal_stage_probability | number | false |  |  | hs_deal_stage_probability | string | 0.59999999999999997779553950749686919152736663818359375 |
+| Deal stage probability shadow | hs_deal_stage_probability_shadow | number | false |  |  | hs_deal_stage_probability_shadow | string | 0.59999999999999997779553950749686919152736663818359375 |
 | Duration | hs_duration | number | false |  |  | hs_duration | null | None |
-| Exchange rate | hs_exchange_rate | number | false |  |  | hs_exchange_rate | str | 1 |
-| Forecast amount | hs_forecast_amount | number | false |  |  | hs_forecast_amount | str | 22279198 |
+| Exchange rate | hs_exchange_rate | number | false |  |  | hs_exchange_rate | string | 1 |
+| Forecast amount | hs_forecast_amount | number | false |  |  | hs_forecast_amount | string | 22279198 |
 | Forecast probability | hs_forecast_probability | number | false |  |  | hs_forecast_probability | null | None |
 | Has Empty Conditional Stage Properties | hs_has_empty_conditional_stage_properties | boolean | false |  |  | hs_has_empty_conditional_stage_properties | null | None |
-| Is Active Shared Deal | hs_is_active_shared_deal | boolean | false |  |  | hs_is_active_shared_deal | str | false |
-| Is Deal Closed? | hs_is_closed | boolean | false |  |  | hs_is_closed | str | false |
-| Is Closed (numeric) | hs_is_closed_count | number | false |  |  | hs_is_closed_count | str | 0 |
-| Is closed lost | hs_is_closed_lost | boolean | false |  |  | hs_is_closed_lost | str | false |
-| Is Closed Won | hs_is_closed_won | boolean | false |  |  | hs_is_closed_won | str | false |
-| Deal Split Added | hs_is_deal_split | boolean | false |  |  | hs_is_deal_split | str | false |
+| Is Active Shared Deal | hs_is_active_shared_deal | boolean | false |  |  | hs_is_active_shared_deal | string | false |
+| Is Deal Closed? | hs_is_closed | boolean | false |  |  | hs_is_closed | string | false |
+| Is Closed (numeric) | hs_is_closed_count | number | false |  |  | hs_is_closed_count | string | 0 |
+| Is closed lost | hs_is_closed_lost | boolean | false |  |  | hs_is_closed_lost | string | false |
+| Is Closed Won | hs_is_closed_won | boolean | false |  |  | hs_is_closed_won | string | false |
+| Deal Split Added | hs_is_deal_split | boolean | false |  |  | hs_is_deal_split | string | false |
 | Is In First Deal Stage | hs_is_in_first_deal_stage | boolean | false |  |  | hs_is_in_first_deal_stage | null | None |
-| Is Open (numeric) | hs_is_open_count | number | false |  |  | hs_is_open_count | str | 1 |
-| Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | str | 2025-05-29T07:06:02.840Z |
+| Is Open (numeric) | hs_is_open_count | number | false |  |  | hs_is_open_count | string | 1 |
+| Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | string | 2025-05-29T07:06:02.840Z |
 | Latest Approval Status | hs_latest_approval_status | string | false |  |  | hs_latest_approval_status | null | None |
 | Latest Approval Status Approval ID | hs_latest_approval_status_approval_id | number | false |  |  | hs_latest_approval_status_approval_id | null | None |
 | Latest meeting activity | hs_latest_meeting_activity | string | false |  |  | hs_latest_meeting_activity | null | None |
@@ -156,44 +158,44 @@
 | Global Term Line Item Recurring Billing Frequency | hs_line_item_global_term_recurringbillingfrequency | string | false |  |  | hs_line_item_global_term_recurringbillingfrequency | null | None |
 | Global Term Line Item Recurring Billing Frequency Enabled | hs_line_item_global_term_recurringbillingfrequency_enabled | boolean | false |  |  | hs_line_item_global_term_recurringbillingfrequency_enabled | null | None |
 | Manual campaign ids | hs_manual_campaign_ids | number | false |  |  | hs_manual_campaign_ids | null | None |
-| Forecast category | hs_manual_forecast_category | string | false | `Not forecasted`, `Pipeline`, `Best case`, `Commit`, `Closed won` |  | hs_manual_forecast_category | str | OMIT |
+| Forecast category | hs_manual_forecast_category | string | false | `Not forecasted`, `Pipeline`, `Best case`, `Commit`, `Closed won` |  | hs_manual_forecast_category | string | OMIT |
 | Merged Deal IDs | hs_merged_object_ids | array | false |  |  | hs_merged_object_ids | null | None |
-| Monthly recurring revenue | hs_mrr | number | false |  |  | hs_mrr | str | 0.00 |
+| Monthly recurring revenue | hs_mrr | number | false |  |  | hs_mrr | string | 0.00 |
 | Net Pipeline Impact | hs_net_pipeline_impact | number | false |  |  | hs_net_pipeline_impact | null | None |
 | Next Meeting ID | hs_next_meeting_id | number | false |  |  | hs_next_meeting_id | null | None |
 | Next Meeting Name | hs_next_meeting_name | string | false |  |  | hs_next_meeting_name | null | None |
 | Next Meeting Start Time | hs_next_meeting_start_time | string | false |  |  | hs_next_meeting_start_time | null | None |
-| Next step | hs_next_step | string | false |  |  | hs_next_step | str | 345435 |
+| Next step | hs_next_step | string | false |  |  | hs_next_step | string | 345435 |
 | Next Step Updated At | hs_next_step_updated_at | string | false |  |  | hs_next_step_updated_at | null | None |
 | Next Activity Type | hs_notes_next_activity_type | string | false | `Call`, `Conversation session`, `Email reply from contact`, `Email sent to contact`, `Forwarded email`, `LinkedIn message`, `Meeting`, `Note`, `Postal mail`, `Publishing task`, `SMS`, `Task`, `WhatsApp` |  | hs_notes_next_activity_type | null | None |
 | Number of Active Deal Registrations | hs_num_associated_active_deal_registrations | number | false |  |  | hs_num_associated_active_deal_registrations | null | None |
 | Number of Deal Registrations | hs_num_associated_deal_registrations | number | false |  |  | hs_num_associated_deal_registrations | null | None |
-| Number of Deal Splits | hs_num_associated_deal_splits | number | false |  |  | hs_num_associated_deal_splits | str | 0 |
-| Number of Associated Line Items | hs_num_of_associated_line_items | number | false |  |  | hs_num_of_associated_line_items | str | 132 |
-| Number of target accounts | hs_num_target_accounts | number | false |  |  | hs_num_target_accounts | str | 0 |
+| Number of Deal Splits | hs_num_associated_deal_splits | number | false |  |  | hs_num_associated_deal_splits | string | 0 |
+| Number of Associated Line Items | hs_num_of_associated_line_items | number | false |  |  | hs_num_of_associated_line_items | string | 132 |
+| Number of target accounts | hs_num_target_accounts | number | false |  |  | hs_num_target_accounts | string | 0 |
 | Number of call engagements | hs_number_of_call_engagements | number | false |  |  | hs_number_of_call_engagements | null | None |
 | Number of inbound calls | hs_number_of_inbound_calls | number | false |  |  | hs_number_of_inbound_calls | null | None |
 | Number of outbound calls | hs_number_of_outbound_calls | number | false |  |  | hs_number_of_outbound_calls | null | None |
 | Number of overdue tasks | hs_number_of_overdue_tasks | number | false |  |  | hs_number_of_overdue_tasks | null | None |
 | Number of scheduled meetings | hs_number_of_scheduled_meetings | number | false |  |  | hs_number_of_scheduled_meetings | null | None |
-|  | hs_object_id |  | false |  |  | hs_object_id | str | 6021835189 |
-| Record creation source | hs_object_source | string | false |  |  | hs_object_source | str | CRM_UI |
+|  | hs_object_id |  | false |  |  | hs_object_id | string | 6021835189 |
+| Record creation source | hs_object_source | string | false |  |  | hs_object_source | string | CRM_UI |
 | Record source detail 1 | hs_object_source_detail_1 | string | false |  |  | hs_object_source_detail_1 | null | None |
 | Record source detail 2 | hs_object_source_detail_2 | string | false |  |  | hs_object_source_detail_2 | null | None |
 | Record source detail 3 | hs_object_source_detail_3 | string | false |  |  | hs_object_source_detail_3 | null | None |
-| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | str | userId:25954718 |
-| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | str | CRM_UI |
-| Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | str | 25954718 |
+| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | string | userId:25954718 |
+| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | string | CRM_UI |
+| Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | string | 25954718 |
 | Open amount in home currency | hs_open_amount_in_home_currency | number | false |  |  | hs_open_amount_in_home_currency | null | None |
-| Open deal create date | hs_open_deal_create_date | number | false |  |  | hs_open_deal_create_date | str | 1629818509199 |
+| Open deal create date | hs_open_deal_create_date | number | false |  |  | hs_open_deal_create_date | string | 1629818509199 |
 | Owning Teams | hs_owning_teams | array | false |  |  | hs_owning_teams | null | None |
 | Pinned Engagement ID | hs_pinned_engagement_id | number | false |  |  | hs_pinned_engagement_id | null | None |
 | The predicted deal amount | hs_predicted_amount | number | false |  |  | hs_predicted_amount | null | None |
 | The predicted deal amount in your company's currency | hs_predicted_amount_in_home_currency | number | false |  |  | hs_predicted_amount_in_home_currency | null | None |
 | Primary Associated Company | hs_primary_associated_company | number | false |  |  | hs_primary_associated_company | null | None |
-| Priority | hs_priority | string | false | `Low`, `Medium`, `High` |  | hs_priority | str | medium |
-| Weighted amount | hs_projected_amount | number | false |  |  | hs_projected_amount | str | 13367518.79999999950530242820434523309813812375068664550781250 |
-| Weighted amount in company currency | hs_projected_amount_in_home_currency | number | false |  |  | hs_projected_amount_in_home_currency | str | 13367518.79999999950530242820434523309813812375068664550781250 |
+| Priority | hs_priority | string | false | `Low`, `Medium`, `High` |  | hs_priority | string | medium |
+| Weighted amount | hs_projected_amount | number | false |  |  | hs_projected_amount | string | 13367518.79999999950530242820434523309813812375068664550781250 |
+| Weighted amount in company currency | hs_projected_amount_in_home_currency | number | false |  |  | hs_projected_amount_in_home_currency | string | 13367518.79999999950530242820434523309813812375068664550781250 |
 | Read only object | hs_read_only | boolean | false |  |  | hs_read_only | null | None |
 | Recent Sales Email Replied Date | hs_sales_email_last_replied | string | false |  |  | hs_sales_email_last_replied | null | None |
 | Shared teams | hs_shared_team_ids | array | false |  |  | hs_shared_team_ids | null | None |
@@ -201,7 +203,7 @@
 | Source Object ID | hs_source_object_id | number | false |  |  | hs_source_object_id | null | None |
 | HubSpot Sales Lead | hs_synced_deal_owner_name_and_email | string | false |  |  | hs_synced_deal_owner_name_and_email | null | None |
 | Deal Tags | hs_tag_ids | array | false |  |  | hs_tag_ids | null | None |
-| Total contract value | hs_tcv | number | false |  |  | hs_tcv | str | 22513656.00 |
+| Total contract value | hs_tcv | number | false |  |  | hs_tcv | string | 22513656.00 |
 | Time in 'Appointment scheduled (Bilyk_test_pipeline)' | hs_time_in_159448327 | number | false |  |  | hs_time_in_159448327 | null | None |
 | Time in 'Qualified to buy (Bilyk_test_pipeline)' | hs_time_in_159448328 | number | false |  |  | hs_time_in_159448328 | null | None |
 | Time in 'Presentation scheduled (Bilyk_test_pipeline)' | hs_time_in_159448329 | number | false |  |  | hs_time_in_159448329 | null | None |
@@ -229,10 +231,10 @@
 | Time in 'Presentation Scheduled (Sales Pipeline)' | hs_time_in_presentationscheduled | number | false |  |  | hs_time_in_presentationscheduled | null | None |
 | Time in 'Qualified To Buy (Sales Pipeline)' | hs_time_in_qualifiedtobuy | number | false |  |  | hs_time_in_qualifiedtobuy | null | None |
 | Unique creation key | hs_unique_creation_key | string | false |  |  | hs_unique_creation_key | null | None |
-|  | hs_updated_by_user_id |  | false |  |  | hs_updated_by_user_id | str | 25954718 |
+|  | hs_updated_by_user_id |  | false |  |  | hs_updated_by_user_id | string | 25954718 |
 | User IDs of all notification followers | hs_user_ids_of_all_notification_followers | array | false |  |  | hs_user_ids_of_all_notification_followers | null | None |
 | User IDs of all notification unfollowers | hs_user_ids_of_all_notification_unfollowers | array | false |  |  | hs_user_ids_of_all_notification_unfollowers | null | None |
-| User IDs of all owners | hs_user_ids_of_all_owners | array | false |  |  | hs_user_ids_of_all_owners | str | 25954718 |
+| User IDs of all owners | hs_user_ids_of_all_owners | array | false |  |  | hs_user_ids_of_all_owners | string | 25954718 |
 | Cumulative time in "Appointment scheduled (Bilyk_test_pipeline)" | hs_v2_cumulative_time_in_159448327 | number | false |  |  | hs_v2_cumulative_time_in_159448327 | null | None |
 | Cumulative time in "Qualified to buy (Bilyk_test_pipeline)" | hs_v2_cumulative_time_in_159448328 | number | false |  |  | hs_v2_cumulative_time_in_159448328 | null | None |
 | Cumulative time in "Presentation scheduled (Bilyk_test_pipeline)" | hs_v2_cumulative_time_in_159448329 | number | false |  |  | hs_v2_cumulative_time_in_159448329 | null | None |
@@ -248,10 +250,10 @@
 | Cumulative time in "Contract Sent (WorkatoErrorHandling)" | hs_v2_cumulative_time_in_241999795 | number | false |  |  | hs_v2_cumulative_time_in_241999795 | null | None |
 | Cumulative time in "Closed Won (WorkatoErrorHandling)" | hs_v2_cumulative_time_in_241999796 | number | false |  |  | hs_v2_cumulative_time_in_241999796 | null | None |
 | Cumulative time in "Closed Lost (WorkatoErrorHandling)" | hs_v2_cumulative_time_in_241999797 | number | false |  |  | hs_v2_cumulative_time_in_241999797 | null | None |
-| Cumulative time in "Appointment Scheduled (Sales Pipeline)" | hs_v2_cumulative_time_in_appointmentscheduled | number | false |  |  | hs_v2_cumulative_time_in_appointmentscheduled | str | 133417 |
+| Cumulative time in "Appointment Scheduled (Sales Pipeline)" | hs_v2_cumulative_time_in_appointmentscheduled | number | false |  |  | hs_v2_cumulative_time_in_appointmentscheduled | string | 133417 |
 | Cumulative time in "Closed Lost (Sales Pipeline)" | hs_v2_cumulative_time_in_closedlost | number | false |  |  | hs_v2_cumulative_time_in_closedlost | null | None |
 | Cumulative time in "Closed Won (Sales Pipeline)" | hs_v2_cumulative_time_in_closedwon | number | false |  |  | hs_v2_cumulative_time_in_closedwon | null | None |
-| Cumulative time in "Contract Sent (Sales Pipeline)" | hs_v2_cumulative_time_in_contractsent | number | false |  |  | hs_v2_cumulative_time_in_contractsent | str | 1293563467 |
+| Cumulative time in "Contract Sent (Sales Pipeline)" | hs_v2_cumulative_time_in_contractsent | number | false |  |  | hs_v2_cumulative_time_in_contractsent | string | 1293563467 |
 | Cumulative time in "Decision Maker Bought-In (Sales Pipeline)" | hs_v2_cumulative_time_in_decisionmakerboughtin | number | false |  |  | hs_v2_cumulative_time_in_decisionmakerboughtin | null | None |
 | Cumulative time in "Presentation Scheduled (Sales Pipeline)" | hs_v2_cumulative_time_in_presentationscheduled | number | false |  |  | hs_v2_cumulative_time_in_presentationscheduled | null | None |
 | Cumulative time in "Qualified To Buy (Sales Pipeline)" | hs_v2_cumulative_time_in_qualifiedtobuy | number | false |  |  | hs_v2_cumulative_time_in_qualifiedtobuy | null | None |
@@ -270,13 +272,13 @@
 | Date entered "Contract Sent (WorkatoErrorHandling)" | hs_v2_date_entered_241999795 | string | false |  |  | hs_v2_date_entered_241999795 | null | None |
 | Date entered "Closed Won (WorkatoErrorHandling)" | hs_v2_date_entered_241999796 | string | false |  |  | hs_v2_date_entered_241999796 | null | None |
 | Date entered "Closed Lost (WorkatoErrorHandling)" | hs_v2_date_entered_241999797 | string | false |  |  | hs_v2_date_entered_241999797 | null | None |
-| Date entered "Appointment Scheduled (Sales Pipeline)" | hs_v2_date_entered_appointmentscheduled | string | false |  |  | hs_v2_date_entered_appointmentscheduled | str | 2021-08-24T15:21:58.703Z |
+| Date entered "Appointment Scheduled (Sales Pipeline)" | hs_v2_date_entered_appointmentscheduled | string | false |  |  | hs_v2_date_entered_appointmentscheduled | string | 2021-08-24T15:21:58.703Z |
 | Date entered "Closed Lost (Sales Pipeline)" | hs_v2_date_entered_closedlost | string | false |  |  | hs_v2_date_entered_closedlost | null | None |
 | Date entered "Closed Won (Sales Pipeline)" | hs_v2_date_entered_closedwon | string | false |  |  | hs_v2_date_entered_closedwon | null | None |
-| Date entered "Contract Sent (Sales Pipeline)" | hs_v2_date_entered_contractsent | string | false |  |  | hs_v2_date_entered_contractsent | str | 2021-08-24T15:24:12.120Z |
-| Date entered current stage | hs_v2_date_entered_current_stage | string | false |  |  | hs_v2_date_entered_current_stage | str | 2021-09-08T14:43:35.587Z |
+| Date entered "Contract Sent (Sales Pipeline)" | hs_v2_date_entered_contractsent | string | false |  |  | hs_v2_date_entered_contractsent | string | 2021-08-24T15:24:12.120Z |
+| Date entered current stage | hs_v2_date_entered_current_stage | string | false |  |  | hs_v2_date_entered_current_stage | string | 2021-09-08T14:43:35.587Z |
 | Date entered "Decision Maker Bought-In (Sales Pipeline)" | hs_v2_date_entered_decisionmakerboughtin | string | false |  |  | hs_v2_date_entered_decisionmakerboughtin | null | None |
-| Date entered "Presentation Scheduled (Sales Pipeline)" | hs_v2_date_entered_presentationscheduled | string | false |  |  | hs_v2_date_entered_presentationscheduled | str | 2021-09-08T14:43:35.587Z |
+| Date entered "Presentation Scheduled (Sales Pipeline)" | hs_v2_date_entered_presentationscheduled | string | false |  |  | hs_v2_date_entered_presentationscheduled | string | 2021-09-08T14:43:35.587Z |
 | Date entered "Qualified To Buy (Sales Pipeline)" | hs_v2_date_entered_qualifiedtobuy | string | false |  |  | hs_v2_date_entered_qualifiedtobuy | null | None |
 | Date exited "Appointment scheduled (Bilyk_test_pipeline)" | hs_v2_date_exited_159448327 | string | false |  |  | hs_v2_date_exited_159448327 | null | None |
 | Date exited "Qualified to buy (Bilyk_test_pipeline)" | hs_v2_date_exited_159448328 | string | false |  |  | hs_v2_date_exited_159448328 | null | None |
@@ -293,10 +295,10 @@
 | Date exited "Contract Sent (WorkatoErrorHandling)" | hs_v2_date_exited_241999795 | string | false |  |  | hs_v2_date_exited_241999795 | null | None |
 | Date exited "Closed Won (WorkatoErrorHandling)" | hs_v2_date_exited_241999796 | string | false |  |  | hs_v2_date_exited_241999796 | null | None |
 | Date exited "Closed Lost (WorkatoErrorHandling)" | hs_v2_date_exited_241999797 | string | false |  |  | hs_v2_date_exited_241999797 | null | None |
-| Date exited "Appointment Scheduled (Sales Pipeline)" | hs_v2_date_exited_appointmentscheduled | string | false |  |  | hs_v2_date_exited_appointmentscheduled | str | 2021-08-24T15:24:12.120Z |
+| Date exited "Appointment Scheduled (Sales Pipeline)" | hs_v2_date_exited_appointmentscheduled | string | false |  |  | hs_v2_date_exited_appointmentscheduled | string | 2021-08-24T15:24:12.120Z |
 | Date exited "Closed Lost (Sales Pipeline)" | hs_v2_date_exited_closedlost | string | false |  |  | hs_v2_date_exited_closedlost | null | None |
 | Date exited "Closed Won (Sales Pipeline)" | hs_v2_date_exited_closedwon | string | false |  |  | hs_v2_date_exited_closedwon | null | None |
-| Date exited "Contract Sent (Sales Pipeline)" | hs_v2_date_exited_contractsent | string | false |  |  | hs_v2_date_exited_contractsent | str | 2021-09-08T14:43:35.587Z |
+| Date exited "Contract Sent (Sales Pipeline)" | hs_v2_date_exited_contractsent | string | false |  |  | hs_v2_date_exited_contractsent | string | 2021-09-08T14:43:35.587Z |
 | Date exited "Decision Maker Bought-In (Sales Pipeline)" | hs_v2_date_exited_decisionmakerboughtin | string | false |  |  | hs_v2_date_exited_decisionmakerboughtin | null | None |
 | Date exited "Presentation Scheduled (Sales Pipeline)" | hs_v2_date_exited_presentationscheduled | string | false |  |  | hs_v2_date_exited_presentationscheduled | null | None |
 | Date exited "Qualified To Buy (Sales Pipeline)" | hs_v2_date_exited_qualifiedtobuy | string | false |  |  | hs_v2_date_exited_qualifiedtobuy | null | None |
@@ -315,21 +317,21 @@
 | Latest time in "Contract Sent (WorkatoErrorHandling)" | hs_v2_latest_time_in_241999795 | number | false |  |  | hs_v2_latest_time_in_241999795 | null | None |
 | Latest time in "Closed Won (WorkatoErrorHandling)" | hs_v2_latest_time_in_241999796 | number | false |  |  | hs_v2_latest_time_in_241999796 | null | None |
 | Latest time in "Closed Lost (WorkatoErrorHandling)" | hs_v2_latest_time_in_241999797 | number | false |  |  | hs_v2_latest_time_in_241999797 | null | None |
-| Latest time in "Appointment Scheduled (Sales Pipeline)" | hs_v2_latest_time_in_appointmentscheduled | number | false |  |  | hs_v2_latest_time_in_appointmentscheduled | str | 133417 |
+| Latest time in "Appointment Scheduled (Sales Pipeline)" | hs_v2_latest_time_in_appointmentscheduled | number | false |  |  | hs_v2_latest_time_in_appointmentscheduled | string | 133417 |
 | Latest time in "Closed Lost (Sales Pipeline)" | hs_v2_latest_time_in_closedlost | number | false |  |  | hs_v2_latest_time_in_closedlost | null | None |
 | Latest time in "Closed Won (Sales Pipeline)" | hs_v2_latest_time_in_closedwon | number | false |  |  | hs_v2_latest_time_in_closedwon | null | None |
-| Latest time in "Contract Sent (Sales Pipeline)" | hs_v2_latest_time_in_contractsent | number | false |  |  | hs_v2_latest_time_in_contractsent | str | 1293563467 |
+| Latest time in "Contract Sent (Sales Pipeline)" | hs_v2_latest_time_in_contractsent | number | false |  |  | hs_v2_latest_time_in_contractsent | string | 1293563467 |
 | Latest time in "Decision Maker Bought-In (Sales Pipeline)" | hs_v2_latest_time_in_decisionmakerboughtin | number | false |  |  | hs_v2_latest_time_in_decisionmakerboughtin | null | None |
 | Latest time in "Presentation Scheduled (Sales Pipeline)" | hs_v2_latest_time_in_presentationscheduled | number | false |  |  | hs_v2_latest_time_in_presentationscheduled | null | None |
 | Latest time in "Qualified To Buy (Sales Pipeline)" | hs_v2_latest_time_in_qualifiedtobuy | number | false |  |  | hs_v2_latest_time_in_qualifiedtobuy | null | None |
-| Time in current stage | hs_v2_time_in_current_stage | string | false |  |  | hs_v2_time_in_current_stage | str | 2021-09-08T14:43:35.587Z |
+| Time in current stage | hs_v2_time_in_current_stage | string | false |  |  | hs_v2_time_in_current_stage | string | 2021-09-08T14:43:35.587Z |
 | Performed in an import | hs_was_imported | boolean | false |  |  | hs_was_imported | null | None |
-| Owner assigned date | hubspot_owner_assigneddate | string | false |  |  | hubspot_owner_assigneddate | str | 2021-08-24T15:21:58.703Z |
-|  | hubspot_owner_id | string | false |  | owners | hubspot_owner_id | str | 98751577 |
+| Owner assigned date | hubspot_owner_assigneddate | string | false |  |  | hubspot_owner_assigneddate | string | 2021-08-24T15:21:58.703Z |
+|  | hubspot_owner_id | string | false |  | owners | hubspot_owner_id | string | 98751577 |
 | HubSpot Team | hubspot_team_id | string | false |  |  | hubspot_team_id | null | None |
 | lena custom prop | lena_custom_prop | string | false |  |  | lena_custom_prop | null | None |
 | Lenas new prop | lenas_new_prop | string | false |  |  | lenas_new_prop | null | None |
-| 1 | n1 | string | false |  |  | n1 | str | 34534534 |
+| 1 | n1 | string | false |  |  | n1 | string | 34534534 |
 | Nat Checkbox Test | nat_checkbox_test | string | false | `Yes`, `No` |  | nat_checkbox_test | null | None |
 | Nat Dropdown Test | nat_dropdown_test | string | false | `Option1`, `Option2`, `Option3`, `Option4`, `` |  | nat_dropdown_test | null | None |
 | Nat Radiobutton Test | nat_radiobutton_test | string | false | `Radio1`, `Radio2`, `Radio3`, `Radio4`, `` |  | nat_radiobutton_test | null | None |
@@ -338,17 +340,17 @@
 | nat test phone | nat_test_phone | string | false |  |  | nat_test_phone | null | None |
 | nat test spec symbol! | nat_test_spec_symbol_ | string | false |  |  | nat_test_spec_symbol_ | null | None |
 | Nat Text test | nat_text_test | string | false |  |  | nat_text_test | null | None |
-| Last Contacted | notes_last_contacted | string | false |  |  | notes_last_contacted | str | 2021-10-15T09:54:18.665Z |
-| Last Activity Date | notes_last_updated | string | false |  |  | notes_last_updated | str | 2025-05-29T07:05:56.252Z |
+| Last Contacted | notes_last_contacted | string | false |  |  | notes_last_contacted | string | 2021-10-15T09:54:18.665Z |
+| Last Activity Date | notes_last_updated | string | false |  |  | notes_last_updated | string | 2025-05-29T07:05:56.252Z |
 | Next Activity Date | notes_next_activity_date | string | false |  |  | notes_next_activity_date | null | None |
-| Number of Associated Contacts | num_associated_contacts | number | false |  |  | num_associated_contacts | str | 5 |
-| Number of times contacted | num_contacted_notes | number | false |  |  | num_contacted_notes | str | 1 |
-| Number of Sales Activities | num_notes | number | false |  |  | num_notes | str | 4 |
+| Number of Associated Contacts | num_associated_contacts | number | false |  |  | num_associated_contacts | string | 5 |
+| Number of times contacted | num_contacted_notes | number | false |  |  | num_contacted_notes | string | 1 |
+| Number of Sales Activities | num_notes | number | false |  |  | num_notes | string | 4 |
 | Number of repro steps | number_of_repro_steps | number | false |  |  | number_of_repro_steps | null | None |
 | Number of rooms | number_of_rooms | number | false |  |  | number_of_rooms | null | None |
-| panda_deal_datetime_check | panda_deal_datetime_check | string | false |  |  | panda_deal_datetime_check | str | 2021-10-19 |
+| panda_deal_datetime_check | panda_deal_datetime_check | string | false |  |  | panda_deal_datetime_check | string | 2021-10-19 |
 | PD-55716 | pd_55716 | string | false |  |  | pd_55716 | null | None |
-| Pipeline | pipeline | string | false |  | pipelines | pipeline | str | default |
+| Pipeline | pipeline | string | false |  | pipelines | pipeline | string | default |
 | Present wrap | present_wrap | string | false | `Yes`, `No` |  | present_wrap | null | None |
 | Sensitive field test | sensitive_field_test | string | false |  |  | sensitive_field_test | null | None |
 | Single Checkbox | single_checkbox | string | false | `Yes`, `No` |  | single_checkbox | null | None |
@@ -366,10 +368,24 @@
 | TYTYTY | tytyty | string | false |  |  | tytyty | null | None |
 | Utilisation rate | utilisation_rate | number | false |  |  | utilisation_rate | null | None |
 | Utilisation rate formateed | utilisation_rate_formateed | string | false |  |  | utilisation_rate_formateed | null | None |
+|  | <span style='color:red'>***hs_all_assigned_business_unit_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_associated_deal_registration_product_interests[]***</span> | string | false | `Additional Portal`, `Ads Add-On`, `Brand Domain`, `Calculated Properties Limit Increase`, `Content Hub Enterprise`, `Content Hub Professional`, `Content Hub Starter`, `CMS Enterprise`, `CMS Professional`, `CMS Starter`, `CRM Contact Records Limit Increase`, `CRM Object Limit Increase`, `CRM Suite Enterprise`, `CRM Suite Professional`, `CRM Suite Starter`, `Custom Properties Limit Increase`, `Custom SSL`, `Dedicated IP`, `Marketing+ Enterprise`, `Marketing+ Professional`, `Marketing Hub Enterprise`, `Marketing Hub Professional`, `Marketing Hub Starter`, `Marketing SMS Add-On`, `Marketing SMS Limit Increase`, `Monthly Consulting`, `Ongoing Consulting`, `Operations Hub Enterprise`, `Operations Hub Professional`, `Operations Hub Starter`, `Premium Consulting`, `Reporting Add-On`, `Sales Hub Enterprise`, `Sales Hub Professional`, `Sales Hub Starter`, `Service Hub Enterprise`, `Service Hub Professional`, `Service Hub Starter`, `Solutions Partner`, `Solutions Provider`, `Technical Consulting`, `Transactional Email`, `100 Breeze Intelligence Credits`, `1000 Breeze Intelligence Credits`, `10000 Breeze Intelligence Credits`, `Breeze Intelligence Backfill Enrichment`, `Smart CRM Professional`, `Smart CRM Enterprise`, `HubSpot Committed Credits (Auto-upgrade)` |  |  |  |  |
+|  | <span style='color:red'>***hs_attributed_team_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_merged_object_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_owning_teams[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_team_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_user_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_tag_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_followers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_unfollowers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_owners[]***</span> | string | false |  |  |  |  |  |
+| multi select field | <span style='color:red'>***multi_select_field***</span> | array | false |  |  |  |  |  |
+|  | <span style='color:red'>***multi_select_field[]***</span> | string | false | `one`, `two`, `three` |  |  |  |  |
 |  |  |  |  |  |  | hs_all_collaborator_owner_ids | null | None |
-|  |  |  |  |  |  | hs_notes_last_activity | str | 0-46-80415961222 |
+|  |  |  |  |  |  | hs_notes_last_activity | string | 0-46-80415961222 |
 |  |  |  |  |  |  | hs_notes_next_activity | null | None |
 |  |  |  |  |  |  | line_item_ids | array | ["1894974526", "1894974527", "1894974528", "2018705302", "2073899531", "2073940028", "2073940029", "2073940030", "2073940031", "2073940032", "2073940033", "2073940034", "2073940035", "2073940036", "2073940037", "2073940038", "2073940039", "2073940040", "2073940041", "2073940042", "2073940043", "2073940044", "2073940045", "2073940046", "2073940047", "2073940048", "2073940049", "2073940050", "2073940051", "2073940052", "2073940053", "2073940054", "2073940055", "2073940056", "2073940057", "2073940058", "2073940059", "2073940060", "2073940061", "2073940062", "2073940063", "2073940064", "2073940065", "2073940069", "2073940070", "2073940071", "2073940072", "2073940073", "2073940074", "2073940075", "2073940076", "2073940077", "2073940078", "2073940079", "2073940080", "2073940081", "2073940082", "2073940083", "2073940084", "2073940085", "2073940086", "2073940087", "2073940088", "2073940089", "2073940090", "2073940091", "2073940092", "2073940093", "2073940094", "2073940095", "2073940096", "2073940097", "2073940098", "2073940099", "2073940100", "2073940101", "2073940102", "2073940103", "2073940104", "2073940105", "2073940106", "2073940357", "2073940358", "2073940359", "2073940360", "2073940361", "2073940362", "2073940363", "2073940364", "2073940365", "2073940366", "2073940367", "2073940368", "2073945926", "2073945927", "2073945928", "2073945929", "2073945930", "2073945931", "2073945932"] |
+|  |  |  |  |  |  | line_item_ids[] | string |  |
 
 ## Companies
 
@@ -379,13 +395,13 @@
 | Street Address | address | string | false |  |  | address | null | None |
 | Street Address 2 | address2 | string | false |  |  | address2 | null | None |
 | Annual Revenue | annualrevenue | number | false |  |  | annualrevenue | null | None |
-| City | city | string | false |  |  | city | str | Wawa |
+| City | city | string | false |  |  | city | string | Wawa |
 | Close Date | closedate | string | false |  |  | closedate | null | None |
 | Country/Region | country | string | false |  |  | country | null | None |
-| Create Date | createdate | string | true |  |  | createdate | str | 2025-03-17T12:51:31.034Z |
+| Create Date | createdate | string | true |  |  | createdate | string | 2025-03-17T12:51:31.034Z |
 | Days to Close | days_to_close | number | false |  |  | days_to_close | null | None |
 | Description | description | string | false |  |  | description | null | None |
-| Company Domain Name | domain | string | false |  |  | domain | str | tesstststts.com |
+| Company Domain Name | domain | string | false |  |  | domain | string | tesstststts.com |
 | Date of last meeting booked in meetings tool | engagements_last_meeting_booked | string | false |  |  | engagements_last_meeting_booked | null | None |
 | Campaign of last booking in meetings tool | engagements_last_meeting_booked_campaign | string | false |  |  | engagements_last_meeting_booked_campaign | null | None |
 | Medium of last booking in meetings tool | engagements_last_meeting_booked_medium | string | false |  |  | engagements_last_meeting_booked_medium | null | None |
@@ -397,13 +413,13 @@
 | first_contact_createdate_timestamp_earliest_value_78b50eea | first_contact_createdate_timestamp_earliest_value_78b50eea | string | false |  |  | first_contact_createdate_timestamp_earliest_value_78b50eea | null | None |
 | First Conversion Date | first_conversion_date | string | false |  |  | first_conversion_date | null | None |
 | First Conversion | first_conversion_event_name | string | false |  |  | first_conversion_event_name | null | None |
-| First Deal Created Date | first_deal_created_date | string | false |  |  | first_deal_created_date | str | 2025-03-17T12:50:28.156Z |
+| First Deal Created Date | first_deal_created_date | string | false |  |  | first_deal_created_date | string | 2025-03-17T12:50:28.156Z |
 | Year Founded | founded_year | string | false |  |  | founded_year | null | None |
 | Google Plus Page | googleplus_page | string | false |  |  | googleplus_page | null | None |
 | Additional Domains | hs_additional_domains | array | false |  |  | hs_additional_domains | null | None |
 | All teams | hs_all_accessible_team_ids | string | false |  |  | hs_all_accessible_team_ids | null | None |
-| Brands | hs_all_assigned_business_unit_ids | array | false |  |  | hs_all_assigned_business_unit_ids | str | 0 |
-| All owner IDs | hs_all_owner_ids | string | false |  |  | hs_all_owner_ids | str | 77803573 |
+| Brands | hs_all_assigned_business_unit_ids | array | false |  |  | hs_all_assigned_business_unit_ids | string | 0 |
+| All owner IDs | hs_all_owner_ids | string | false |  |  | hs_all_owner_ids | string | 77803573 |
 | All team IDs | hs_all_team_ids | string | false |  |  | hs_all_team_ids | null | None |
 | Time First Seen | hs_analytics_first_timestamp | string | false |  |  | hs_analytics_first_timestamp | null | None |
 | First Touch Converting Campaign | hs_analytics_first_touch_converting_campaign | string | false |  |  | hs_analytics_first_touch_converting_campaign | null | None |
@@ -425,24 +441,24 @@
 | Original Traffic Source | hs_analytics_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_source | null | None |
 | Original Traffic Source Drill-Down 1 | hs_analytics_source_data_1 | string | false |  |  | hs_analytics_source_data_1 | null | None |
 | Original Traffic Source Drill-Down 2 | hs_analytics_source_data_2 | string | false |  |  | hs_analytics_source_data_2 | null | None |
-| Annual Revenue Currency Code | hs_annual_revenue_currency_code | string | false |  |  | hs_annual_revenue_currency_code | str | USD |
-| Avatar FileManager key | hs_avatar_filemanager_key | string | false |  |  | hs_avatar_filemanager_key | str | hubfs/20595574/91abb207-0dce-444d-9847-9a2849c1fb68.png |
+| Annual Revenue Currency Code | hs_annual_revenue_currency_code | string | false |  |  | hs_annual_revenue_currency_code | string | USD |
+| Avatar FileManager key | hs_avatar_filemanager_key | string | false |  |  | hs_avatar_filemanager_key | string | hubfs/20595574/91abb207-0dce-444d-9847-9a2849c1fb68.png |
 | Country/Region Code | hs_country_code | string | false |  |  | hs_country_code | null | None |
-|  | hs_created_by_user_id |  | false |  |  | hs_created_by_user_id | str | 77803573 |
+|  | hs_created_by_user_id |  | false |  |  | hs_created_by_user_id | string | 77803573 |
 | Object create date/time | hs_createdate | string | false |  |  | hs_createdate | null | None |
 | CSM Sentiment | hs_csm_sentiment | string | false | `At-Risk`, `Neutral`, `Healthy` |  | hs_csm_sentiment | null | None |
 | Recent Ticket Sentiment | hs_customer_success_ticket_sentiment | number | false |  |  | hs_customer_success_ticket_sentiment | null | None |
 | Date entered 'Customer (Lifecycle Stage Pipeline)' | hs_date_entered_customer | string | false |  |  | hs_date_entered_customer | null | None |
 | Date entered 'Evangelist (Lifecycle Stage Pipeline)' | hs_date_entered_evangelist | string | false |  |  | hs_date_entered_evangelist | null | None |
-| Date entered 'Lead (Lifecycle Stage Pipeline)' | hs_date_entered_lead | string | false |  |  | hs_date_entered_lead | str | 2025-03-17T12:51:31.034Z |
+| Date entered 'Lead (Lifecycle Stage Pipeline)' | hs_date_entered_lead | string | false |  |  | hs_date_entered_lead | string | 2025-03-17T12:51:31.034Z |
 | Date entered 'Marketing Qualified Lead (Lifecycle Stage Pipeline)' | hs_date_entered_marketingqualifiedlead | string | false |  |  | hs_date_entered_marketingqualifiedlead | null | None |
-| Date entered 'Opportunity (Lifecycle Stage Pipeline)' | hs_date_entered_opportunity | string | false |  |  | hs_date_entered_opportunity | str | 2025-03-17T12:51:31.644Z |
+| Date entered 'Opportunity (Lifecycle Stage Pipeline)' | hs_date_entered_opportunity | string | false |  |  | hs_date_entered_opportunity | string | 2025-03-17T12:51:31.644Z |
 | Date entered 'Other (Lifecycle Stage Pipeline)' | hs_date_entered_other | string | false |  |  | hs_date_entered_other | null | None |
 | Date entered 'Sales Qualified Lead (Lifecycle Stage Pipeline)' | hs_date_entered_salesqualifiedlead | string | false |  |  | hs_date_entered_salesqualifiedlead | null | None |
 | Date entered 'Subscriber (Lifecycle Stage Pipeline)' | hs_date_entered_subscriber | string | false |  |  | hs_date_entered_subscriber | null | None |
 | Date exited 'Customer (Lifecycle Stage Pipeline)' | hs_date_exited_customer | string | false |  |  | hs_date_exited_customer | null | None |
 | Date exited 'Evangelist (Lifecycle Stage Pipeline)' | hs_date_exited_evangelist | string | false |  |  | hs_date_exited_evangelist | null | None |
-| Date exited 'Lead (Lifecycle Stage Pipeline)' | hs_date_exited_lead | string | false |  |  | hs_date_exited_lead | str | 2025-03-17T12:51:31.644Z |
+| Date exited 'Lead (Lifecycle Stage Pipeline)' | hs_date_exited_lead | string | false |  |  | hs_date_exited_lead | string | 2025-03-17T12:51:31.644Z |
 | Date exited 'Marketing Qualified Lead (Lifecycle Stage Pipeline)' | hs_date_exited_marketingqualifiedlead | string | false |  |  | hs_date_exited_marketingqualifiedlead | null | None |
 | Date exited 'Opportunity (Lifecycle Stage Pipeline)' | hs_date_exited_opportunity | string | false |  |  | hs_date_exited_opportunity | null | None |
 | Date exited 'Other (Lifecycle Stage Pipeline)' | hs_date_exited_other | string | false |  |  | hs_date_exited_other | null | None |
@@ -467,7 +483,7 @@
 | last sales activity date old | hs_last_sales_activity_date | string | false |  |  | hs_last_sales_activity_date | null | None |
 | Last Engagement Date | hs_last_sales_activity_timestamp | string | false |  |  | hs_last_sales_activity_timestamp | null | None |
 | Last Engagement Type | hs_last_sales_activity_type | string | false | `Company Website Visit`, `Document View`, `Email Click`, `Email Open`, `Email Reply`, `Form Submitted`, `Meeting Booked`, `Website Visit` |  | hs_last_sales_activity_type | null | None |
-| Last Modified Date | hs_lastmodifieddate | string | true |  |  | hs_lastmodifieddate | str | 2025-06-06T10:23:42.981Z |
+| Last Modified Date | hs_lastmodifieddate | string | true |  |  | hs_lastmodifieddate | string | 2025-06-06T10:23:42.981Z |
 | Latest create date of active subscriptions | hs_latest_createdate_of_active_subscriptions | string | false |  |  | hs_latest_createdate_of_active_subscriptions | null | None |
 | Latest meeting activity | hs_latest_meeting_activity | string | false |  |  | hs_latest_meeting_activity | null | None |
 | Lead Status | hs_lead_status | string | false | `New`, `Open`, `In Progress`, `Open Deal`, `Unqualified`, `Attempted to Contact`, `Connected`, `Bad Timing` |  | hs_lead_status | null | None |
@@ -476,26 +492,26 @@
 | Logo URL | hs_logo_url | string | false |  |  | hs_logo_url | null | None |
 | Merged Company IDs | hs_merged_object_ids | array | false |  |  | hs_merged_object_ids | null | None |
 | Most recent de-anonymized visit | hs_most_recent_de_anonymized_visit | string | false |  |  | hs_most_recent_de_anonymized_visit | null | None |
-| Last Activity | hs_notes_last_activity | object_coordinates | false |  |  | hs_notes_last_activity | str | 0-46-80255807096 |
+| Last Activity | hs_notes_last_activity | object_coordinates | false |  |  | hs_notes_last_activity | string | 0-46-80255807096 |
 | Next Activity | hs_notes_next_activity | object_coordinates | false |  |  | hs_notes_next_activity | null | None |
 | Next Activity Type | hs_notes_next_activity_type | string | false | `Call`, `Conversation session`, `Email reply from contact`, `Email sent to contact`, `Forwarded email`, `LinkedIn message`, `Meeting`, `Note`, `Postal mail`, `Publishing task`, `SMS`, `Task`, `WhatsApp` |  | hs_notes_next_activity_type | null | None |
-| Number of blockers | hs_num_blockers | number | false |  |  | hs_num_blockers | str | 0 |
-| Number of child companies | hs_num_child_companies | number | false |  |  | hs_num_child_companies | str | 0 |
-| Number of contacts with a buying role | hs_num_contacts_with_buying_roles | number | false |  |  | hs_num_contacts_with_buying_roles | str | 0 |
-| Number of decision makers | hs_num_decision_makers | number | false |  |  | hs_num_decision_makers | str | 0 |
-| Number of open deals | hs_num_open_deals | number | false |  |  | hs_num_open_deals | str | 5 |
-|  | hs_object_id |  | false |  |  | hs_object_id | str | 31115737391 |
-| Record creation source | hs_object_source | string | false |  |  | hs_object_source | str | CRM_UI |
+| Number of blockers | hs_num_blockers | number | false |  |  | hs_num_blockers | string | 0 |
+| Number of child companies | hs_num_child_companies | number | false |  |  | hs_num_child_companies | string | 0 |
+| Number of contacts with a buying role | hs_num_contacts_with_buying_roles | number | false |  |  | hs_num_contacts_with_buying_roles | string | 0 |
+| Number of decision makers | hs_num_decision_makers | number | false |  |  | hs_num_decision_makers | string | 0 |
+| Number of open deals | hs_num_open_deals | number | false |  |  | hs_num_open_deals | string | 5 |
+|  | hs_object_id |  | false |  |  | hs_object_id | string | 31115737391 |
+| Record creation source | hs_object_source | string | false |  |  | hs_object_source | string | CRM_UI |
 | Record source detail 1 | hs_object_source_detail_1 | string | false |  |  | hs_object_source_detail_1 | null | None |
 | Record source detail 2 | hs_object_source_detail_2 | string | false |  |  | hs_object_source_detail_2 | null | None |
 | Record source detail 3 | hs_object_source_detail_3 | string | false |  |  | hs_object_source_detail_3 | null | None |
-| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | str | userId:77803573 |
-| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | str | CRM_UI |
-| Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | str | 77803573 |
+| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | string | userId:77803573 |
+| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | string | CRM_UI |
+| Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | string | 77803573 |
 | Owning Teams | hs_owning_teams | array | false |  |  | hs_owning_teams | null | None |
 | Parent Company | hs_parent_company_id | number | false |  | companies | hs_parent_company_id | null | None |
 | Pinned Engagement ID | hs_pinned_engagement_id | number | false |  |  | hs_pinned_engagement_id | null | None |
-| Pipeline | hs_pipeline | string | false |  |  | hs_pipeline | str | companies-lifecycle-pipeline |
+| Pipeline | hs_pipeline | string | false |  |  | hs_pipeline | string | companies-lifecycle-pipeline |
 | Likelihood to close | hs_predictivecontactscore_v2 | number | false |  |  | hs_predictivecontactscore_v2 | null | None |
 | hs_predictivecontactscore_v2_next_max_max_d4e58c1e | hs_predictivecontactscore_v2_next_max_max_d4e58c1e | number | false |  |  | hs_predictivecontactscore_v2_next_max_max_d4e58c1e | null | None |
 | Quick context | hs_quick_context | string | false |  |  | hs_quick_context | null | None |
@@ -507,45 +523,45 @@
 | Source Object ID | hs_source_object_id | number | false |  |  | hs_source_object_id | null | None |
 | State/Region Code | hs_state_code | string | false |  |  | hs_state_code | null | None |
 | Target Account | hs_target_account | string | false | `Tier 1`, `Tier 2`, `Tier 3` |  | hs_target_account | null | None |
-| Target Account Probability | hs_target_account_probability | number | false |  |  | hs_target_account_probability | str | 0.4580276608467102 |
+| Target Account Probability | hs_target_account_probability | number | false |  |  | hs_target_account_probability | string | 0.4580276608467102 |
 | Target Account Recommendation Snooze Time | hs_target_account_recommendation_snooze_time | string | false |  |  | hs_target_account_recommendation_snooze_time | null | None |
 | Target Account Recommendation State | hs_target_account_recommendation_state | string | false | `Dismissed`, `None`, `Snoozed` |  | hs_target_account_recommendation_state | null | None |
-| Company task label | hs_task_label | string | false |  |  | hs_task_label | str | Alena's test company |
+| Company task label | hs_task_label | string | false |  |  | hs_task_label | string | Alena's test company |
 | Time in 'Customer (Lifecycle Stage Pipeline)' | hs_time_in_customer | number | false |  |  | hs_time_in_customer | null | None |
 | Time in 'Evangelist (Lifecycle Stage Pipeline)' | hs_time_in_evangelist | number | false |  |  | hs_time_in_evangelist | null | None |
-| Time in 'Lead (Lifecycle Stage Pipeline)' | hs_time_in_lead | number | false |  |  | hs_time_in_lead | str | 610 |
+| Time in 'Lead (Lifecycle Stage Pipeline)' | hs_time_in_lead | number | false |  |  | hs_time_in_lead | string | 610 |
 | Time in 'Marketing Qualified Lead (Lifecycle Stage Pipeline)' | hs_time_in_marketingqualifiedlead | number | false |  |  | hs_time_in_marketingqualifiedlead | null | None |
-| Time in 'Opportunity (Lifecycle Stage Pipeline)' | hs_time_in_opportunity | number | false |  |  | hs_time_in_opportunity | str | 7579893015 |
+| Time in 'Opportunity (Lifecycle Stage Pipeline)' | hs_time_in_opportunity | number | false |  |  | hs_time_in_opportunity | string | 7582658511 |
 | Time in 'Other (Lifecycle Stage Pipeline)' | hs_time_in_other | number | false |  |  | hs_time_in_other | null | None |
 | Time in 'Sales Qualified Lead (Lifecycle Stage Pipeline)' | hs_time_in_salesqualifiedlead | number | false |  |  | hs_time_in_salesqualifiedlead | null | None |
 | Time in 'Subscriber (Lifecycle Stage Pipeline)' | hs_time_in_subscriber | number | false |  |  | hs_time_in_subscriber | null | None |
-| Total open deal value | hs_total_deal_value | number | false |  |  | hs_total_deal_value | str | 3572.70 |
+| Total open deal value | hs_total_deal_value | number | false |  |  | hs_total_deal_value | string | 3572.70 |
 | Unique creation key | hs_unique_creation_key | string | false |  |  | hs_unique_creation_key | null | None |
-|  | hs_updated_by_user_id |  | false |  |  | hs_updated_by_user_id | str | 77803573 |
+|  | hs_updated_by_user_id |  | false |  |  | hs_updated_by_user_id | string | 77803573 |
 | User IDs of all notification followers | hs_user_ids_of_all_notification_followers | array | false |  |  | hs_user_ids_of_all_notification_followers | null | None |
 | User IDs of all notification unfollowers | hs_user_ids_of_all_notification_unfollowers | array | false |  |  | hs_user_ids_of_all_notification_unfollowers | null | None |
-| User IDs of all owners | hs_user_ids_of_all_owners | array | false |  |  | hs_user_ids_of_all_owners | str | 77803573 |
+| User IDs of all owners | hs_user_ids_of_all_owners | array | false |  |  | hs_user_ids_of_all_owners | string | 77803573 |
 | Performed in an import | hs_was_imported | boolean | false |  |  | hs_was_imported | null | None |
-| Owner assigned date | hubspot_owner_assigneddate | string | false |  |  | hubspot_owner_assigneddate | str | 2025-03-17T12:51:31.034Z |
-|  | hubspot_owner_id | string | false |  | owners | hubspot_owner_id | str | 77803573 |
+| Owner assigned date | hubspot_owner_assigneddate | string | false |  |  | hubspot_owner_assigneddate | string | 2025-03-17T12:51:31.034Z |
+|  | hubspot_owner_id | string | false |  | owners | hubspot_owner_id | string | 77803573 |
 | HubSpot Team | hubspot_team_id | string | false |  |  | hubspot_team_id | null | None |
 | HubSpot Score | hubspotscore | number | false |  |  | hubspotscore | null | None |
-| Industry | industry | string | false | `Accounting`, `Airlines/Aviation`, `Alternative Dispute Resolution`, `Alternative Medicine`, `Animation`, `Apparel & Fashion`, `Architecture & Planning`, `Arts and Crafts`, `Automotive`, `Aviation & Aerospace`, `Banking`, `Biotechnology`, `Broadcast Media`, `Building Materials`, `Business Supplies and Equipment`, `Capital Markets`, `Chemicals`, `Civic & Social Organization`, `Civil Engineering`, `Commercial Real Estate`, `Computer & Network Security`, `Computer Games`, `Computer Hardware`, `Computer Networking`, `Computer Software`, `Internet`, `Construction`, `Consumer Electronics`, `Consumer Goods`, `Consumer Services`, `Cosmetics`, `Dairy`, `Defense & Space`, `Design`, `Education Management`, `E-Learning`, `Electrical/Electronic Manufacturing`, `Entertainment`, `Environmental Services`, `Events Services`, `Executive Office`, `Facilities Services`, `Farming`, `Financial Services`, `Fine Art`, `Fishery`, `Food & Beverages`, `Food Production`, `Fund-Raising`, `Furniture`, `Gambling & Casinos`, `Glass, Ceramics & Concrete`, `Government Administration`, `Government Relations`, `Graphic Design`, `Health, Wellness and Fitness`, `Higher Education`, `Hospital & Health Care`, `Hospitality`, `Human Resources`, `Import and Export`, `Individual & Family Services`, `Industrial Automation`, `Information Services`, `Information Technology and Services`, `Insurance`, `International Affairs`, `International Trade and Development`, `Investment Banking`, `Investment Management`, `Judiciary`, `Law Enforcement`, `Law Practice`, `Legal Services`, `Legislative Office`, `Leisure, Travel & Tourism`, `Libraries`, `Logistics and Supply Chain`, `Luxury Goods & Jewelry`, `Machinery`, `Management Consulting`, `Maritime`, `Market Research`, `Marketing and Advertising`, `Mechanical or Industrial Engineering`, `Media Production`, `Medical Devices`, `Medical Practice`, `Mental Health Care`, `Military`, `Mining & Metals`, `Motion Pictures and Film`, `Museums and Institutions`, `Music`, `Nanotechnology`, `Newspapers`, `Non-Profit Organization Management`, `Oil & Energy`, `Online Media`, `Outsourcing/Offshoring`, `Package/Freight Delivery`, `Packaging and Containers`, `Paper & Forest Products`, `Performing Arts`, `Pharmaceuticals`, `Philanthropy`, `Photography`, `Plastics`, `Political Organization`, `Primary/Secondary Education`, `Printing`, `Professional Training & Coaching`, `Program Development`, `Public Policy`, `Public Relations and Communications`, `Public Safety`, `Publishing`, `Railroad Manufacture`, `Ranching`, `Real Estate`, `Recreational Facilities and Services`, `Religious Institutions`, `Renewables & Environment`, `Research`, `Restaurants`, `Retail`, `Security and Investigations`, `Semiconductors`, `Shipbuilding`, `Sporting Goods`, `Sports`, `Staffing and Recruiting`, `Supermarkets`, `Telecommunications`, `Textiles`, `Think Tanks`, `Tobacco`, `Translation and Localization`, `Transportation/Trucking/Railroad`, `Utilities`, `Venture Capital & Private Equity`, `Veterinary`, `Warehousing`, `Wholesale`, `Wine and Spirits`, `Wireless`, `Writing and Editing`, `Mobile Games` |  | industry | str | ACCOUNTING |
+| Industry | industry | string | false | `Accounting`, `Airlines/Aviation`, `Alternative Dispute Resolution`, `Alternative Medicine`, `Animation`, `Apparel & Fashion`, `Architecture & Planning`, `Arts and Crafts`, `Automotive`, `Aviation & Aerospace`, `Banking`, `Biotechnology`, `Broadcast Media`, `Building Materials`, `Business Supplies and Equipment`, `Capital Markets`, `Chemicals`, `Civic & Social Organization`, `Civil Engineering`, `Commercial Real Estate`, `Computer & Network Security`, `Computer Games`, `Computer Hardware`, `Computer Networking`, `Computer Software`, `Internet`, `Construction`, `Consumer Electronics`, `Consumer Goods`, `Consumer Services`, `Cosmetics`, `Dairy`, `Defense & Space`, `Design`, `Education Management`, `E-Learning`, `Electrical/Electronic Manufacturing`, `Entertainment`, `Environmental Services`, `Events Services`, `Executive Office`, `Facilities Services`, `Farming`, `Financial Services`, `Fine Art`, `Fishery`, `Food & Beverages`, `Food Production`, `Fund-Raising`, `Furniture`, `Gambling & Casinos`, `Glass, Ceramics & Concrete`, `Government Administration`, `Government Relations`, `Graphic Design`, `Health, Wellness and Fitness`, `Higher Education`, `Hospital & Health Care`, `Hospitality`, `Human Resources`, `Import and Export`, `Individual & Family Services`, `Industrial Automation`, `Information Services`, `Information Technology and Services`, `Insurance`, `International Affairs`, `International Trade and Development`, `Investment Banking`, `Investment Management`, `Judiciary`, `Law Enforcement`, `Law Practice`, `Legal Services`, `Legislative Office`, `Leisure, Travel & Tourism`, `Libraries`, `Logistics and Supply Chain`, `Luxury Goods & Jewelry`, `Machinery`, `Management Consulting`, `Maritime`, `Market Research`, `Marketing and Advertising`, `Mechanical or Industrial Engineering`, `Media Production`, `Medical Devices`, `Medical Practice`, `Mental Health Care`, `Military`, `Mining & Metals`, `Motion Pictures and Film`, `Museums and Institutions`, `Music`, `Nanotechnology`, `Newspapers`, `Non-Profit Organization Management`, `Oil & Energy`, `Online Media`, `Outsourcing/Offshoring`, `Package/Freight Delivery`, `Packaging and Containers`, `Paper & Forest Products`, `Performing Arts`, `Pharmaceuticals`, `Philanthropy`, `Photography`, `Plastics`, `Political Organization`, `Primary/Secondary Education`, `Printing`, `Professional Training & Coaching`, `Program Development`, `Public Policy`, `Public Relations and Communications`, `Public Safety`, `Publishing`, `Railroad Manufacture`, `Ranching`, `Real Estate`, `Recreational Facilities and Services`, `Religious Institutions`, `Renewables & Environment`, `Research`, `Restaurants`, `Retail`, `Security and Investigations`, `Semiconductors`, `Shipbuilding`, `Sporting Goods`, `Sports`, `Staffing and Recruiting`, `Supermarkets`, `Telecommunications`, `Textiles`, `Think Tanks`, `Tobacco`, `Translation and Localization`, `Transportation/Trucking/Railroad`, `Utilities`, `Venture Capital & Private Equity`, `Veterinary`, `Warehousing`, `Wholesale`, `Wine and Spirits`, `Wireless`, `Writing and Editing`, `Mobile Games` |  | industry | string | ACCOUNTING |
 | Is Public | is_public | boolean | false |  |  | is_public | null | None |
-| Lifecycle Stage | lifecyclestage | string | false | `Subscriber`, `Lead`, `Marketing Qualified Lead`, `Sales Qualified Lead`, `Opportunity`, `Customer`, `Evangelist`, `Other` |  | lifecyclestage | str | opportunity |
+| Lifecycle Stage | lifecyclestage | string | false | `Subscriber`, `Lead`, `Marketing Qualified Lead`, `Sales Qualified Lead`, `Opportunity`, `Customer`, `Evangelist`, `Other` |  | lifecyclestage | string | opportunity |
 | LinkedIn Company Page | linkedin_company_page | string | false |  |  | linkedin_company_page | null | None |
 | LinkedIn Bio | linkedinbio | string | false |  |  | linkedinbio | null | None |
-| Company name | name | string | false |  |  | name | str | Alena's test company |
+| Company name | name | string | false |  |  | name | string | Alena's test company |
 | natphone | natphone | string | false |  |  | natphone | null | None |
 | Last Contacted | notes_last_contacted | string | false |  |  | notes_last_contacted | null | None |
-| Last Activity Date | notes_last_updated | string | true |  |  | notes_last_updated | str | 2025-05-28T10:47:49.642Z |
+| Last Activity Date | notes_last_updated | string | true |  |  | notes_last_updated | string | 2025-05-28T10:47:49.642Z |
 | Next Activity Date | notes_next_activity_date | string | false |  |  | notes_next_activity_date | null | None |
-| Number of Associated Contacts | num_associated_contacts | number | false |  |  | num_associated_contacts | str | 0 |
-| Number of Associated Deals | num_associated_deals | number | false |  |  | num_associated_deals | str | 5 |
+| Number of Associated Contacts | num_associated_contacts | number | false |  |  | num_associated_contacts | string | 0 |
+| Number of Associated Deals | num_associated_deals | number | false |  |  | num_associated_deals | string | 5 |
 | Number of times contacted | num_contacted_notes | number | false |  |  | num_contacted_notes | null | None |
 | Number of Form Submissions | num_conversion_events | number | false |  |  | num_conversion_events | null | None |
 | num_conversion_events_cardinality_sum_d095f14b | num_conversion_events_cardinality_sum_d095f14b | number | false |  |  | num_conversion_events_cardinality_sum_d095f14b | null | None |
-| Number of Sales Activities | num_notes | number | false |  |  | num_notes | str | 1 |
+| Number of Sales Activities | num_notes | number | false |  |  | num_notes | string | 1 |
 | Number of Employees | numberofemployees | number | false |  |  | numberofemployees | null | None |
 | HubSpot Owner Email | owneremail | string | false |  |  | owneremail | null | None |
 | HubSpot Owner Name | ownername | string | false |  |  | ownername | null | None |
@@ -556,17 +572,30 @@
 | recent_conversion_event_name_timestamp_latest_value_66c820bf | recent_conversion_event_name_timestamp_latest_value_66c820bf | string | false |  |  | recent_conversion_event_name_timestamp_latest_value_66c820bf | null | None |
 | Recent Deal Amount | recent_deal_amount | number | false |  |  | recent_deal_amount | null | None |
 | Recent Deal Close Date | recent_deal_close_date | string | false |  |  | recent_deal_close_date | null | None |
-| State/Region | state | string | false |  |  | state | str | PL |
+| State/Region | state | string | false |  |  | state | string | PL |
 | Time Zone | timezone | string | false |  |  | timezone | null | None |
 | Total Money Raised | total_money_raised | string | false |  |  | total_money_raised | null | None |
 | Total Revenue | total_revenue | number | false |  |  | total_revenue | null | None |
 | Twitter Bio | twitterbio | string | false |  |  | twitterbio | null | None |
 | Twitter Followers | twitterfollowers | number | false |  |  | twitterfollowers | null | None |
 | Twitter Handle | twitterhandle | string | false |  |  | twitterhandle | null | None |
-| Type | type | string | false | `Prospect`, `Partner`, `Reseller`, `Vendor`, `Other` |  | type | str | PROSPECT |
+| Type | type | string | false | `Prospect`, `Partner`, `Reseller`, `Vendor`, `Other` |  | type | string | PROSPECT |
 | Web Technologies | web_technologies | array | false |  |  | web_technologies | null | None |
-| Website URL | website | string | false |  |  | website | str | tesstststts.com |
-| Postal Code | zip | string | false |  |  | zip | str | 199484 |
+| Website URL | website | string | false |  |  | website | string | tesstststts.com |
+| Postal Code | zip | string | false |  |  | zip | string | 199484 |
+| closedate_timestamp_earliest_value_a2a17e6e | <span style='color:red'>***closedate_timestamp_earliest_value_a2a17e6e***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_additional_domains[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_all_assigned_business_unit_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_keywords[]***</span> | string | false | `.NET Development`, `3D Printing`, `Abrasives`, `Academic Programs`, `Academic Research`, `Academics`, `Access Management`, `Accident Claims`, `Accountability`, `Accounting`, `Acoustics`, `Addiction Treatment`, `Adhesive`, `Adhesives`, `Administrative Consulting`, `Administrative Support`, `AdTech`, `Adult Clothing`, `Adult Entertainment`, `Advanced Analytics`, `Advanced Manufacturing`, `Adventure Activities`, `Advertising`, `Advertising & Marketing`, `Advertising Campaigns`, `Advertising Management`, `Advice and Advisory Services`, `Advisory Commissions`, `Advocacy`, `Advocacy Group`, `Aerospace & Defense`, `Aerospace Manufacturing`, `Aesthetic Medicine`, `Affordable Healthcare Services`, `After Sales Service`, `After School Programs`, `Agency`, `Agile Development`, `Agribusiness`, `Agricultural Equipment`, `Agricultural Production`, `Agriculture`, `Air Bags`, `Air Force`, `Air Quality and Filtration`, `Air-Conditioning`, `Aircraft`, `Airlines`, `Airport Services`, `Alarm`, `Alcohol`, `Ale`, `Allergen-Free`, `Alternative Investments and Assets`, `Alternative Medicine`, `Aluminum Products`, `Amazon Services`, `Ambulance`, `Ambulatory`, `Ambulatory Services`, `Ammunition`, `Amusement`, `Amusement Parks`, `Analytics`, `Analytics & Reporting`, `Animal Care`, `Animal Exhibit`, `Animal Fat`, `Animal Food`, `Animal Grooming`, `Animal Health`, `Animal Hospitals`, `Animal Nutrition`, `Animal Production`, `Animal Slaughtering`, `Animal Training`, `Animals & Pets`, `Animation`, `Animation and Character Design`, `Answering Services`, `Anthracite`, `Anti-Corruption`, `Apiculture`, `APIs`, `Apparel & Fashion`, `Apparel & Footwear`, `Application Development`, `Appointment Booking`, `Appraisers`, `AR/VR`, `Arcades`, `Archeology`, `Architectural Manufacturing`, `Architectural Planning`, `Architectural Woodwork`, `Architecture`, `Archiving`, `Armored Car`, `Army`, `Art`, `Artificial Intelligence`, `Artisanal Products`, `Artists and Musicians`, `Arts`, `Arts & Crafts`, `Arts & Culture`, `Assessments Services`, `Asset Based Lending`, `Asset Management`, `Asset Recovery`, `Asset Tracking`, `Assistance Services`, `Athletes`, `Athletic Apparel`, `Athletics`, `ATM Services`, `Attendance Tracking`, `Attractions`, `Auctions`, `Audio`, `Audio Accessibility`, `Audio Devices`, `Audio Production`, `Audio/Visual`, `Audio/Visual Equipment`, `Audiologists`, `Audiotape Manufacturing`, `Audiotapes`, `Audiovisual Services`, `Auditing`, `Authorized Reseller`, `Auto Dealership`, `Auto Parts`, `Automation`, `Automation Software`, `Automobile Dealers`, `Automotive`, `Automotive Exhaust`, `Automotive Financing`, `Automotive Industry`, `Automotive Insurance`, `Automotive Maintenance`, `Automotive Parts & Accessories`, `Automotive Services`, `Autonomous Vehicles`, `Aviation`, `Aviation Components`, `B2B`, `B2B Marketing & Services`, `B2C`, `B2C Marketing`, `B2G`, `Back Office Services`, `Background Checks`, `Backup & Recovery`, `Backup Power`, `Baked Goods`, `Ball Clay`, `Bank Holding`, `Banking`, `Banking & Mortgages`, `Bar & Grill`, `Barber`, `Barber Shops`, `Bathroom Accessories`, `Batteries`, `Battery`, `Beachfront Properties`, `Beams`, `Bean Farming`, `Beauty Products`, `Bed-and-Breakfast`, `Bee`, `Beet Sugar`, `Behavioral Science`, `Belt conveyor systems`, `Berry`, `Bespoke Design & Manufacturing`, `Beverages`, `Bicycle`, `Bicycles`, `Billing Management`, `Binding`, `Biofuels`, `Biotech`, `Biotechnology`, `Bituminous Coal`, `BizOps Tracking`, `Blending`, `Block Ice`, `Blockchain`, `Blogging`, `Blood banks`, `Blueprint`, `Boarding Houses`, `Boat`, `Boating`, `Bolts`, `Book Publishing`, `Books and Graphic Novels`, `Borate`, `Botanical Gardens`, `Bottled Water`, `Box`, `Brake System`, `Brand Management`, `Branding`, `Brandy`, `Breakfast Cereal`, `Brewery`, `Brick`, `Bridal Wear`, `Broadband`, `Broadcasting`, `Broilers`, `Brokerage`, `Brokers`, `Brooms`, `Buckles`, `Budget Optimization`, `Buffets`, `Building Equipment`, `Building Management`, `Building Materials`, `Building Safety`, `Building Services`, `Buildings`, `Bulk Paper`, `Bulk Stations`, `Burial Casket`, `Burial Services`, `Bus`, `Business Associations`, `Business Center`, `Business Efficiency`, `Business Ethics`, `Business Financial Services`, `Business Formation`, `Business Growth`, `Business Intelligence`, `Business Lifecycle Management`, `Business Management and Planning`, `Business Organizations`, `Business Partnerships`, `Business Process Services`, `Business Service Centers`, `Business Supplies`, `Cable Networks`, `Cables & Wires`, `Cacao`, `CAD Software`, `Cafe`, `Cafeterias`, `Call Center`, `Cameras`, `Campaign Optimization`, `Camper`, `Campgrounds`, `Cancer Awareness`, `Candy`, `Cane Sugar`, `Cannabis`, `Canned Soups`, `Canning`, `Capital Management`, `Car Washes`, `Carbon`, `Carbonated Waters`, `Cardiology`, `Care Facilities`, `Career Development`, `Cargo Delivery`, `Carpentry`, `Cartographic`, `Catering`, `Cattle`, `CDs`, `Cellular`, `Cement and Concrete`, `Cemeteries`, `Ceramic`, `CFO Services`, `Charity`, `Charter School`, `Charter Services`, `Chemical Products`, `Chemicals`, `Chewing Tobacco`, `Chicken`, `Child Care`, `Childrens Clothing`, `Chiropractors`, `Cigar`, `Cigarettes`, `Cinemas`, `Circuit Boards`, `Citrus`, `City Administration`, `Civic Clubs`, `Civic Engagement`, `Civil Engineering`, `Civil Rights`, `Claims Adjusting`, `Class Action`, `Clay`, `Cleaning Services`, `Cleanup`, `Clearinghouse`, `Client Management`, `Climate Change`, `Clinical Care`, `Clinics`, `Clothing`, `Cloud Services`, `Cloud Solutions`, `CNC Machinery`, `Coaching`, `Coffee`, `Collaboration`, `College Preparation`, `Colleges`, `Combustors`, `Commerce`, `Commercial Art`, `Commercial Bakeries`, `Commercial Construction`, `Commercial Machinery`, `Commercial Property`, `Commercial Services`, `Commercial Vehicles`, `Commodity`, `Communication Strategy`, `Communication Systems`, `Communications`, `Communications Equipment`, `Community`, `Community Health`, `Community Housing`, `Commuter Rail`, `Competitions`, `Compliance & Certifications`, `Compost`, `Computer Hardware`, `Computer Networking`, `Computer Programming`, `Computer Science`, `Computer Vision`, `Computers`, `Computing Infrastructure`, `Concentrate`, `Condensed`, `Conferences`, `Construction`, `Construction Contractors & Services`, `Consulates`, `Consultancy`, `Consulting`, `Consulting & Professional Services`, `Consumer Credit`, `Consumer Discretionary`, `Consumer Electronics`, `Consumer Goods`, `Consumer Products`, `Consumer Staples`, `Container`, `Content Management`, `Contract Management`, `Contract Research`, `Contracting Services`, `Contractors`, `Convenience Stores`, `Convention`, `Cookie`, `Cooks`, `Cooperatives`, `Copy Shops`, `Copyright`, `Corn`, `Corporate & Business`, `Corporate Citizenship`, `Corporate Events`, `Corporate Governance`, `Corporate Identity`, `Corporate Learning`, `Correctional Institutions`, `Corrosion Control`, `Cosmetics`, `Costume Rental`, `Counseling`, `Countertop`, `Country Clubs`, `Couriers`, `Courts`, `COVID-19`, `Coworking`, `CPA Services`, `Cracker`, `Creative Arts`, `Creative Communication`, `Credit`, `Credit Analysis`, `Credit Bureaus`, `Credit Intermediation`, `Crisis Management`, `CRM Solutions`, `Crop Activities`, `Crop Farming`, `Crop Harvesting`, `Cross-Channel Marketing`, `Crude Petroleum`, `Cruise Lines`, `Crypto`, `Cultivating`, `Cultural Activities`, `Custom Apparel`, `Customer Care`, `Customer Loyalty Program`, `Customer Support`, `Cut and Sew`, `Cut Stock`, `Cutlery`, `Cybersecurity`, `Daily Deals`, `Dairy Production`, `Dairy Products`, `Dairy Substitutes`, `Damage Restoration`, `Dance`, `Data & Analytics`, `Data Security`, `Data-Driven Marketing`, `Datacenter Services`, `Dating`, `Day Spas`, `Debt Management`, `Decarbonization`, `Decorating`, `Defense & Security`, `Dehydrated`, `Delivery`, `Delivery Services`, `Dental Care`, `Dentists`, `Design`, `Design and Architectural Services`, `Design Services`, `Detective`, `Detergent`, `DevOps`, `Dialysis Centers`, `Diapers`, `Diet`, `Digital Advertising`, `Digital Content`, `Digital Marketing`, `Dimension Stone`, `Dining`, `Dinner Theaters`, `Direct Insurance`, `Direct Mail`, `Directory`, `Disability Services`, `Disc`, `Disposable Plastics`, `Distilleries`, `Distribution`, `Distribution and Wholesalers`, `Document Automation`, `Document Copying`, `Doors & Windows`, `Dormitories`, `Dough`, `Dressing`, `Dried`, `Drilling`, `Drinking Places`, `Drive-In`, `Driving Schools`, `Drug Retailers`, `Dry`, `Dry Goods`, `Dry Pasta`, `Dry Pea`, `Drycleaning`, `Durable Goods`, `Dwellings`, `Dye`, `E-commerce`, `E-Commerce & Marketplaces`, `E-commerce Solutions`, `E-Learning`, `E-mail Marketing`, `Eco-Friendly`, `Economic Programs`, `EdTech`, `Education`, `Education & Training`, `Education Services`, `Egg Production`, `Elderly`, `Electric Housewares`, `Electric Lamp`, `Electric Lighting`, `Electric Power`, `Electric Vehicles`, `Electrical`, `Electrical Appliance`, `Electrical Installations`, `Electrical Maintenance`, `Electrical Services`, `Electrical Supplies`, `Electricians`, `Electricity Production`, `Electrodes`, `Electronic Health Record`, `Electronic Parts`, `Electronics`, `Electronics Repair`, `Elementary`, `Elevators`, `Embroidery`, `Emergency Care`, `Employee Management`, `Employer Organizations`, `Employment`, `End of Life Care`, `Energy`, `Energy & Utilities`, `Energy Access`, `Energy Analysis`, `Energy Exploration`, `Engine Equipment`, `Engineered Wood`, `Engineering`, `Engines`, `English Language Education`, `Enterprise`, `Enterprise Solutions`, `Entertainers`, `Entertainment & Recreation`, `Entrepreneurial`, `Environment`, `Equine`, `Equity`, `ERP Software`, `Escrow`, `Estate Agent`, `Ethnic Foods`, `Ethyl Alcohol`, `Evaporated`, `Event Planning`, `Event Space`, `Events`, `Events and Festivals`, `Evidence-Based Medicine`, `Excavating`, `Excellent Service`, `Exchanges`, `Exclusive Products`, `Executive Development`, `Exercise Therapy`, `Exhibits`, `Experienced Professionals`, `Experiential`, `Expertise`, `Explosives`, `Export Management`, `Exterior Cleaning`, `Exterior Lighting`, `Extermination`, `Extract`, `Eye Care`, `Eyewear`, `Fabric`, `Facilities`, `Facilities Management`, `Faith-Based`, `Family Focused`, `Family Law`, `Family Planning`, `Family Services`, `Farm Labor`, `Farm Products`, `Farmers Market`, `Farming`, `Fashion`, `Fast Casual Dining`, `Fast Turnaround`, `Fats`, `Feedlots`, `Ferrous Metal`, `Fiber`, `Field Bean`, `Film`, `Film & TV Production`, `Film Developing`, `Filtration Systems`, `Finance`, `Financial Accounting`, `Financial Advisers`, `Financial Contracts`, `Financial Education`, `Financial Forecasting`, `Financial Investment`, `Financial Markets`, `Financial Services`, `Financial Support`, `Financial Trading`, `Financial Transactions`, `Financial Vehicles`, `Financing Services`, `Fine Art`, `Finfish`, `FinTech`, `Fire Prevention`, `Firearms`, `First Nations`, `Fish`, `Fishery`, `Fitness`, `Fitness Center`, `Fitness Training`, `Flavoring`, `Flavorings`, `Flexible Work`, `Flight`, `Floor Covering`, `Flooring`, `Floral Arrangements`, `Florists`, `Flour`, `Flour Mixes`, `Fluid Control`, `Fluid Milk`, `Foil Stamping`, `Food`, `Food & Beverage Industry`, `Food & Drink`, `Food and Beverage Distribution`, `Food Crops`, `Food Delivery`, `Food Ingredients`, `Food Manufacturing`, `Food Production`, `Food Products`, `Food Service`, `Food, Beverage & Tobacco`, `Footwear`, `Foreign Trade`, `Forest Nurseries`, `Forestry`, `Formal and Evening Wear`, `Forums`, `Fossil Fuel`, `Foundries`, `Fragrance`, `Franchising`, `Freelancing`, `Freight Management`, `Fresh Fruit`, `Frozen Dessert`, `Frozen Fruit`, `Fruit`, `Fruit Food`, `Fuel`, `Full Service Agency`, `Fundraising`, `Funds`, `Furnace`, `Furniture`, `Furniture Repair`, `Gambling`, `Gambling & Casinos`, `Game Development`, `Game Preserves`, `Games`, `Gaming`, `Garages`, `Garden`, `Garden Equipment`, `Garden Supplies`, `Gardeners`, `Gasket`, `Gasoline`, `Gasoline Stations`, `Gathering`, `General Medical`, `General Merchandise`, `Generator`, `Genomics`, `Geodetic`, `Geophysical`, `Gifts`, `Gig & Sharing Economy`, `Ginning`, `Glass`, `Glass Products`, `Glazing`, `Glue`, `Goat`, `Golf`, `Government`, `Government Contracting`, `Government Relations`, `Government Support`, `Grain`, `Grain Elevators`, `Granite`, `Grantmaking`, `Grape`, `Graphic Design`, `Graphite`, `Gravel`, `Grease`, `Green Business`, `Greenhouse`, `Greeting Card`, `Grinding Wheels`, `Grocery`, `Ground Transportation`, `Group Activities`, `Groves`, `Gypsum`, `Hair`, `Hair Care`, `Handbags`, `Handtools`, `Harbor`, `Hardware Development`, `Hatcheries`, `Hay`, `Health`, `Health & Drug Screening`, `Health & Safety`, `Health & Wellness`, `Health and Wellness`, `Health Care`, `Health Care Services`, `Health Centers`, `Health Insurance`, `Health Practitioners`, `Health Programs`, `Healthcare`, `Healthcare Monitoring`, `Healthcare Products`, `Healthy Eating`, `Heat Exchanger`, `Heating & Cooling`, `Higher Education`, `Highway Construction`, `Hiring Services`, `Historical Studies`, `HMO`, `Hobby Goods`, `Hog`, `Holding Companies`, `Holistic Care`, `Home & Furniture`, `Home & Garden`, `Home and Garden Equipment`, `Home and Kitchen Appliances`, `Home Appliance Repair`, `Home Centers`, `Home Decor`, `Home Healthcare`, `Home Improvement`, `Home Ownership`, `Horses`, `Hoses`, `Hosiery`, `Hospitality`, `Hostels`, `Hosting Services`, `Hotel Accommodations`, `Hotel Management`, `Hotels`, `Hotels & Resorts`, `Household`, `Household Appliance`, `Housing`, `HR Management`, `HRTech`, `Human Resources`, `HVAC`, `Hydraulics`, `Hydrocarbons`, `Hydroelectric`, `Identity Protection`, `Illustrations`, `Import & Export`, `In-Vitro`, `Incinerators`, `Industrial Distribution`, `Industrial Equipment`, `Industrial Gas`, `Industrial Paper Supplies`, `Industrial Sand`, `Industrial Services`, `Industrials & Manufacturing`, `Information`, `Information Technology & Services`, `Infrastructure`, `Inns`, `Inorganic Chemical`, `Insights & Analytics`, `Inspection Services`, `Installation Services`, `Institutional Furniture`, `Instruction`, `Insulation`, `Insurance`, `Insurance Funds`, `Intangible Assets`, `Integrated Circuits`, `Integration Services`, `Intellectual Property`, `Interactive Media`, `Interior Decor`, `International Affairs`, `International Business`, `International Relations`, `International Trade`, `Internet`, `Internet of Things`, `Internet Services`, `Internet Software & Services`, `Inventory`, `Inventory Management`, `Investigative Services`, `Investing`, `Investment`, `Investment Banking`, `Investment Management`, `iOS Development`, `Iron`, `ISP`, `IT Architecture`, `IT Management`, `IT Solutions`, `Jewelry`, `Jewelry, Watches & Luxury Goods`, `Judiciary`, `Junior Colleges`, `Justice`, `Kaolin`, `Kidney Dialysis`, `Kitchen Cabinet`, `Kitchenware`, `Knowledge Base`, `Labeling`, `Labor & Employment Law`, `Labor Unions`, `Laboratory Instrument`, `Laboratory Services`, `Laminated Wood`, `Land Development`, `Land Subdivision`, `Landfill`, `Landscaping`, `Language`, `Language Learning`, `Laser Scanning`, `Laser Treatment`, `Launderers`, `Law`, `Law Enforcement`, `Lawn`, `Lawn and Garden`, `Lead`, `Leadership Development`, `Learning & Development`, `Leasing`, `Leather`, `Leather Goods`, `LEED`, `Legacy Systems`, `Legal Assistance`, `Legal Defense`, `Legal Professionals`, `Legal Services`, `Legislative Bodies`, `Leisure`, `Lending Services`, `Liberal Arts Education`, `Libraries`, `Library`, `Licensing`, `Life Sciences`, `Lifestyle Brands`, `Light Bulbs`, `Light Gauge`, `Lighting`, `Lignite`, `Lime Manufacturing`, `Limestone`, `Limousine`, `Listing Services`, `Litigation`, `Live Entertainment`, `Loan Brokers`, `Local Business`, `Local Community`, `Local Cuisine`, `Locksmiths`, `Logging`, `Logistics`, `Logo`, `Low & No Code`, `Lubricating Oil`, `Lubrication`, `Luxury Goods`, `Machine Learning`, `Machine Shops`, `Machine Tools`, `Machinery`, `Maids`, `Mail Delivery`, `Mailbox Rental`, `Mailing List`, `Maintenance`, `Malt`, `Managed Services`, `Management Services`, `Manufacturing`, `Mapping`, `Marinas`, `Marine Services`, `Maritime`, `Market Research`, `Market Strategy`, `Marketing`, `Marketing & Advertising`, `Marketplace`, `Massage`, `Material Handling`, `Materials Recovery`, `Materials Testing`, `Maternity Care`, `Mattress`, `Mayonnaise`, `Meat Byproduct`, `Mechanical Engineering`, `Mechanical Services`, `Media`, `Media & Entertainment`, `Media and Technology Distribution`, `Medical Care`, `Medical Centers`, `Medical Conditions`, `Medical Data & Billing`, `Medical Devices`, `Medical Diagnostics`, `Medical Imaging`, `Medical Laboratories`, `Medical Supplies`, `Medicine`, `Medicines`, `MedTech`, `Melon`, `Memorabilia`, `Mental Health`, `Mentorship Programs`, `Menu Planning`, `Mergers and Acquisitions`, `Messengers`, `Metal Can`, `Metal Coating`, `Metal Container`, `Metal Engraving`, `Metal Fabrication`, `Metal Heat Treating`, `Metal Manufacturing`, `Metal Merchant`, `Metal Ore`, `Metal Tank`, `Metal Valve Manufacturing`, `Metal Work`, `Metals`, `Metals and Alloys`, `Military`, `Mills`, `Mineral Ore`, `Mineral Wool`, `Mining`, `Mining & Metals`, `Miniwarehouses`, `Mobile`, `Mobile App Development`, `Mobile Communication`, `Mobile Food`, `Mobile Technologies`, `Money Transmission`, `Monitoring Services`, `Monitoring Systems`, `Motels`, `Motion Picture`, `Motor and Generator`, `Motor Home`, `Motor Vehicle`, `Motor Vehicle Parts`, `Motorcycle`, `Motorcycles`, `Movies & Entertainment`, `Movies & TV`, `Moving & Storage`, `Moving Stairways`, `Multilingual`, `Museums`, `Mushroom`, `Music`, `Music Accessories`, `Music Lessons`, `Music Stores`, `Musical Groups`, `Nail Salons`, `Nannies`, `Nanotechnology`, `Napkins`, `National Security`, `Natural Gas`, `Nature Conservation`, `Nature Parks`, `Navigation`, `Navigation Systems`, `Navigational Services`, `Navy`, `Needlework`, `Network Management`, `Networking`, `News & Media`, `News Dealers`, `Nickel`, `Nightlife`, `Non-Profit & Philanthropy`, `Nonalcoholic Beverage`, `Noncitrus Fruit`, `Nondepository Credit`, `Nondurable Goods`, `Nonferrous Metal`, `Nonmetallic Mineral Manufacturing`, `Nonmetallic Minerals`, `Nonprofit Support`, `Nonresidential`, `Notary`, `Novelty`, `Nut`, `Nutrition Services`, `OEM`, `Off-Road Vehicles`, `Office Buildings`, `Office Machinery`, `Office Productivity`, `Offshoring`, `Oil & Gas`, `Oils`, `Oilseed`, `Omnichannel Solutions`, `Online Business`, `Open Source`, `Open-End Investment Funds`, `Operations and Workflow`, `Ophthalmic Equipment`, `Ophthalmic Goods`, `Optical Goods`, `Optometrists`, `Orange`, `Orchards`, `Organ Banks`, `Organic Products`, `Organized Labor`, `Organizers`, `Ornamental Manufacturing`, `Outdoor Activities`, `Outdoor and Casual Apparel`, `Outdoor Gear`, `Outdoor Power Equipment`, `Outdoor Structures & Accessories`, `Outpatient`, `Outsourcing`, `Outsourcing Services`, `Owner Focused`, `P2P Lending`, `PaaS`, `Packaging`, `Packaging & Containers`, `Pain and Anxiety Management`, `Paint`, `Painting`, `Pallet`, `Paper`, `Paper & Forest Products`, `Paper Bag`, `Paper Goods`, `Paper Machinery`, `Paper Mills`, `Paperboard`, `Paralegal`, `Parking`, `Parking Management`, `Parole`, `Particleboard`, `Passenger`, `Passenger Car`, `Patient Management`, `Patrol Services`, `Payment Processing`, `Payments`, `Peace Advocacy`, `Peanut`, `Peanut Butter`, `Performance Coaching`, `Performers`, `Performing Arts`, `Periodical`, `Perishable`, `Personal Care`, `Personalized Learning`, `Personalized Medicine`, `Personalized Service`, `Personalized Shopping`, `Pest Control`, `Pesticide`, `Pharmaceuticals`, `Pharmacy`, `Phosphate Rock`, `Photocopying`, `Photofinishing`, `Photographic Services`, `Photography`, `Photography Equipment`, `Physical Sciences`, `Piece Goods`, `Pig Farming`, `Pigment`, `Pipe Manufacturing`, `Pipeline`, `Placement Agencies`, `Planing`, `Plant-based Products`, `Planting`, `Plastic Bags`, `Plastic Bottles`, `Plastic Products`, `Plastics`, `Plumbing`, `Plumbing Products`, `Plumbing Services`, `Pneumatics and Compressors`, `Podcasts`, `Podiatrists`, `Point of Sale`, `Police`, `Police Protection`, `Political Organization`, `Political Organizations`, `Politics`, `Polling`, `Pornography`, `Port`, `Portrait`, `Postal Service`, `Postharvest`, `Postproduction`, `Potash`, `Potato`, `Power Boiler`, `Power Distribution`, `Power Generation`, `Power Lines`, `Power Supplies`, `Power Train`, `Power Transmission`, `Precious Metals`, `Precision Engineering`, `Prefabricated`, `Prepared Food`, `Prevention and Intervention`, `Pricing Strategies`, `Primary & Secondary Education`, `Printing`, `Printing Ink`, `Printing Services`, `Private Equity`, `Private Households`, `Private Label Products`, `Private Mail Centers`, `Probation`, `Process Improvement`, `Procurement`, `Product Management`, `Production`, `Production Management`, `Professional Organizations`, `Professional Schools`, `Professional Services`, `Professional Supplies`, `Project Management`, `Promoters`, `Promotional Marketing`, `Property Appraisal`, `Property Buying`, `Property Development`, `Property Management`, `Property Managers`, `Property Rentals`, `Propulsion`, `Prosecution`, `Protection Products and Services`, `Protective Equipment`, `Psychiatric`, `Public Assistance`, `Public Figures`, `Public Opinion`, `Public Order`, `Public Policy`, `Public Relations`, `Publishers`, `Publishing`, `Pulp Mills`, `Pumping Equipment`, `Pumps`, `Purses`, `Racetracks`, `Racing Sports`, `Radio`, `Radio Networks`, `Radium`, `Rail`, `Railroads`, `Railway`, `Ranching`, `Real Estate`, `Real Estate Finance`, `Recipes`, `Reconstituted Wood`, `Record Production`, `Recreation`, `Recreational Activities`, `Recreational Vehicle`, `Recruiting`, `Recycling`, `Referral Marketing`, `Refineries`, `Refining`, `Refractory Minerals`, `Refrigeration`, `Regulation`, `Regulatory Affairs`, `REITs`, `Relief Services`, `Religion`, `Religious Studies`, `Remediation Services`, `Remodelers`, `Remote Collaboration`, `Removal Services`, `Renewable and Alternative Energy`, `Renewable Energy`, `Renewables & Environment`, `Renovations`, `Rental Services`, `Repair & Maintenance`, `Replacement`, `Repossession`, `Resawing`, `Research`, `Research & Consulting Services`, `Research & Innovation`, `Research Services`, `Reservation`, `Residential`, `Residential Care`, `Resin`, `Restaurant Services`, `Restaurants`, `Restoration Services`, `Retail`, `Retail Bakeries`, `Retail Store`, `Retirement Communities`, `Reupholstery`, `Rice`, `Ridesharing`, `Risk Analysis`, `Road Services`, `Roasted Nuts`, `Roofing`, `Royalty`, `Rubber Products`, `RV`, `RV Parks`, `SaaS`, `Safes`, `Safety & Security`, `Safety Audits`, `Sales & Marketing`, `Sales Development`, `Sales Financing`, `Salon & Spa`, `Sand`, `Sandpaper`, `Sanitary Paper`, `Sanitation`, `Sanitization Services`, `Satellite`, `Sauce`, `Savings & Investing`, `Sawmills`, `Scales`, `Schedule Management`, `Scheduled Freight`, `Scholarship Programs`, `Scientific`, `Scientific & Academic Research`, `Search Engine Advertising`, `Seasoning`, `Secondary Market`, `Secondhand`, `Secretarial`, `Securities`, `Security`, `Security and Alarm Systems`, `Security Services`, `Self-employment`, `Senior Care`, `Sensors`, `Septic Tank`, `Service Centers`, `Services`, `Servicing`, `Sewage`, `Sewer`, `Sheep`, `Shellfish`, `Ship Building`, `Shipbuilding`, `Shipping`, `Shipping & Logistics`, `Signage`, `Signs`, `Silverware`, `Single-Family`, `Skills Development`, `Skin Care`, `Skylight`, `Sleep Products`, `Smart Home`, `Smart Infrastructure`, `SMS & Push Notifications`, `Snack Food`, `Soap`, `Social Advocacy`, `Social Enterprise`, `Social Media Advertising`, `Social Sciences`, `Society`, `Soda`, `Soft Drink`, `Software`, `Software Development`, `Software Installation`, `Software Testing`, `Softwood`, `Soil Preparation`, `Solar Energy`, `Solid Waste`, `Sound Recording`, `Sourcing`, `Souvenir`, `Soybean`, `Space Exploration`, `Space Research`, `Space Vehicles`, `Special Needs`, `Specialized Consumer Services`, `Specialty Canning`, `Specialty Hospitals`, `Speech`, `Spice`, `Spiritual Development`, `Sponsorships`, `Sporting Goods`, `Sports`, `Sports & Fitness`, `Spring and Wire`, `Staffing & Recruiting`, `Staffing Solutions`, `Starch`, `Startup Funding`, `Startups`, `Steam`, `Steel Wire`, `Steering`, `Stenotype`, `Stone Work`, `Storage Device`, `Storage Services`, `Storage Tanks`, `Stores`, `Storytelling`, `Strategic Planning`, `Strawberry`, `Streaming Services`, `Structural Members`, `Structural Metal`, `Student Activities`, `Studios`, `Subscription Business`, `Subway`, `Sugar Beet`, `Sugarcane`, `Supercenters`, `Supermarkets`, `Supplier Management`, `Suppliers`, `Supply Chain Solutions`, `Support`, `Support Services`, `Surgery`, `Surgical Hospital`, `Surgical Hospitals`, `Surveying`, `Sustainability`, `Swimming Pools`, `Switchboard`, `Synthetic Rubber`, `Syrup`, `System Monitoring`, `Tailored Clothing`, `Talent Agencies`, `Talent Management`, `Tape Recorders`, `Tattoo`, `Tax Law`, `Tax Services`, `Taxi`, `Tea`, `Tech Accessories`, `Tech Innovation`, `Technical Services`, `Technology`, `Technology Consulting`, `Telecom`, `Telecommunications`, `Telemarketing`, `Telemedicine`, `Telephone`, `Teleproduction`, `Television`, `Television Stations`, `Temperature-Controlled Services`, `Temples`, `Temporary Help`, `Temporary Shelters`, `Test Preparation`, `Testing & Analysis`, `Textile Mills`, `Textiles`, `Theater`, `Theaters`, `Therapeutics`, `Therapists`, `Threat Detection`, `Ticketing`, `Tidal`, `Tile`, `Tires`, `Tobacco`, `Tools`, `Topographic`, `Tortilla`, `Tours and Sightseeing`, `Toys`, `Tract Operations`, `Trade Agents`, `Trade Schools`, `Trade Shows`, `Trailers`, `Training`, `Training & Workshops`, `Transit Systems`, `Translation`, `Translation Services`, `Transmission`, `Transportation`, `Trapping`, `Trauma Care`, `Travel & Leisure`, `Travel & Tourism`, `Travel Agencies`, `Travel Arrangement`, `Travel Packages`, `Travel Trailer`, `Tree Nut`, `Tree Production`, `Tribal Governments`, `Truck`, `Truck Stops`, `Truck Trailer`, `Trucking`, `Truss`, `Trusts`, `Turbine`, `Turkey`, `Tutoring Services`, `TV Production`, `UI/UX Design`, `Under Cover`, `Union Employees`, `Uranium`, `Urban Planning`, `Urban Transit`, `Used Car`, `Used Merchandise`, `Utilities`, `Utility Trailer`, `Vacation Camps`, `Vacations`, `Valet`, `Valves`, `Vanadium`, `Vape Shops`, `Variety Stores`, `Varnish`, `Vegetable`, `Vending`, `Veneer`, `Venture Capital`, `Veterans Affairs`, `Veterinary`, `Video Creation`, `Video Games`, `Video Security`, `Virtual Assistants`, `Visual Design, Multimedia Design`, `Vitamins & Supplements`, `Vocational`, `VOIP`, `Volunteer Services`, `VPS`, `Wall Covering`, `Wallpaper`, `Warehouse Clubs`, `Warehousing`, `Waste Management`, `Watches`, `Water`, `Water Management`, `Water Transportation`, `Weapons`, `Web & Client Portals`, `Web Design`, `Web Search`, `Web Services & Apps`, `Weddings`, `Weight Reducing`, `Welding Equipment`, `Wheat`, `Wholesale`, `Wind`, `Window Treatment`, `Windows`, `Windows & Coverings`, `Wine`, `Winery`, `Wire`, `Wired`, `Wireless`, `Wireless Communications`, `Wiring Device`, `Wiring Supplies`, `Women's Empowerment`, `Wood Chips`, `Worker Safety`, `Worker's Compensation`, `Workforce Management`, `Workspace`, `Writers`, `Writing & Editing`, `Writing Paper`, `Youth Programs`, `Zinc`, `Zoos` |  |  |  |  |
+|  | <span style='color:red'>***hs_merged_object_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_owning_teams[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_team_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_user_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_followers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_unfollowers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_owners[]***</span> | string | false |  |  |  |  |  |
+| id | <span style='color:red'>***id***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***web_technologies[]***</span> | string | false | `1&1 Hosting`, `3d Cart`, `Acquisio`, `Activecampaign`, `Add To Any`, `Adobe Business Catalyst`, `Adobe Connect`, `Adobe Dynamic Tag Management`, `AdRoll`, `Airbrake`, `Akamai`, `Akamai DNS`, `Alexa`, `Altocloud`, `Amazon Associates`, `Amazon Payments`, `Amazon S3`, `Amazon Simple Email Service`, `amCharts`, `Amplitude`, `Android`, `Apache`, `App Nexus`, `Appboy`, `Appcues`, `AppDynamics`, `Apteligent`, `ASP.Net`, `Attribution`, `Authorizenet`, `Autopilot`, `Aweber`, `Amazon Web Services`, `Route 53`, `Bazaarvoice`, `Benchmarkemail`, `Big Cartel`, `Bigcommerce`, `Bing Ads`, `Bing Advertiser`, `Bing Maps`, `Bloomreach`, `Bluehost Hosting`, `Braintree`, `Branch`, `Brightcove`, `Bug Herd`, `Bugsnag`, `Calq`, `Campaignmonitor`, `Castle`, `CentOS`, `Chargify`, `Chart Beat`, `Chartio`, `Chatlio`, `Chownow`, `ClickFunnels`, `Clicktale`, `Clicky`, `Cloud Flare`, `Cloudinary`, `Commerce Sciences`, `Constant Contact`, `Contently`, `Convert Kit`, `Crazy Egg`, `Criteo`, `Customer.io`, `Debian`, `Demandbase`, `Demandware`, `Digital Ocean`, `Disqus`, `Django`, `DNS Made Easy`, `DoubleClick Ads`, `DoubleClick Advertiser`, `DreamHost Hosting`, `Drift`, `Drip`, `Drupal`, `Dwolla`, `Dyn DNS`, `Dynamic Yield`, `Ecwid`, `ElasticEmail`, `Elevio`, `Eloqua`, `Errorception`, `Express`, `Facebook Advertiser`, `Facebook Beacon`, `Facebook Comments`, `Facebook Connect`, `Facebook Like Button`, `Facebook Social Plugins`, `Fedora`, `Formstack`, `FreeBSD`, `Freshdesk`, `Fullcontact`, `Fullstory`, `FusionCharts`, `Gauges`, `Get Satisfaction`, `Go Squared`, `Gocardless`, `GoDaddy Hosting`, `Godaddy Nameserver`, `Google Adsense`, `Google Adwords`, `Google Affiliate Network`, `Google Analytics`, `Google Apps`, `Google Charts`, `Google Cloud`, `Google Forms`, `Google Maps`, `Google Tag Manager`, `Google Website Optimizer`, `Google Widgets`, `GraphIQ`, `Gravity Forms`, `Greenhouse`, `Heap`, `Hello Bar`, `Help Scout`, `Heroku`, `Highcharts`, `Hotjar`, `Hoverowl`, `HubSpot`, `Icims`, `Indicative`, `Infusionsoft`, `Inside Sales`, `Inspectlet`, `Instagram`, `Instagram Links`, `Instart Logic`, `Intense Debate`, `Intercom`, `ios`, `Iterable`, `Jobvite`, `Joomla`, `Keen IO`, `Kissmetrics`, `Klaviyo`, `Knowtify`, `Lead Dyno`, `Lever`, `Linkwithin`, `Linode Hosting`, `Live Chat`, `Livefyre`, `Liveramp`, `Localytics`, `Looker`, `Lucky Orange`, `Mad Kudu`, `Magento`, `Magento Enterprise`, `Mailchimp`, `Mailgun`, `Mailjet`, `Mandrill`, `Marketo`, `Maxmind`, `Microsoft Azure`, `Microsoft Exchange Online`, `Microsoft Office 365`, `Mixpanel`, `Mode`, `Mouseflow`, `Mousestats`, `My Site Auditor`, `Namecheap Dns`, `New Relic`, `Nextable`, `Nginx`, `Nosto`, `Olark`, `Omniconvert`, `Omniture (Adobe Analytics)`, `Ooyala`, `Open Table`, `Optimizely`, `Optimonk`, `Oscommerce`, `Outbound`, `Outbrain Ads`, `Outlook`, `ownerIQ`, `Pardot`, `PayPal`, `Payza`, `Perfect Audience`, `Periscope Data`, `Pinterest`, `Piwik`, `Postmark`, `PowerReviews`, `Qualaroo`, `Qualtrics`, `Quantcast`, `Rackspace`, `Rackspace Email`, `Recaptcha`, `Recruiterbox`, `Recurly`, `Red Hat`, `ReSRCit`, `Resumator`, `RetailRocket`, `Rollbar`, `Ruby On Rails`, `Salesforce`, `Salesmachine`, `Satismeter`, `Segment`, `Sendgrid`, `Sentry`, `Sessioncam`, `Sharepoint`, `Shopify`, `Shopware`, `Silkroad`, `Simplicant`, `Slack`, `Smartlook`, `Socket.io`, `Softlayer Hosting`, `Squarespace`, `SteelHouse`, `Stripe`, `Success Factors`, `Survey Monkey`, `Tableau`, `Taboola Ads`, `Taleo`, `Talkable`, `Tawk`, `Tealium`, `Totango`, `Tout`, `Toutapp`, `TowerData`, `Track JS`, `Trustpilot`, `Twitter Advertiser`, `Twitter Badge`, `Twitter Button`, `Typeform`, `Typekit By Adobe`, `Uber Cart`, `Ubuntu`, `Ultipro`, `Unix`, `UserVoice`, `Vero`, `Verticalresponse`, `Video.js`, `Vidyard`, `Vimeo`, `Virtue Mart`, `Visual Website Optimizer`, `Volusion`, `WebEngage`, `Weebly`, `Wistia`, `Wix Stores`, `Woo Commerce`, `Woopra`, `Wootric`, `Wordpress`, `Workable`, `Wp Engine`, `Wufoo`, `xt:Commerce`, `Yahoo Stores`, `Yandex Metrica`, `Yelp Seatme`, `Yesware`, `Yieldify`, `Yotpo`, `Youtube`, `Zen Cart`, `Zendesk`, `Zenreach`, `Zopim`, `AB Tasty`, `Act-On`, `Adblade`, `AddThis`, `Adzerk`, `Amazon Cloudfront`, `BitGravity`, `Bizo`, `CDNetworks`, `CDNify`, `CacheFly`, `channel intelligence (Google)`, `comScore`, `ConversionMonk`, `Demandforce`, `Distil Networks`, `Dstillery`, `EdgeCast`, `F5 BIG-IP`, `Fastly`, `flashtalking`, `Foresee`, `Formismo`, `foxycart`, `GetResponse`, `GoDaddy Quick Shopping Cart`, `Google Analytics Content Experiment`, `Gravatar`, `iContact`, `iPerceptions`, `Incapsula`, `Insightera`, `JBoss`, `Kayako`, `LeadFormix`, `LeadLander`, `Lexity`, `Listrak`, `LivePerson`, `LoopFuse`, `MadCap Software`, `MarkMonitor`, `Marketwired Newsroom`, `MaxCDN`, `Maxymiser`, `MediaMath`, `MindTouch`, `Monetate`, `Nanigans`, `nrelate`, `Omniture`, `OpenCart`, `PHP`, `Perceptive Software`, `pixeleze`, `Polldaddy`, `PrestaShop`, `PubExchange`, `QuBit`, `RadiumOne`, `Sailthru`, `SalesFUSION`, `Salesforce Live Agent`, `Salesforce SFDC`, `Salesforce Servlet`, `Salesforce Servlet WebToCase`, `Salesforce Servlet WebToLead`, `Salesforce Visualforce`, `Salesforce desk.com`, `Salesforce force.com`, `Salesforce salesforce.com`, `Salesforce sserv`, `ShareThis`, `SiteScout`, `spiceworks`, `Sukuri/Cloudproxy`, `SurveyGizmo`, `TheFind Upfront`, `TrustKeeper (Trustwave)`, `Unbounce`, `Varnish`, `Velaro`, `Verisign`, `Vidi Emi`, `Visual Vistor`, `Vtrenz (Silverpop)`, `WebTrends`, `Webtrends Optimize`, `WhosOn`, `WordPress Stats`, `Yellow Hammer`, `foresightair`, `Acquia`, `Action Network`, `ActiveDemand`, `Acxiom`, `Adform Advertiser`, `Admeld`, `Adobe Experience Manager`, `Adobe Marketing Cloud`, `ADP`, `Adscale`, `Affirm`, `Aggregate Knowledge`, `Algolia`, `Alteryx`, `Apache Apex`, `Apache Cassandra`, `Apache Hadoop`, `Apache HTTP Server`, `Apache Kafka`, `Apache Maven`, `Apache NiFi`, `Apache Spark`, `Apache Storm`, `Apache Tomcat`, `Appier`, `Apple Pay`, `Atlassian Confluence`, `Atlassian Crowd`, `Atlassian Crucible`, `Atlassian Fisheye`, `Atlassian JIRA`, `Attentive`, `Attraqt`, `AWS CloudWatch`, `AWS DynamoDB`, `AWS IAM`, `AWS Kinesis`, `AWS Lambda`, `AWS Redshift`, `Baidu Analytics`, `BambooHR`, `Basecamp`, `BlueConic`, `BlueKai`, `Bold Commerce`, `Bronto`, `Bullhorn`, `C3 Metrics`, `Calendly`, `CallRail`, `Ceridian`, `Chili Piper`, `Cision`, `CJ Affiliate`, `Classy`, `ClearSlide`, `Cloudera`, `Cludo`, `Confluence`, `Contentful`, `Conversio`, `Convertro`, `Convio`, `Couchbase`, `CouchDB`, `Coveo`, `Crowdskout`, `CyberArk`, `CyberSource`, `Dailymotion`, `Datadog`, `DB2`, `DC Storm`, `Dell Boomi Atomsphere`, `Demandware Analytics`, `Dotmailer`, `Dropbox`, `Drupal Commerce`, `Dynatrace`, `Emarsys`, `Ember.js`, `Emma`, `Engagio`, `Entrust`, `Episerver`, `Exponea`, `Extend`, `Facebook Conversion Tracking`, `Facebook Custom Audience`, `Facebook Workplace`, `FactSet`, `FileMaker Pro`, `Five9`, `Flexera Software`, `Flowplayer`, `Fortinet`, `Gainsight`, `Genesys`, `Gigya`, `GitHub`, `GitLab`, `GoldenGate`, `GoldMine`, `Google Places`, `Google Remarketing`, `Google Search Appliance`, `Gorgias`, `GoToMeeting`, `Grafana`, `GroupBy`, `HBase`, `Hive`, `Hootsuite`, `HP Servers`, `Hull`, `IBM Cognos`, `IBM InfoSphere`, `IBM InfoSphere DataStage`, `IBM Lotus Domino`, `IBM Lotus Notes`, `IBM WebSphere`, `IBM WebSphere Commerce`, `Influitive`, `Informatica`, `Information Builders`, `Instapage`, `Interspire`, `Invoca`, `IPONWEB BidSwitch`, `Jabmo`, `Jahia`, `Janrain`, `Jaspersoft`, `Java`, `JHA Payment Solutions`, `Justuno`, `JW Player`, `Kaltura`, `Kapost`, `Kentico`, `Klarna`, `Klevu`, `Kronos`, `LawPay`, `LeadPages`, `Liferay`, `Lightspeed`, `LinkedIn Advertiser`, `LiteSpeed`, `LKQD`, `LogRocket`, `Lytics`, `Madison Logic`, `Magento V1`, `Magento V2`, `Magnolia CMS`, `MailerLite`, `Marchex`, `Marin`, `Matomo`, `Mavenlink`, `Medallia`, `Media.net`, `Meltwater`, `Microsoft Dynamics`, `Microsoft Power BI`, `Microsoft Project`, `Microsoft SQL Server`, `Microsoft Team Foundation Server`, `Microsoft Teams`, `MicroStrategy`, `Mindbody`, `MongoDB`, `MonsterCommerce`, `MoonClerk`, `MRP`, `Mulberry`, `Mutiny`, `MySQL`, `NationBuilder`, `NCR Retail`, `Neo4j`, `NetSuite`, `NetSuite CRM`, `NetSuite SuiteCommerce`, `Neustar AdAdvisor`, `NICE inContact`, `Nimsoft`, `nopCommerce`, `NS1`, `Okta`, `OpenID`, `OpenX`, `Oracle Application Server`, `Oracle Business Intelligence`, `Oracle Cash and Treasury Management`, `Oracle Commerce Cloud`, `Oracle CRM`, `Oracle Data Integrator`, `Oracle Endeca`, `Oracle Essbase`, `Oracle Fusion`, `Oracle Human Resources`, `Oracle Hyperion`, `Oracle PeopleSoft`, `Oracle WebLogic`, `OXID`, `PagerDuty`, `Palo Alto Networks`, `Panopto`, `Paychex`, `Pentaho`, `PeopleSoft CRM`, `PeopleSoft Sales`, `Percolate`, `Picreel`, `Pingdom`, `Pipedrive`, `Pivotal Tracker`, `Planisware`, `Playwire`, `Podio`, `PostgreSQL`, `Privy`, `Progress Sitefinity`, `PubMatic`, `Qbrick`, `QlikTech`, `QlikView`, `QRadar`, `Qualified`, `Quest Foglight`, `QuickBooks`, `RabbitMQ`, `Raygun`, `Rezdy`, `Rezgo`, `RingCentral`, `Robly`, `Rocketfuel`, `RSA SecurID`, `Rubicon Project`, `Sage 50cloud`, `Sage CRM`, `Sage Intacct`, `Sage Pay`, `SailPoint`, `Salesforce DMP`, `Salesforce Marketing Cloud`, `SalesLoft`, `SalesLogix`, `Salsa`, `SAP Business Objects`, `SAP Concur`, `SAP CRM`, `SAP Crystal Reports`, `SAP HANA`, `SAP Human Capital Management`, `SAP Hybris Marketing`, `SAP Sales Order Management`, `SAP Warehouse Management`, `SAS Data Integration`, `SAS Enterprise`, `Sendlane`, `ServiceNow`, `SharpSpring`, `Shopify Plus`, `Sidecar`, `Sitecore`, `Siteimprove Analytics`, `6sense`, `Sizmek`, `SmartRecruiters`, `Smartsheet`, `Smile.io`, `SnapLogic`, `Snowflake`, `Snowplow Analytics`, `SOASTA`, `Sociomantic`, `SpeedCurve`, `Splunk`, `Sprinklr`, `Square`, `Squarespace Online Stores`, `StackAdapt`, `StatCounter`, `SugarCRM`, `Sumo`, `Swell Rewards`, `Sybase`, `Talend`, `Teradata`, `Terminus`, `The Trade Desk`, `Thomson Reuters Eikon`, `TIBCO EMS`, `TIBCO Rendezvous`, `TIBCO Spotfire`, `Top Producer`, `Treasure Data`, `Trello`, `Triblio`, `Tripleseat`, `Turn`, `Twilio`, `Unbxd`, `Uptrends`, `Vanco Payment Solutions`, `Visual IQ`, `VMware Server`, `vzaar`, `webMethods`, `Weebly eCommerce`, `Windows Server`, `Wix`, `Workamajig`, `Workday`, `Worldpay`, `Wrike`, `Xero`, `Yext`, `Zaius`, `Zedo`, `Zeit Now`, `Zeniq`, `Zoho CRM`, `Zuora` |  |  |  |  |
 
 ## Contacts
 
@@ -581,13 +610,13 @@
 | Company Name | company | string | false |  |  | company | null | None |
 | Company size | company_size | string | false |  |  | company_size | null | None |
 | Country/Region | country | string | false |  |  | country | null | None |
-| Create Date | createdate | string | false |  |  | createdate | str | 2025-05-14T07:40:14.800Z |
+| Create Date | createdate | string | false |  |  | createdate | string | 2025-05-14T07:40:14.800Z |
 | Currently in workflow (discontinued) | currentlyinworkflow | string | false | `True`, `False` |  | currentlyinworkflow | null | None |
 | Geburtstag | custom_date_of_birth | string | false |  |  | custom_date_of_birth | null | None |
 | Date of birth | date_of_birth | string | false |  |  | date_of_birth | null | None |
 | Days To Close | days_to_close | number | false |  |  | days_to_close | null | None |
 | Degree | degree | string | false |  |  | degree | null | None |
-| Email | email | string | false |  |  | email | str | contr.marat.minnekhanov@pandadoc.com |
+| Email | email | string | false |  |  | email | string | contr.marat.minnekhanov@pandadoc.com |
 | Date of last meeting booked in meetings tool | engagements_last_meeting_booked | string | false |  |  | engagements_last_meeting_booked | null | None |
 | Campaign of last booking in meetings tool | engagements_last_meeting_booked_campaign | string | false |  |  | engagements_last_meeting_booked_campaign | null | None |
 | Medium of last booking in meetings tool | engagements_last_meeting_booked_medium | string | false |  |  | engagements_last_meeting_booked_medium | null | None |
@@ -604,12 +633,12 @@
 | Additional email addresses | hs_additional_emails | string | false |  |  | hs_additional_emails | null | None |
 | All teams | hs_all_accessible_team_ids | string | false |  |  | hs_all_accessible_team_ids | null | None |
 | Brands | hs_all_assigned_business_unit_ids | array | false |  |  | hs_all_assigned_business_unit_ids | null | None |
-| All vids for a contact | hs_all_contact_vids | string | false |  |  | hs_all_contact_vids | str | 121593429805 |
+| All vids for a contact | hs_all_contact_vids | string | false |  |  | hs_all_contact_vids | string | 121593429805 |
 | All owner IDs | hs_all_owner_ids | string | false |  |  | hs_all_owner_ids | null | None |
 | All team IDs | hs_all_team_ids | string | false |  |  | hs_all_team_ids | null | None |
-| Average Pageviews | hs_analytics_average_page_views | number | false |  |  | hs_analytics_average_page_views | str | 0 |
+| Average Pageviews | hs_analytics_average_page_views | number | false |  |  | hs_analytics_average_page_views | string | 0 |
 | First Referring Site | hs_analytics_first_referrer | string | false |  |  | hs_analytics_first_referrer | null | None |
-| Time First Seen | hs_analytics_first_timestamp | string | false |  |  | hs_analytics_first_timestamp | str | 2025-05-14T07:40:00Z |
+| Time First Seen | hs_analytics_first_timestamp | string | false |  |  | hs_analytics_first_timestamp | string | 2025-05-14T07:40:00Z |
 | First Touch Converting Campaign | hs_analytics_first_touch_converting_campaign | string | false |  |  | hs_analytics_first_touch_converting_campaign | null | None |
 | First Page Seen | hs_analytics_first_url | string | false |  |  | hs_analytics_first_url | null | None |
 | Time of First Session | hs_analytics_first_visit_timestamp | string | false |  |  | hs_analytics_first_visit_timestamp | null | None |
@@ -618,14 +647,14 @@
 | Last Touch Converting Campaign | hs_analytics_last_touch_converting_campaign | string | false |  |  | hs_analytics_last_touch_converting_campaign | null | None |
 | Last Page Seen | hs_analytics_last_url | string | false |  |  | hs_analytics_last_url | null | None |
 | Time of Last Session | hs_analytics_last_visit_timestamp | string | false |  |  | hs_analytics_last_visit_timestamp | null | None |
-| Number of event completions | hs_analytics_num_event_completions | number | false |  |  | hs_analytics_num_event_completions | str | 0 |
-| Number of Pageviews | hs_analytics_num_page_views | number | false |  |  | hs_analytics_num_page_views | str | 0 |
-| Number of Sessions | hs_analytics_num_visits | number | false |  |  | hs_analytics_num_visits | str | 0 |
-| Event Revenue | hs_analytics_revenue | number | false |  |  | hs_analytics_revenue | str | 0.0 |
-| Original Traffic Source | hs_analytics_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_source | str | OFFLINE |
-| Original Traffic Source Drill-Down 1 | hs_analytics_source_data_1 | string | false |  |  | hs_analytics_source_data_1 | str | INTEGRATION |
-| Original Traffic Source Drill-Down 2 | hs_analytics_source_data_2 | string | false |  |  | hs_analytics_source_data_2 | str | 33674 |
-| Associated Target Accounts | hs_associated_target_accounts | number | false |  |  | hs_associated_target_accounts | str | 0 |
+| Number of event completions | hs_analytics_num_event_completions | number | false |  |  | hs_analytics_num_event_completions | string | 0 |
+| Number of Pageviews | hs_analytics_num_page_views | number | false |  |  | hs_analytics_num_page_views | string | 0 |
+| Number of Sessions | hs_analytics_num_visits | number | false |  |  | hs_analytics_num_visits | string | 0 |
+| Event Revenue | hs_analytics_revenue | number | false |  |  | hs_analytics_revenue | string | 0.0 |
+| Original Traffic Source | hs_analytics_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_analytics_source | string | OFFLINE |
+| Original Traffic Source Drill-Down 1 | hs_analytics_source_data_1 | string | false |  |  | hs_analytics_source_data_1 | string | INTEGRATION |
+| Original Traffic Source Drill-Down 2 | hs_analytics_source_data_2 | string | false |  |  | hs_analytics_source_data_2 | string | 33674 |
+| Associated Target Accounts | hs_associated_target_accounts | number | false |  |  | hs_associated_target_accounts | string | 0 |
 | Avatar FileManager key | hs_avatar_filemanager_key | string | false |  |  | hs_avatar_filemanager_key | null | None |
 | Buying Role | hs_buying_role | array | false |  |  | hs_buying_role | null | None |
 | The 800 most recent form submissions for a contact | hs_calculated_form_submissions | string | false |  |  | hs_calculated_form_submissions | null | None |
@@ -654,7 +683,7 @@
 |  | hs_created_by_user_id |  | false |  |  | hs_created_by_user_id | null | None |
 | Object create date/time | hs_createdate | string | false |  |  | hs_createdate | null | None |
 | Cross-sell Opportunity | hs_cross_sell_opportunity | boolean | false |  |  | hs_cross_sell_opportunity | null | None |
-| Currently Enrolled in Prospecting Agent | hs_currently_enrolled_in_prospecting_agent | boolean | false |  |  | hs_currently_enrolled_in_prospecting_agent | str | false |
+| Currently Enrolled in Prospecting Agent | hs_currently_enrolled_in_prospecting_agent | boolean | false |  |  | hs_currently_enrolled_in_prospecting_agent | string | false |
 | Ads Consent from Forms | hs_data_privacy_ads_consent | boolean | false |  |  | hs_data_privacy_ads_consent | null | None |
 | Date entered 'Customer (Lifecycle Stage Pipeline)' | hs_date_entered_customer | string | false |  |  | hs_date_entered_customer | null | None |
 | Date entered 'Evangelist (Lifecycle Stage Pipeline)' | hs_date_entered_evangelist | string | false |  |  | hs_date_entered_evangelist | null | None |
@@ -678,7 +707,7 @@
 | Marketing emails clicked | hs_email_click | number | false |  |  | hs_email_click | null | None |
 | Email address quarantine reason | hs_email_customer_quarantined_reason | string | false | `Suspension Remediation`, `Blocklist Remediation`, `Trust & Safety Remediation` |  | hs_email_customer_quarantined_reason | null | None |
 | Marketing emails delivered | hs_email_delivered | number | false |  |  | hs_email_delivered | null | None |
-| Email Domain | hs_email_domain | string | false |  |  | hs_email_domain | str | pandadoc.com |
+| Email Domain | hs_email_domain | string | false |  |  | hs_email_domain | string | pandadoc.com |
 | First marketing email click date | hs_email_first_click_date | string | false |  |  | hs_email_first_click_date | null | None |
 | First marketing email open date | hs_email_first_open_date | string | false |  |  | hs_email_first_open_date | null | None |
 | First marketing email reply date | hs_email_first_reply_date | string | false |  |  | hs_email_first_reply_date | null | None |
@@ -725,7 +754,7 @@
 | First Order Closed Date | hs_first_order_closed_date | string | false |  |  | hs_first_order_closed_date | null | None |
 | First outreach date | hs_first_outreach_date | string | false |  |  | hs_first_outreach_date | null | None |
 | First subscription create date | hs_first_subscription_create_date | string | false |  |  | hs_first_subscription_create_date | null | None |
-| Full name or email | hs_full_name_or_email | string | false |  |  | hs_full_name_or_email | str | contr.marat.minnekhanov@pandadoc.com |
+| Full name or email | hs_full_name_or_email | string | false |  |  | hs_full_name_or_email | string | contr.marat.minnekhanov@pandadoc.com |
 | Google ad click id | hs_google_click_id | string | false |  |  | hs_google_click_id | null | None |
 | googleplus ID | hs_googleplusid | string | false |  |  | hs_googleplusid | null | None |
 | GPS Coordinates | hs_gps_coordinates | string | false |  |  | hs_gps_coordinates | null | None |
@@ -733,9 +762,9 @@
 | Contact has an active subscription | hs_has_active_subscription | number | false |  |  | hs_has_active_subscription | null | None |
 | Inferred Language Codes | hs_inferred_language_codes | string | false | `Abkhazian`, `Afar`, `Afrikaans`, `Akan`, `Albanian`, `Amharic`, `Arabic`, `Aragonese`, `Armenian`, `Assamese`, `Avaric`, `Avestan`, `Aymara`, `Azerbaijani`, `Bambara`, `Bashkir`, `Basque`, `Belarusian`, `Bengali`, `Bislama`, `Bokmål, Norwegian; Norwegian Bokmål`, `Bosnian`, `Breton`, `Bulgarian`, `Burmese`, `Catalan; Valencian`, `Central Khmer`, `Chamorro`, `Chechen`, `Chichewa; Chewa; Nyanja`, `Chinese`, `Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic`, `Chuvash`, `Cornish`, `Corsican`, `Cree`, `Croatian`, `Czech`, `Danish`, `Divehi; Dhivehi; Maldivian`, `Dutch; Flemish`, `Dzongkha`, `English`, `Esperanto`, `Estonian`, `Ewe`, `Faroese`, `Fijian`, `Finnish`, `French`, `Fulah`, `Gaelic; Scottish Gaelic`, `Galician`, `Ganda`, `Georgian`, `German`, `Greek, Modern (1453-)`, `Guarani`, `Gujarati`, `Haitian; Haitian Creole`, `Hausa`, `Hebrew`, `Herero`, `Hindi`, `Hiri Motu`, `Hungarian`, `Icelandic`, `Ido`, `Igbo`, `Indonesian`, `Interlingua (International Auxiliary Language Association)`, `Interlingue; Occidental`, `Inuktitut`, `Inupiaq`, `Irish`, `Italian`, `Japanese`, `Javanese`, `Kalaallisut; Greenlandic`, `Kannada`, `Kanuri`, `Kashmiri`, `Kazakh`, `Kikuyu; Gikuyu`, `Kinyarwanda`, `Kirghiz; Kyrgyz`, `Komi`, `Kongo`, `Korean`, `Kuanyama; Kwanyama`, `Kurdish`, `Lao`, `Latin`, `Latvian`, `Limburgan; Limburger; Limburgish`, `Lingala`, `Lithuanian`, `Luba-Katanga`, `Luxembourgish; Letzeburgesch`, `Macedonian`, `Malagasy`, `Malay (macrolanguage)`, `Malayalam`, `Maltese`, `Manx`, `Maori`, `Marathi`, `Marshallese`, `Mongolian`, `Nauru`, `Navajo; Navaho`, `Ndebele, North; North Ndebele`, `Ndebele, South; South Ndebele`, `Ndonga`, `Nepali (macrolanguage)`, `Northern Sami`, `Norwegian Nynorsk; Nynorsk, Norwegian`, `Norwegian`, `Occitan (post 1500)`, `Ojibwa`, `Oriya (macrolanguage)`, `Oromo`, `Ossetian; Ossetic`, `Pali`, `Panjabi; Punjabi`, `Persian`, `Polish`, `Portuguese`, `Pushto; Pashto`, `Quechua`, `Romanian; Moldavian; Moldovan`, `Romansh`, `Rundi`, `Russian`, `Samoan`, `Sango`, `Sanskrit`, `Sardinian`, `Serbian`, `Shona`, `Sichuan Yi; Nuosu`, `Sindhi`, `Sinhala; Sinhalese`, `Slovak`, `Slovenian`, `Somali`, `Sotho, Southern`, `Spanish; Castilian`, `Sundanese`, `Swahili (macrolanguage)`, `Swati`, `Swedish`, `Tagalog`, `Tahitian`, `Tajik`, `Tamil`, `Tatar`, `Telugu`, `Thai`, `Tibetan`, `Tigrinya`, `Tonga (Tonga Islands)`, `Tsonga`, `Tswana`, `Turkish`, `Turkmen`, `Twi`, `Uighur; Uyghur`, `Ukrainian`, `Urdu`, `Uzbek`, `Venda`, `Vietnamese`, `Volapük`, `Walloon`, `Welsh`, `Western Frisian`, `Wolof`, `Xhosa`, `Yiddish`, `Yoruba`, `Zhuang; Chuang`, `Zulu` |  | hs_inferred_language_codes | null | None |
 | IP Timezone | hs_ip_timezone | string | false |  |  | hs_ip_timezone | null | None |
-| Is a contact | hs_is_contact | boolean | false |  |  | hs_is_contact | str | true |
+| Is a contact | hs_is_contact | boolean | false |  |  | hs_is_contact | string | true |
 | Has been enriched | hs_is_enriched | boolean | false |  |  | hs_is_enriched | null | None |
-| Contact unworked | hs_is_unworked | boolean | false |  |  | hs_is_unworked | str | true |
+| Contact unworked | hs_is_unworked | boolean | false |  |  | hs_is_unworked | string | true |
 | Job change detected date | hs_job_change_detected_date | string | false |  |  | hs_job_change_detected_date | null | None |
 | Journey Stage | hs_journey_stage | string | false | `New Contact`, `In Nurturing`, `Low-Intent`, `Mid-Intent`, `High-Intent`, `Unqualified`, `Qualified`, `Onboarding`, `Post Onboarding`, `Engaged`, `Unengaged` |  | hs_journey_stage | null | None |
 | Preferred language | hs_language | string | false | `Afrikaans`, `Albanian`, `Albanian - Albania`, `Arabic`, `Arabic - Algeria`, `Arabic - Bahrain`, `Arabic - Egypt`, `Arabic - Iraq`, `Arabic - Jordan`, `Arabic - Kuwait`, `Arabic - Lebanon`, `Arabic - Libya`, `Arabic - Morocco`, `Arabic - Oman`, `Arabic - Qatar`, `Arabic - Saudi Arabia`, `Arabic - Sudan`, `Arabic - Syria`, `Arabic - Tunisia`, `Arabic - United Arab Emirates`, `Arabic - Yemen`, `Armenian`, `Assamese`, `Azerbaijani`, `Basque`, `Belarusian`, `Belarusian - Belarus`, `Bengali`, `Bosnian`, `Bulgarian`, `Bulgarian - Bulgaria`, `Burmese`, `Burmese - Myanmar (Burma)`, `Catalan`, `Catalan - Catalan`, `Cebuano - Philippines`, `Chinese`, `Chinese - China`, `Chinese - Hong Kong SAR`, `Chinese - Macau SAR`, `Chinese - Singapore`, `Chinese - Taiwan`, `Chinese (Simplified)`, `Chinese (Traditional)`, `Croatian`, `Croatian - Croatia`, `Czech`, `Czech - Czech Republic`, `Danish`, `Danish - Denmark`, `Dutch`, `Dutch - Belgium`, `Dutch - The Netherlands`, `English`, `English - Australia`, `English - Canada`, `English - Hong Kong`, `English - India`, `English - Ireland`, `English - Malaysia`, `English - Malta`, `English - New Zealand`, `English - Philippines`, `English - Singapore`, `English - South Africa`, `English - United Kingdom`, `English - United States`, `English - Zimbabwe`, `Estonian`, `Estonian - Estonia`, `Faroese`, `Farsi`, `Finnish`, `Finnish - Finland`, `French`, `French - Belgium`, `French - Canada`, `French - France`, `French - Luxembourg`, `French - Monaco`, `French - Switzerland`, `Galician`, `Georgian`, `German`, `German - Austria`, `German - Germany`, `German - Greece`, `German - Liechtenstein`, `German - Luxembourg`, `German - Switzerland`, `Greek`, `Greek - Cyprus`, `Greek - Greece`, `Gujarati`, `Haitian Creole`, `Hausa`, `Hebrew`, `Hebrew - Israel`, `Hebrew - Israel (Legacy)`, `Hindi`, `Hindi - India`, `Hungarian`, `Hungarian - Hungary`, `Icelandic`, `Icelandic - Iceland`, `Indonesian`, `Indonesian - Indonesia`, `Irish`, `Irish - Ireland`, `Italian`, `Italian - Italy`, `Italian - Switzerland`, `Japanese`, `Japanese - Japan`, `Kannada`, `Kazakh`, `Kinyarwanda`, `Kiswahili`, `Konkani`, `Korean`, `Korean - South Korea`, `Kurdish`, `Kyrgyz`, `Lao`, `Latvian`, `Latvian - Latvia`, `Lithuanian`, `Lithuanian - Lithuania`, `Macedonian`, `Macedonian - Macedonia`, `Malagasy`, `Malay`, `Malayalam`, `Malay - Brunei`, `Malay - Malaysia`, `Maltese`, `Maltese - Malta`, `Marathi`, `Mongolian`, `Norwegian`, `Norwegian Bokmal`, `Norwegian - Norway`, `Nyanja`, `Polish`, `Polish - Poland`, `Portuguese`, `Portuguese - Brazil`, `Portuguese - Portugal`, `Punjabi`, `Romanian`, `Romanian - Romania`, `Russian`, `Russian - Russia`, `Sanskrit`, `Serbian`, `Serbian - Bosnia and Herzegovina`, `Serbian - Montenegro`, `Serbian - Serbia`, `Serbian - Serbia and Montenegro (Former)`, `Slovak`, `Slovak - Slovakia`, `Slovenian`, `Slovenian - Slovenia`, `Spanish`, `Spanish - Argentina`, `Spanish - Bolivia`, `Spanish - Chile`, `Spanish - Colombia`, `Spanish - Costa Rica`, `Spanish - Cuba`, `Spanish - Dominican Republic`, `Spanish - Ecuador`, `Spanish - El Salvador`, `Spanish - Guatemala`, `Spanish - Honduras`, `Spanish - Mexico`, `Spanish - Nicaragua`, `Spanish - Panama`, `Spanish - Paraguay`, `Spanish - Peru`, `Spanish - Puerto Rico`, `Spanish - Spain`, `Spanish - United States`, `Spanish - Uruguay`, `Spanish - Venezuela`, `Swahili`, `Swedish`, `Swedish - Finland`, `Swedish - Sweden`, `Syriac`, `Tagalog`, `Tamil`, `Tatar`, `Telugu`, `Thai`, `Thai - Thailand`, `Turkish`, `Turkish - Türkiye`, `Ukrainian`, `Ukrainian - Ukraine`, `Urdu`, `Vietnamese`, `Vietnamese - Vietnam`, `Yoruba` |  | hs_language | null | None |
@@ -755,16 +784,16 @@
 | Last sequence enrolled date | hs_latest_sequence_enrolled_date | string | false |  |  | hs_latest_sequence_enrolled_date | null | None |
 | Last sequence finished date | hs_latest_sequence_finished_date | string | false |  |  | hs_latest_sequence_finished_date | null | None |
 | Last sequence unenrolled date | hs_latest_sequence_unenrolled_date | string | false |  |  | hs_latest_sequence_unenrolled_date | null | None |
-| Latest Traffic Source | hs_latest_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_latest_source | str | OFFLINE |
-| Latest Traffic Source Drill-Down 1 | hs_latest_source_data_1 | string | false |  |  | hs_latest_source_data_1 | str | INTEGRATION |
-| Latest Traffic Source Drill-Down 2 | hs_latest_source_data_2 | string | false |  |  | hs_latest_source_data_2 | str | 33674 |
-| Latest Traffic Source Date | hs_latest_source_timestamp | string | false |  |  | hs_latest_source_timestamp | str | 2025-05-14T07:40:00Z |
+| Latest Traffic Source | hs_latest_source | string | false | `Organic Search`, `Paid Search`, `Email Marketing`, `Organic Social`, `Referrals`, `Other Campaigns`, `Direct Traffic`, `Offline Sources`, `Paid Social` |  | hs_latest_source | string | OFFLINE |
+| Latest Traffic Source Drill-Down 1 | hs_latest_source_data_1 | string | false |  |  | hs_latest_source_data_1 | string | INTEGRATION |
+| Latest Traffic Source Drill-Down 2 | hs_latest_source_data_2 | string | false |  |  | hs_latest_source_data_2 | string | 33674 |
+| Latest Traffic Source Date | hs_latest_source_timestamp | string | false |  |  | hs_latest_source_timestamp | string | 2025-05-14T07:40:00Z |
 | Latest subscription create date | hs_latest_subscription_create_date | string | false |  |  | hs_latest_subscription_create_date | null | None |
 | Lead Status | hs_lead_status | string | false | `New`, `Open`, `In Progress`, `Open Deal`, `Unqualified`, `Attempted to Contact`, `Connected`, `Bad Timing` |  | hs_lead_status | null | None |
 | Legal basis for processing contact's data | hs_legal_basis | array | false |  |  | hs_legal_basis | null | None |
 | Became a Customer Date | hs_lifecyclestage_customer_date | string | false |  |  | hs_lifecyclestage_customer_date | null | None |
 | Became an Evangelist Date | hs_lifecyclestage_evangelist_date | string | false |  |  | hs_lifecyclestage_evangelist_date | null | None |
-| Became a Lead Date | hs_lifecyclestage_lead_date | string | false |  |  | hs_lifecyclestage_lead_date | str | 2025-05-14T07:40:14.800Z |
+| Became a Lead Date | hs_lifecyclestage_lead_date | string | false |  |  | hs_lifecyclestage_lead_date | string | 2025-05-14T07:40:14.800Z |
 | Became a Marketing Qualified Lead Date | hs_lifecyclestage_marketingqualifiedlead_date | string | false |  |  | hs_lifecyclestage_marketingqualifiedlead_date | null | None |
 | Became an Opportunity Date | hs_lifecyclestage_opportunity_date | string | false |  |  | hs_lifecyclestage_opportunity_date | null | None |
 | Became an Other Lifecycle Date | hs_lifecyclestage_other_date | string | false |  |  | hs_lifecyclestage_other_date | null | None |
@@ -776,37 +805,37 @@
 | Live enrichment deadline | hs_live_enrichment_deadline | string | false |  |  | hs_live_enrichment_deadline | null | None |
 | Marketing contact status source name | hs_marketable_reason_id | string | false |  |  | hs_marketable_reason_id | null | None |
 | Marketing contact status source type | hs_marketable_reason_type | string | false | `Ad`, `Contact Import`, `Conversation`, `Form Submission`, `Initial State`, `Integrator Set`, `User Set`, `Workflow`, `Email`, `Sample Contact`, `Feedback Submission` |  | hs_marketable_reason_type | null | None |
-| Marketing contact status | hs_marketable_status | string | false | `Marketing contact`, `Non-marketing contact` |  | hs_marketable_status | str | false |
-| Marketing contact until next update | hs_marketable_until_renewal | string | false | `Yes`, `--` |  | hs_marketable_until_renewal | str | false |
-| Member has accessed private content | hs_membership_has_accessed_private_content | number | false |  |  | hs_membership_has_accessed_private_content | str | 0 |
+| Marketing contact status | hs_marketable_status | string | false | `Marketing contact`, `Non-marketing contact` |  | hs_marketable_status | string | false |
+| Marketing contact until next update | hs_marketable_until_renewal | string | false | `Yes`, `--` |  | hs_marketable_until_renewal | string | false |
+| Member has accessed private content | hs_membership_has_accessed_private_content | number | false |  |  | hs_membership_has_accessed_private_content | string | 0 |
 | Membership last private content access date | hs_membership_last_private_content_access_date | string | false |  |  | hs_membership_last_private_content_access_date | null | None |
 | Merged Contact IDs | hs_merged_object_ids | array | false |  |  | hs_merged_object_ids | null | None |
 | messaging_engagement_score | hs_messaging_engagement_score | number | false |  |  | hs_messaging_engagement_score | null | None |
 | Mobile Sdk Push Tokens | hs_mobile_sdk_push_tokens | string | false |  |  | hs_mobile_sdk_push_tokens | null | None |
-| Last Activity | hs_notes_last_activity | object_coordinates | false |  |  | hs_notes_last_activity | str | 0-46-80261541425 |
+| Last Activity | hs_notes_last_activity | object_coordinates | false |  |  | hs_notes_last_activity | string | 0-46-80261541425 |
 | Next Activity | hs_notes_next_activity | object_coordinates | false |  |  | hs_notes_next_activity | null | None |
 | Next Activity Type | hs_notes_next_activity_type | string | false | `Call`, `Conversation session`, `Email reply from contact`, `Email sent to contact`, `Forwarded email`, `LinkedIn message`, `Meeting`, `Note`, `Postal mail`, `Publishing task`, `SMS`, `Task`, `WhatsApp` |  | hs_notes_next_activity_type | null | None |
-|  | hs_object_id |  | false |  |  | hs_object_id | str | 121593429805 |
-| Record creation source | hs_object_source | string | false |  |  | hs_object_source | str | INTEGRATION |
-| Record source detail 1 | hs_object_source_detail_1 | string | false |  |  | hs_object_source_detail_1 | str | PandaDoc | eSign, CPQ, Rooms |
+|  | hs_object_id |  | false |  |  | hs_object_id | string | 121593429805 |
+| Record creation source | hs_object_source | string | false |  |  | hs_object_source | string | INTEGRATION |
+| Record source detail 1 | hs_object_source_detail_1 | string | false |  |  | hs_object_source_detail_1 | string | PandaDoc | eSign, CPQ, Rooms |
 | Record source detail 2 | hs_object_source_detail_2 | string | false |  |  | hs_object_source_detail_2 | null | None |
 | Record source detail 3 | hs_object_source_detail_3 | string | false |  |  | hs_object_source_detail_3 | null | None |
-| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | str | 33674 |
-| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | str | INTEGRATION |
+| Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | string | 33674 |
+| Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | string | INTEGRATION |
 | Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | null | None |
 | Owning Teams | hs_owning_teams | array | false |  |  | hs_owning_teams | null | None |
 | Persona | hs_persona | string | false |  |  | hs_persona | null | None |
 | Pinned engagement ID | hs_pinned_engagement_id | number | false |  |  | hs_pinned_engagement_id | null | None |
-| Pipeline | hs_pipeline | string | false |  |  | hs_pipeline | str | contacts-lifecycle-pipeline |
+| Pipeline | hs_pipeline | string | false |  |  | hs_pipeline | string | contacts-lifecycle-pipeline |
 | Predictive Lead Score | hs_predictivecontactscore | number | false |  |  | hs_predictivecontactscore | null | None |
-| Likelihood to close | hs_predictivecontactscore_v2 | number | false |  |  | hs_predictivecontactscore_v2 | str | 1.88 |
+| Likelihood to close | hs_predictivecontactscore_v2 | number | false |  |  | hs_predictivecontactscore_v2 | string | 1.88 |
 | Lead Rating | hs_predictivecontactscorebucket | string | false | `1 Star`, `2 Stars`, `3 Stars`, `4 Stars` |  | hs_predictivecontactscorebucket | null | None |
-| Contact priority | hs_predictivescoringtier | string | false | `Very High`, `High`, `Medium`, `Low`, `Closed Won` |  | hs_predictivescoringtier | str | tier_2 |
-| Prospecting Agent Actively Enrolled Count | hs_prospecting_agent_actively_enrolled_count | number | false |  |  | hs_prospecting_agent_actively_enrolled_count | str | 0 |
+| Contact priority | hs_predictivescoringtier | string | false | `Very High`, `High`, `Medium`, `Low`, `Closed Won` |  | hs_predictivescoringtier | string | tier_2 |
+| Prospecting Agent Actively Enrolled Count | hs_prospecting_agent_actively_enrolled_count | number | false |  |  | hs_prospecting_agent_actively_enrolled_count | string | 0 |
 | Quarantined Emails | hs_quarantined_emails | string | false |  |  | hs_quarantined_emails | null | None |
 | Read only object | hs_read_only | boolean | false |  |  | hs_read_only | null | None |
 | Recent Closed Order Date | hs_recent_closed_order_date | string | false |  |  | hs_recent_closed_order_date | null | None |
-| Registered member | hs_registered_member | number | false |  |  | hs_registered_member | str | 0 |
+| Registered member | hs_registered_member | number | false |  |  | hs_registered_member | string | 0 |
 | Registration Method | hs_registration_method | string | false |  |  | hs_registration_method | null | None |
 | Returning to office detected date | hs_returning_to_office_detected_date | string | false |  |  | hs_returning_to_office_detected_date | null | None |
 | Employment Role | hs_role | string | false | `Accounting`, `Administrative`, `Business Development`, `Communications`, `Consulting`, `Customer Service`, `Design`, `Education`, `Engineering`, `Entrepreneurship`, `Finance`, `Health Professional`, `Human Resources`, `Information Technology`, `Legal`, `Marketing`, `Operations`, `Product`, `Project Management`, `Public Relations`, `Quality Assurance`, `Real Estate`, `Recruiting`, `Research`, `Sales`, `Support`, `Retired` |  | hs_role | null | None |
@@ -821,17 +850,17 @@
 | Calculated Mobile Number without country code | hs_searchable_calculated_mobile_number | phone_number | false |  |  | hs_searchable_calculated_mobile_number | null | None |
 | Calculated Phone Number without country code | hs_searchable_calculated_phone_number | phone_number | false |  |  | hs_searchable_calculated_phone_number | null | None |
 | Employment Seniority | hs_seniority | string | false | `VP`, `Director`, `Entry`, `Executive`, `Manager`, `Owner`, `Partner`, `Senior`, `Employee` |  | hs_seniority | null | None |
-| Number of sequences actively enrolled | hs_sequences_actively_enrolled_count | number | false |  |  | hs_sequences_actively_enrolled_count | str | 0 |
+| Number of sequences actively enrolled | hs_sequences_actively_enrolled_count | number | false |  |  | hs_sequences_actively_enrolled_count | string | 0 |
 | Number of sequences enrolled | hs_sequences_enrolled_count | number | false |  |  | hs_sequences_enrolled_count | null | None |
 | Currently in Sequence | hs_sequences_is_enrolled | boolean | false |  |  | hs_sequences_is_enrolled | null | None |
 | Shared teams | hs_shared_team_ids | array | false |  |  | hs_shared_team_ids | null | None |
 | Shared users | hs_shared_user_ids | array | false |  |  | hs_shared_user_ids | null | None |
-| Facebook Clicks | hs_social_facebook_clicks | number | false |  |  | hs_social_facebook_clicks | str | 0 |
-| Google Plus Clicks | hs_social_google_plus_clicks | number | false |  |  | hs_social_google_plus_clicks | str | 0 |
+| Facebook Clicks | hs_social_facebook_clicks | number | false |  |  | hs_social_facebook_clicks | string | 0 |
+| Google Plus Clicks | hs_social_google_plus_clicks | number | false |  |  | hs_social_google_plus_clicks | string | 0 |
 | Most Recent Social Click | hs_social_last_engagement | string | false |  |  | hs_social_last_engagement | null | None |
-| LinkedIn Clicks | hs_social_linkedin_clicks | number | false |  |  | hs_social_linkedin_clicks | str | 0 |
-| Broadcast Clicks | hs_social_num_broadcast_clicks | number | false |  |  | hs_social_num_broadcast_clicks | str | 0 |
-| Twitter Clicks | hs_social_twitter_clicks | number | false |  |  | hs_social_twitter_clicks | str | 0 |
+| LinkedIn Clicks | hs_social_linkedin_clicks | number | false |  |  | hs_social_linkedin_clicks | string | 0 |
+| Broadcast Clicks | hs_social_num_broadcast_clicks | number | false |  |  | hs_social_num_broadcast_clicks | string | 0 |
+| Twitter Clicks | hs_social_twitter_clicks | number | false |  |  | hs_social_twitter_clicks | string | 0 |
 | Source Object ID | hs_source_object_id | number | false |  |  | hs_source_object_id | null | None |
 | Source Portal ID | hs_source_portal_id | number | false |  |  | hs_source_portal_id | null | None |
 | State/Region Code | hs_state_code | string | false |  |  | hs_state_code | null | None |
@@ -871,7 +900,7 @@
 | Cumulative time in "Subscriber (Lifecycle Stage Pipeline)" | hs_v2_cumulative_time_in_subscriber | number | false |  |  | hs_v2_cumulative_time_in_subscriber | null | None |
 | Date entered "Customer (Lifecycle Stage Pipeline)" | hs_v2_date_entered_customer | string | false |  |  | hs_v2_date_entered_customer | null | None |
 | Date entered "Evangelist (Lifecycle Stage Pipeline)" | hs_v2_date_entered_evangelist | string | false |  |  | hs_v2_date_entered_evangelist | null | None |
-| Date entered "Lead (Lifecycle Stage Pipeline)" | hs_v2_date_entered_lead | string | false |  |  | hs_v2_date_entered_lead | str | 2025-05-14T07:40:14.800Z |
+| Date entered "Lead (Lifecycle Stage Pipeline)" | hs_v2_date_entered_lead | string | false |  |  | hs_v2_date_entered_lead | string | 2025-05-14T07:40:14.800Z |
 | Date entered "Marketing Qualified Lead (Lifecycle Stage Pipeline)" | hs_v2_date_entered_marketingqualifiedlead | string | false |  |  | hs_v2_date_entered_marketingqualifiedlead | null | None |
 | Date entered "Opportunity (Lifecycle Stage Pipeline)" | hs_v2_date_entered_opportunity | string | false |  |  | hs_v2_date_entered_opportunity | null | None |
 | Date entered "Other (Lifecycle Stage Pipeline)" | hs_v2_date_entered_other | string | false |  |  | hs_v2_date_entered_other | null | None |
@@ -910,9 +939,9 @@
 | Job function | job_function | string | false |  |  | job_function | null | None |
 | Job Title | jobtitle | string | false |  |  | jobtitle | null | None |
 | Klout Score | kloutscoregeneral | number | false |  |  | kloutscoregeneral | null | None |
-| Last Modified Date | lastmodifieddate | string | false |  |  | lastmodifieddate | str | 2025-05-28T10:46:41.684Z |
+| Last Modified Date | lastmodifieddate | string | false |  |  | lastmodifieddate | string | 2025-05-28T10:46:41.684Z |
 | Last Name | lastname | string | false |  |  | lastname | null | None |
-| Lifecycle Stage | lifecyclestage | string | false | `Subscriber`, `Lead`, `Marketing Qualified Lead`, `Sales Qualified Lead`, `Opportunity`, `Customer`, `Evangelist`, `Other` |  | lifecyclestage | str | lead |
+| Lifecycle Stage | lifecyclestage | string | false | `Subscriber`, `Lead`, `Marketing Qualified Lead`, `Sales Qualified Lead`, `Opportunity`, `Customer`, `Evangelist`, `Other` |  | lifecyclestage | string | lead |
 | LinkedIn Bio | linkedinbio | string | false |  |  | linkedinbio | null | None |
 | LinkedIn Connections | linkedinconnections | number | false |  |  | linkedinconnections | null | None |
 | Marital Status | marital_status | string | false |  |  | marital_status | null | None |
@@ -920,13 +949,13 @@
 | Military status | military_status | string | false |  |  | military_status | null | None |
 | Mobile Phone Number | mobilephone | string | false |  |  | mobilephone | null | None |
 | Last Contacted | notes_last_contacted | string | false |  |  | notes_last_contacted | null | None |
-| Last Activity Date | notes_last_updated | string | false |  |  | notes_last_updated | str | 2025-05-28T10:46:32.558Z |
+| Last Activity Date | notes_last_updated | string | false |  |  | notes_last_updated | string | 2025-05-28T10:46:32.558Z |
 | Next Activity Date | notes_next_activity_date | string | false |  |  | notes_next_activity_date | null | None |
 | Number of Associated Deals | num_associated_deals | number | false |  |  | num_associated_deals | null | None |
 | Number of times contacted | num_contacted_notes | number | false |  |  | num_contacted_notes | null | None |
-| Number of Form Submissions | num_conversion_events | number | false |  |  | num_conversion_events | str | 0 |
-| Number of Sales Activities | num_notes | number | false |  |  | num_notes | str | 1 |
-| Number of Unique Forms Submitted | num_unique_conversion_events | number | false |  |  | num_unique_conversion_events | str | 0 |
+| Number of Form Submissions | num_conversion_events | number | false |  |  | num_conversion_events | string | 0 |
+| Number of Sales Activities | num_notes | number | false |  |  | num_notes | string | 1 |
+| Number of Unique Forms Submitted | num_unique_conversion_events | number | false |  |  | num_unique_conversion_events | string | 0 |
 | Number of custom smth | number_of_custom_smth | number | false |  |  | number_of_custom_smth | null | None |
 | Number of Employees | numemployees | string | false | `1-5`, `5-25`, `25-50`, `50-100`, `100-500`, `500-1000`, `1000+` |  | numemployees | null | None |
 | HubSpot Owner Email (legacy) | owneremail | string | false |  |  | owneremail | null | None |
@@ -953,3 +982,17 @@
 | Website URL | website | string | false |  |  | website | null | None |
 | Work email | work_email | string | false |  |  | work_email | null | None |
 | Postal Code | zip | string | false |  |  | zip | null | None |
+| Company Ids | <span style='color:red'>***company_ids***</span> | array | false |  |  |  |  |  |
+|  | <span style='color:red'>***company_ids[]***</span> | string | false |  | companies |  |  |  |
+| Deal Ids | <span style='color:red'>***deal_ids***</span> | array | false |  |  |  |  |  |
+|  | <span style='color:red'>***deal_ids[]***</span> | string | false |  | deals |  |  |  |
+|  | <span style='color:red'>***hs_all_assigned_business_unit_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_buying_role[]***</span> | string | false | `Blocker`, `Budget Holder`, `Champion`, `Decision Maker`, `End User`, `Executive Sponsor`, `Influencer`, `Legal & Compliance`, `Other` |  |  |  |  |
+|  | <span style='color:red'>***hs_legal_basis[]***</span> | string | false | `Legitimate interest - Lead`, `Legitimate interest - Customer`, `Legitimate interest - Other`, `Performance of a contract`, `Freely given consent from contact`, `Not applicable` |  |  |  |  |
+|  | <span style='color:red'>***hs_merged_object_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_owning_teams[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_team_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_shared_user_ids[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_followers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_notification_unfollowers[]***</span> | string | false |  |  |  |  |  |
+|  | <span style='color:red'>***hs_user_ids_of_all_owners[]***</span> | string | false |  |  |  |  |  |
