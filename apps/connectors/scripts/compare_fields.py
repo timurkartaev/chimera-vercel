@@ -139,8 +139,11 @@ class SchemaHelper:
         node = obj
         for part in parts:
             if part == "[]":
-                if isinstance(node, list) and node:
-                    node = node[0]
+                if isinstance(node, list):
+                    if node:
+                        node = node[0]
+                    else:
+                        return "__empty_array__"
                 else:
                     return "array" if isinstance(node, list) else ""
             elif isinstance(node, dict) and part in node:
@@ -377,9 +380,43 @@ class MarkdownReport:
             value = (
                 get_field_value(crm_object["output"]["fields"], right) if right else ""
             )
-            md_lines.append(
-                f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
-            )
+            # If right_type is '__empty_array__', show all possible fields/types from schema in BOTH schema and Find By ID columns
+            if right_type == "__empty_array__" and right:
+                schema = data_collection_schema.get("fieldsSchema", {})
+                parts = right.replace("[]", ".items").split(".")
+                node = schema
+                for part in parts:
+                    if part == "items":
+                        node = node.get("items", {})
+                    elif "properties" in node:
+                        node = node["properties"].get(part, {})
+                    else:
+                        node = {}
+                # Add addresses[] (or similar) as object row if it's an array of objects
+                if node.get("type") == "object" and "properties" in node:
+                    array_object_row = f"|  | {right} | object | {readonly_str} |  |  | {right} | object |  |"
+                    md_lines.append(array_object_row)
+                    subfields = []
+                    for subk, subv in sorted(node["properties"].items()):
+                        nested_field = f"{right}[].{subk}".replace("[][].", "[].")
+                        nested_type = subv.get("type", "")
+                        subfields.append((nested_field, nested_type))
+                    for nested_field, nested_type in subfields:
+                        md_lines.append(
+                            f"|  | {nested_field} | {nested_type} | {readonly_str} |  |  | {nested_field} | {nested_type} |  |"
+                        )
+                elif node.get("type"):
+                    md_lines.append(
+                        f"|  | {right} | {node.get('type')} | {readonly_str} |  |  | {right} | {node.get('type')} |  |"
+                    )
+                continue  # Skip the main row for the array itself
+            # Only add the row if it's not a missing nested field for an empty array
+            if not (
+                left and left.startswith("<span style='color:red'>***") and "[]" in left
+            ):
+                md_lines.append(
+                    f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
+                )
         return md_lines
 
 

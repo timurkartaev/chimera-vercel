@@ -88,7 +88,6 @@
 |  |  |  |  |  |  | accounts._acl | object |  |
 |  |  |  |  |  |  | accounts._acl._hash | string |  |
 |  |  |  |  |  |  | accounts._acl.fields | array |  |
-|  |  |  |  |  |  | accounts._acl.fields[] | array |  |
 |  |  |  |  |  |  | accounts.id | string |  |
 |  |  |  |  |  |  | accounts.name | string |  |
 |  |  |  |  |  |  | ai_opp_close_week_scores | null | None |
@@ -97,7 +96,6 @@
 |  |  |  |  |  |  | assigned_user_link._acl | object |  |
 |  |  |  |  |  |  | assigned_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | assigned_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | assigned_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | assigned_user_link.full_name | string |  |
 |  |  |  |  |  |  | assigned_user_link.id | string |  |
 |  |  |  |  |  |  | assigned_user_name | string | Will Westin |
@@ -106,7 +104,6 @@
 |  |  |  |  |  |  | created_by_link._acl | object |  |
 |  |  |  |  |  |  | created_by_link._acl._hash | string |  |
 |  |  |  |  |  |  | created_by_link._acl.fields | array |  |
-|  |  |  |  |  |  | created_by_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | created_by_link.full_name | string |  |
 |  |  |  |  |  |  | created_by_link.id | string |  |
 |  |  |  |  |  |  | created_by_name | string | Jen Smith |
@@ -114,7 +111,6 @@
 |  |  |  |  |  |  | currencies._acl | object |  |
 |  |  |  |  |  |  | currencies._acl._hash | string |  |
 |  |  |  |  |  |  | currencies._acl.fields | array |  |
-|  |  |  |  |  |  | currencies._acl.fields[] | array |  |
 |  |  |  |  |  |  | currencies.id | string |  |
 |  |  |  |  |  |  | currencies.name | string |  |
 |  |  |  |  |  |  | currencies.symbol | string |  |
@@ -126,18 +122,15 @@
 |  |  |  |  |  |  | dri_workflow_template_link._acl | object |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl._hash | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl.fields | array |  |
-|  |  |  |  |  |  | dri_workflow_template_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | dri_workflow_template_link.id | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link.name | string |  |
 |  |  |  |  |  |  | dri_workflow_template_name | string |  |
 |  |  |  |  |  |  | locked_fields | array | [] |
-|  |  |  |  |  |  | locked_fields[] | array |  |
 |  |  |  |  |  |  | modified_by_name | string | Jen Smith |
 |  |  |  |  |  |  | modified_user_link | object | {"full_name": "Jen Smith", "id": "1", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | modified_user_link._acl | object |  |
 |  |  |  |  |  |  | modified_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | modified_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | modified_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | modified_user_link.full_name | string |  |
 |  |  |  |  |  |  | modified_user_link.id | string |  |
 |  |  |  |  |  |  | perform_sugar_action | boolean | False |
@@ -145,15 +138,12 @@
 |  |  |  |  |  |  | renewal_parent._acl | object |  |
 |  |  |  |  |  |  | renewal_parent._acl._hash | string |  |
 |  |  |  |  |  |  | renewal_parent._acl.fields | array |  |
-|  |  |  |  |  |  | renewal_parent._acl.fields[] | array |  |
 |  |  |  |  |  |  | renewal_parent.id | string |  |
 |  |  |  |  |  |  | renewal_parent.name | string |  |
-|  |  |  |  |  |  | tag[] | array |  |
 |  |  |  |  |  |  | team_count_link | object | {"team_count": "", "id": "1", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | team_count_link._acl | object |  |
 |  |  |  |  |  |  | team_count_link._acl._hash | string |  |
 |  |  |  |  |  |  | team_count_link._acl.fields | array |  |
-|  |  |  |  |  |  | team_count_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | team_count_link.id | string |  |
 |  |  |  |  |  |  | team_count_link.team_count | string |  |
 
@@ -229,12 +219,6 @@
 |  | twitter | string | false |  |  | twitter | string | insight |
 |  | website | string | false |  |  | website | string | http://www.insightmarketinginc.com |
 |  | <span style='color:red'>***teams***</span> | array | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[]***</span> | object | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[].id***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[].name***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[].name_2***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[].primary***</span> | boolean | false |  |  |  |  |  |
-|  | <span style='color:red'>***teams[].selected***</span> | boolean | false |  |  |  |  |  |
 |  |  |  |  |  |  | _acl | object | {"fields": {}} |
 |  |  |  |  |  |  | _acl.fields | object |  |
 |  |  |  |  |  |  | _module | string | Accounts |
@@ -242,7 +226,6 @@
 |  |  |  |  |  |  | assigned_user_link._acl | object |  |
 |  |  |  |  |  |  | assigned_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | assigned_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | assigned_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | assigned_user_link.full_name | string |  |
 |  |  |  |  |  |  | assigned_user_link.id | string |  |
 |  |  |  |  |  |  | assigned_user_name | string | Chris Olliver |
@@ -251,7 +234,6 @@
 |  |  |  |  |  |  | business_centers._acl | object |  |
 |  |  |  |  |  |  | business_centers._acl._hash | string |  |
 |  |  |  |  |  |  | business_centers._acl.fields | array |  |
-|  |  |  |  |  |  | business_centers._acl.fields[] | array |  |
 |  |  |  |  |  |  | business_centers.id | string |  |
 |  |  |  |  |  |  | business_centers.name | string |  |
 |  |  |  |  |  |  | campaign_accounts | object | {"name": "", "id": "", "_acl": {"fields": {"peoplewhoopened": {"create": "no", "write": "no", "license": "no"}, "peoplewhoclicked": {"create": "no", "write": "no", "license": "no"}, "bounced": {"create": "no", "write": "no", "license": "no"}, "notreported": {"create": "no", "write": "no", "license": "no"}, "delivered": {"create": "no", "write": "no", "license": "no"}, "social": {"create": "no", "write": "no", "license": "no"}, "sent": {"create": "no", "write": "no", "license": "no"}, "postdate": {"create": "no", "write": "no", "license": "no"}, "forwards": {"create": "no", "write": "no", "license": "no"}, "unopened": {"create": "no", "write": "no", "license": "no"}, "unsubscribed": {"create": "no", "write": "no", "license": "no"}, "totalopens": {"create": "no", "write": "no", "license": "no"}, "totalclicks": {"create": "no", "write": "no", "license": "no"}}, "_hash": "ea0dd9a7291770652f6587c8f1f4e1f9"}} |
@@ -317,7 +299,6 @@
 |  |  |  |  |  |  | created_by_link._acl | object |  |
 |  |  |  |  |  |  | created_by_link._acl._hash | string |  |
 |  |  |  |  |  |  | created_by_link._acl.fields | array |  |
-|  |  |  |  |  |  | created_by_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | created_by_link.full_name | string |  |
 |  |  |  |  |  |  | created_by_link.id | string |  |
 |  |  |  |  |  |  | created_by_name | string | Jen Smith |
@@ -326,7 +307,6 @@
 |  |  |  |  |  |  | dri_workflow_template_link._acl | object |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl._hash | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl.fields | array |  |
-|  |  |  |  |  |  | dri_workflow_template_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | dri_workflow_template_link.id | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link.name | string |  |
 |  |  |  |  |  |  | dri_workflow_template_name | string |  |
@@ -346,12 +326,10 @@
 |  |  |  |  |  |  | last_interaction_parent_name | string | Contract detail review |
 |  |  |  |  |  |  | last_interaction_parent_type | string | Calls |
 |  |  |  |  |  |  | locked_fields | array | [] |
-|  |  |  |  |  |  | locked_fields[] | array |  |
 |  |  |  |  |  |  | member_of | object | {"name": "", "id": "", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | member_of._acl | object |  |
 |  |  |  |  |  |  | member_of._acl._hash | string |  |
 |  |  |  |  |  |  | member_of._acl.fields | array |  |
-|  |  |  |  |  |  | member_of._acl.fields[] | array |  |
 |  |  |  |  |  |  | member_of.id | string |  |
 |  |  |  |  |  |  | member_of.name | string |  |
 |  |  |  |  |  |  | modified_by_name | string | Jen Smith |
@@ -359,17 +337,14 @@
 |  |  |  |  |  |  | modified_user_link._acl | object |  |
 |  |  |  |  |  |  | modified_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | modified_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | modified_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | modified_user_link.full_name | string |  |
 |  |  |  |  |  |  | modified_user_link.id | string |  |
 |  |  |  |  |  |  | perform_sugar_action | boolean | False |
 |  |  |  |  |  |  | sync_key | string |  |
-|  |  |  |  |  |  | tag[] | array |  |
 |  |  |  |  |  |  | team_count_link | object | {"team_count": "", "id": "1", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | team_count_link._acl | object |  |
 |  |  |  |  |  |  | team_count_link._acl._hash | string |  |
 |  |  |  |  |  |  | team_count_link._acl.fields | array |  |
-|  |  |  |  |  |  | team_count_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | team_count_link.id | string |  |
 |  |  |  |  |  |  | team_count_link.team_count | string |  |
 |  |  |  |  |  |  | team_name | array | [{"id": "1", "name": "Global", "name_2": "", "primary": true, "selected": false}] |
@@ -471,12 +446,6 @@
 |  | title | string | false |  |  | title | string | Senior Sales Associate |
 |  | twitter | string | false |  |  | twitter | string | LindaHoliday23 |
 |  | <span style='color:red'>***team***</span> | array | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[]***</span> | object | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[].id***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[].name***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[].name_2***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[].primary***</span> | boolean | false |  |  |  |  |  |
-|  | <span style='color:red'>***team[].selected***</span> | boolean | false |  |  |  |  |  |
 |  |  |  |  |  |  | _acl | object | {"fields": {}} |
 |  |  |  |  |  |  | _acl.fields | object |  |
 |  |  |  |  |  |  | _module | string | Contacts |
@@ -488,14 +457,12 @@
 |  |  |  |  |  |  | accounts._acl | object |  |
 |  |  |  |  |  |  | accounts._acl._hash | string |  |
 |  |  |  |  |  |  | accounts._acl.fields | array |  |
-|  |  |  |  |  |  | accounts._acl.fields[] | array |  |
 |  |  |  |  |  |  | accounts.id | string |  |
 |  |  |  |  |  |  | accounts.name | string |  |
 |  |  |  |  |  |  | assigned_user_link | object | {"full_name": "Chris Olliver", "id": "seed_chris_id", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | assigned_user_link._acl | object |  |
 |  |  |  |  |  |  | assigned_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | assigned_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | assigned_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | assigned_user_link.full_name | string |  |
 |  |  |  |  |  |  | assigned_user_link.id | string |  |
 |  |  |  |  |  |  | assigned_user_name | string | Chris Olliver |
@@ -505,7 +472,6 @@
 |  |  |  |  |  |  | business_centers._acl | object |  |
 |  |  |  |  |  |  | business_centers._acl._hash | string |  |
 |  |  |  |  |  |  | business_centers._acl.fields | array |  |
-|  |  |  |  |  |  | business_centers._acl.fields[] | array |  |
 |  |  |  |  |  |  | business_centers.id | string |  |
 |  |  |  |  |  |  | business_centers.name | string |  |
 |  |  |  |  |  |  | c_accept_status_fields | string |  |
@@ -574,21 +540,18 @@
 |  |  |  |  |  |  | created_by_link._acl | object |  |
 |  |  |  |  |  |  | created_by_link._acl._hash | string |  |
 |  |  |  |  |  |  | created_by_link._acl.fields | array |  |
-|  |  |  |  |  |  | created_by_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | created_by_link.full_name | string |  |
 |  |  |  |  |  |  | created_by_link.id | string |  |
 |  |  |  |  |  |  | created_by_name | string | Jen Smith |
 |  |  |  |  |  |  | denorm_account_name | string | Kringle Bell IncKA Tower & Co |
 |  |  |  |  |  |  | dnb_principal_id | string | 263865980 |
 |  |  |  |  |  |  | dp_business_purpose | array | [] |
-|  |  |  |  |  |  | dp_business_purpose[] | array |  |
 |  |  |  |  |  |  | dp_consent_last_updated | string | 2025-05-14 |
 |  |  |  |  |  |  | dri_workflow_template_id | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link | object | {"name": "", "id": "", "_acl": {"fields": [], "_hash": "654d337e0e912edaa00dbb0fb3dc3c17"}} |
 |  |  |  |  |  |  | dri_workflow_template_link._acl | object |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl._hash | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link._acl.fields | array |  |
-|  |  |  |  |  |  | dri_workflow_template_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | dri_workflow_template_link.id | string |  |
 |  |  |  |  |  |  | dri_workflow_template_link.name | string |  |
 |  |  |  |  |  |  | dri_workflow_template_name | string |  |
@@ -620,7 +583,6 @@
 |  |  |  |  |  |  | hint_photo | string |  |
 |  |  |  |  |  |  | hint_twitter | string |  |
 |  |  |  |  |  |  | locked_fields | array | [] |
-|  |  |  |  |  |  | locked_fields[] | array |  |
 |  |  |  |  |  |  | m_accept_status_fields | string |  |
 |  |  |  |  |  |  | mkto_id | null | None |
 |  |  |  |  |  |  | mkto_lead_score | string | Email |
@@ -629,7 +591,6 @@
 |  |  |  |  |  |  | modified_user_link._acl | object |  |
 |  |  |  |  |  |  | modified_user_link._acl._hash | string |  |
 |  |  |  |  |  |  | modified_user_link._acl.fields | array |  |
-|  |  |  |  |  |  | modified_user_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | modified_user_link.full_name | string |  |
 |  |  |  |  |  |  | modified_user_link.id | string |  |
 |  |  |  |  |  |  | opportunity_role | string |  |
@@ -659,7 +620,6 @@
 |  |  |  |  |  |  | team_count_link._acl | object |  |
 |  |  |  |  |  |  | team_count_link._acl._hash | string |  |
 |  |  |  |  |  |  | team_count_link._acl.fields | array |  |
-|  |  |  |  |  |  | team_count_link._acl.fields[] | array |  |
 |  |  |  |  |  |  | team_count_link.id | string |  |
 |  |  |  |  |  |  | team_count_link.team_count | string |  |
 |  |  |  |  |  |  | team_name | array | [{"id": "East", "name": "East", "name_2": "", "primary": false, "selected": false}, {"id": "1", "name": "Global", "name_2": "", "primary": true, "selected": false}] |

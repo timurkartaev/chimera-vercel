@@ -52,7 +52,7 @@
 | Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types | Value |
 |---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|-------|
 |  | accountContacts | array | false |  |  | accountContacts | array | [] |
-|  | accountContacts[] | string | false |  |  | accountContacts[] | array |  |
+|  | accountContacts[] | string | false |  |  | accountContacts[] | string |  |
 |  | adate | string | false |  |  | adate | string | 2025-06-10T02:28:00-05:00 |
 |  | anonymized | string | false |  |  | anonymized | string | 0 |
 |  | bounced_date | string | false |  |  | bounced_date | null | None |
@@ -60,7 +60,7 @@
 |  | bounced_soft | string | false |  |  | bounced_soft | string | 0 |
 |  | cdate | string | false |  |  | cdate | string | 2025-06-09T08:10:33-05:00 |
 |  | contactAutomations | array | false |  |  | contactAutomations | array | [] |
-|  | contactAutomations[] | string | false |  |  | contactAutomations[] | array |  |
+|  | contactAutomations[] | string | false |  |  | contactAutomations[] | string |  |
 |  | contactLists | array | false |  |  | contactLists | array | [] |
 |  | created_by | string | false |  |  | created_by | string | 0 |
 |  | created_timestamp | string | false |  |  | created_timestamp | string | 2025-06-09 08:10:33 |
@@ -97,9 +97,6 @@
 |  | <span style='color:red'>***email_empty***</span> | boolean | false |  |  |  |  |  |
 |  | <span style='color:red'>***jobTitle***</span> | string | false |  |  |  |  |  |
 |  |  |  |  |  |  | best_send_hour | string | 0 |
-|  |  |  |  |  |  | contactLists[] | array |  |
-|  |  |  |  |  |  | fieldValues[] | array |  |
-|  |  |  |  |  |  | geoIps[] | array |  |
 |  |  |  |  |  |  | last_click_date | null | None |
 |  |  |  |  |  |  | last_mpp_open_date | null | None |
 |  |  |  |  |  |  | last_open_date | null | None |

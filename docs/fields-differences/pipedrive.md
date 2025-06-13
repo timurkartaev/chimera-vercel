@@ -363,10 +363,8 @@
 | Longitude of AddressFieldName.Appartment | <span style='color:red'>***1c460f79fbace9ba9df28aade17640a890447929_long***</span> | number | false |  |  |  |  |  |
 | Latitude of AddressFieldName.Country | <span style='color:red'>***2213b9a5fdbc89c7f889139cc076b2795432d018_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of AddressFieldName.Country | <span style='color:red'>***2213b9a5fdbc89c7f889139cc076b2795432d018_long***</span> | number | false |  |  |  |  |  |
-|  | <span style='color:red'>***2cfd09ec0dc34ef3d9ac94cc0cf0baea2291dcd2[]***</span> | integer | false | `opt1`, `opt2`, `opt3`, `opt4` |  |  |  |  |
 | Latitude of AddressFieldName.Street | <span style='color:red'>***3d806699a95dd5d44c26314a54348f86497c742e_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of AddressFieldName.Street | <span style='color:red'>***3d806699a95dd5d44c26314a54348f86497c742e_long***</span> | number | false |  |  |  |  |  |
-|  | <span style='color:red'>***3de7c441939d43eccdbc1ade5c6d9bf28a655a33[]***</span> | integer | false | `1` |  |  |  |  |
 | Latitude of AddressFieldName.City | <span style='color:red'>***533d1bc79102279007bf371611987cdb79dac50e_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of AddressFieldName.City | <span style='color:red'>***533d1bc79102279007bf371611987cdb79dac50e_long***</span> | number | false |  |  |  |  |  |
 | Latitude of romanAddress | <span style='color:red'>***5c62123adff03afe4daf58addea5bb468ea0a915_lat***</span> | number | false |  |  |  |  |  |
@@ -381,7 +379,6 @@
 |  | <span style='color:red'>***creator_user.email***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***creator_user.id***</span> | integer | false |  |  |  |  |  |
 |  | <span style='color:red'>***creator_user.name***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***d47b7d6a50b9b7fffc4a476eec39638099d6ddd1[]***</span> | integer | false | `test`, `multi`, `opt` |  |  |  |  |
 | Latitude of AddressFieldName.Disctrict | <span style='color:red'>***d7905cd9d3de6ef22f93367ba37c7d73ebfbe856_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of AddressFieldName.Disctrict | <span style='color:red'>***d7905cd9d3de6ef22f93367ba37c7d73ebfbe856_long***</span> | number | false |  |  |  |  |  |
 | Latitude of AddressFieldName.ZIP | <span style='color:red'>***ec1202406dfc819cb4f06bf9f31181395a452f12_lat***</span> | number | false |  |  |  |  |  |
@@ -392,7 +389,6 @@
 | Longitude of AddressFieldName.House | <span style='color:red'>***f833bdcc78798d16f8387238cf42cbc918851ba3_long***</span> | number | false |  |  |  |  |  |
 |  | <span style='color:red'>***group_id***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***group_name***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***label[]***</span> | integer | false | `2waysync`, `my`, `mp3` |  |  |  |  |
 |  | <span style='color:red'>***org***</span> | object | false |  |  |  |  |  |
 |  | <span style='color:red'>***org.address***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***org.name***</span> | string | false |  |  |  |  |  |
@@ -400,23 +396,16 @@
 |  | <span style='color:red'>***org.people_count***</span> | integer | false |  |  |  |  |  |
 |  | <span style='color:red'>***person***</span> | object | false |  |  |  |  |  |
 |  | <span style='color:red'>***person.email***</span> | array | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.email[]***</span> | object | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.email[].label***</span> | string | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.email[].primary***</span> | boolean | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.email[].value***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***person.name***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***person.owner_id***</span> | integer | false |  |  |  |  |  |
 |  | <span style='color:red'>***person.phone***</span> | array | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.phone[]***</span> | object | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.phone[].primary***</span> | boolean | false |  |  |  |  |  |
-|  | <span style='color:red'>***person.phone[].value***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***person.value***</span> | integer | false |  |  |  |  |  |
 |  | <span style='color:red'>***renewal_type***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***user***</span> | object | false |  |  |  |  |  |
 |  | <span style='color:red'>***user.email***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***user.id***</span> | integer | false |  |  |  |  |  |
 |  | <span style='color:red'>***user.name***</span> | string | false |  |  |  |  |  |
-|  |  |  |  |  |  | age | object | {"y": 6, "m": 7, "d": 28, "h": 14, "i": 13, "s": 28, "total_seconds": 210176008} |
+|  |  |  |  |  |  | age | object | {"y": 6, "m": 7, "d": 28, "h": 17, "i": 46, "s": 37, "total_seconds": 210188797} |
 |  |  |  |  |  |  | age.d | integer |  |
 |  |  |  |  |  |  | age.h | integer |  |
 |  |  |  |  |  |  | age.i | integer |  |
@@ -512,7 +501,7 @@
 |  |  |  |  |  |  | org_hidden | boolean | False |
 |  |  |  |  |  |  | person_hidden | boolean | False |
 |  |  |  |  |  |  | sequence_enrollment | null | None |
-|  |  |  |  |  |  | stay_in_pipeline_stages | object | {"times_in_stages": {"1": 181931984, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22}, "order_of_stages": [1, 8, 2, 3, 4, 7, 9, 10, 11, 12, 13]} |
+|  |  |  |  |  |  | stay_in_pipeline_stages | object | {"times_in_stages": {"1": 181944773, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22}, "order_of_stages": [1, 8, 2, 3, 4, 7, 9, 10, 11, 12, 13]} |
 |  |  |  |  |  |  | stay_in_pipeline_stages.order_of_stages | array |  |
 |  |  |  |  |  |  | stay_in_pipeline_stages.order_of_stages[] | integer |  |
 |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages | object |  |
@@ -614,7 +603,6 @@
 | Won deals | won_deals_count | number | false |  |  | won_deals_count | integer | 1 |
 | Latitude of TestAddress | <span style='color:red'>***435d6eb95911ed25107b96024eac460caca2eea1_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of TestAddress | <span style='color:red'>***435d6eb95911ed25107b96024eac460caca2eea1_long***</span> | number | false |  |  |  |  |  |
-|  | <span style='color:red'>***5755a330b7435d22bad845bb04ade3320b33427b[]***</span> | integer | false | `qwe`, `asd`, `zxczxczxc` |  |  |  |  |
 | Address | <span style='color:red'>***address_components***</span> | object | false |  |  |  |  |  |
 |  | <span style='color:red'>***address_components.address_admin_area_level_1***</span> | string | false |  |  |  |  |  |
 |  | <span style='color:red'>***address_components.address_admin_area_level_2***</span> | string | false |  |  |  |  |  |
@@ -765,7 +753,7 @@
 | ID | id | number | false |  |  | id | integer | 1 |
 | Label | label | integer | false | `Customer`, `Hot lead`, `Warm lead`, `Cold lead`, `Custom Lead` |  | label | null | None |
 | Labels | label_ids | array | false |  |  | label_ids | array | [] |
-|  | label_ids[] | integer | false | `Customer`, `Hot lead`, `Warm lead`, `Cold lead`, `Custom Lead` |  | label_ids[] | array |  |
+|  | label_ids[] | integer | false |  |  | label_ids[] | integer |  |
 | Last activity date | last_activity_date | string | false |  |  | last_activity_date | string | 2025-05-20 |
 |  | last_activity_id | integer | false |  | activities | last_activity_id | integer | 21 |
 | Last email received | last_incoming_mail_time | string | false |  |  | last_incoming_mail_time | null | None |
@@ -796,7 +784,6 @@
 | Update time | update_time | string | false |  |  | update_time | string | 2025-05-28 10:07:50 |
 | Visible to | visible_to | string | false |  |  | visible_to | string | 3 |
 | Won deals | won_deals_count | number | false |  |  | won_deals_count | integer | 1 |
-|  | <span style='color:red'>***4259fbfec814535cdeffed8cc82cb0a542fb0af9[]***</span> | integer | false | `qwe`, `asd`, `zxczxc` |  |  |  |  |
 |  | <span style='color:red'>***added_by_user_id***</span> | integer | false |  | users |  |  |  |
 | Latitude of Custom address | <span style='color:red'>***eed15d47542b5507fe1ce9eea1bfa7b3d5ff2efd_lat***</span> | number | false |  |  |  |  |  |
 | Longitude of Custom address | <span style='color:red'>***eed15d47542b5507fe1ce9eea1bfa7b3d5ff2efd_long***</span> | number | false |  |  |  |  |  |
