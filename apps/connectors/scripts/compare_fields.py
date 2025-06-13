@@ -280,6 +280,7 @@ class MarkdownReport:
                 )
                 aligned.append(
                     (
+                        "",  # Diff: Empty (matching)
                         title,
                         display_field,
                         dtype_schema,
@@ -321,6 +322,7 @@ class MarkdownReport:
                 marked_field = f"<span style='color:red'>***{display_field}***</span>"
                 aligned.append(
                     (
+                        "Schema",  # Diff: Schema only (left)
                         title,
                         marked_field,
                         dtype_schema,
@@ -336,6 +338,7 @@ class MarkdownReport:
             if field not in used_object:
                 aligned.append(
                     (
+                        "FindByID",  # Diff: FindByID only (right)
                         "",
                         "",
                         "",
@@ -350,8 +353,8 @@ class MarkdownReport:
                 )
                 used_object.add(field)
         md_lines = [
-            "| Entity Schema Title | Entity Schema Fields | Entity Schema Types | Readonly | Possible Values | Reference Collection | Find By ID Object Fields | Find By ID Types | Value |",
-            "|---------------------|----------------------|---------------------|----------|-----------------|----------------------|--------------------------|------------------|-------|",
+            "| Diff | Entity Schema Title | Schema Field ID | Entity Schema Types | Readonly | Possible Values | Reference Collection | FindByID Field ID | Find By ID Types | Value |",
+            "|------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|",
         ]
 
         def get_field_value(obj, path):
@@ -368,6 +371,7 @@ class MarkdownReport:
             return str(node)
 
         for (
+            diff,
             title,
             left,
             left_type,
@@ -394,7 +398,7 @@ class MarkdownReport:
                         node = {}
                 # Add addresses[] (or similar) as object row if it's an array of objects
                 if node.get("type") == "object" and "properties" in node:
-                    array_object_row = f"|  | {right} | object | {readonly_str} |  |  | {right} | object |  |"
+                    array_object_row = f"|  |  | {right} | object | {readonly_str} |  |  | {right} | object |  |"
                     md_lines.append(array_object_row)
                     subfields = []
                     for subk, subv in sorted(node["properties"].items()):
@@ -403,11 +407,11 @@ class MarkdownReport:
                         subfields.append((nested_field, nested_type))
                     for nested_field, nested_type in subfields:
                         md_lines.append(
-                            f"|  | {nested_field} | {nested_type} | {readonly_str} |  |  | {nested_field} | {nested_type} |  |"
+                            f"|  |  | {nested_field} | {nested_type} | {readonly_str} |  |  | {nested_field} | {nested_type} |  |"
                         )
                 elif node.get("type"):
                     md_lines.append(
-                        f"|  | {right} | {node.get('type')} | {readonly_str} |  |  | {right} | {node.get('type')} |  |"
+                        f"|  |  | {right} | {node.get('type')} | {readonly_str} |  |  | {right} | {node.get('type')} |  |"
                     )
                 continue  # Skip the main row for the array itself
             # Only add the row if it's not a missing nested field for an empty array
@@ -415,7 +419,7 @@ class MarkdownReport:
                 left and left.startswith("<span style='color:red'>***") and "[]" in left
             ):
                 md_lines.append(
-                    f"| {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
+                    f"| {diff} | {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
                 )
         return md_lines
 
