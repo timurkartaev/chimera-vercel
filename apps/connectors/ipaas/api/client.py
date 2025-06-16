@@ -4,7 +4,6 @@ from typing import List, Optional, Dict, Any
 import jwt
 import requests
 
-from apps.connectors.base.models import Integration
 from chimera import settings
 
 
@@ -104,7 +103,7 @@ class _ScopedIntegrationAppSession:
         response.raise_for_status()
         return response.json()
 
-    def post(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    def post(self, endpoint: str, data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         url = f"{self.client.base_url}/{endpoint.lstrip('/')}"
         response = requests.post(url, headers=self._get_headers(), json=data)
         response.raise_for_status()

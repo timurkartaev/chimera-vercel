@@ -1,36 +1,44 @@
 from apps.connectors.base.capability import BaseCapability
 from apps.connectors.base.loader import load_capability_class
 from types import MappingProxyType
-from typing import Any, List, Dict, Type
+from typing import Any, List, Dict, Type, get_type_hints
 from apps.connectors.base.capabilities import BaseAuthorizeCapability
 
 MissingDependency = object()
 
 
 def get_capability_class_dependencies(
-    capability_class: Type[BaseCapability],
+    capability_class: Type["BaseCapability"],
     connector_context: MappingProxyType[str, Any],
-) -> List[Type[BaseCapability]]:
+) -> List[Any]:  # You’re returning instances, not types
     import inspect
+    import sys
 
     init_sig = inspect.signature(capability_class.__init__)
+    annotations = get_type_hints(
+        capability_class.__init__,
+        globalns=vars(sys.modules[capability_class.__module__]),
+    )
     params = {
         name: param for name, param in init_sig.parameters.items() if name != "self"
     }
-    injectios = {}
+
+    injections = {}
     for name, param in params.items():
+        expected_type = annotations.get(name, Any)
+
         if name in connector_context and isinstance(
-            connector_context[name], param.annotation
+            connector_context[name], expected_type
         ):
-            injectios[name] = connector_context[name]
+            injections[name] = connector_context[name]
         elif param.default is not inspect.Parameter.empty:
-            injectios[name] = param.default
+            injections[name] = param.default
         else:
             raise ValueError(
-                f"Missing dependency: {name} for capability {capability_class.__name__} in connector_context {connector_context}"
+                f"Missing dependency: {name} for capability {capability_class.__name__}"
             )
 
-    return injectios
+    return injections
 
 
 class Connector:

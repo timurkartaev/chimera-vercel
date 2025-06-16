@@ -19,6 +19,18 @@ from apps.connectors.base.global_actions import list_integrations as _list_integ
 
 
 def index(request):
+    connector = resolve_connector("creatio")
+    capability = connector.get_capability("entity")
+    result = capability.list_entities(
+        dict(
+            integration_key="creatio",
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        )
+    )
+    print(result)
     return JsonResponse(
         {
             "auth_url": "auth_url",

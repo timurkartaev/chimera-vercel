@@ -54,11 +54,12 @@ class AuthorizeDisconnectConnection(BaseCapabilityAction):
     class Input(BaseModel):
         connection_id: str
         identity: Identity
-    
+
     class Output(BaseModel):
         # Common statuses for a delete method response are "success" and "error".
         success: bool
         connection: Optional[IntegrationConnection] = None
+
 
 class BaseAuthorizeCapability(BaseCapability):
     begin: AuthorizeBegin
@@ -100,5 +101,29 @@ class BaseInfoCapability(BaseCapability):
     get_integration: GetIntegrationDetails
     list_integrations: ListIntegrations
 
-    def __init__(self, config: Optional["ConnectorConfig"] = None):
-        self.config = config
+
+# Entity Capability
+
+
+class ListEntities(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+        identity: Identity
+
+    class Output(BaseModel):
+        entities: List[dict[str, Any]]
+
+
+class GetEntitySchema(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+        entity_name: str
+        identity: Identity
+
+    class Output(BaseModel):
+        schema: List[dict[str, Any]]
+
+
+class BaseEntityCapability(BaseCapability):
+    list_entities: ListEntities
+    get_entity_schema: GetEntitySchema
