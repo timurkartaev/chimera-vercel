@@ -127,16 +127,108 @@ class MarkdownReport:
 
         def get_field_value(obj, path):
             # Only return value for top-level fields (no dot in path)
-            if not path or "." in path or path.endswith("[]"):
+            if not path:
                 return ""
+            parts = []
+            for part in path.split("."):
+                if part.endswith("[]"):
+                    parts.append(part[:-2])
+                    parts.append("[]")
+                else:
+                    parts.append(part)
             node = obj
-            if isinstance(node, dict) and path in node:
-                node = node[path]
-            else:
-                return ""
+            for part in parts:
+                if part == "[]":
+                    if isinstance(node, list):
+                        if node:
+                            node = node[0]
+                        else:
+                            return "__empty_array__"
+                    else:
+                        return ""
+                elif isinstance(node, dict) and part in node:
+                    node = node[part]
+                else:
+                    return ""
             if isinstance(node, (dict, list)):
                 return json.dumps(node)
             return str(node)
+
+        # Collect all main table field paths to avoid duplication in value rows
+        main_table_fields = set()
+        for (
+            _diff,
+            _title,
+            left,
+            _left_type,
+            _readonly_str,
+            right,
+            _right_type,
+            _possible_values,
+            _reference_collection,
+        ) in aligned:
+            if left:
+                main_table_fields.add(left)
+            if right:
+                main_table_fields.add(right)
+
+        def add_value_rows(
+            md_lines, obj, path, dtype, readonly_str, skip_main_row=False
+        ):
+            value = get_field_value(obj, path)
+            if dtype == "object" and value and value != "{}":
+                # Add value for the object itself only if not skipping main row and not already in main table
+                if not skip_main_row and path not in main_table_fields:
+                    md_lines.append(
+                        f"|  |  | {path} | object | {readonly_str} |  |  | {path} | object | {value} |"
+                    )
+                try:
+                    val_dict = json.loads(value)
+                    if isinstance(val_dict, dict):
+                        for k, v in val_dict.items():
+                            sub_path = f"{path}.{k}" if path else k
+                            if sub_path in main_table_fields:
+                                continue
+                            sub_type = type(v).__name__
+                            md_lines.append(
+                                f"|  |  | {sub_path} | {sub_type} | {readonly_str} |  |  | {sub_path} | {sub_type} | {json.dumps(v) if isinstance(v, (dict, list)) else v} |"
+                            )
+                except Exception:
+                    pass
+            elif dtype == "array" and value and value != "[]":
+                # Add value for the array itself only if not skipping main row and not already in main table
+                if not skip_main_row and path not in main_table_fields:
+                    md_lines.append(
+                        f"|  |  | {path} | array | {readonly_str} |  |  | {path} | array | {value} |"
+                    )
+                try:
+                    val_list = json.loads(value)
+                    if isinstance(val_list, list) and val_list:
+                        # Add value for the first item
+                        item_path = f"{path}[]"
+                        if item_path not in main_table_fields:
+                            md_lines.append(
+                                f"|  |  | {item_path} | object | {readonly_str} |  |  | {item_path} | object | {json.dumps(val_list[0])} |"
+                            )
+                        if isinstance(val_list[0], dict):
+                            for k, v in val_list[0].items():
+                                sub_path = f"{item_path}.{k}"
+                                if sub_path in main_table_fields:
+                                    continue
+                                sub_type = type(v).__name__
+                                md_lines.append(
+                                    f"|  |  | {sub_path} | {sub_type} | {readonly_str} |  |  | {sub_path} | {sub_type} | {json.dumps(v) if isinstance(v, (dict, list)) else v} |"
+                                )
+                except Exception:
+                    pass
+            elif (
+                value not in ("", "{}", "[]")
+                and not skip_main_row
+                and path not in main_table_fields
+            ):
+                md_lines.append(
+                    f"|  |  | {path} | {dtype} | {readonly_str} |  |  | {path} | {dtype} | {value} |"
+                )
 
         for (
             diff,
@@ -188,5 +280,15 @@ class MarkdownReport:
             ):
                 md_lines.append(
                     f"| {diff} | {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
+                )
+            # Add extra value rows for objects and arrays as requested, but skip main row to avoid duplication
+            if right and right_type in ("object", "array"):
+                add_value_rows(
+                    md_lines,
+                    crm_object["output"]["fields"],
+                    right,
+                    right_type,
+                    readonly_str,
+                    skip_main_row=True,
                 )
         return md_lines

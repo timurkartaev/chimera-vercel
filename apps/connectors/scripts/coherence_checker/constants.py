@@ -1,14 +1,14 @@
 CONNECTIONS = {
-    "ActiveCampaign": {
-        "deals": "1",
-        "contacts": "2",
-        "accounts": "1",
-    },
-    "Close": {
-        "opportunity": "oppo_nbV15NALNPtNFPTLOp8gXG5BFT7f8xUE4NeuQ4xoz2l",
-        "lead": "lead_HcmG4cyICfAIu1J0sRziNKe63cbNaifOxZZ0PppgksW",
-        "contact": "cont_Ga5TgqZ8RIEuhxrhIn0lnULpfpjzWoqoi5R8YG6JVR4",
-    },
+    # "ActiveCampaign": {
+    #     "deals": "1",
+    #     "contacts": "2",
+    #     "accounts": "1",
+    # },
+    # "Close": {
+    #     "opportunity": "oppo_nbV15NALNPtNFPTLOp8gXG5BFT7f8xUE4NeuQ4xoz2l",
+    #     "lead": "lead_HcmG4cyICfAIu1J0sRziNKe63cbNaifOxZZ0PppgksW",
+    #     "contact": "cont_Ga5TgqZ8RIEuhxrhIn0lnULpfpjzWoqoi5R8YG6JVR4",
+    # },
     "Copper": {
         "opportunities": "15786303",
         "companies": "42499725",
