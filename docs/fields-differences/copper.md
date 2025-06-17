@@ -63,8 +63,7 @@
 |  | This is a test field for Mary. | custom_379268 | string | false |  |  | custom_379268 | string | elly.sanjuan@pandadoc.com |
 |  | CityWasBorn | custom_391555 | string | false |  |  | custom_391555 | string | Moscow |
 |  | TP Custom Field | custom_418074 | boolean | false |  |  | custom_418074 | boolean | False |
-|  | TP Custom Field | custom_418077 | string | false |  |  | custom_418077 | string | Thea TEst
- |
+|  | TP Custom Field | custom_418077 | string | false |  |  | custom_418077 | string | Thea TEst |
 |  | Test 4 | custom_418650 | boolean | false |  |  | custom_418650 | boolean | False |
 |  | Test 5 | custom_418651 | string | false |  |  | custom_418651 | null | None |
 |  | Test 6 | custom_418656 | array | false |  |  | custom_418656 | array | [] |
