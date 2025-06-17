@@ -1,0 +1,8 @@
+type: ipaas
+info:
+  name: ZohoCRM
+  slug: zoho-crm
+
+capabilities:
+  - authorize
+  - info

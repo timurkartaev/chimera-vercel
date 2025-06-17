@@ -38,4 +38,10 @@ CONNECTIONS = {
         "contacts": "593db44a-30cf-11f0-8746-4f8477825d38",
         "revenuelineitems": "db5458b4-30dc-11f0-8a69-f366efd4954a",
     },
+    "ZohoCRM": {
+        "deals": "1",
+        "accounts": "2",
+        "contacts": "3",
+        # "products": "4",
+    },
 }
