@@ -67,14 +67,8 @@ class EntityField(BaseModel):
     # Add validations, formats, etc. as needed
 
 
-class EntitySchema(BaseModel):
-    entity_type: str  # e.g., "deal", "contact"
-    display_name: Optional[str] = None
-    fields: List[EntityField]
-
-
 class EntityCapabilityConfig(BaseModel):
-    entities: List[EntitySchema]
+    entities: List[str]
 
 
 # --- Action Capability ---
@@ -97,6 +91,6 @@ class ConnectorConfig(BaseModel):
     authorize: Optional[AuthorizeCapabilityConfig] = Field(
         default=None, alias="authentication"
     )
-    entity: Optional[EntityCapabilityConfig] = None
+    entity: Optional[List[str]] = Field(default=None, alias="entities")
     # object capability does not require config
     actions: Optional[ActionCapabilityConfig] = None

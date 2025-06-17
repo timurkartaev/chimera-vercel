@@ -108,7 +108,6 @@ class BaseCapability(ABC):
             action_instance = getattr(overrides_module, name)
             if not isinstance(action_instance, BaseCapabilityAction):
                 continue
-            print(action_instance, "=================================")
             try:
                 _, action_name = name.split("__", 1)
                 capability_action = self._actions[action_name]

@@ -21,7 +21,7 @@ from apps.connectors.base.global_actions import list_integrations as _list_integ
 def index(request):
     connector = resolve_connector("creatio")
     capability = connector.get_capability("entity")
-    result = capability.list_entities(
+    entities = capability.list_entities(
         dict(
             integration_key="creatio",
             identity={
@@ -30,11 +30,22 @@ def index(request):
             },
         )
     )
-    print(result)
+    schema = capability.get_entity_schema(
+        dict(
+            integration_key="creatio",
+            entity_name="Opportunity",
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        )
+    )
     return JsonResponse(
         {
             "auth_url": "auth_url",
             "connectors": "connectors",
+            "entities": entities,
+            "schema": schema,
         }
     )
 
@@ -390,6 +401,7 @@ def authorization_get_connection(request, integration_key):
     )
     return JsonResponse(result)
 
+
 @csrf_exempt
 @require_http_methods(["DELETE"])
 def authorize_disconnect_connection(request, integration_key, connection_id):
@@ -405,3 +417,34 @@ def authorize_disconnect_connection(request, integration_key, connection_id):
         }
     )
     return JsonResponse(result)
+
+
+@require_GET
+def entity_list_entities(request, integration_key):
+    response = resolve_capability_action(integration_key, "entity", "list_entities")(
+        dict(
+            integration_key=integration_key,
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        )
+    )
+    return JsonResponse(response)
+
+
+@require_GET
+def entity_get_entity_schema(request, integration_key, entity_key):
+    response = resolve_capability_action(
+        integration_key, "entity", "get_entity_schema"
+    )(
+        dict(
+            integration_key=integration_key,
+            entity_key=entity_key,
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },  
+        )
+    )
+    return JsonResponse(response)

@@ -19,9 +19,9 @@ class EntityGetEntitySchema(IpaasGetEntitySchema):
         super().__init__(description)
 
     def get_url(self, input_model: "GetEntitySchema.Input"):
-        return "connections/{integration_key}/data/object-collection-instances?collectionKey={entity_name}".format(
+        return "connections/{integration_key}/data/object-collection-instances?collectionKey={entity_key}".format(
             integration_key=input_model.integration_key,
-            entity_name=input_model.entity_name,
+            entity_key=input_model.entity_key,
         )
 
 
@@ -35,11 +35,16 @@ class EntityListEntities(IpaasListEntities):
         with context.client.with_user_context(
             input_model.identity.id, input_model.identity.name
         ) as session:
-            response = session.post(self.get_url(input_model))
-            entities = [
-                {"key": record.get("id"), "name": record.get("name")}
-                for record in response.get("records", [])
-            ]
+            raw_entities = session.post(self.get_url(input_model)).get("records", [])
+            entities = []
+            for entity_info in raw_entities:
+                entity = {
+                    "key": entity_info.get("id"),
+                    "name": entity_info.get("name"),
+                }
+
+                if entity["key"].lower() in context.config.entity:
+                    entities.append(entity)
             return ListEntities.Output(entities=entities)
 
     def get_url(self, input_model: "ListEntities.Input"):

@@ -3,6 +3,12 @@ info:
   name: Salesforce
   slug: salesforce
 
+entities:
+  - account
+  - contact
+  - opportunity
+
 capabilities:
   - authorize
   - info
+  - entity

@@ -117,11 +117,11 @@ class ListEntities(BaseCapabilityAction):
 class GetEntitySchema(BaseCapabilityAction):
     class Input(BaseModel):
         integration_key: str
-        entity_name: str
+        entity_key: str
         identity: Identity
 
     class Output(BaseModel):
-        schema: List[dict[str, Any]]
+        schema: dict[str, Any]
 
 
 class BaseEntityCapability(BaseCapability):

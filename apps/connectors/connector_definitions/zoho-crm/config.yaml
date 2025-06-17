@@ -1,7 +1,7 @@
 type: ipaas
 info:
-  name: Close
-  slug: close
+  name: Zoho CRM
+  slug: zoho-crm
 
 capabilities:
   - authorize
@@ -9,6 +9,7 @@ capabilities:
   - entity
 
 entities:
-  - lead
+  - account
   - contact
-  - opportunity
+  - deal
+  - quote

@@ -1,8 +1,14 @@
 type: ipaas
 info:
-  name: Sugar CRM
+  name: SugarCRM
   slug: sugarcrm
 
 capabilities:
   - authorize
   - info
+  - entity
+
+entities:
+  - account
+  - contact
+  - opportunity
