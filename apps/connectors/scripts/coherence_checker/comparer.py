@@ -39,13 +39,16 @@ class FieldComparer:
                     connection_id, data_collection
                 )
                 crm_object = IntegrationAPI.get_object_by_id(
-                    connection_name.lower(), data_collection, data_collection_object_id
+                    connection_name.lower().replace(" ", "-"),
+                    data_collection,
+                    data_collection_object_id,
                 )
                 collection_schema_paths = SchemaExtractor.extract_schema_paths(
                     data_collection_schema.get("fieldsSchema")
                 )
                 crm_object_paths = SchemaExtractor.extract_object_paths(
-                    crm_object["output"]["fields"]
+                    # crm_object["output"]["fields"]
+                    crm_object.get("output", {}).get("fields", [])
                 )
                 md_lines.extend(
                     MarkdownReport.generate_markdown_table(
