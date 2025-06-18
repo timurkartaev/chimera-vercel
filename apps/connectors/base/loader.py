@@ -59,3 +59,18 @@ def load_capability_classes(capability_name: str):
             f"{capabilities_folder}.{capability_name}", capability_name
         )
     return capability_classes
+
+
+def load_integration_overrides(integration_name: str):
+    """
+    Dynamically load overrides for a specific integration.
+    
+    Expected module path pattern:
+        apps.connectors.connector_definitions.<integration_name>.overrides
+    """
+    try:
+        module_path = f"{APPS_MODULE_PATH}.connector_definitions.{integration_name}.overrides"
+        return importlib.import_module(module_path)
+    except ModuleNotFoundError:
+        # No overrides found for this integration
+        return None

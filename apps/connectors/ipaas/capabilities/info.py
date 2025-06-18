@@ -5,7 +5,6 @@ from apps.connectors.base.capabilities import (
     ListIntegrations,
 )
 from apps.connectors.base.models import ConnectorConfig
-from apps.connectors.base.models import Integration
 from apps.connectors.ipaas.api.client import (
     IntegrationAppClient,
     get_integration_app_client,

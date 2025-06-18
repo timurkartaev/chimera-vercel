@@ -6,3 +6,9 @@ info:
 capabilities:
   - authorize
   - info
+  - entity
+
+entities:
+  - company
+  - contact
+  - deal

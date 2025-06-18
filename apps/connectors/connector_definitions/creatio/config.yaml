@@ -3,6 +3,13 @@ info:
   name: Creatio
   slug: creatio
 
+entities:
+  - account
+  - lead
+  - contact
+  - opportunity
+
 capabilities:
   - authorize
   - info
+  - entity

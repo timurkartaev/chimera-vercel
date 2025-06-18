@@ -1,7 +1,7 @@
 type: ipaas
 info:
-  name: Copper
-  slug: copper
+  name: Zoho CRM
+  slug: zoho-crm
 
 capabilities:
   - authorize
@@ -9,6 +9,7 @@ capabilities:
   - entity
 
 entities:
-  - company
-  - lead
-  - opportunity
+  - account
+  - contact
+  - deal
+  - quote

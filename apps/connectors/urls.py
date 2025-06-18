@@ -43,9 +43,23 @@ info_patterns = [
         name="info_get_integration",
     ),
 ]
+
+entity_patterns = [
+    re_path(
+        r"^entity/(?P<integration_key>[-\w]+)/?$",
+        views.entity_list_entities,
+        name="entity_list_entities",
+    ),
+    re_path(
+        r"^entity/(?P<integration_key>[-\w]+)/(?P<entity_key>[-\w]+)/?$",
+        views.entity_get_entity_schema,
+        name="entity_get_entity_schema",
+    ),
+]
 urlpatterns = [
     *authorize_patterns,
     *info_patterns,
+    *entity_patterns,
     path("", views.index, name="index-view"),
     path("add-history", views.add_action_page, name="add-history"),
     path("api-action", views.add_action, name="add-action"),
