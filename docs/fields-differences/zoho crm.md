@@ -1,4 +1,4 @@
-# Differences between fields in Zoho CRM.io
+# Differences between fields in Zoho CRM
 
 
 ## Deals

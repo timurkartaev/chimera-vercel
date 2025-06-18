@@ -1,4 +1,4 @@
-# Differences between fields in ActiveCampaign.io
+# Differences between fields in ActiveCampaign
 
 
 ## Deals
@@ -52,7 +52,7 @@
 |------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|
 |  |  | accountContacts | array | false |  |  | accountContacts | array | [] |
 |  |  | accountContacts[] | string | false |  |  | accountContacts[] | string |  |
-|  |  | adate | string | false |  |  | adate | string | 2025-06-17T06:28:58-05:00 |
+|  |  | adate | string | false |  |  | adate | string | 2025-06-17T06:31:00-05:00 |
 |  |  | anonymized | string | false |  |  | anonymized | string | 0 |
 |  |  | bounced_date | string | false |  |  | bounced_date | null | None |
 |  |  | bounced_hard | string | false |  |  | bounced_hard | string | 0 |

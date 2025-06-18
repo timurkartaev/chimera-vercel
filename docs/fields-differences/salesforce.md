@@ -1,4 +1,4 @@
-# Differences between fields in Salesforce.io
+# Differences between fields in Salesforce
 
 
 ## Opportunities

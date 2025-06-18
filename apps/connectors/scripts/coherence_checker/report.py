@@ -191,7 +191,7 @@ class MarkdownReport:
                                 continue
                             sub_type = type(v).__name__
                             md_lines.append(
-                                f"|  |  | {sub_path} | {sub_type} | {readonly_str} |  |  | {sub_path} | {sub_type} | {json.dumps(v) if isinstance(v, (dict, list)) else v} |"
+                                f"|  |  | {sub_path} | {sub_type} | {readonly_str} |  |  | {sub_path} | {sub_type} | {json.dumps(v, indent=2) if isinstance(v, (dict, list)) else v} |"
                             )
                 except Exception:
                     pass
@@ -279,7 +279,7 @@ class MarkdownReport:
                 left and left.startswith("<span style='color:red'>***") and "[]" in left
             ):
                 md_lines.append(
-                    f"| {diff} | {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value} |"
+                    f"| {diff} | {title or ''} | {left or ''} | {left_type or ''} | {readonly_str or ''} | {possible_values or ''} | {reference_collection or ''} | {right or ''} | {right_type or ''} | {value.replace('\r\n', ' ')} |"
                 )
             # Add extra value rows for objects and arrays as requested, but skip main row to avoid duplication
             if right and right_type in ("object", "array"):

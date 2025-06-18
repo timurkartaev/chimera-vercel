@@ -1,4 +1,4 @@
-# Differences between fields in HubSpot.io
+# Differences between fields in HubSpot
 
 
 ## Deals
@@ -128,7 +128,7 @@
 |  | Deal amount calculation preference | hs_deal_amount_calculation_preference | string | false | `Total Contract Value`, `Annual Recurring Revenue`, `Monthly Recurring Revenue`, `Custom` |  | hs_deal_amount_calculation_preference | null | None |
 |  | HubSpot Shared Deal MRR | hs_deal_registration_mrr | number | false |  |  | hs_deal_registration_mrr | null | None |
 |  | HubSpot Shared Deal MRR Currency Code | hs_deal_registration_mrr_currency_code | string | false |  |  | hs_deal_registration_mrr_currency_code | null | None |
-|  | Deal Score | hs_deal_score | number | false |  |  | hs_deal_score | string | 53.0 |
+|  | Deal Score | hs_deal_score | number | false |  |  | hs_deal_score | string | 49.0 |
 |  | Deal probability | hs_deal_stage_probability | number | false |  |  | hs_deal_stage_probability | string | 0.59999999999999997779553950749686919152736663818359375 |
 |  | Deal stage probability shadow | hs_deal_stage_probability_shadow | number | false |  |  | hs_deal_stage_probability_shadow | string | 0.59999999999999997779553950749686919152736663818359375 |
 |  | Duration | hs_duration | number | false |  |  | hs_duration | null | None |
@@ -144,7 +144,7 @@
 |  | Deal Split Added | hs_is_deal_split | boolean | false |  |  | hs_is_deal_split | string | false |
 |  | Is In First Deal Stage | hs_is_in_first_deal_stage | boolean | false |  |  | hs_is_in_first_deal_stage | null | None |
 |  | Is Open (numeric) | hs_is_open_count | number | false |  |  | hs_is_open_count | string | 1 |
-|  | Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | string | 2025-05-29T07:06:02.840Z |
+|  | Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | string | 2025-06-18T02:27:31.871Z |
 |  | Latest Approval Status | hs_latest_approval_status | string | false |  |  | hs_latest_approval_status | null | None |
 |  | Latest Approval Status Approval ID | hs_latest_approval_status_approval_id | number | false |  |  | hs_latest_approval_status_approval_id | null | None |
 |  | Latest meeting activity | hs_latest_meeting_activity | string | false |  |  | hs_latest_meeting_activity | null | None |
@@ -186,7 +186,7 @@
 |  | Record creation source ID | hs_object_source_id | string | false |  |  | hs_object_source_id | string | userId:25954718 |
 |  | Record source | hs_object_source_label | string | false |  |  | hs_object_source_label | string | CRM_UI |
 |  | Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | string | 25954718 |
-|  | Open amount in home currency | hs_open_amount_in_home_currency | number | false |  |  | hs_open_amount_in_home_currency | null | None |
+|  | Open amount in home currency | hs_open_amount_in_home_currency | number | false |  |  | hs_open_amount_in_home_currency | string | 22279198 |
 |  | Open deal create date | hs_open_deal_create_date | number | false |  |  | hs_open_deal_create_date | string | 1629818509199 |
 |  | Owning Teams | hs_owning_teams | array | false |  |  | hs_owning_teams | null | None |
 |  | Pinned Engagement ID | hs_pinned_engagement_id | number | false |  |  | hs_pinned_engagement_id | null | None |
@@ -471,7 +471,7 @@
 |  | last sales activity date old | hs_last_sales_activity_date | string | false |  |  | hs_last_sales_activity_date | null | None |
 |  | Last Engagement Date | hs_last_sales_activity_timestamp | string | false |  |  | hs_last_sales_activity_timestamp | null | None |
 |  | Last Engagement Type | hs_last_sales_activity_type | string | false | `Company Website Visit`, `Document View`, `Email Click`, `Email Open`, `Email Reply`, `Form Submitted`, `Meeting Booked`, `Website Visit` |  | hs_last_sales_activity_type | null | None |
-|  | Last Modified Date | hs_lastmodifieddate | string | true |  |  | hs_lastmodifieddate | string | 2025-06-06T10:23:42.981Z |
+|  | Last Modified Date | hs_lastmodifieddate | string | true |  |  | hs_lastmodifieddate | string | 2025-06-18T13:12:31.775Z |
 |  | Latest create date of active subscriptions | hs_latest_createdate_of_active_subscriptions | string | false |  |  | hs_latest_createdate_of_active_subscriptions | null | None |
 |  | Latest meeting activity | hs_latest_meeting_activity | string | false |  |  | hs_latest_meeting_activity | null | None |
 |  | Lead Status | hs_lead_status | string | false | `New`, `Open`, `In Progress`, `Open Deal`, `Unqualified`, `Attempted to Contact`, `Connected`, `Bad Timing` |  | hs_lead_status | null | None |
@@ -519,11 +519,11 @@
 |  | Time in 'Evangelist (Lifecycle Stage Pipeline)' | hs_time_in_evangelist | number | false |  |  | hs_time_in_evangelist | null | None |
 |  | Time in 'Lead (Lifecycle Stage Pipeline)' | hs_time_in_lead | number | false |  |  | hs_time_in_lead | string | 610 |
 |  | Time in 'Marketing Qualified Lead (Lifecycle Stage Pipeline)' | hs_time_in_marketingqualifiedlead | number | false |  |  | hs_time_in_marketingqualifiedlead | null | None |
-|  | Time in 'Opportunity (Lifecycle Stage Pipeline)' | hs_time_in_opportunity | number | false |  |  | hs_time_in_opportunity | string | 7943891689 |
+|  | Time in 'Opportunity (Lifecycle Stage Pipeline)' | hs_time_in_opportunity | number | false |  |  | hs_time_in_opportunity | string | 8058245413 |
 |  | Time in 'Other (Lifecycle Stage Pipeline)' | hs_time_in_other | number | false |  |  | hs_time_in_other | null | None |
 |  | Time in 'Sales Qualified Lead (Lifecycle Stage Pipeline)' | hs_time_in_salesqualifiedlead | number | false |  |  | hs_time_in_salesqualifiedlead | null | None |
 |  | Time in 'Subscriber (Lifecycle Stage Pipeline)' | hs_time_in_subscriber | number | false |  |  | hs_time_in_subscriber | null | None |
-|  | Total open deal value | hs_total_deal_value | number | false |  |  | hs_total_deal_value | string | 3572.70 |
+|  | Total open deal value | hs_total_deal_value | number | false |  |  | hs_total_deal_value | string | 3952.70 |
 |  | Unique creation key | hs_unique_creation_key | string | false |  |  | hs_unique_creation_key | null | None |
 |  |  | hs_updated_by_user_id |  | false |  |  | hs_updated_by_user_id | string | 77803573 |
 |  | User IDs of all notification followers | hs_user_ids_of_all_notification_followers | array | false |  |  | hs_user_ids_of_all_notification_followers | null | None |
@@ -1000,7 +1000,7 @@
 |  | Image URL | hs_images | string | false |  |  | hs_images | null | None |
 |  | Is Editable Price | hs_is_editable_price | boolean | false |  |  | hs_is_editable_price | null | None |
 |  | Is Optional | hs_is_optional | boolean | false |  |  | hs_is_optional | null | None |
-|  | Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | string | 2025-06-03T09:36:33.980Z |
+|  | Last Modified Date | hs_lastmodifieddate | string | false |  |  | hs_lastmodifieddate | string | 2025-06-18T13:08:19.299Z |
 |  | Currency | hs_line_item_currency_code | string | false |  |  | hs_line_item_currency_code | string | USD |
 |  | Margin | hs_margin | number | false |  |  | hs_margin | string | 1700.00 |
 |  | Annual contract value margin | hs_margin_acv | number | false |  |  | hs_margin_acv | string | 1700.00 |
@@ -1019,7 +1019,7 @@
 |  | Record creation source user ID | hs_object_source_user_id | number | false |  |  | hs_object_source_user_id | string | 77803573 |
 |  | Origin key | hs_origin_key | string | false |  |  | hs_origin_key | null | None |
 |  | Owning Teams | hs_owning_teams | array | false |  |  | hs_owning_teams | null | None |
-|  | Position on quote | hs_position_on_quote | number | false |  |  | hs_position_on_quote | string | 0 |
+|  | Position on quote | hs_position_on_quote | number | false |  |  | hs_position_on_quote | string | 1 |
 |  | Net Price after tax | hs_post_tax_amount | number | false |  |  | hs_post_tax_amount | string | 1700.00 |
 |  | Pre Discount Amount | hs_pre_discount_amount | number | false |  |  | hs_pre_discount_amount | string | 1700.00 |
 |  | Pricing model | hs_pricing_model | string | false | `Flat`, `Volume-based`, `Stair-step`, `Graduated` |  | hs_pricing_model | string | flat |

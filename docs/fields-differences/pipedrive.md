@@ -1,4 +1,4 @@
-# Differences between fields in Pipedrive.io
+# Differences between fields in Pipedrive
 
 
 ## Deals
@@ -405,13 +405,13 @@
 | Schema |  | <span style='color:red'>***user.email***</span> | string | false |  |  |  |  |  |
 | Schema |  | <span style='color:red'>***user.id***</span> | integer | false |  |  |  |  |  |
 | Schema |  | <span style='color:red'>***user.name***</span> | string | false |  |  |  |  |  |
-| FindByID |  |  |  |  |  |  | age | object | {"y": 6, "m": 8, "d": 1, "h": 18, "i": 33, "s": 53, "total_seconds": 210537233} |
-| FindByID |  |  |  |  |  |  | age.d | integer | 1 |
-| FindByID |  |  |  |  |  |  | age.h | integer | 18 |
-| FindByID |  |  |  |  |  |  | age.i | integer | 33 |
+| FindByID |  |  |  |  |  |  | age | object | {"y": 6, "m": 8, "d": 3, "h": 2, "i": 19, "s": 52, "total_seconds": 210651592} |
+| FindByID |  |  |  |  |  |  | age.d | integer | 3 |
+| FindByID |  |  |  |  |  |  | age.h | integer | 2 |
+| FindByID |  |  |  |  |  |  | age.i | integer | 19 |
 | FindByID |  |  |  |  |  |  | age.m | integer | 8 |
-| FindByID |  |  |  |  |  |  | age.s | integer | 53 |
-| FindByID |  |  |  |  |  |  | age.total_seconds | integer | 210537233 |
+| FindByID |  |  |  |  |  |  | age.s | integer | 52 |
+| FindByID |  |  |  |  |  |  | age.total_seconds | integer | 210651592 |
 | FindByID |  |  |  |  |  |  | age.y | integer | 6 |
 | FindByID |  |  |  |  |  |  | average_stage_progress | integer | 0 |
 | FindByID |  |  |  |  |  |  | average_time_to_won | object | {"y": 0, "m": 0, "d": 0, "h": 0, "i": 0, "s": 0, "total_seconds": 0} |
@@ -501,11 +501,11 @@
 | FindByID |  |  |  |  |  |  | org_hidden | boolean | False |
 | FindByID |  |  |  |  |  |  | person_hidden | boolean | False |
 | FindByID |  |  |  |  |  |  | sequence_enrollment | null | None |
-| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages | object | {"times_in_stages": {"1": 182293209, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22}, "order_of_stages": [1, 8, 2, 3, 4, 7, 9, 10, 11, 12, 13]} |
+| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages | object | {"times_in_stages": {"1": 182407568, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22}, "order_of_stages": [1, 8, 2, 3, 4, 7, 9, 10, 11, 12, 13]} |
 | FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.order_of_stages | array | [1, 8, 2, 3, 4, 7, 9, 10, 11, 12, 13] |
 | FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.order_of_stages[] | integer | 1 |
-| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages | object | {"1": 182293209, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22} |
-| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages.1 | integer | 182293209 |
+| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages | object | {"1": 182407568, "2": 1, "3": 17615851, "4": 76, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 22} |
+| FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages.1 | integer | 182407568 |
 | FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages.10 | integer | 0 |
 | FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages.11 | integer | 0 |
 | FindByID |  |  |  |  |  |  | stay_in_pipeline_stages.times_in_stages.12 | integer | 0 |

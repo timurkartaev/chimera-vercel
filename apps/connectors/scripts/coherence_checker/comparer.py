@@ -95,7 +95,7 @@ class FieldComparer:
             connection_id, data_collection
         )
         crm_object = api.get_object_by_id(
-            connection_name.lower().replace(" ", "-"),
+            connection_id,
             data_collection,
             data_collection_object_id,
         )

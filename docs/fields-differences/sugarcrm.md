@@ -1,4 +1,4 @@
-# Differences between fields in SugarCRM.io
+# Differences between fields in SugarCRM
 
 
 ## Opportunities
