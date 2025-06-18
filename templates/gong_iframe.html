@@ -1,42 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>PandaDoc Document List for Gong CRM</title>
-    <script src="https://pd-js-sdk.s3.amazonaws.com/0.2.20/pandadoc-js-sdk.min.js"></script>
-    <link rel="stylesheet" href="https://pd-js-sdk.s3.amazonaws.com/0.2.20/pandadoc-js-sdk.css" />
+    <meta charset="utf-8" />
+    <title>PandaDoc</title>
+    <meta name="viewport" content="initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="shortcut icon" href="{{ STATIC_ASSETS_URL }}favicon.ico" type="image/x-icon" />
+    <!-- TODO: replace "master" by "latest" once CPQ view in JS SDK released publicly -->
+    <script src="https://pd-js-sdk.s3.amazonaws.com/master/pandadoc-js-sdk.js"></script>
     <style>
-        #pandadoc-list {
-            width: 100%;
-            height: 700px;
+        html,
+        body {
+            margin: 0;
+            padding: 0;
         }
 
-        .pandadoc iframe {
-            width: 100%;
+        body {
+            display: flex;
+            flex-flow: column;
+        }
+
+        #app {
+            flex-grow: 1;
+        }
+
+        #app>div {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #app iframe {
             height: 100%;
+            width: 100%;
+            border: none;
         }
     </style>
 </head>
 
 <body>
-    <div id="pandadoc-list" class="pandadoc"></div>
+    <div id="app"></div>
     <script>
-        var doclist = new PandaDoc.DocList({ mode: PandaDoc.DOC_LIST_MODE.LIST });
-        doclist.init({
-            el: '#pandadoc-list',
-            // Optionally filter by metadata, etc.
-            // data: {
-            //     metadata: {
-            //         crm_id: "GONG_OPPORTUNITY_ID"
-            //     }
-            // },
-            cssClass: 'pandadoc',
-            events: {
-                onInit: function () { console.log('DocList Loaded!'); },
-                onDocumentCreate: function () { console.log('Document Created!'); }
+        (function () {
+            const ELEMENT_ID = '#app';
+            const PROVIDER_NAME = 'gong';
+            const VIEW_STATE = {
+                CPQ_VIEW: 'cpq_view',
+                NEW_WORKFLOW: 'new_workflow',
+                OPEN_WORKFLOW: 'open_workflow'
+            };
+            const WORKFLOW_MODAL_NAME = 'PandaDoc Workflows';
+
+            // Parse context from URL
+            const context = location.search;
+            const urlParams = new URLSearchParams(context);
+            const entityType = urlParams.get('resource') || 'deal'; // Default to 'opportunity' for Gong
+            const entityId = urlParams.get('selectedIds') || '1'; // Default to '1' if no ID is provided
+
+            if (!entityType || !entityId) {
+                console.error('Missing entity type or ID');
+                return;
             }
-        });
+
+            const data = {
+                state: VIEW_STATE.CPQ_VIEW,
+            };
+
+            const dataString = urlParams.get('data');
+            if (dataString) {
+                try {
+                    const parsedData = JSON.parse(dataString);
+                    Object.assign(data, parsedData);
+                } catch (e) {
+                    console.error('Failed to parse data string:', e);
+                }
+            }
+
+            const renderCpqView = () => {
+                const cpqView = new PandaDoc.CpqView();
+                cpqView.init({
+                    el: ELEMENT_ID,
+                    initOptions: {
+                        hasEditor: true,
+                        externalEditor: true,
+                        isExternalRunner: true,
+                        provider: {
+                            name: PROVIDER_NAME,
+                        }
+                    },
+                    data: {
+                        sourceEntity: {
+                            type: entityType,
+                            id: entityId,
+                        }
+                    },
+                    events: {
+                        onDocumentCreate() {
+                            // Optionally handle document creation
+                            console.log('Document Created!');
+                        },
+                        onDocumentOpen(documentInfo) {
+                            const {
+                                documentUrl
+                            } = documentInfo;
+                            if (documentUrl) {
+                                window.open(documentUrl, '_blank');
+                            }
+                        },
+                        onDocumentDownload(documentInfo) {
+                            const {
+                                documentId
+                            } = documentInfo;
+                            // Optionally implement download logic
+                            console.log('Download document', documentId);
+                        },
+                        onTokensOpen() {
+                            cpqView.showAvailableTokens({
+                                customHelpText: 'See PandaDoc Variables shown in a new tab',
+                            });
+                        },
+                    },
+                });
+            };
+
+            // For now, only render CPQ view for Gong
+            renderCpqView();
+        })();
     </script>
 </body>
 

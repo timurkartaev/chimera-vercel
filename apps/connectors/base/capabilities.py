@@ -101,6 +101,9 @@ class BaseInfoCapability(BaseCapability):
     get_integration: GetIntegrationDetails
     list_integrations: ListIntegrations
 
+    def __init__(self, config: Optional["ConnectorConfig"] = None):
+        self.config = config
+
 
 # Entity Capability
 

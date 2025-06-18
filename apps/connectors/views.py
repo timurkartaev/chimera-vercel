@@ -401,7 +401,6 @@ def authorization_get_connection(request, integration_key):
     )
     return JsonResponse(result)
 
-
 @csrf_exempt
 @require_http_methods(["DELETE"])
 def authorize_disconnect_connection(request, integration_key, connection_id):

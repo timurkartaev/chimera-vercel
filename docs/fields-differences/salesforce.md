@@ -1,217 +1,246 @@
 # Differences between fields in Salesforce.io
 
+
 ## Opportunities
 
-| Entity Schema Title          | Entity Schema Fields          | Entity Schema Types | Find By ID Object Fields      | Find By ID Types |
-|------------------------------|-------------------------------|---------------------|-------------------------------|------------------|
-| Account ID                   | AccountId                     | string              | AccountId                     | str              |
-| Amount                       | Amount                        | number              | Amount                        | int              |
-| Campaign ID                  | CampaignId                    | string              | CampaignId                    | null             |
-| Close Date                   | CloseDate                     | string              | CloseDate                     | str              |
-| Contact ID                   | ContactId                     | string              | ContactId                     | null             |
-| Created By ID                | CreatedById                   | string              | CreatedById                   | str              |
-| Created Date                 | CreatedDate                   | string              | CreatedDate                   | str              |
-| Current Generator(s)         | CurrentGenerators__c          | string              | CurrentGenerators__c          | null             |
-| Delivery/Installation Status | DeliveryInstallationStatus__c | string              | DeliveryInstallationStatus__c | null             |
-| Description                  | Description                   | string              | Description                   | null             |
-| Expected Amount              | ExpectedRevenue               | number              | ExpectedRevenue               | int              |
-| Fiscal Period                | Fiscal                        | string              | Fiscal                        | str              |
-| Fiscal Quarter               | FiscalQuarter                 | number              | FiscalQuarter                 | int              |
-| Fiscal Year                  | FiscalYear                    | number              | FiscalYear                    | int              |
-| Forecast Category            | ForecastCategory              | string              | ForecastCategory              | str              |
-| Forecast Category            | ForecastCategoryName          | string              | ForecastCategoryName          | str              |
-| Has Open Activity            | HasOpenActivity               | boolean             | HasOpenActivity               | bool             |
-| Has Line Item                | HasOpportunityLineItem        | boolean             | HasOpportunityLineItem        | bool             |
-| Has Overdue Task             | HasOverdueTask                | boolean             | HasOverdueTask                | bool             |
-| Opportunity ID               | Id                            | string              | Id                            | str              |
-| Closed                       | IsClosed                      | boolean             | IsClosed                      | bool             |
-| Deleted                      | IsDeleted                     | boolean             | IsDeleted                     | bool             |
-| Private                      | IsPrivate                     | boolean             | IsPrivate                     | bool             |
-| Won                          | IsWon                         | boolean             | IsWon                         | bool             |
-| Last Activity                | LastActivityDate              | string              | LastActivityDate              | null             |
-| Opportunity History ID       | LastAmountChangedHistoryId    | string              | LastAmountChangedHistoryId    | null             |
-| Opportunity History ID       | LastCloseDateChangedHistoryId | string              | LastCloseDateChangedHistoryId | null             |
-| Last Modified By ID          | LastModifiedById              | string              | LastModifiedById              | str              |
-| Last Modified Date           | LastModifiedDate              | string              | LastModifiedDate              | str              |
-| Last Referenced Date         | LastReferencedDate            | string              | LastReferencedDate            | str              |
-| Last Stage Change Date       | LastStageChangeDate           | string              | LastStageChangeDate           | null             |
-| Last Viewed Date             | LastViewedDate                | string              | LastViewedDate                | str              |
-| Lead Source                  | LeadSource                    | string              | LeadSource                    | str              |
-| Main Competitor(s)           | MainCompetitors__c            | string              | MainCompetitors__c            | str              |
-| Name                         | Name                          | string              | Name                          | str              |
-| Next Step                    | NextStep                      | string              | NextStep                      | null             |
-| Order Number                 | OrderNumber__c                | string              | OrderNumber__c                | null             |
-| Owner ID                     | OwnerId                       | string              | OwnerId                       | str              |
-| Price Book ID                | Pricebook2Id                  | string              | Pricebook2Id                  | str              |
-| Probability (%)              | Probability                   | number              | Probability                   | int              |
-| Push Count                   | PushCount                     | number              | PushCount                     | int              |
-| Stage ID                     | StageId                       | string              | StageId                       | str              |
-| Stage                        | StageName                     | string              | StageName                     | str              |
-| System Modstamp              | SystemModstamp                | string              | SystemModstamp                | str              |
-| Quantity                     | TotalOpportunityQuantity      | number              | TotalOpportunityQuantity      | int              |
-| Tracking Number              | TrackingNumber__c             | string              | TrackingNumber__c             | null             |
-| Opportunity Type             | Type                          | string              | Type                          | str              |
-
-## Leads
-
-| Entity Schema Title      | Entity Schema Fields   | Entity Schema Types | Find By ID Object Fields | Find By ID Types |
-|--------------------------|------------------------|---------------------|--------------------------|------------------|
-| Annual Revenue           | AnnualRevenue          | number              | AnnualRevenue            | null             |
-| City                     | City                   | string              | City                     | null             |
-| Clean Status             | CleanStatus            | string              | CleanStatus              | str              |
-| Company                  | Company                | string              | Company                  | str              |
-| Company D-U-N-S Number   | CompanyDunsNumber      | string              | CompanyDunsNumber        | null             |
-| Converted Account ID     | ConvertedAccountId     | string              | ConvertedAccountId       | null             |
-| Converted Contact ID     | ConvertedContactId     | string              | ConvertedContactId       | null             |
-| Converted Date           | ConvertedDate          | string              | ConvertedDate            | null             |
-| Converted Opportunity ID | ConvertedOpportunityId | string              | ConvertedOpportunityId   | null             |
-| Country                  | Country                | string              | Country                  | null             |
-| Country Code             | CountryCode            | string              | CountryCode              | null             |
-| Created By ID            | CreatedById            | string              | CreatedById              | str              |
-| Created Date             | CreatedDate            | string              | CreatedDate              | str              |
-| Current Generator(s)     | CurrentGenerators__c   | string              | CurrentGenerators__c     | null             |
-| D&B Company ID           | DandbCompanyId         | string              | DandbCompanyId           | null             |
-| Description              | Description            | string              | Description              | null             |
-| Email                    | Email                  | string              | Email                    | null             |
-| Email Bounced Date       | EmailBouncedDate       | string              | EmailBouncedDate         | null             |
-| Email Bounced Reason     | EmailBouncedReason     | string              | EmailBouncedReason       | null             |
-| Fax                      | Fax                    | string              | Fax                      | null             |
-| First Name               | FirstName              | string              | FirstName                | null             |
-| Geocode Accuracy         | GeocodeAccuracy        | string              | GeocodeAccuracy          | null             |
-| Lead ID                  | Id                     | string              | Id                       | str              |
-| Individual ID            | IndividualId           | string              | IndividualId             | null             |
-| Industry                 | Industry               | string              | Industry                 | null             |
-| Converted                | IsConverted            | boolean             | IsConverted              | bool             |
-| Deleted                  | IsDeleted              | boolean             | IsDeleted                | bool             |
-| Important                | IsPriorityRecord       | boolean             | IsPriorityRecord         | bool             |
-| Unread By Owner          | IsUnreadByOwner        | boolean             | IsUnreadByOwner          | bool             |
-| Data.com Key             | Jigsaw                 | string              | Jigsaw                   | null             |
-| Jigsaw Contact ID        | JigsawContactId        | string              | JigsawContactId          | null             |
-| Last Activity            | LastActivityDate       | string              | LastActivityDate         | null             |
-| Last Modified By ID      | LastModifiedById       | string              | LastModifiedById         | str              |
-| Last Modified Date       | LastModifiedDate       | string              | LastModifiedDate         | str              |
-| Last Name                | LastName               | string              | LastName                 | str              |
-| Last Referenced Date     | LastReferencedDate     | string              | LastReferencedDate       | str              |
-| Last Viewed Date         | LastViewedDate         | string              | LastViewedDate           | str              |
-| Latitude                 | Latitude               | number              | Latitude                 | null             |
-| Lead Source              | LeadSource             | string              | LeadSource               | null             |
-| Longitude                | Longitude              | number              | Longitude                | null             |
-| Master Record ID         | MasterRecordId         | string              | MasterRecordId           | null             |
-| Mobile Phone             | MobilePhone            | string              | MobilePhone              | null             |
-| Full Name                | Name                   | string              | Name                     | str              |
-| Employees                | NumberOfEmployees      | number              | NumberOfEmployees        | null             |
-| Number of Locations      | NumberofLocations__c   | number              | NumberofLocations__c     | null             |
-| Owner ID                 | OwnerId                | string              | OwnerId                  | str              |
-| Phone                    | Phone                  | string              | Phone                    | null             |
-| Photo URL                | PhotoUrl               | string              | PhotoUrl                 | str              |
-| Zip/Postal Code          | PostalCode             | string              | PostalCode               | null             |
-| Primary                  | Primary__c             | string              | Primary__c               | null             |
-| Product Interest         | ProductInterest__c     | string              | ProductInterest__c       | null             |
-| Rating                   | Rating                 | string              | Rating                   | null             |
-| SIC Code                 | SICCode__c             | string              | SICCode__c               | null             |
-| Salutation               | Salutation             | string              | Salutation               | str              |
-| State/Province           | State                  | string              | State                    | null             |
-| State/Province Code      | StateCode              | string              | StateCode                | null             |
-| Status                   | Status                 | string              | Status                   | str              |
-| Street                   | Street                 | string              | Street                   | null             |
-| System Modstamp          | SystemModstamp         | string              | SystemModstamp           | str              |
-| Title                    | Title                  | string              | Title                    | null             |
-| Website                  | Website                | string              | Website                  | null             |
-|                          |                        |                     | Address                  | null             |
+| Diff | Entity Schema Title | Schema Field ID | Entity Schema Types | Readonly | Possible Values | Reference Collection | FindByID Field ID | Find By ID Types | Value |
+|------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|
+|  | Account ID | AccountId | string | false |  | objects | AccountId | string | 001gK000004nk17QAA |
+|  | Amount | Amount | number | false |  |  | Amount | integer | 15100 |
+|  | Campaign ID | CampaignId | string | false |  | objects | CampaignId | null | None |
+|  | Close Date | *CloseDate | string | false |  |  | CloseDate | string | 2025-03-02 |
+|  | Contact ID | ContactId | string | false |  | objects | ContactId | null | None |
+|  | Created By ID | CreatedById | string | true |  | users | CreatedById | string | 005gK0000028LpJQAU |
+|  | Created Date | CreatedDate | string | true |  |  | CreatedDate | string | 2025-04-24T14:21:01.000+0000 |
+|  | Current Generator(s) | CurrentGenerators__c | string | false |  |  | CurrentGenerators__c | null | None |
+|  | Delivery/Installation Status | DeliveryInstallationStatus__c | string | false | `In progress`, `Yet to begin`, `Completed` |  | DeliveryInstallationStatus__c | null | None |
+|  | Description | Description | string | false |  |  | Description | null | None |
+|  | Expected Amount | ExpectedRevenue | number | true |  |  | ExpectedRevenue | integer | 1510 |
+|  | Fiscal Period | Fiscal | string | true |  |  | Fiscal | string | 2025 1 |
+|  | Fiscal Quarter | FiscalQuarter | number | true |  |  | FiscalQuarter | integer | 1 |
+|  | Fiscal Year | FiscalYear | number | true |  |  | FiscalYear | integer | 2025 |
+|  | Forecast Category | ForecastCategory | string | true | `Omitted`, `Pipeline`, `Best Case`, `Most Likely`, `Commit`, `Closed` |  | ForecastCategory | string | Pipeline |
+|  | Forecast Category | ForecastCategoryName | string | false | `Omitted`, `Pipeline`, `Best Case`, `Commit`, `Closed` |  | ForecastCategoryName | string | Pipeline |
+|  | Has Open Activity | HasOpenActivity | boolean | true |  |  | HasOpenActivity | boolean | False |
+|  | Has Line Item | HasOpportunityLineItem | boolean | true |  |  | HasOpportunityLineItem | boolean | True |
+|  | Has Overdue Task | HasOverdueTask | boolean | true |  |  | HasOverdueTask | boolean | False |
+|  | Opportunity ID | Id | string | true |  |  | Id | string | 006gK000001UgviQAC |
+|  | Closed | IsClosed | boolean | true |  |  | IsClosed | boolean | False |
+|  | Deleted | IsDeleted | boolean | true |  |  | IsDeleted | boolean | False |
+|  | Private | IsPrivate | boolean | false |  |  | IsPrivate | boolean | False |
+|  | Won | IsWon | boolean | true |  |  | IsWon | boolean | False |
+|  | Last Activity | LastActivityDate | string | true |  |  | LastActivityDate | null | None |
+|  | Opportunity History ID | LastAmountChangedHistoryId | string | true |  | objects | LastAmountChangedHistoryId | string | 008gK000005D637QAC |
+|  | Opportunity History ID | LastCloseDateChangedHistoryId | string | true |  | objects | LastCloseDateChangedHistoryId | null | None |
+|  | Last Modified By ID | LastModifiedById | string | true |  | users | LastModifiedById | string | 005gK000002P1nmQAC |
+|  | Last Modified Date | LastModifiedDate | string | true |  |  | LastModifiedDate | string | 2025-06-17T10:35:25.000+0000 |
+|  | Last Referenced Date | LastReferencedDate | string | true |  |  | LastReferencedDate | string | 2025-06-17T10:35:25.000+0000 |
+|  | Last Stage Change Date | LastStageChangeDate | string | true |  |  | LastStageChangeDate | null | None |
+|  | Last Viewed Date | LastViewedDate | string | true |  |  | LastViewedDate | string | 2025-06-17T10:35:25.000+0000 |
+|  | Lead Source | LeadSource | string | false | `Web`, `Phone Inquiry`, `Partner Referral`, `Purchased List`, `Other` |  | LeadSource | string | Purchased List |
+|  | Main Competitor(s) | MainCompetitors__c | string | false |  |  | MainCompetitors__c | string | Honda |
+|  | Name | Name | string | false |  |  | Name | string | Dickenson Mobile Generators |
+|  | Next Step | NextStep | string | false |  |  | NextStep | null | None |
+|  | Order Number | OrderNumber__c | string | false |  |  | OrderNumber__c | null | None |
+|  | Owner ID | OwnerId | string | false |  | users | OwnerId | string | 005gK0000028LpJQAU |
+|  | Price Book ID | Pricebook2Id | string | false |  | objects | Pricebook2Id | string | 01sgK000001FyphQAC |
+|  | Probability (%) | Probability | number | false |  |  | Probability | integer | 10 |
+|  | Push Count | PushCount | number | true |  |  | PushCount | integer | 0 |
+|  | Stage ID | StageId | string | false |  | opportunity-stages | StageId | string | Qualification |
+|  | Stage | *StageName | string | false | `Prospecting`, `Qualification`, `Needs Analysis`, `Value Proposition`, `Id. Decision Makers`, `Perception Analysis`, `Proposal/Price Quote`, `Negotiation/Review`, `Closed Won`, `Closed Lost` |  | StageName | string | Qualification |
+|  | System Modstamp | SystemModstamp | string | true |  |  | SystemModstamp | string | 2025-06-17T10:35:25.000+0000 |
+|  | Quantity | TotalOpportunityQuantity | number | false |  |  | TotalOpportunityQuantity | integer | 8 |
+|  | Tracking Number | TrackingNumber__c | string | false |  |  | TrackingNumber__c | null | None |
+|  | Opportunity Type | Type | string | false | `Existing Customer - Upgrade`, `Existing Customer - Replacement`, `Existing Customer - Downgrade`, `New Customer` |  | Type | string | New Customer |
 
 ## Accounts
 
-| Entity Schema Title          | Entity Schema Fields                                         | Entity Schema Types | Find By ID Object Fields        | Find By ID Types |
-|------------------------------|--------------------------------------------------------------|---------------------|---------------------------------|------------------|
-| Account Number               | AccountNumber                                                | string              | AccountNumber                   | str              |
-| Account Source               | AccountSource                                                | string              | AccountSource                   | null             |
-| Active                       | Active__c                                                    | string              | Active__c                       | str              |
-| Annual Revenue               | AnnualRevenue                                                | number              | AnnualRevenue                   | int              |
-| Billing City                 | BillingCity                                                  | string              | BillingCity                     | str              |
-| Billing Country              | BillingCountry                                               | string              | BillingCountry                  | str              |
-| Billing Country Code         | BillingCountryCode                                           | string              | BillingCountryCode              | str              |
-| Billing Geocode Accuracy     | BillingGeocodeAccuracy                                       | string              | BillingGeocodeAccuracy          | null             |
-| Billing Latitude             | BillingLatitude                                              | number              | BillingLatitude                 | null             |
-| Billing Longitude            | BillingLongitude                                             | number              | BillingLongitude                | null             |
-| Billing Zip/Postal Code      | BillingPostalCode                                            | string              | BillingPostalCode               | str              |
-| Billing State/Province       | BillingState                                                 | string              | BillingState                    | str              |
-| Billing State/Province Code  | BillingStateCode                                             | string              | BillingStateCode                | str              |
-| Billing Street               | BillingStreet                                                | string              | BillingStreet                   | str              |
-| Clean Status                 | CleanStatus                                                  | string              | CleanStatus                     | str              |
-| Created By ID                | CreatedById                                                  | string              | CreatedById                     | str              |
-| Created Date                 | CreatedDate                                                  | string              | CreatedDate                     | str              |
-| Customer Priority            | CustomerPriority__c                                          | string              | CustomerPriority__c             | str              |
-| D&B Company ID               | DandbCompanyId                                               | string              | DandbCompanyId                  | null             |
-| Account Description          | Description                                                  | string              | Description                     | null             |
-| D-U-N-S Number               | DunsNumber                                                   | string              | DunsNumber                      | null             |
-| Account Fax                  | Fax                                                          | string              | Fax                             | str              |
-| Account ID                   | Id                                                           | string              | Id                              | str              |
-| Industry                     | Industry                                                     | string              | Industry                        | str              |
-| Deleted                      | IsDeleted                                                    | boolean             | IsDeleted                       | bool             |
-| Data.com Key                 | Jigsaw                                                       | string              | Jigsaw                          | null             |
-| Jigsaw Company ID            | JigsawCompanyId                                              | string              | JigsawCompanyId                 | null             |
-| Last Activity                | LastActivityDate                                             | string              | LastActivityDate                | null             |
-| Last Modified By ID          | LastModifiedById                                             | string              | LastModifiedById                | str              |
-| Last Modified Date           | LastModifiedDate                                             | string              | LastModifiedDate                | str              |
-| Last Referenced Date         | LastReferencedDate                                           | string              | LastReferencedDate              | str              |
-| Last Viewed Date             | LastViewedDate                                               | string              | LastViewedDate                  | str              |
-| Master Record ID             | MasterRecordId                                               | string              | MasterRecordId                  | null             |
-| NAICS Code                   | NaicsCode                                                    | string              | NaicsCode                       | null             |
-| NAICS Description            | NaicsDesc                                                    | string              | NaicsDesc                       | null             |
-| Account Name                 | Name                                                         | string              | Name                            | str              |
-| Employees                    | NumberOfEmployees                                            | number              | NumberOfEmployees               | int              |
-| Number of Locations          | NumberofLocations__c                                         | number              | NumberofLocations__c            | int              |
-| Operating Hour ID            | OperatingHoursId                                             | string              | OperatingHoursId                | null             |
-| Owner ID                     | OwnerId                                                      | string              | OwnerId                         | str              |
-| Ownership                    | Ownership                                                    | string              | Ownership                       | str              |
-| Parent Account ID            | ParentId                                                     | string              | ParentId                        | null             |
-| Account Phone                | Phone                                                        | string              | Phone                           | str              |
-| Photo URL                    | PhotoUrl                                                     | string              | PhotoUrl                        | str              |
-| Account Rating               | Rating                                                       | string              | Rating                          | null             |
-| SLA Expiration Date          | SLAExpirationDate__c                                         | string              | SLAExpirationDate__c            | str              |
-| SLA Serial Number            | SLASerialNumber__c                                           | string              | SLASerialNumber__c              | str              |
-| SLA                          | SLA__c                                                       | string              | SLA__c                          | str              |
-| Shipping City                | ShippingCity                                                 | string              | ShippingCity                    | str              |
-| Shipping Country             | ShippingCountry                                              | string              | ShippingCountry                 | str              |
-| Shipping Country Code        | ShippingCountryCode                                          | string              | ShippingCountryCode             | str              |
-| Shipping Geocode Accuracy    | ShippingGeocodeAccuracy                                      | string              | ShippingGeocodeAccuracy         | null             |
-| Shipping Latitude            | ShippingLatitude                                             | number              | ShippingLatitude                | null             |
-| Shipping Longitude           | ShippingLongitude                                            | number              | ShippingLongitude               | null             |
-| Shipping Zip/Postal Code     | ShippingPostalCode                                           | string              | ShippingPostalCode              | str              |
-| Shipping State/Province      | ShippingState                                                | string              | ShippingState                   | str              |
-| Shipping State/Province Code | ShippingStateCode                                            | string              | ShippingStateCode               | str              |
-| Shipping Street              | ShippingStreet                                               | string              | ShippingStreet                  | str              |
-| SIC Code                     | Sic                                                          | string              | Sic                             | str              |
-| SIC Description              | SicDesc                                                      | string              | SicDesc                         | null             |
-| Account Site                 | Site                                                         | string              | Site                            | null             |
-| System Modstamp              | SystemModstamp                                               | string              | SystemModstamp                  | str              |
-| Ticker Symbol                | TickerSymbol                                                 | string              | TickerSymbol                    | null             |
-| Tradestyle                   | Tradestyle                                                   | string              | Tradestyle                      | null             |
-| Account Type                 | Type                                                         | string              | Type                            | str              |
-| Upsell Opportunity           | UpsellOpportunity__c                                         | string              | UpsellOpportunity__c            | str              |
-| Website                      | Website                                                      | string              | Website                         | str              |
-| Year Started                 | YearStarted                                                  | string              | YearStarted                     | null             |
-| Channel Program Level Name   | <span style='color:red'>***ChannelProgramLevelName***</span> | string              |                                 |                  |
-| Channel Program Name         | <span style='color:red'>***ChannelProgramName***</span>      | string              |                                 |                  |
-| Customer Portal Account      | <span style='color:red'>***IsCustomerPortal***</span>        | boolean             |                                 |                  |
-| Partner Account              | <span style='color:red'>***IsPartner***</span>               | boolean             |                                 |                  |
-|                              |                                                              |                     | BillingAddress.city             | str              |
-|                              |                                                              |                     | BillingAddress.country          | str              |
-|                              |                                                              |                     | BillingAddress.countryCode      | str              |
-|                              |                                                              |                     | BillingAddress.geocodeAccuracy  | null             |
-|                              |                                                              |                     | BillingAddress.latitude         | null             |
-|                              |                                                              |                     | BillingAddress.longitude        | null             |
-|                              |                                                              |                     | BillingAddress.postalCode       | str              |
-|                              |                                                              |                     | BillingAddress.state            | str              |
-|                              |                                                              |                     | BillingAddress.stateCode        | str              |
-|                              |                                                              |                     | BillingAddress.street           | str              |
-|                              |                                                              |                     | ShippingAddress.city            | str              |
-|                              |                                                              |                     | ShippingAddress.country         | str              |
-|                              |                                                              |                     | ShippingAddress.countryCode     | str              |
-|                              |                                                              |                     | ShippingAddress.geocodeAccuracy | null             |
-|                              |                                                              |                     | ShippingAddress.latitude        | null             |
-|                              |                                                              |                     | ShippingAddress.longitude       | null             |
-|                              |                                                              |                     | ShippingAddress.postalCode      | str              |
-|                              |                                                              |                     | ShippingAddress.state           | str              |
-|                              |                                                              |                     | ShippingAddress.stateCode       | str              |
-|                              |                                                              |                     | ShippingAddress.street          | str              |
+| Diff | Entity Schema Title | Schema Field ID | Entity Schema Types | Readonly | Possible Values | Reference Collection | FindByID Field ID | Find By ID Types | Value |
+|------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|
+|  | Account Number | AccountNumber | string | false |  |  | AccountNumber | string | CC634267 |
+|  | Account Source | AccountSource | string | false | `Web`, `Phone Inquiry`, `Partner Referral`, `Purchased List`, `Other` |  | AccountSource | null | None |
+|  | Active | Active__c | string | false | `No`, `Yes` |  | Active__c | string | Yes |
+|  | Annual Revenue | AnnualRevenue | number | false |  |  | AnnualRevenue | integer | 50000000 |
+|  | Billing City | BillingCity | string | false |  |  | BillingCity | string | Lawrence |
+|  | Billing Country | BillingCountry | string | false |  |  | BillingCountry | string | USA |
+|  | Billing Country Code | BillingCountryCode | string | false | `Afghanistan`, `Aland Islands`, `Albania`, `Algeria`, `Andorra`, `Angola`, `Anguilla`, `Antarctica`, `Antigua and Barbuda`, `Argentina`, `Armenia`, `Aruba`, `Australia`, `Austria`, `Azerbaijan`, `Bahamas`, `Bahrain`, `Bangladesh`, `Barbados`, `Belarus`, `Belgium`, `Belize`, `Benin`, `Bermuda`, `Bhutan`, `Bolivia, Plurinational State of`, `Bonaire, Sint Eustatius and Saba`, `Bosnia and Herzegovina`, `Botswana`, `Bouvet Island`, `Brazil`, `British Indian Ocean Territory`, `Brunei Darussalam`, `Bulgaria`, `Burkina Faso`, `Burundi`, `Cambodia`, `Cameroon`, `Canada`, `Cape Verde`, `Cayman Islands`, `Central African Republic`, `Chad`, `Chile`, `China`, `Christmas Island`, `Cocos (Keeling) Islands`, `Colombia`, `Comoros`, `Congo`, `Congo, the Democratic Republic of the`, `Cook Islands`, `Costa Rica`, `Cote d'Ivoire`, `Croatia`, `Curaçao`, `Cyprus`, `Czechia`, `Denmark`, `Djibouti`, `Dominica`, `Dominican Republic`, `Ecuador`, `Egypt`, `El Salvador`, `Equatorial Guinea`, `Eritrea`, `Estonia`, `Eswatini`, `Ethiopia`, `Falkland Islands (Malvinas)`, `Faroe Islands`, `Fiji`, `Finland`, `France`, `French Guiana`, `French Polynesia`, `French Southern Territories`, `Gabon`, `Gambia`, `Georgia`, `Germany`, `Ghana`, `Gibraltar`, `Greece`, `Greenland`, `Grenada`, `Guadeloupe`, `Guatemala`, `Guernsey`, `Guinea`, `Guinea-Bissau`, `Guyana`, `Haiti`, `Heard Island and McDonald Islands`, `Holy See (Vatican City State)`, `Honduras`, `Hungary`, `Iceland`, `India`, `Indonesia`, `Iraq`, `Ireland`, `Isle of Man`, `Israel`, `Italy`, `Jamaica`, `Japan`, `Jersey`, `Jordan`, `Kazakhstan`, `Kenya`, `Kiribati`, `Korea, Republic of`, `Kosovo`, `Kuwait`, `Kyrgyzstan`, `Lao People's Democratic Republic`, `Latvia`, `Lebanon`, `Lesotho`, `Liberia`, `Libya`, `Liechtenstein`, `Lithuania`, `Luxembourg`, `Macao`, `Madagascar`, `Malawi`, `Malaysia`, `Maldives`, `Mali`, `Malta`, `Martinique`, `Mauritania`, `Mauritius`, `Mayotte`, `Mexico`, `Moldova, Republic of`, `Monaco`, `Mongolia`, `Montenegro`, `Montserrat`, `Morocco`, `Mozambique`, `Myanmar`, `Namibia`, `Nauru`, `Nepal`, `Netherlands`, `New Caledonia`, `New Zealand`, `Nicaragua`, `Niger`, `Nigeria`, `Niue`, `Norfolk Island`, `North Macedonia`, `Norway`, `Oman`, `Pakistan`, `Palestine`, `Panama`, `Papua New Guinea`, `Paraguay`, `Peru`, `Philippines`, `Pitcairn`, `Poland`, `Portugal`, `Qatar`, `Reunion`, `Romania`, `Russian Federation`, `Rwanda`, `Saint Barthélemy`, `Saint Helena, Ascension and Tristan da Cunha`, `Saint Kitts and Nevis`, `Saint Lucia`, `Saint Martin (French part)`, `Saint Pierre and Miquelon`, `Saint Vincent and the Grenadines`, `Samoa`, `San Marino`, `Sao Tome and Principe`, `Saudi Arabia`, `Senegal`, `Serbia`, `Seychelles`, `Sierra Leone`, `Singapore`, `Sint Maarten (Dutch part)`, `Slovakia`, `Slovenia`, `Solomon Islands`, `Somalia`, `South Africa`, `South Georgia and the South Sandwich Islands`, `South Sudan`, `Spain`, `Sri Lanka`, `Suriname`, `Svalbard and Jan Mayen`, `Sweden`, `Switzerland`, `Taiwan`, `Tajikistan`, `Tanzania, United Republic of`, `Thailand`, `Timor-Leste`, `Togo`, `Tokelau`, `Tonga`, `Trinidad and Tobago`, `Tunisia`, `Türkiye`, `Turkmenistan`, `Turks and Caicos Islands`, `Tuvalu`, `Uganda`, `Ukraine`, `United Arab Emirates`, `United Kingdom`, `United States`, `Uruguay`, `Uzbekistan`, `Vanuatu`, `Venezuela, Bolivarian Republic of`, `Vietnam`, `Virgin Islands, British`, `Wallis and Futuna`, `Western Sahara`, `Yemen`, `Zambia`, `Zimbabwe` |  | BillingCountryCode | string | US |
+|  | Billing Geocode Accuracy | BillingGeocodeAccuracy | string | false | `Address`, `Near Address`, `Block`, `Street`, `Extended Zip`, `Zip`, `Neighborhood`, `City`, `County`, `State`, `Unknown` |  | BillingGeocodeAccuracy | null | None |
+|  | Billing Latitude | BillingLatitude | number | false |  |  | BillingLatitude | null | None |
+|  | Billing Longitude | BillingLongitude | number | false |  |  | BillingLongitude | null | None |
+|  | Billing Zip/Postal Code | BillingPostalCode | string | false |  |  | BillingPostalCode | string | 66045 |
+|  | Billing State/Province | BillingState | string | false |  |  | BillingState | string | KS |
+|  | Billing State/Province Code | BillingStateCode | string | false | `Acre`, `Agrigento`, `Aguascalientes`, `Aichi`, `Akita`, `Alabama`, `Alagoas`, `Alaska`, `Alberta`, `Alessandria`, `Amapá`, `Amazonas`, `Ancona`, `Andaman and Nicobar Islands`, `Andhra Pradesh`, `Anhui`, `Aomori`, `Aosta`, `Arezzo`, `Arizona`, `Arkansas`, `Arunachal Pradesh`, `Ascoli Piceno`, `Assam`, `Asti`, `Australian Capital Territory`, `Avellino`, `Bahia`, `Baja California`, `Baja California Sur`, `Bari`, `Barletta-Andria-Trani`, `Beijing`, `Belluno`, `Benevento`, `Bergamo`, `Biella`, `Bihar`, `Bologna`, `Bolzano`, `Brescia`, `Brindisi`, `British Columbia`, `Cagliari`, `California`, `Caltanissetta`, `Campeche`, `Campobasso`, `Carbonia-Iglesias`, `Carlow`, `Caserta`, `Catania`, `Catanzaro`, `Cavan`, `Ceará`, `Chandigarh`, `Chhattisgarh`, `Chiapas`, `Chiba`, `Chieti`, `Chihuahua`, `Chongqing`, `Clare`, `Coahuila`, `Colima`, `Colorado`, `Como`, `Connecticut`, `Cork`, `Cosenza`, `Cremona`, `Crotone`, `Cuneo`, `Dadra and Nagar Haveli`, `Daman and Diu`, `Delaware`, `Delhi`, `District of Columbia`, `Distrito Federal`, `Donegal`, `Dublin`, `Durango`, `Ehime`, `Enna`, `Espírito Santo`, `Federal District`, `Fermo`, `Ferrara`, `Florence`, `Florida`, `Foggia`, `Forlì-Cesena`, `Frosinone`, `Fujian`, `Fukui`, `Fukuoka`, `Fukushima`, `Galway`, `Gansu`, `Genoa`, `Georgia`, `Gifu`, `Goa`, `Goiás`, `Gorizia`, `Grosseto`, `Guanajuato`, `Guangdong`, `Guangxi`, `Guerrero`, `Guizhou`, `Gujarat`, `Gunma`, `Hainan`, `Haryana`, `Hawaii`, `Hebei`, `Heilongjiang`, `Henan`, `Hidalgo`, `Himachal Pradesh`, `Hiroshima`, `Hokkaido`, `Hong Kong`, `Hubei`, `Hunan`, `Hyogo`, `Ibaraki`, `Idaho`, `Illinois`, `Imperia`, `Indiana`, `Iowa`, `Isernia`, `Ishikawa`, `Iwate`, `Jalisco`, `Jammu and Kashmir`, `Jharkhand`, `Jiangsu`, `Jiangxi`, `Jilin`, `Kagawa`, `Kagoshima`, `Kanagawa`, `Kansas`, `Karnataka`, `Kentucky`, `Kerala`, `Kerry`, `Kildare`, `Kilkenny`, `Kochi`, `Kumamoto`, `Kyoto`, `L'Aquila`, `Lakshadweep`, `Laois`, `La Spezia`, `Latina`, `Lecce`, `Lecco`, `Leitrim`, `Liaoning`, `Limerick`, `Livorno`, `Lodi`, `Longford`, `Louisiana`, `Louth`, `Lucca`, `Macao`, `Macerata`, `Madhya Pradesh`, `Maharashtra`, `Maine`, `Manipur`, `Manitoba`, `Mantua`, `Maranhão`, `Maryland`, `Massa and Carrara`, `Massachusetts`, `Matera`, `Mato Grosso`, `Mato Grosso do Sul`, `Mayo`, `Meath`, `Medio Campidano`, `Meghalaya`, `Messina`, `Mexico State`, `Michigan`, `Michoacán`, `Mie`, `Milan`, `Minas Gerais`, `Minnesota`, `Mississippi`, `Missouri`, `Miyagi`, `Miyazaki`, `Mizoram`, `Modena`, `Monaghan`, `Montana`, `Monza and Brianza`, `Morelos`, `Nagaland`, `Nagano`, `Nagasaki`, `Naples`, `Nara`, `Nayarit`, `Nebraska`, `Nei Mongol`, `Nevada`, `New Brunswick`, `Newfoundland and Labrador`, `New Hampshire`, `New Jersey`, `New Mexico`, `New South Wales`, `New York`, `Niigata`, `Ningxia`, `North Carolina`, `North Dakota`, `Northern Territory`, `Northwest Territories`, `Novara`, `Nova Scotia`, `Nuevo León`, `Nunavut`, `Nuoro`, `Oaxaca`, `Odisha`, `Offaly`, `Ogliastra`, `Ohio`, `Oita`, `Okayama`, `Okinawa`, `Oklahoma`, `Olbia-Tempio`, `Ontario`, `Oregon`, `Oristano`, `Osaka`, `Padua`, `Palermo`, `Pará`, `Paraíba`, `Paraná`, `Parma`, `Pavia`, `Pennsylvania`, `Pernambuco`, `Perugia`, `Pesaro and Urbino`, `Pescara`, `Piacenza`, `Piauí`, `Pisa`, `Pistoia`, `Pordenone`, `Potenza`, `Prato`, `Prince Edward Island`, `Puducherry`, `Puebla`, `Punjab`, `Qinghai`, `Quebec`, `Queensland`, `Querétaro`, `Quintana Roo`, `Ragusa`, `Rajasthan`, `Ravenna`, `Reggio Calabria`, `Reggio Emilia`, `Rhode Island`, `Rieti`, `Rimini`, `Rio de Janeiro`, `Rio Grande do Norte`, `Rio Grande do Sul`, `Rome`, `Rondônia`, `Roraima`, `Roscommon`, `Rovigo`, `Saga`, `Saitama`, `Salerno`, `San Luis Potosí`, `Santa Catarina`, `São Paulo`, `Saskatchewan`, `Sassari`, `Savona`, `Sergipe`, `Shaanxi`, `Shandong`, `Shanghai`, `Shanxi`, `Shiga`, `Shimane`, `Shizuoka`, `Sichuan`, `Siena`, `Sikkim`, `Sinaloa`, `Sligo`, `Sondrio`, `Sonora`, `South Australia`, `South Carolina`, `South Dakota`, `Syracuse`, `Tabasco`, `Taiwan`, `Tamaulipas`, `Tamil Nadu`, `Taranto`, `Tasmania`, `Telangana`, `Tennessee`, `Teramo`, `Terni`, `Texas`, `Tianjin`, `Tipperary`, `Tlaxcala`, `Tocantins`, `Tochigi`, `Tokushima`, `Tokyo`, `Tottori`, `Toyama`, `Trapani`, `Trento`, `Treviso`, `Trieste`, `Tripura`, `Turin`, `Udine`, `Utah`, `Uttarakhand`, `Uttar Pradesh`, `Varese`, `Venice`, `Veracruz`, `Verbano-Cusio-Ossola`, `Vercelli`, `Vermont`, `Verona`, `Vibo Valentia`, `Vicenza`, `Victoria`, `Virginia`, `Viterbo`, `Wakayama`, `Washington`, `Waterford`, `West Bengal`, `Western Australia`, `Westmeath`, `West Virginia`, `Wexford`, `Wicklow`, `Wisconsin`, `Wyoming`, `Xinjiang`, `Xizang`, `Yamagata`, `Yamaguchi`, `Yamanashi`, `Yucatán`, `Yukon Territories`, `Yunnan`, `Zacatecas`, `Zhejiang` |  | BillingStateCode | string | KS |
+|  | Billing Street | BillingStreet | string | false |  |  | BillingStreet | string | 1301 Hoch Drive |
+|  | Clean Status | CleanStatus | string | false | `In Sync`, `Different`, `Reviewed`, `Not Found`, `Inactive`, `Not Compared`, `Select Match`, `Skipped` |  | CleanStatus | string | Pending |
+|  | Created By ID | CreatedById | string | true |  | users | CreatedById | string | 005gK0000028LpJQAU |
+|  | Created Date | CreatedDate | string | true |  |  | CreatedDate | string | 2025-04-24T14:21:01.000+0000 |
+|  | Customer Priority | CustomerPriority__c | string | false | `High`, `Low`, `Medium` |  | CustomerPriority__c | string | Low |
+|  | D&B Company ID | DandbCompanyId | string | false |  | objects | DandbCompanyId | null | None |
+|  | Account Description | Description | string | false |  |  | Description | null | None |
+|  | D-U-N-S Number | DunsNumber | string | false |  |  | DunsNumber | null | None |
+|  | Account Fax | Fax | string | false |  |  | Fax | string | (785) 241-6201 |
+|  | Account ID | Id | string | true |  |  | Id | string | 001gK000004nk17QAA |
+|  | Industry | Industry | string | false | `Agriculture`, `Apparel`, `Banking`, `Biotechnology`, `Chemicals`, `Communications`, `Construction`, `Consulting`, `Education`, `Electronics`, `Energy`, `Engineering`, `Entertainment`, `Environmental`, `Finance`, `Food & Beverage`, `Government`, `Healthcare`, `Hospitality`, `Insurance`, `Machinery`, `Manufacturing`, `Media`, `Not For Profit`, `Recreation`, `Retail`, `Shipping`, `Technology`, `Telecommunications`, `Transportation`, `Utilities`, `Other` |  | Industry | string | Consulting |
+|  | Deleted | IsDeleted | boolean | true |  |  | IsDeleted | boolean | False |
+|  | Data.com Key | Jigsaw | string | false |  |  | Jigsaw | null | None |
+|  | Jigsaw Company ID | JigsawCompanyId | string | true |  |  | JigsawCompanyId | null | None |
+|  | Last Activity | LastActivityDate | string | true |  |  | LastActivityDate | null | None |
+|  | Last Modified By ID | LastModifiedById | string | true |  | users | LastModifiedById | string | 005gK0000028LpJQAU |
+|  | Last Modified Date | LastModifiedDate | string | true |  |  | LastModifiedDate | string | 2025-04-24T14:21:01.000+0000 |
+|  | Last Referenced Date | LastReferencedDate | string | true |  |  | LastReferencedDate | string | 2025-06-17T09:54:24.000+0000 |
+|  | Last Viewed Date | LastViewedDate | string | true |  |  | LastViewedDate | string | 2025-06-17T09:54:24.000+0000 |
+|  | Master Record ID | MasterRecordId | string | true |  | objects | MasterRecordId | null | None |
+|  | NAICS Code | NaicsCode | string | false |  |  | NaicsCode | null | None |
+|  | NAICS Description | NaicsDesc | string | false |  |  | NaicsDesc | null | None |
+|  | Account Name | *Name | string | false |  |  | Name | string | Dickenson plc |
+|  | Employees | NumberOfEmployees | number | false |  |  | NumberOfEmployees | integer | 120 |
+|  | Number of Locations | NumberofLocations__c | number | false |  |  | NumberofLocations__c | integer | 2 |
+|  | Operating Hour ID | OperatingHoursId | string | false |  | objects | OperatingHoursId | null | None |
+|  | Owner ID | OwnerId | string | false |  | users | OwnerId | string | 005gK0000028LpJQAU |
+|  | Ownership | Ownership | string | false | `Public`, `Private`, `Subsidiary`, `Other` |  | Ownership | string | Private |
+|  | Parent Account ID | ParentId | string | false |  | objects | ParentId | null | None |
+|  | Account Phone | Phone | string | false |  |  | Phone | string | (785) 241-6200 |
+|  | Photo URL | PhotoUrl | string | true |  |  | PhotoUrl | string | /services/images/photo/001gK000004nk17QAA |
+|  | Account Rating | Rating | string | false | `Hot`, `Warm`, `Cold` |  | Rating | null | None |
+|  | SLA Expiration Date | SLAExpirationDate__c | string | false |  |  | SLAExpirationDate__c | string | 2025-11-18 |
+|  | SLA Serial Number | SLASerialNumber__c | string | false |  |  | SLASerialNumber__c | string | 7425 |
+|  | SLA | SLA__c | string | false | `Gold`, `Silver`, `Platinum`, `Bronze` |  | SLA__c | string | Bronze |
+|  | Shipping City | ShippingCity | string | false |  |  | ShippingCity | string | Lawrence |
+|  | Shipping Country | ShippingCountry | string | false |  |  | ShippingCountry | string | USA |
+|  | Shipping Country Code | ShippingCountryCode | string | false | `Afghanistan`, `Aland Islands`, `Albania`, `Algeria`, `Andorra`, `Angola`, `Anguilla`, `Antarctica`, `Antigua and Barbuda`, `Argentina`, `Armenia`, `Aruba`, `Australia`, `Austria`, `Azerbaijan`, `Bahamas`, `Bahrain`, `Bangladesh`, `Barbados`, `Belarus`, `Belgium`, `Belize`, `Benin`, `Bermuda`, `Bhutan`, `Bolivia, Plurinational State of`, `Bonaire, Sint Eustatius and Saba`, `Bosnia and Herzegovina`, `Botswana`, `Bouvet Island`, `Brazil`, `British Indian Ocean Territory`, `Brunei Darussalam`, `Bulgaria`, `Burkina Faso`, `Burundi`, `Cambodia`, `Cameroon`, `Canada`, `Cape Verde`, `Cayman Islands`, `Central African Republic`, `Chad`, `Chile`, `China`, `Christmas Island`, `Cocos (Keeling) Islands`, `Colombia`, `Comoros`, `Congo`, `Congo, the Democratic Republic of the`, `Cook Islands`, `Costa Rica`, `Cote d'Ivoire`, `Croatia`, `Curaçao`, `Cyprus`, `Czechia`, `Denmark`, `Djibouti`, `Dominica`, `Dominican Republic`, `Ecuador`, `Egypt`, `El Salvador`, `Equatorial Guinea`, `Eritrea`, `Estonia`, `Eswatini`, `Ethiopia`, `Falkland Islands (Malvinas)`, `Faroe Islands`, `Fiji`, `Finland`, `France`, `French Guiana`, `French Polynesia`, `French Southern Territories`, `Gabon`, `Gambia`, `Georgia`, `Germany`, `Ghana`, `Gibraltar`, `Greece`, `Greenland`, `Grenada`, `Guadeloupe`, `Guatemala`, `Guernsey`, `Guinea`, `Guinea-Bissau`, `Guyana`, `Haiti`, `Heard Island and McDonald Islands`, `Holy See (Vatican City State)`, `Honduras`, `Hungary`, `Iceland`, `India`, `Indonesia`, `Iraq`, `Ireland`, `Isle of Man`, `Israel`, `Italy`, `Jamaica`, `Japan`, `Jersey`, `Jordan`, `Kazakhstan`, `Kenya`, `Kiribati`, `Korea, Republic of`, `Kosovo`, `Kuwait`, `Kyrgyzstan`, `Lao People's Democratic Republic`, `Latvia`, `Lebanon`, `Lesotho`, `Liberia`, `Libya`, `Liechtenstein`, `Lithuania`, `Luxembourg`, `Macao`, `Madagascar`, `Malawi`, `Malaysia`, `Maldives`, `Mali`, `Malta`, `Martinique`, `Mauritania`, `Mauritius`, `Mayotte`, `Mexico`, `Moldova, Republic of`, `Monaco`, `Mongolia`, `Montenegro`, `Montserrat`, `Morocco`, `Mozambique`, `Myanmar`, `Namibia`, `Nauru`, `Nepal`, `Netherlands`, `New Caledonia`, `New Zealand`, `Nicaragua`, `Niger`, `Nigeria`, `Niue`, `Norfolk Island`, `North Macedonia`, `Norway`, `Oman`, `Pakistan`, `Palestine`, `Panama`, `Papua New Guinea`, `Paraguay`, `Peru`, `Philippines`, `Pitcairn`, `Poland`, `Portugal`, `Qatar`, `Reunion`, `Romania`, `Russian Federation`, `Rwanda`, `Saint Barthélemy`, `Saint Helena, Ascension and Tristan da Cunha`, `Saint Kitts and Nevis`, `Saint Lucia`, `Saint Martin (French part)`, `Saint Pierre and Miquelon`, `Saint Vincent and the Grenadines`, `Samoa`, `San Marino`, `Sao Tome and Principe`, `Saudi Arabia`, `Senegal`, `Serbia`, `Seychelles`, `Sierra Leone`, `Singapore`, `Sint Maarten (Dutch part)`, `Slovakia`, `Slovenia`, `Solomon Islands`, `Somalia`, `South Africa`, `South Georgia and the South Sandwich Islands`, `South Sudan`, `Spain`, `Sri Lanka`, `Suriname`, `Svalbard and Jan Mayen`, `Sweden`, `Switzerland`, `Taiwan`, `Tajikistan`, `Tanzania, United Republic of`, `Thailand`, `Timor-Leste`, `Togo`, `Tokelau`, `Tonga`, `Trinidad and Tobago`, `Tunisia`, `Türkiye`, `Turkmenistan`, `Turks and Caicos Islands`, `Tuvalu`, `Uganda`, `Ukraine`, `United Arab Emirates`, `United Kingdom`, `United States`, `Uruguay`, `Uzbekistan`, `Vanuatu`, `Venezuela, Bolivarian Republic of`, `Vietnam`, `Virgin Islands, British`, `Wallis and Futuna`, `Western Sahara`, `Yemen`, `Zambia`, `Zimbabwe` |  | ShippingCountryCode | string | US |
+|  | Shipping Geocode Accuracy | ShippingGeocodeAccuracy | string | false | `Address`, `Near Address`, `Block`, `Street`, `Extended Zip`, `Zip`, `Neighborhood`, `City`, `County`, `State`, `Unknown` |  | ShippingGeocodeAccuracy | null | None |
+|  | Shipping Latitude | ShippingLatitude | number | false |  |  | ShippingLatitude | null | None |
+|  | Shipping Longitude | ShippingLongitude | number | false |  |  | ShippingLongitude | null | None |
+|  | Shipping Zip/Postal Code | ShippingPostalCode | string | false |  |  | ShippingPostalCode | string | 66045 |
+|  | Shipping State/Province | ShippingState | string | false |  |  | ShippingState | string | KS |
+|  | Shipping State/Province Code | ShippingStateCode | string | false | `Acre`, `Agrigento`, `Aguascalientes`, `Aichi`, `Akita`, `Alabama`, `Alagoas`, `Alaska`, `Alberta`, `Alessandria`, `Amapá`, `Amazonas`, `Ancona`, `Andaman and Nicobar Islands`, `Andhra Pradesh`, `Anhui`, `Aomori`, `Aosta`, `Arezzo`, `Arizona`, `Arkansas`, `Arunachal Pradesh`, `Ascoli Piceno`, `Assam`, `Asti`, `Australian Capital Territory`, `Avellino`, `Bahia`, `Baja California`, `Baja California Sur`, `Bari`, `Barletta-Andria-Trani`, `Beijing`, `Belluno`, `Benevento`, `Bergamo`, `Biella`, `Bihar`, `Bologna`, `Bolzano`, `Brescia`, `Brindisi`, `British Columbia`, `Cagliari`, `California`, `Caltanissetta`, `Campeche`, `Campobasso`, `Carbonia-Iglesias`, `Carlow`, `Caserta`, `Catania`, `Catanzaro`, `Cavan`, `Ceará`, `Chandigarh`, `Chhattisgarh`, `Chiapas`, `Chiba`, `Chieti`, `Chihuahua`, `Chongqing`, `Clare`, `Coahuila`, `Colima`, `Colorado`, `Como`, `Connecticut`, `Cork`, `Cosenza`, `Cremona`, `Crotone`, `Cuneo`, `Dadra and Nagar Haveli`, `Daman and Diu`, `Delaware`, `Delhi`, `District of Columbia`, `Distrito Federal`, `Donegal`, `Dublin`, `Durango`, `Ehime`, `Enna`, `Espírito Santo`, `Federal District`, `Fermo`, `Ferrara`, `Florence`, `Florida`, `Foggia`, `Forlì-Cesena`, `Frosinone`, `Fujian`, `Fukui`, `Fukuoka`, `Fukushima`, `Galway`, `Gansu`, `Genoa`, `Georgia`, `Gifu`, `Goa`, `Goiás`, `Gorizia`, `Grosseto`, `Guanajuato`, `Guangdong`, `Guangxi`, `Guerrero`, `Guizhou`, `Gujarat`, `Gunma`, `Hainan`, `Haryana`, `Hawaii`, `Hebei`, `Heilongjiang`, `Henan`, `Hidalgo`, `Himachal Pradesh`, `Hiroshima`, `Hokkaido`, `Hong Kong`, `Hubei`, `Hunan`, `Hyogo`, `Ibaraki`, `Idaho`, `Illinois`, `Imperia`, `Indiana`, `Iowa`, `Isernia`, `Ishikawa`, `Iwate`, `Jalisco`, `Jammu and Kashmir`, `Jharkhand`, `Jiangsu`, `Jiangxi`, `Jilin`, `Kagawa`, `Kagoshima`, `Kanagawa`, `Kansas`, `Karnataka`, `Kentucky`, `Kerala`, `Kerry`, `Kildare`, `Kilkenny`, `Kochi`, `Kumamoto`, `Kyoto`, `L'Aquila`, `Lakshadweep`, `Laois`, `La Spezia`, `Latina`, `Lecce`, `Lecco`, `Leitrim`, `Liaoning`, `Limerick`, `Livorno`, `Lodi`, `Longford`, `Louisiana`, `Louth`, `Lucca`, `Macao`, `Macerata`, `Madhya Pradesh`, `Maharashtra`, `Maine`, `Manipur`, `Manitoba`, `Mantua`, `Maranhão`, `Maryland`, `Massa and Carrara`, `Massachusetts`, `Matera`, `Mato Grosso`, `Mato Grosso do Sul`, `Mayo`, `Meath`, `Medio Campidano`, `Meghalaya`, `Messina`, `Mexico State`, `Michigan`, `Michoacán`, `Mie`, `Milan`, `Minas Gerais`, `Minnesota`, `Mississippi`, `Missouri`, `Miyagi`, `Miyazaki`, `Mizoram`, `Modena`, `Monaghan`, `Montana`, `Monza and Brianza`, `Morelos`, `Nagaland`, `Nagano`, `Nagasaki`, `Naples`, `Nara`, `Nayarit`, `Nebraska`, `Nei Mongol`, `Nevada`, `New Brunswick`, `Newfoundland and Labrador`, `New Hampshire`, `New Jersey`, `New Mexico`, `New South Wales`, `New York`, `Niigata`, `Ningxia`, `North Carolina`, `North Dakota`, `Northern Territory`, `Northwest Territories`, `Novara`, `Nova Scotia`, `Nuevo León`, `Nunavut`, `Nuoro`, `Oaxaca`, `Odisha`, `Offaly`, `Ogliastra`, `Ohio`, `Oita`, `Okayama`, `Okinawa`, `Oklahoma`, `Olbia-Tempio`, `Ontario`, `Oregon`, `Oristano`, `Osaka`, `Padua`, `Palermo`, `Pará`, `Paraíba`, `Paraná`, `Parma`, `Pavia`, `Pennsylvania`, `Pernambuco`, `Perugia`, `Pesaro and Urbino`, `Pescara`, `Piacenza`, `Piauí`, `Pisa`, `Pistoia`, `Pordenone`, `Potenza`, `Prato`, `Prince Edward Island`, `Puducherry`, `Puebla`, `Punjab`, `Qinghai`, `Quebec`, `Queensland`, `Querétaro`, `Quintana Roo`, `Ragusa`, `Rajasthan`, `Ravenna`, `Reggio Calabria`, `Reggio Emilia`, `Rhode Island`, `Rieti`, `Rimini`, `Rio de Janeiro`, `Rio Grande do Norte`, `Rio Grande do Sul`, `Rome`, `Rondônia`, `Roraima`, `Roscommon`, `Rovigo`, `Saga`, `Saitama`, `Salerno`, `San Luis Potosí`, `Santa Catarina`, `São Paulo`, `Saskatchewan`, `Sassari`, `Savona`, `Sergipe`, `Shaanxi`, `Shandong`, `Shanghai`, `Shanxi`, `Shiga`, `Shimane`, `Shizuoka`, `Sichuan`, `Siena`, `Sikkim`, `Sinaloa`, `Sligo`, `Sondrio`, `Sonora`, `South Australia`, `South Carolina`, `South Dakota`, `Syracuse`, `Tabasco`, `Taiwan`, `Tamaulipas`, `Tamil Nadu`, `Taranto`, `Tasmania`, `Telangana`, `Tennessee`, `Teramo`, `Terni`, `Texas`, `Tianjin`, `Tipperary`, `Tlaxcala`, `Tocantins`, `Tochigi`, `Tokushima`, `Tokyo`, `Tottori`, `Toyama`, `Trapani`, `Trento`, `Treviso`, `Trieste`, `Tripura`, `Turin`, `Udine`, `Utah`, `Uttarakhand`, `Uttar Pradesh`, `Varese`, `Venice`, `Veracruz`, `Verbano-Cusio-Ossola`, `Vercelli`, `Vermont`, `Verona`, `Vibo Valentia`, `Vicenza`, `Victoria`, `Virginia`, `Viterbo`, `Wakayama`, `Washington`, `Waterford`, `West Bengal`, `Western Australia`, `Westmeath`, `West Virginia`, `Wexford`, `Wicklow`, `Wisconsin`, `Wyoming`, `Xinjiang`, `Xizang`, `Yamagata`, `Yamaguchi`, `Yamanashi`, `Yucatán`, `Yukon Territories`, `Yunnan`, `Zacatecas`, `Zhejiang` |  | ShippingStateCode | string | KS |
+|  | Shipping Street | ShippingStreet | string | false |  |  | ShippingStreet | string | 1301 Hoch Drive |
+|  | SIC Code | Sic | string | false |  |  | Sic | string | 6752 |
+|  | SIC Description | SicDesc | string | false |  |  | SicDesc | null | None |
+|  | Account Site | Site | string | false |  |  | Site | null | None |
+|  | System Modstamp | SystemModstamp | string | true |  |  | SystemModstamp | string | 2025-04-24T14:21:01.000+0000 |
+|  | Ticker Symbol | TickerSymbol | string | false |  |  | TickerSymbol | null | None |
+|  | Tradestyle | Tradestyle | string | false |  |  | Tradestyle | null | None |
+|  | Account Type | Type | string | false | `Prospect`, `Customer - Direct`, `Customer - Channel`, `Channel Partner / Reseller`, `Installation Partner`, `Technology Partner`, `Other` |  | Type | string | Customer - Channel |
+|  | Upsell Opportunity | UpsellOpportunity__c | string | false | `Maybe`, `No`, `Yes` |  | UpsellOpportunity__c | string | No |
+|  | Website | Website | string | false |  |  | Website | string | dickenson-consulting.com |
+|  | Year Started | YearStarted | string | false |  |  | YearStarted | null | None |
+| Schema | Channel Program Level Name | <span style='color:red'>***ChannelProgramLevelName***</span> | string | false |  |  |  |  |  |
+| Schema | Channel Program Name | <span style='color:red'>***ChannelProgramName***</span> | string | false |  |  |  |  |  |
+| Schema | Customer Portal Account | <span style='color:red'>***IsCustomerPortal***</span> | boolean | false |  |  |  |  |  |
+| Schema | Partner Account | <span style='color:red'>***IsPartner***</span> | boolean | false |  |  |  |  |  |
+| FindByID |  |  |  |  |  |  | BillingAddress | object | {"city": "Lawrence", "country": "USA", "countryCode": "US", "geocodeAccuracy": null, "latitude": null, "longitude": null, "postalCode": "66045", "state": "KS", "stateCode": "KS", "street": "1301 Hoch Drive"} |
+| FindByID |  |  |  |  |  |  | BillingAddress.city | string | Lawrence |
+| FindByID |  |  |  |  |  |  | BillingAddress.country | string | USA |
+| FindByID |  |  |  |  |  |  | BillingAddress.countryCode | string | US |
+| FindByID |  |  |  |  |  |  | BillingAddress.geocodeAccuracy | null | None |
+| FindByID |  |  |  |  |  |  | BillingAddress.latitude | null | None |
+| FindByID |  |  |  |  |  |  | BillingAddress.longitude | null | None |
+| FindByID |  |  |  |  |  |  | BillingAddress.postalCode | string | 66045 |
+| FindByID |  |  |  |  |  |  | BillingAddress.state | string | KS |
+| FindByID |  |  |  |  |  |  | BillingAddress.stateCode | string | KS |
+| FindByID |  |  |  |  |  |  | BillingAddress.street | string | 1301 Hoch Drive |
+| FindByID |  |  |  |  |  |  | ShippingAddress | object | {"city": "Lawrence", "country": "USA", "countryCode": "US", "geocodeAccuracy": null, "latitude": null, "longitude": null, "postalCode": "66045", "state": "KS", "stateCode": "KS", "street": "1301 Hoch Drive"} |
+| FindByID |  |  |  |  |  |  | ShippingAddress.city | string | Lawrence |
+| FindByID |  |  |  |  |  |  | ShippingAddress.country | string | USA |
+| FindByID |  |  |  |  |  |  | ShippingAddress.countryCode | string | US |
+| FindByID |  |  |  |  |  |  | ShippingAddress.geocodeAccuracy | null | None |
+| FindByID |  |  |  |  |  |  | ShippingAddress.latitude | null | None |
+| FindByID |  |  |  |  |  |  | ShippingAddress.longitude | null | None |
+| FindByID |  |  |  |  |  |  | ShippingAddress.postalCode | string | 66045 |
+| FindByID |  |  |  |  |  |  | ShippingAddress.state | string | KS |
+| FindByID |  |  |  |  |  |  | ShippingAddress.stateCode | string | KS |
+| FindByID |  |  |  |  |  |  | ShippingAddress.street | string | 1301 Hoch Drive |
+
+## Leads
+
+| Diff | Entity Schema Title | Schema Field ID | Entity Schema Types | Readonly | Possible Values | Reference Collection | FindByID Field ID | Find By ID Types | Value |
+|------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|
+|  | Annual Revenue | AnnualRevenue | number | false |  |  | AnnualRevenue | null | None |
+|  | City | City | string | false |  |  | City | null | None |
+|  | Clean Status | CleanStatus | string | false | `In Sync`, `Different`, `Reviewed`, `Not Found`, `Inactive`, `Not Compared`, `Select Match`, `Skipped` |  | CleanStatus | string | Pending |
+|  | Company | *Company | string | false |  |  | Company | string | pandadoc |
+|  | Company D-U-N-S Number | CompanyDunsNumber | string | false |  |  | CompanyDunsNumber | null | None |
+|  | Converted Account ID | ConvertedAccountId | string | true |  | objects | ConvertedAccountId | null | None |
+|  | Converted Contact ID | ConvertedContactId | string | true |  | objects | ConvertedContactId | null | None |
+|  | Converted Date | ConvertedDate | string | true |  |  | ConvertedDate | null | None |
+|  | Converted Opportunity ID | ConvertedOpportunityId | string | true |  | objects | ConvertedOpportunityId | null | None |
+|  | Country | Country | string | false |  |  | Country | null | None |
+|  | Country Code | CountryCode | string | false | `Afghanistan`, `Aland Islands`, `Albania`, `Algeria`, `Andorra`, `Angola`, `Anguilla`, `Antarctica`, `Antigua and Barbuda`, `Argentina`, `Armenia`, `Aruba`, `Australia`, `Austria`, `Azerbaijan`, `Bahamas`, `Bahrain`, `Bangladesh`, `Barbados`, `Belarus`, `Belgium`, `Belize`, `Benin`, `Bermuda`, `Bhutan`, `Bolivia, Plurinational State of`, `Bonaire, Sint Eustatius and Saba`, `Bosnia and Herzegovina`, `Botswana`, `Bouvet Island`, `Brazil`, `British Indian Ocean Territory`, `Brunei Darussalam`, `Bulgaria`, `Burkina Faso`, `Burundi`, `Cambodia`, `Cameroon`, `Canada`, `Cape Verde`, `Cayman Islands`, `Central African Republic`, `Chad`, `Chile`, `China`, `Christmas Island`, `Cocos (Keeling) Islands`, `Colombia`, `Comoros`, `Congo`, `Congo, the Democratic Republic of the`, `Cook Islands`, `Costa Rica`, `Cote d'Ivoire`, `Croatia`, `Curaçao`, `Cyprus`, `Czechia`, `Denmark`, `Djibouti`, `Dominica`, `Dominican Republic`, `Ecuador`, `Egypt`, `El Salvador`, `Equatorial Guinea`, `Eritrea`, `Estonia`, `Eswatini`, `Ethiopia`, `Falkland Islands (Malvinas)`, `Faroe Islands`, `Fiji`, `Finland`, `France`, `French Guiana`, `French Polynesia`, `French Southern Territories`, `Gabon`, `Gambia`, `Georgia`, `Germany`, `Ghana`, `Gibraltar`, `Greece`, `Greenland`, `Grenada`, `Guadeloupe`, `Guatemala`, `Guernsey`, `Guinea`, `Guinea-Bissau`, `Guyana`, `Haiti`, `Heard Island and McDonald Islands`, `Holy See (Vatican City State)`, `Honduras`, `Hungary`, `Iceland`, `India`, `Indonesia`, `Iraq`, `Ireland`, `Isle of Man`, `Israel`, `Italy`, `Jamaica`, `Japan`, `Jersey`, `Jordan`, `Kazakhstan`, `Kenya`, `Kiribati`, `Korea, Republic of`, `Kosovo`, `Kuwait`, `Kyrgyzstan`, `Lao People's Democratic Republic`, `Latvia`, `Lebanon`, `Lesotho`, `Liberia`, `Libya`, `Liechtenstein`, `Lithuania`, `Luxembourg`, `Macao`, `Madagascar`, `Malawi`, `Malaysia`, `Maldives`, `Mali`, `Malta`, `Martinique`, `Mauritania`, `Mauritius`, `Mayotte`, `Mexico`, `Moldova, Republic of`, `Monaco`, `Mongolia`, `Montenegro`, `Montserrat`, `Morocco`, `Mozambique`, `Myanmar`, `Namibia`, `Nauru`, `Nepal`, `Netherlands`, `New Caledonia`, `New Zealand`, `Nicaragua`, `Niger`, `Nigeria`, `Niue`, `Norfolk Island`, `North Macedonia`, `Norway`, `Oman`, `Pakistan`, `Palestine`, `Panama`, `Papua New Guinea`, `Paraguay`, `Peru`, `Philippines`, `Pitcairn`, `Poland`, `Portugal`, `Qatar`, `Reunion`, `Romania`, `Russian Federation`, `Rwanda`, `Saint Barthélemy`, `Saint Helena, Ascension and Tristan da Cunha`, `Saint Kitts and Nevis`, `Saint Lucia`, `Saint Martin (French part)`, `Saint Pierre and Miquelon`, `Saint Vincent and the Grenadines`, `Samoa`, `San Marino`, `Sao Tome and Principe`, `Saudi Arabia`, `Senegal`, `Serbia`, `Seychelles`, `Sierra Leone`, `Singapore`, `Sint Maarten (Dutch part)`, `Slovakia`, `Slovenia`, `Solomon Islands`, `Somalia`, `South Africa`, `South Georgia and the South Sandwich Islands`, `South Sudan`, `Spain`, `Sri Lanka`, `Suriname`, `Svalbard and Jan Mayen`, `Sweden`, `Switzerland`, `Taiwan`, `Tajikistan`, `Tanzania, United Republic of`, `Thailand`, `Timor-Leste`, `Togo`, `Tokelau`, `Tonga`, `Trinidad and Tobago`, `Tunisia`, `Türkiye`, `Turkmenistan`, `Turks and Caicos Islands`, `Tuvalu`, `Uganda`, `Ukraine`, `United Arab Emirates`, `United Kingdom`, `United States`, `Uruguay`, `Uzbekistan`, `Vanuatu`, `Venezuela, Bolivarian Republic of`, `Vietnam`, `Virgin Islands, British`, `Wallis and Futuna`, `Western Sahara`, `Yemen`, `Zambia`, `Zimbabwe` |  | CountryCode | null | None |
+|  | Created By ID | CreatedById | string | true |  | users | CreatedById | string | 005gK000002P1nmQAC |
+|  | Created Date | CreatedDate | string | true |  |  | CreatedDate | string | 2025-05-14T14:53:35.000+0000 |
+|  | Current Generator(s) | CurrentGenerators__c | string | false |  |  | CurrentGenerators__c | null | None |
+|  | D&B Company ID | DandbCompanyId | string | false |  | objects | DandbCompanyId | null | None |
+|  | Description | Description | string | false |  |  | Description | null | None |
+|  | Email | Email | string | false |  |  | Email | null | None |
+|  | Email Bounced Date | EmailBouncedDate | string | false |  |  | EmailBouncedDate | null | None |
+|  | Email Bounced Reason | EmailBouncedReason | string | false |  |  | EmailBouncedReason | null | None |
+|  | Fax | Fax | string | false |  |  | Fax | null | None |
+|  | First Name | FirstName | string | false |  |  | FirstName | null | None |
+|  | Geocode Accuracy | GeocodeAccuracy | string | false | `Address`, `Near Address`, `Block`, `Street`, `Extended Zip`, `Zip`, `Neighborhood`, `City`, `County`, `State`, `Unknown` |  | GeocodeAccuracy | null | None |
+|  | Lead ID | Id | string | true |  |  | Id | string | 00QgK000001WvFWUA0 |
+|  | Individual ID | IndividualId | string | false |  | objects | IndividualId | null | None |
+|  | Industry | Industry | string | false | `Agriculture`, `Apparel`, `Banking`, `Biotechnology`, `Chemicals`, `Communications`, `Construction`, `Consulting`, `Education`, `Electronics`, `Energy`, `Engineering`, `Entertainment`, `Environmental`, `Finance`, `Food & Beverage`, `Government`, `Healthcare`, `Hospitality`, `Insurance`, `Machinery`, `Manufacturing`, `Media`, `Not For Profit`, `Recreation`, `Retail`, `Shipping`, `Technology`, `Telecommunications`, `Transportation`, `Utilities`, `Other` |  | Industry | null | None |
+|  | Converted | IsConverted | boolean | false |  |  | IsConverted | boolean | False |
+|  | Deleted | IsDeleted | boolean | true |  |  | IsDeleted | boolean | False |
+|  | Important | IsPriorityRecord | boolean | true |  |  | IsPriorityRecord | boolean | False |
+|  | Unread By Owner | IsUnreadByOwner | boolean | false |  |  | IsUnreadByOwner | boolean | False |
+|  | Data.com Key | Jigsaw | string | false |  |  | Jigsaw | null | None |
+|  | Jigsaw Contact ID | JigsawContactId | string | true |  |  | JigsawContactId | null | None |
+|  | Last Activity | LastActivityDate | string | true |  |  | LastActivityDate | null | None |
+|  | Last Modified By ID | LastModifiedById | string | true |  | users | LastModifiedById | string | 005gK000002P1nmQAC |
+|  | Last Modified Date | LastModifiedDate | string | true |  |  | LastModifiedDate | string | 2025-05-14T14:53:36.000+0000 |
+|  | Last Name | *LastName | string | false |  |  | LastName | string | White |
+|  | Last Referenced Date | LastReferencedDate | string | true |  |  | LastReferencedDate | string | 2025-06-17T09:54:24.000+0000 |
+|  | Last Viewed Date | LastViewedDate | string | true |  |  | LastViewedDate | string | 2025-06-17T09:54:24.000+0000 |
+|  | Latitude | Latitude | number | false |  |  | Latitude | null | None |
+|  | Lead Source | LeadSource | string | false | `Web`, `Phone Inquiry`, `Partner Referral`, `Purchased List`, `Other` |  | LeadSource | null | None |
+|  | Longitude | Longitude | number | false |  |  | Longitude | null | None |
+|  | Master Record ID | MasterRecordId | string | true |  | objects | MasterRecordId | null | None |
+|  | Mobile Phone | MobilePhone | string | false |  |  | MobilePhone | null | None |
+|  | Full Name | Name | string | true |  |  | Name | string | White |
+|  | Employees | NumberOfEmployees | number | false |  |  | NumberOfEmployees | null | None |
+|  | Number of Locations | NumberofLocations__c | number | false |  |  | NumberofLocations__c | null | None |
+|  | Owner ID | OwnerId | string | false |  | users | OwnerId | string | 005gK000002P1nmQAC |
+|  | Phone | Phone | string | false |  |  | Phone | null | None |
+|  | Photo URL | PhotoUrl | string | true |  |  | PhotoUrl | string | /services/images/photo/00QgK000001WvFWUA0 |
+|  | Zip/Postal Code | PostalCode | string | false |  |  | PostalCode | null | None |
+|  | Primary | Primary__c | string | false | `No`, `Yes` |  | Primary__c | null | None |
+|  | Product Interest | ProductInterest__c | string | false | `GC1000 series`, `GC5000 series`, `GC3000 series` |  | ProductInterest__c | null | None |
+|  | Rating | Rating | string | false | `Hot`, `Warm`, `Cold` |  | Rating | null | None |
+|  | SIC Code | SICCode__c | string | false |  |  | SICCode__c | null | None |
+|  | Salutation | Salutation | string | false | `Mr.`, `Ms.`, `Mrs.`, `Dr.`, `Prof.`, `Mx.` |  | Salutation | string | Mr. |
+|  | State/Province | State | string | false |  |  | State | null | None |
+|  | State/Province Code | StateCode | string | false | `Acre`, `Agrigento`, `Aguascalientes`, `Aichi`, `Akita`, `Alabama`, `Alagoas`, `Alaska`, `Alberta`, `Alessandria`, `Amapá`, `Amazonas`, `Ancona`, `Andaman and Nicobar Islands`, `Andhra Pradesh`, `Anhui`, `Aomori`, `Aosta`, `Arezzo`, `Arizona`, `Arkansas`, `Arunachal Pradesh`, `Ascoli Piceno`, `Assam`, `Asti`, `Australian Capital Territory`, `Avellino`, `Bahia`, `Baja California`, `Baja California Sur`, `Bari`, `Barletta-Andria-Trani`, `Beijing`, `Belluno`, `Benevento`, `Bergamo`, `Biella`, `Bihar`, `Bologna`, `Bolzano`, `Brescia`, `Brindisi`, `British Columbia`, `Cagliari`, `California`, `Caltanissetta`, `Campeche`, `Campobasso`, `Carbonia-Iglesias`, `Carlow`, `Caserta`, `Catania`, `Catanzaro`, `Cavan`, `Ceará`, `Chandigarh`, `Chhattisgarh`, `Chiapas`, `Chiba`, `Chieti`, `Chihuahua`, `Chongqing`, `Clare`, `Coahuila`, `Colima`, `Colorado`, `Como`, `Connecticut`, `Cork`, `Cosenza`, `Cremona`, `Crotone`, `Cuneo`, `Dadra and Nagar Haveli`, `Daman and Diu`, `Delaware`, `Delhi`, `District of Columbia`, `Distrito Federal`, `Donegal`, `Dublin`, `Durango`, `Ehime`, `Enna`, `Espírito Santo`, `Federal District`, `Fermo`, `Ferrara`, `Florence`, `Florida`, `Foggia`, `Forlì-Cesena`, `Frosinone`, `Fujian`, `Fukui`, `Fukuoka`, `Fukushima`, `Galway`, `Gansu`, `Genoa`, `Georgia`, `Gifu`, `Goa`, `Goiás`, `Gorizia`, `Grosseto`, `Guanajuato`, `Guangdong`, `Guangxi`, `Guerrero`, `Guizhou`, `Gujarat`, `Gunma`, `Hainan`, `Haryana`, `Hawaii`, `Hebei`, `Heilongjiang`, `Henan`, `Hidalgo`, `Himachal Pradesh`, `Hiroshima`, `Hokkaido`, `Hong Kong`, `Hubei`, `Hunan`, `Hyogo`, `Ibaraki`, `Idaho`, `Illinois`, `Imperia`, `Indiana`, `Iowa`, `Isernia`, `Ishikawa`, `Iwate`, `Jalisco`, `Jammu and Kashmir`, `Jharkhand`, `Jiangsu`, `Jiangxi`, `Jilin`, `Kagawa`, `Kagoshima`, `Kanagawa`, `Kansas`, `Karnataka`, `Kentucky`, `Kerala`, `Kerry`, `Kildare`, `Kilkenny`, `Kochi`, `Kumamoto`, `Kyoto`, `L'Aquila`, `Lakshadweep`, `Laois`, `La Spezia`, `Latina`, `Lecce`, `Lecco`, `Leitrim`, `Liaoning`, `Limerick`, `Livorno`, `Lodi`, `Longford`, `Louisiana`, `Louth`, `Lucca`, `Macao`, `Macerata`, `Madhya Pradesh`, `Maharashtra`, `Maine`, `Manipur`, `Manitoba`, `Mantua`, `Maranhão`, `Maryland`, `Massa and Carrara`, `Massachusetts`, `Matera`, `Mato Grosso`, `Mato Grosso do Sul`, `Mayo`, `Meath`, `Medio Campidano`, `Meghalaya`, `Messina`, `Mexico State`, `Michigan`, `Michoacán`, `Mie`, `Milan`, `Minas Gerais`, `Minnesota`, `Mississippi`, `Missouri`, `Miyagi`, `Miyazaki`, `Mizoram`, `Modena`, `Monaghan`, `Montana`, `Monza and Brianza`, `Morelos`, `Nagaland`, `Nagano`, `Nagasaki`, `Naples`, `Nara`, `Nayarit`, `Nebraska`, `Nei Mongol`, `Nevada`, `New Brunswick`, `Newfoundland and Labrador`, `New Hampshire`, `New Jersey`, `New Mexico`, `New South Wales`, `New York`, `Niigata`, `Ningxia`, `North Carolina`, `North Dakota`, `Northern Territory`, `Northwest Territories`, `Novara`, `Nova Scotia`, `Nuevo León`, `Nunavut`, `Nuoro`, `Oaxaca`, `Odisha`, `Offaly`, `Ogliastra`, `Ohio`, `Oita`, `Okayama`, `Okinawa`, `Oklahoma`, `Olbia-Tempio`, `Ontario`, `Oregon`, `Oristano`, `Osaka`, `Padua`, `Palermo`, `Pará`, `Paraíba`, `Paraná`, `Parma`, `Pavia`, `Pennsylvania`, `Pernambuco`, `Perugia`, `Pesaro and Urbino`, `Pescara`, `Piacenza`, `Piauí`, `Pisa`, `Pistoia`, `Pordenone`, `Potenza`, `Prato`, `Prince Edward Island`, `Puducherry`, `Puebla`, `Punjab`, `Qinghai`, `Quebec`, `Queensland`, `Querétaro`, `Quintana Roo`, `Ragusa`, `Rajasthan`, `Ravenna`, `Reggio Calabria`, `Reggio Emilia`, `Rhode Island`, `Rieti`, `Rimini`, `Rio de Janeiro`, `Rio Grande do Norte`, `Rio Grande do Sul`, `Rome`, `Rondônia`, `Roraima`, `Roscommon`, `Rovigo`, `Saga`, `Saitama`, `Salerno`, `San Luis Potosí`, `Santa Catarina`, `São Paulo`, `Saskatchewan`, `Sassari`, `Savona`, `Sergipe`, `Shaanxi`, `Shandong`, `Shanghai`, `Shanxi`, `Shiga`, `Shimane`, `Shizuoka`, `Sichuan`, `Siena`, `Sikkim`, `Sinaloa`, `Sligo`, `Sondrio`, `Sonora`, `South Australia`, `South Carolina`, `South Dakota`, `Syracuse`, `Tabasco`, `Taiwan`, `Tamaulipas`, `Tamil Nadu`, `Taranto`, `Tasmania`, `Telangana`, `Tennessee`, `Teramo`, `Terni`, `Texas`, `Tianjin`, `Tipperary`, `Tlaxcala`, `Tocantins`, `Tochigi`, `Tokushima`, `Tokyo`, `Tottori`, `Toyama`, `Trapani`, `Trento`, `Treviso`, `Trieste`, `Tripura`, `Turin`, `Udine`, `Utah`, `Uttarakhand`, `Uttar Pradesh`, `Varese`, `Venice`, `Veracruz`, `Verbano-Cusio-Ossola`, `Vercelli`, `Vermont`, `Verona`, `Vibo Valentia`, `Vicenza`, `Victoria`, `Virginia`, `Viterbo`, `Wakayama`, `Washington`, `Waterford`, `West Bengal`, `Western Australia`, `Westmeath`, `West Virginia`, `Wexford`, `Wicklow`, `Wisconsin`, `Wyoming`, `Xinjiang`, `Xizang`, `Yamagata`, `Yamaguchi`, `Yamanashi`, `Yucatán`, `Yukon Territories`, `Yunnan`, `Zacatecas`, `Zhejiang` |  | StateCode | null | None |
+|  | Status | Status | string | false | `Open - Not Contacted`, `Working - Contacted`, `Closed - Converted`, `Closed - Not Converted` |  | Status | string | Open - Not Contacted |
+|  | Street | Street | string | false |  |  | Street | null | None |
+|  | System Modstamp | SystemModstamp | string | true |  |  | SystemModstamp | string | 2025-05-14T14:53:36.000+0000 |
+|  | Title | Title | string | false |  |  | Title | null | None |
+|  | Website | Website | string | false |  |  | Website | null | None |
+| FindByID |  |  |  |  |  |  | Address | null | None |
+
+## Opportunity-line-items
+
+| Diff | Entity Schema Title | Schema Field ID | Entity Schema Types | Readonly | Possible Values | Reference Collection | FindByID Field ID | Find By ID Types | Value |
+|------|---------------------|-----------------|---------------------|----------|-----------------|----------------------|-------------------|------------------|-------|
+|  | Created By ID | CreatedById | string | true |  | users | CreatedById | string | 005gK000002P1nmQAC |
+|  | Created Date | CreatedDate | string | true |  |  | CreatedDate | string | 2025-06-04T09:10:40.000+0000 |
+|  | Line Description | Description | string | false |  |  | Description | null | None |
+|  | Line Item ID | Id | string | true |  |  | Id | string | 00kgK000000wUVZQA2 |
+|  | Deleted | IsDeleted | boolean | true |  |  | IsDeleted | boolean | False |
+|  | Last Modified By ID | LastModifiedById | string | true |  | users | LastModifiedById | string | 005gK000002P1nmQAC |
+|  | Last Modified Date | LastModifiedDate | string | true |  |  | LastModifiedDate | string | 2025-06-04T09:10:40.000+0000 |
+|  | Last Referenced Date | LastReferencedDate | string | true |  |  | LastReferencedDate | string | 2025-06-17T09:55:32.000+0000 |
+|  | Last Viewed Date | LastViewedDate | string | true |  |  | LastViewedDate | string | 2025-06-17T09:55:32.000+0000 |
+|  | List Price | ListPrice | number | true |  |  | ListPrice | integer | 5000 |
+|  | Opportunity Product Name | Name | string | true |  |  | Name | string | Dickenson Mobile Generators GenWatt Diesel 10kW |
+|  | Opportunity ID | *OpportunityId | string | false |  | objects | OpportunityId | string | 006gK000001UgviQAC |
+|  | Price Book Entry ID | PricebookEntryId | string | false |  | objects | PricebookEntryId | string | 01ugK000000ROMQQA4 |
+|  | Product ID | Product2Id | string | false |  | objects | Product2Id | string | 01tgK000001ZVoOQAW |
+|  | Product Code | ProductCode | string | true |  |  | ProductCode | string | GC1020 |
+|  | Quantity | *Quantity | number | false |  |  | Quantity | integer | 3 |
+|  | Date | ServiceDate | string | false |  |  | ServiceDate | null | None |
+|  | Sort Order | SortOrder | number | false |  |  | SortOrder | null | None |
+|  | System Modstamp | SystemModstamp | string | true |  |  | SystemModstamp | string | 2025-06-04T09:10:40.000+0000 |
+|  | Total Price | TotalPrice | number | false |  |  | TotalPrice | integer | 15000 |
+|  | Sales Price | UnitPrice | number | false |  |  | UnitPrice | integer | 5000 |
