@@ -44,4 +44,10 @@ CONNECTIONS = {
         "Contacts": "3281233000021984041",
         # "products": "4",
     },
+    "Dynamics CRM": {
+        "opportunities": "3cbbd39d-d3f0-ea11-a815-000d3a33f3c3",
+        "accounts": "83883308-7ad5-ea11-a813-000d3a33f3b4",
+        "contacts": "80ac35a0-01af-ea11-a812-000d3a8b3ec6",
+        # "products": "4",
+    },
 }
