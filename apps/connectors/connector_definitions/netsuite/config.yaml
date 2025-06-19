@@ -1,0 +1,9 @@
+type: ipaas
+info:
+  name: NetSuite
+  slug: netsuite
+
+capabilities:
+  - authorize
+  - info
+

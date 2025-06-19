@@ -50,4 +50,10 @@ CONNECTIONS = {
         "contacts": "80ac35a0-01af-ea11-a812-000d3a8b3ec6",
         # "products": "4",
     },
+    "NetSuite": {
+        "opportunities": "opportunity",
+        "customers": "customer",
+        "contacts": "contact",
+        # "products": "item",
+    },
 }
