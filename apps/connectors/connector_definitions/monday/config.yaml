@@ -6,4 +6,6 @@ info:
 capabilities:
   - authorize
   - info
+  - entity
+  - object
 

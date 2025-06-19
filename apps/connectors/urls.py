@@ -56,10 +56,25 @@ entity_patterns = [
         name="entity_get_entity_schema",
     ),
 ]
+
+object_patterns = [
+    re_path(
+        r"^object/(?P<integration_key>[-\w]+)/(?P<entity_key>[-\w]+)/?$",
+        views.object_list_objects,
+        name="object_list_objects",
+    ),
+    re_path(
+        r"^object/(?P<integration_key>[-\w]+)/(?P<entity_key>[-\w]+)/(?P<object_id>[-\w]+)/?$",
+        views.object_get_object,
+        name="object_get_object",
+    ),
+]
+
 urlpatterns = [
     *authorize_patterns,
     *info_patterns,
     *entity_patterns,
+    *object_patterns,
     path("", views.index, name="index-view"),
     path("add-history", views.add_action_page, name="add-history"),
     path("api-action", views.add_action, name="add-action"),

@@ -51,6 +51,7 @@ class BaseCapabilityAction(ABC, Generic[TInput, TOutput]):
     def __init__(self, description: str):
         self.description = description
         self._overrides: Dict[str, "BaseCapabilityAction"] = {}
+        print("description", description)
 
     def override_action(self, integration_key: str, action: "BaseCapabilityAction"):
         self._overrides[integration_key] = action

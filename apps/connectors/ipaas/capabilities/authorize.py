@@ -190,7 +190,6 @@ class IpaasAuthorizeGetConnectionCapabilityAction(AuthorizeGetConnection):
         input_model: AuthorizeGetConnection.Input,
         context: "AuthorizeCapability",
     ) -> AuthorizeGetConnection.Output:
-        disconnected = True
         connection = None
         with context.client.with_user_context(
             user_id=input_model.identity.id, user_name=input_model.identity.name

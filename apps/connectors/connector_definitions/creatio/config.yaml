@@ -13,3 +13,4 @@ capabilities:
   - authorize
   - info
   - entity
+  - object

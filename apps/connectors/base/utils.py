@@ -30,3 +30,10 @@ def get_integration_configs(backend: Optional[str] = None):
                 configs[config_base_path.stem] = config_data
 
     return [ConnectorConfig(**config) for config in configs.values()]
+
+
+def to_camel_case(s: str) -> str:
+    s = s.replace("-", "_")
+    parts = s.split("_")
+    # Capitalize all parts except the first, then join
+    return parts[0] + "".join(word.capitalize() for word in parts[1:])

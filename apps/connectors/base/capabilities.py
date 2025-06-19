@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import Any, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -66,6 +67,7 @@ class BaseAuthorizeCapability(BaseCapability):
     finalize: AuthorizeFinalize
     get_auth_flow_status: AuthorizeGetAuthFlowStatus
     get_connection: AuthorizeGetConnection
+    disconnect_connection: AuthorizeDisconnectConnection
 
 
 # Info Capability
@@ -130,3 +132,34 @@ class GetEntitySchema(BaseCapabilityAction):
 class BaseEntityCapability(BaseCapability):
     list_entities: ListEntities
     get_entity_schema: GetEntitySchema
+
+
+class ListObjects(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+        entity_key: str
+        page: Optional[str] = None
+        page_size: Optional[int] = None
+        extra_params: Optional[dict[str, Any]] = None
+        identity: Identity
+
+    class Output(BaseModel):
+        objects: List[dict[str, Any]]
+        next_page: Optional[str] = None
+
+
+class GetObject(BaseCapabilityAction):
+    class Input(BaseModel):
+        integration_key: str
+        entity_key: str
+        object_id: str
+        extra_params: Optional[dict[str, Any]] = None
+        identity: Identity
+
+    class Output(BaseModel):
+        object: dict[str, Any]
+
+
+class BaseObjectCapability(BaseCapability):
+    list_objects: ListObjects
+    get_object: GetObject

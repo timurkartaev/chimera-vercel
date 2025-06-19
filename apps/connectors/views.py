@@ -33,7 +33,7 @@ def index(request):
     schema = capability.get_entity_schema(
         dict(
             integration_key="creatio",
-            entity_name="Opportunity",
+            entity_key="Opportunity",
             identity={
                 "id": "682200e11226bbc540e52a0a",
                 "name": "Timur Kartaev",
@@ -401,6 +401,7 @@ def authorization_get_connection(request, integration_key):
     )
     return JsonResponse(result)
 
+
 @csrf_exempt
 @require_http_methods(["DELETE"])
 def authorize_disconnect_connection(request, integration_key, connection_id):
@@ -443,7 +444,43 @@ def entity_get_entity_schema(request, integration_key, entity_key):
             identity={
                 "id": "682200e11226bbc540e52a0a",
                 "name": "Timur Kartaev",
-            },  
+            },
+        )
+    )
+    return JsonResponse(response)
+
+
+@require_GET
+def object_list_objects(request, integration_key, entity_key):
+    params = request.GET.dict()
+    page = params.pop("page", None)
+    extra_params = params
+    response = resolve_capability_action(integration_key, "object", "list_objects")(
+        dict(
+            integration_key=integration_key,
+            entity_key=entity_key,
+            extra_params=extra_params,
+            page=page,
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
+        )
+    )
+    return JsonResponse(response)
+
+
+@require_GET
+def object_get_object(request, integration_key, entity_key, object_id):
+    response = resolve_capability_action(integration_key, "object", "get_object")(
+        dict(
+            integration_key=integration_key,
+            entity_key=entity_key,
+            object_id=object_id,
+            identity={
+                "id": "682200e11226bbc540e52a0a",
+                "name": "Timur Kartaev",
+            },
         )
     )
     return JsonResponse(response)

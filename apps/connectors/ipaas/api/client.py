@@ -103,9 +103,11 @@ class _ScopedIntegrationAppSession:
         response.raise_for_status()
         return response.json()
 
-    def post(self, endpoint: str, data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def post(
+        self, endpoint: str, data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, Any]:
         url = f"{self.client.base_url}/{endpoint.lstrip('/')}"
-        response = requests.post(url, headers=self._get_headers(), json=data)
+        response = requests.post(url, headers=self._get_headers(), json=data, params=params)
         response.raise_for_status()
         return response.json()
 
@@ -113,6 +115,20 @@ class _ScopedIntegrationAppSession:
     def put(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         url = f"{self.client.base_url}/{endpoint.lstrip('/')}"
         response = requests.put(url, headers=self._get_headers(), json=data)
+        response.raise_for_status()
+        return response.json()
+
+    def request(
+        self,
+        method: str,
+        endpoint: str,
+        data: Optional[Dict[str, Any]] = None,
+        params: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        url = f"{self.client.base_url}/{endpoint.lstrip('/')}"
+        response = requests.request(
+            method, url, headers=self._get_headers(), json=data, params=params
+        )
         response.raise_for_status()
         return response.json()
 

@@ -9,6 +9,8 @@ from apps.connectors.ipaas.api.client import IntegrationAppClient
 
 from apps.connectors.base.models import ConnectorConfig
 
+ENDPOINT_TEMPLATE = "connections/{integration_key}/data/{entity_key}"
+
 
 def simple_depluralize(word):
     if word.endswith("ies"):
@@ -20,46 +22,87 @@ def simple_depluralize(word):
     return word
 
 
-class IpaasListEntities(ListEntities):
+class EntityActionMixin:
+    def simple_depluralize(self, word: str) -> str:
+        if word.endswith("ies"):
+            return word[:-3] + "y"
+        elif word.endswith("es") and not word.endswith("ses"):
+            return word[:-2]
+        elif word.endswith("s") and not word.endswith("ss"):
+            return word[:-1]
+        return word
+
+    def get_url(
+        self, input_model: ListEntities.Input, entity_key: str, method: str
+    ) -> str:
+        url = ENDPOINT_TEMPLATE.format(
+            integration_key=input_model.integration_key,
+            entity_key=entity_key,
+        ).rstrip("/")
+        if method:
+            url += f"/{method}"
+        return url
+
+    def get_url_part_for_entity(self, input_model: ListEntities.Input) -> str:
+        return input_model.entity_key
+
+    def get_method(self) -> str:
+        return ""
+
+
+class IpaasListEntities(ListEntities, EntityActionMixin):
     def execute(
         self, input_model: ListEntities.Input, context: "EntityCapability"
     ) -> ListEntities.Output:
         with context.client.with_user_context(
             input_model.identity.id, input_model.identity.name
         ) as session:
-            raw_entities = session.get(self.get_url(input_model))
+            response = self.request(session, self.get_url(input_model, self.get_url_part_for_entity(input_model), self.get_method()), input_model)
+            raw_entities = self.response_to_raw_entities(response)
             entities = []
             for entity_info in raw_entities:
-                entity = {
-                    "key": entity_info.get("key"),
-                    "name": entity_info.get("name"),
-                }
-                if simple_depluralize(entity["key"]).lower() in context.config.entity:
-                    entities.append(entity)
+                key, name = self.get_key_and_name(entity_info)
+                if self.filter_func(key, name, context.config):
+                    entities.append({"key": key, "name": name})
 
             return ListEntities.Output(entities=entities)
+        
+    def request(self, session, url: str, input_model: ListEntities.Input) -> dict:
+        print("url:", url)
+        return session.request(self.get_http_method(), url)
 
-    def get_url(self, input_model: ListEntities.Input):
-        return "connections/{integration_key}/data".format(
-            integration_key=input_model.integration_key,
-        )
+    def response_to_raw_entities(self, response: dict) -> list[dict]:
+        return response
+
+    def get_key_and_name(self, data: dict) -> tuple[str, str]:
+        print("data:", data)
+        return data.get("key"), data.get("name")
+
+    def filter_func(self, key: str, name: str, config: "ConnectorConfig") -> bool:
+        print("key:", key)
+        print("name:", name)
+        return simple_depluralize(key).lower() in config.entity
+    
+    def get_http_method(self) -> str:
+        return "GET"
+    
+    def get_url_part_for_entity(self, input_model: ListEntities.Input) -> str:
+        return ""
 
 
-class IpaasGetEntitySchema(GetEntitySchema):
+class IpaasGetEntitySchema(GetEntitySchema, EntityActionMixin):
     def execute(
         self, input_model: GetEntitySchema.Input, context: "EntityCapability"
     ) -> GetEntitySchema.Output:
         with context.client.with_user_context(
             input_model.identity.id, input_model.identity.name
         ) as session:
-            schema = session.get(self.get_url(input_model))
+            schema = session.get(
+                self.get_url(
+                    input_model, self.get_url_part_for_entity(input_model), self.get_method()
+                )
+            )
             return GetEntitySchema.Output(schema=schema)
-
-    def get_url(self, input_model: GetEntitySchema.Input):
-        return "connections/{integration_key}/data/{entity_key}".format(
-            integration_key=input_model.integration_key,
-            entity_key=input_model.entity_key,
-        )
 
 
 class EntityCapability(BaseEntityCapability):
