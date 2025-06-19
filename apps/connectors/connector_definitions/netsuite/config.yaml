@@ -12,4 +12,4 @@ capabilities:
 entities:
   - contacts
   - customers
-  - deal
+  - accounts

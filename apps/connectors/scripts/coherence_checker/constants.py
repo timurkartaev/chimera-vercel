@@ -51,9 +51,9 @@ CONNECTIONS = {
         # "products": "4",
     },
     "NetSuite": {
-        "opportunities": "opportunity",
-        "customers": "customer",
-        "contacts": "contact",
+        # "opportunities": "opportunity",
+        "accounts": "284",
+        "contacts": "9392",
         # "products": "item",
     },
 }
