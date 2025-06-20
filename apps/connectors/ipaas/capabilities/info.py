@@ -36,7 +36,7 @@ class IpaasListIntegrations(ListIntegrations):
             input_model.customer_id, input_model.customer_name
         ) as session:
             integrations = session.list_integrations(
-                self.get_integration_names(input_model.integration_configs)
+                self.get_integration_names(input_model.integration_configs.values())
             )
             return ListIntegrations.Output(
                 integrations=[
