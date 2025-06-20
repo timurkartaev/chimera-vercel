@@ -17,6 +17,7 @@ class Integration(BaseModel):
     logo: Optional[str] = None
     auth_type: Optional[str] = None
     version: Optional[str] = None
+    capabilities: Optional[List[str]] = None
 
 
 class Identity(BaseModel):

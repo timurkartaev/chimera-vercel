@@ -11,6 +11,7 @@ def map_ipaas_to_integration(data: dict[str, Any]) -> Integration:
         logo=data.get("logoUri"),
         auth_type=data.get("authType"),
         version=data.get("connectorVersion"),
+        capabilities=data.get("capabilities", []),
     )
 
 

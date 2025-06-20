@@ -22,7 +22,11 @@ class IpaasGetIntegrationDetails(GetIntegrationDetails):
         ) as session:
             integration = session.get(f"integrations/{context.config.info.slug}")
             return GetIntegrationDetails.Output(
-                integration=map_to("ipaas", "integration", integration)
+                integration=map_to(
+                    "ipaas",
+                    "integration",
+                    {**integration, "capabilities": context.config.capabilities},
+                )
             )
 
 
@@ -36,16 +40,21 @@ class IpaasListIntegrations(ListIntegrations):
             )
             return ListIntegrations.Output(
                 integrations=[
-                    map_to("ipaas", "integration", integration)
+                    map_to(
+                        "ipaas",
+                        "integration",
+                        {
+                            **integration,
+                            "capabilities": context.config.capabilities,
+                        },
+                    )
                     for integration in integrations
                 ]
             )
 
 
 class InfoCapability(BaseInfoCapability):
-    get_integration = IpaasGetIntegrationDetails(
-        description="Get integration details"
-    )
+    get_integration = IpaasGetIntegrationDetails(description="Get integration details")
     list_integrations = IpaasListIntegrations(description="List integrations")
 
     def __init__(
