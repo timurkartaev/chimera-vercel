@@ -68,19 +68,15 @@ class IpaasListEntities(ListEntities, EntityActionMixin):
             return ListEntities.Output(entities=entities)
         
     def request(self, session, url: str, input_model: ListEntities.Input) -> dict:
-        print("url:", url)
         return session.request(self.get_http_method(), url)
 
     def response_to_raw_entities(self, response: dict) -> list[dict]:
         return response
 
     def get_key_and_name(self, data: dict) -> tuple[str, str]:
-        print("data:", data)
         return data.get("key"), data.get("name")
 
     def filter_func(self, key: str, name: str, config: "ConnectorConfig") -> bool:
-        print("key:", key)
-        print("name:", name)
         return simple_depluralize(key).lower() in config.entity
     
     def get_http_method(self) -> str:

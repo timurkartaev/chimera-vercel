@@ -7,6 +7,19 @@ from connectors.base.capabilities import ListObjects, GetObject, BaseObjectCapab
 ENDPOINT_TEMPLATE = "connections/{integration_key}/data/{entity_key}/{method}"
 
 
+def get_first_existing_value(data, paths, default=None):
+    for path in paths:
+        try:
+            value = data
+            for key in path.split("."):
+                value = value[key]
+            if value is not None:
+                return value
+        except (KeyError, TypeError):
+            continue
+    return default
+
+
 class ObjectActionMixin:
     def get_url(self, input_data: ListObjects.Input, method: str) -> str:
         return ENDPOINT_TEMPLATE.format(
@@ -43,9 +56,23 @@ class IpaasListObjects(ListObjects, ObjectActionMixin):
                 self.get_url(input_data, "list"), data=payload, params=params
             )
             return ListObjects.Output(
-                objects=response["records"],
+                objects=self.select(response["records"]),
                 next_page=response.get("cursor"),
             )
+
+    def select(self, records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return [
+            {
+                "key": get_first_existing_value(
+                    record,
+                    ("id", "fields.id", "Id", "fields.Id"),
+                ),
+                "name": get_first_existing_value(
+                    record, ("name", "fields.name", "Name", "fields.Name")
+                ),
+            }
+            for record in records
+        ]
 
     def get_payload(self, input_data: ListObjects.Input) -> dict[str, Any]:
         payload = {}
