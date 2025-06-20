@@ -45,7 +45,9 @@ class IpaasListIntegrations(ListIntegrations):
                         "integration",
                         {
                             **integration,
-                            "capabilities": context.config.capabilities,
+                            "capabilities": input_model.integration_configs[
+                                integration["key"]
+                            ].capabilities,
                         },
                     )
                     for integration in integrations

@@ -29,7 +29,7 @@ def get_integration_configs(backend: Optional[str] = None):
             if backend is None or config_data.get("type") == backend:
                 configs[config_base_path.stem] = config_data
 
-    return [ConnectorConfig(**config) for config in configs.values()]
+    return {config_name: ConnectorConfig(**config) for config_name, config in configs.items()}
 
 
 def to_camel_case(s: str) -> str:

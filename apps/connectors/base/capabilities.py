@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 from apps.connectors.base.capability import BaseCapability, BaseCapabilityAction
@@ -86,7 +86,7 @@ class ListIntegrations(BaseCapabilityAction):
     class Input(BaseModel):
         customer_id: str
         customer_name: str
-        integration_configs: List["ConnectorConfig"] = Field(
+        integration_configs: Dict[str, "ConnectorConfig"] = Field(
             default_factory=get_integration_configs
         )
 
