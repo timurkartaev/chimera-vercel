@@ -24,7 +24,7 @@ CONNECTIONS = {
         "deals": "1",
         "organizations": "1",
         "persons": "1",
-        # "deal-products": "500",
+        "deal-products": "1",
     },
     "Salesforce": {
         "opportunities": "006gK000001UgviQAC",
@@ -51,7 +51,7 @@ CONNECTIONS = {
         # "products": "4",
     },
     "NetSuite": {
-        # "opportunities": "opportunity",
+        "opportunities": "16045",
         "accounts": "284",
         "contacts": "9392",
         # "products": "item",
