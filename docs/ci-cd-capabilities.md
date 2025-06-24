@@ -1,6 +1,6 @@
 # CI/CD Capabilities with iPaaS CLI Tool
 
-This document outlines what **can and cannot** be achieved using the CLI tool provided by our iPaaS partner within our CI/CD pipeline.
+This document outlines what **can and cannot** be achieved using the CLI tool provided by integration.app cli-tool within our CI/CD pipeline.
 
 ---
 
