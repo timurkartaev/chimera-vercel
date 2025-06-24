@@ -58,6 +58,3 @@ The CLI tool has some limitations. Specifically, it **does not support creating 
 | Manage users/connections/orgs  | ❌         |
 | Multi-workspace configuration  | ✅         |
 
----
-
-Let me know if you'd like this converted into a Markdown file or need sections on how to structure Git repos or example commands.
