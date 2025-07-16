@@ -6,7 +6,9 @@ This document outlines what **can and cannot** be achieved using the CLI tool pr
 
 ## ✅ Supported Actions (What We Can Do)
 
-The CLI tool enables us to **pull**, **update**, and **delete** various integration components. The typical workflow involves pulling existing configurations from a workspace, updating them locally (e.g., in a Git repository), and pushing changes back to the workspace.
+The CLI tool enables us to **pull**, **update**, and **delete** various integration components. The typical workflow
+involves pulling existing configurations from a workspace, updating them locally (e.g., in a Git repository), and
+pushing changes back to the workspace.
 
 The following resources are supported:
 
@@ -33,7 +35,8 @@ Each workspace can be targeted independently, using a shared configuration setup
 
 ## ❌ Unsupported Actions (What We Cannot Do)
 
-The CLI tool has some limitations. Specifically, it **does not support creating new entities** or managing certain aspects of the platform.
+The CLI tool has some limitations. Specifically, it **does not support creating new entities** or managing certain
+aspects of the platform.
 
 ### Not Supported:
 
@@ -50,7 +53,7 @@ The CLI tool has some limitations. Specifically, it **does not support creating 
 ## Summary
 
 | Capability                     | Supported |
-| ------------------------------ | --------- |
+|--------------------------------|-----------|
 | Pull existing workspace config | ✅         |
 | Update/delete components       | ✅         |
 | Push changes to workspace      | ✅         |

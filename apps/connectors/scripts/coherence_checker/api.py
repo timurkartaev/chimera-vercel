@@ -37,6 +37,6 @@ class IntegrationAPI:
         response = requests.post(
             url,
             headers=headers,
-            json={"collection_name": collection, "object_id": object_id},
+            json={"object": {"id": object_id}, "entity": collection},
         )
         return response.json()

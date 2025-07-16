@@ -306,9 +306,9 @@ def get_customer_token(user):
         {
             # ID of your customer in your system.
             # It will be used to identify customer in Integration.app
-            "id": "682200e11226bbc540e52a0a",
+            "id": "682200d25be10f8dedb486fa",
             # Human-readable name (it will simplify troubleshooting)
-            "name": "Timur Kartaev",
+            "name": "Doniyor Rufatov",
             "iss": IPAAS_WORKSPACE_KEY,
             # Any customer fields you want to attach to your user.
             "fields": {},
